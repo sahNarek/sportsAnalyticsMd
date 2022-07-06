@@ -1,0 +1,165 @@
+---
+title: "CSE 270 Sports Analytics"
+subtitle: "Predicting with distributions"
+author: "Habet Madoyan"
+date: "July 14, 2018"
+fontsize: 8pt
+output:
+  beamer_presentation:
+    theme: "CambridgeUS"
+    colortheme: "dolphin"
+    fonttheme: "structurebold"
+    pandoc_args: '--pdf-engine=xelatex'
+    includes: 
+      in_header: "./customtexfuncs.tex"
+---
+
+
+# Predicting with distributions
+
+Suppose we have two variables with normal distribution,
+
+* Home team score
+* Away team score
+
+$H \sim N( \mu_H, \sigma_H ^ 2)$\
+$A \sim N( \mu_A, \sigma_A ^ 2)$
+
+Then the difference between the home and away teams scores will also have normal
+distribution with the following parameters (assuming this two are independent)
+
+$\mu_d = \mu_H - m_A$\
+$\sigma_D ^ 2 = \sigma_H ^ 2 + \sigma_A ^ 2$
+Thus the difference will have a normal distribution with the following parameters
+$D \sim N( \mu_H - \mu_A, \sigma_H ^ 2 + \sigma_A ^ 2 )$
+
+# Predicting with distributions
+* In NBA (National Basketball Association) points scored per
+game by home and away teams follow normal distribution.
+
+* Install package SportsAnalytics270 from github.
+
+* The package contains data for Sports analytics.
+
+```{r md_setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, tidy = F,  collapse = TRUE, warning=F, message = F, out.width = '80%', size = 'footnotesize', fig.align = "center", size = "small", fig.height=6,fig.align='center')
+library(SportsAnalytics270)
+library(dplyr)
+library(ggplot2)
+library(reshape2)
+```
+
+```{r cse_270_setup_1, eval=FALSE, warning=FALSE, message=FALSE}
+library(devtools)
+install_github("HABET/CSE270")
+library(SportsAnalytics270)
+```
+
+```{r cse_270_setup_2, eval=FALSE}
+library(SportsAnalytics270)
+```
+
+# Predicting with distributions
+
+Dataframe nba2009_2018 contains NBA regular season games from 2009 to 2018-
+2019 season 
+
+```{r}
+options(width = 65)
+data(nba2009_2018)
+head(nba2009_2018, 2)
+```
+
+# Predicting with distributions
+
+Plot the histogram for home points
+
+```{r}
+library(ggplot2)
+ggplot(nba2009_2018, aes(x=home.PTS))+geom_histogram()
+```
+
+# Predicting with distributions
+
+Exclude Boston-Celtics game
+
+```{r, fig.height=5}
+library(ggplot2)
+ggplot(nba2009_2018, aes(x=home.PTS))+geom_histogram()+xlim(c(50,155))+
+  labs(x="Home Points", title="Histogram for points per game by home team")
+```
+
+# Predicting with distributions
+
+```{r}
+ggplot(nba2009_2018, aes(x=away.PTS))+geom_histogram()+xlim(c(50,150))+
+  labs(x="Away Points", title="Histogram for points per game by away team")
+```
+
+# Predicting with distributions
+
+Histogram of home and away points together
+
+```{r}
+ggplot(nba2009_2018)+
+  geom_histogram(aes(x=away.PTS), fill='red')+
+  geom_histogram(aes(x=home.PTS),fill='blue')+
+  xlim(c(50,155))+
+  labs(x="Points", title="Home/away points")
+```
+
+# Predicting with distributions
+Home points for last season only
+
+```{r}
+library(dplyr)
+nba2009_2018 %>%
+  filter(SEASON_ID=='2017') %>%
+ggplot(aes(x=home.PTS))+geom_histogram()+xlim(c(50,155))+
+  labs(x="Home Points", title="Histogram for points for last season")
+```
+
+# Predicting with distributions
+What about Points difference ?
+
+```{r}
+nba2009_2018$Diff <- nba2009_2018$home.PTS-nba2009_2018$away.PTS
+ggplot(nba2009_2018, aes(x=Diff))+geom_histogram(bins=50)+
+  labs(x="Points Difference", title="Histogram for points points difference")
+```
+
+
+# Predicting with distributions
+
+Test hypothesis of Normality:
+
+$H_0:$ *sample came from normal distribution* \
+$H_1:$ *sample did not come from normal distribution* \
+
+Find the p-value of the test: if is more than $\alpha$ 0.05 then it has a normal
+distribution, failed to reject $H_0$
+
+
+# Predicting with distributions
+
+```{r}
+nba2009_2018 %>%
+  filter(SEASON_ID=='2017') %>%
+  group_by(home.TEAM_ABBREVIATION) %>%
+  summarise(p_value = shapiro.test(home.PTS)$p.value)%>%
+  arrange(p_value)
+```
+
+# Predicting with distributions
+
+Away points: Normal distribution with $\alpha$ = 0.05
+
+```{r}
+
+nba2009_2018 %>%
+  filter(SEASON_ID=='2017') %>%
+  group_by(away.TEAM_ABBREVIATION) %>%
+  summarise(p_value = shapiro.test(away.PTS)$p.value)%>%
+  arrange(p_value)
+```
+
