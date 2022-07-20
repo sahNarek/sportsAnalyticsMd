@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.21)  6 JUL 2022 18:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.21)  20 JUL 2022 20:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -742,20 +742,13 @@ Package microtype Info: Loading configuration file microtype.cfg.
 File: microtype.cfg 2022/03/14 v3.0d microtype main configuration file (RS)
 )) (/usr/local/texlive/2022/texmf-dist/tex/latex/parskip/parskip.sty
 Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
-) (/usr/local/texlive/2022/texmf-dist/tex/latex/xurl/xurl.sty
-Package: xurl 2022/01/09 v 0.10 modify URL breaks
-) (/usr/local/texlive/2022/texmf-dist/tex/latex/bookmark/bookmark.sty
-Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
-(/usr/local/texlive/2022/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
-File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
-\BKM@id=\count344
-)) (/usr/local/texlive/2022/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+) (/usr/local/texlive/2022/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 2021/12/21 4.1b verbatim text (tvz,hv)
-\FV@CodeLineNo=\count345
+\FV@CodeLineNo=\count344
 \FV@InFile=\read3
 \FV@TabBox=\box77
-\c@FancyVerbLine=\count346
-\FV@StepNumber=\count347
+\c@FancyVerbLine=\count345
+\FV@StepNumber=\count346
 \FV@OutFile=\write5
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/framed/framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
@@ -764,6 +757,13 @@ Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \fb@frh=\dimen298
 \FrameRule=\dimen299
 \FrameSep=\dimen300
+) (/usr/local/texlive/2022/texmf-dist/tex/latex/bookmark/bookmark.sty
+Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
+(/usr/local/texlive/2022/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
+File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
+\BKM@id=\count347
+)) (/usr/local/texlive/2022/texmf-dist/tex/latex/xurl/xurl.sty
+Package: xurl 2022/01/09 v 0.10 modify URL breaks
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count348
@@ -1137,6 +1137,383 @@ hunk-7-1.pdf  used on input line 13.
 
 (./predicting_distributions.vrb) [13
 
+] [14
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [15
+
+]
+<./images/wizards.png, id=182, 1068.99374pt x 434.62375pt>
+File: ./images/wizards.png Graphic file (type png)
+<use ./images/wizards.png>
+Package pdftex.def Info: ./images/wizards.png  used on input line 461.
+(pdftex.def)             Requested size: 277.75734pt x 112.92656pt.
+[16
+
+ <./images/wizards.png>]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [17
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb
+<predicting_distributions_files/figure-beamer/unnamed-chunk-14-1.pdf, id=200, 7
+12.6625pt x 421.575pt>
+File: predicting_distributions_files/figure-beamer/unnamed-chunk-14-1.pdf Graph
+ic file (type pdf)
+<use predicting_distributions_files/figure-beamer/unnamed-chunk-14-1.pdf>
+Package pdftex.def Info: predicting_distributions_files/figure-beamer/unnamed-c
+hunk-14-1.pdf  used on input line 15.
+(pdftex.def)             Requested size: 277.75734pt x 164.30423pt.
+) [18
+
+ <./predicting_distributions_files/figure-beamer/unnamed-chunk-14-1.pdf>]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [19
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [20
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [21
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [22
+
+] [23
+
+]
+<./images/poisson.png, id=311, 990.70125pt x 451.6875pt>
+File: ./images/poisson.png Graphic file (type png)
+<use ./images/poisson.png>
+Package pdftex.def Info: ./images/poisson.png  used on input line 605.
+(pdftex.def)             Requested size: 277.75734pt x 126.63704pt.
+[24
+
+ <./images/poisson.png>]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [25
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb
+<predicting_distributions_files/figure-beamer/unnamed-chunk-22-1.pdf, id=328, 7
+12.6625pt x 421.575pt>
+File: predicting_distributions_files/figure-beamer/unnamed-chunk-22-1.pdf Graph
+ic file (type pdf)
+<use predicting_distributions_files/figure-beamer/unnamed-chunk-22-1.pdf>
+Package pdftex.def Info: predicting_distributions_files/figure-beamer/unnamed-c
+hunk-22-1.pdf  used on input line 15.
+(pdftex.def)             Requested size: 277.75734pt x 164.30423pt.
+)
+Overfull \vbox (4.02185pt too high) detected at line 649
+ []
+
+[26
+
+ <./predicting_distributions_files/figure-beamer/unnamed-chunk-22-1.pdf>]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb
+<predicting_distributions_files/figure-beamer/unnamed-chunk-23-1.pdf, id=356, 7
+12.6625pt x 421.575pt>
+File: predicting_distributions_files/figure-beamer/unnamed-chunk-23-1.pdf Graph
+ic file (type pdf)
+<use predicting_distributions_files/figure-beamer/unnamed-chunk-23-1.pdf>
+Package pdftex.def Info: predicting_distributions_files/figure-beamer/unnamed-c
+hunk-23-1.pdf  used on input line 14.
+(pdftex.def)             Requested size: 277.75734pt x 164.30423pt.
+)
+Overfull \vbox (4.02185pt too high) detected at line 666
+ []
+
+[27
+
+ <./predicting_distributions_files/figure-beamer/unnamed-chunk-23-1.pdf>]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [28
+
+] [29
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [30
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [31
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [32
+
+]
+<./images/lazio.png, id=417, 950.55125pt x 427.5975pt>
+File: ./images/lazio.png Graphic file (type png)
+<use ./images/lazio.png>
+Package pdftex.def Info: ./images/lazio.png  used on input line 782.
+(pdftex.def)             Requested size: 277.75734pt x 124.94617pt.
+[33
+
+ <./images/lazio.png>] [34
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [35
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [36
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [37
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [38
+
+]
+<./images/prob_table_1.png, id=463, 525.965pt x 178.6675pt>
+File: ./images/prob_table_1.png Graphic file (type png)
+<use ./images/prob_table_1.png>
+Package pdftex.def Info: ./images/prob_table_1.png  used on input line 901.
+(pdftex.def)             Requested size: 277.75734pt x 94.35526pt.
+[39
+
+ <./images/prob_table_1.png>]
+<./images/prob_table_2.png, id=472, 538.01pt x 176.66pt>
+File: ./images/prob_table_2.png Graphic file (type png)
+<use ./images/prob_table_2.png>
+Package pdftex.def Info: ./images/prob_table_2.png  used on input line 908.
+(pdftex.def)             Requested size: 277.75734pt x 91.2033pt.
+[40
+
+ <./images/prob_table_2.png>]
+<./images/prob_table_3.png, id=481, 757.83125pt x 266.9975pt>
+File: ./images/prob_table_3.png Graphic file (type png)
+<use ./images/prob_table_3.png>
+Package pdftex.def Info: ./images/prob_table_3.png  used on input line 915.
+(pdftex.def)             Requested size: 277.75734pt x 97.85863pt.
+[41
+
+ <./images/prob_table_3.png>]
+<./images/prob_table_4.png, id=490, 767.86874pt x 254.9525pt>
+File: ./images/prob_table_4.png Graphic file (type png)
+<use ./images/prob_table_4.png>
+Package pdftex.def Info: ./images/prob_table_4.png  used on input line 923.
+(pdftex.def)             Requested size: 277.75734pt x 92.22241pt.
+[42
+
+ <./images/prob_table_4.png>]
+<./images/prob_table_5.png, id=499, 752.8125pt x 265.99374pt>
+File: ./images/prob_table_5.png Graphic file (type png)
+<use ./images/prob_table_5.png>
+Package pdftex.def Info: ./images/prob_table_5.png  used on input line 931.
+(pdftex.def)             Requested size: 277.75734pt x 98.1442pt.
+[43
+
+ <./images/prob_table_5.png>]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [44
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [45
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb
+<predicting_distributions_files/figure-beamer/unnamed-chunk-47-1.pdf, id=523, 7
+12.6625pt x 421.575pt>
+File: predicting_distributions_files/figure-beamer/unnamed-chunk-47-1.pdf Graph
+ic file (type pdf)
+<use predicting_distributions_files/figure-beamer/unnamed-chunk-47-1.pdf>
+Package pdftex.def Info: predicting_distributions_files/figure-beamer/unnamed-c
+hunk-47-1.pdf  used on input line 15.
+(pdftex.def)             Requested size: 277.75734pt x 164.30423pt.
+)
+Overfull \vbox (6.8807pt too high) detected at line 1006
+ []
+
+[46
+
+ <./predicting_distributions_files/figure-beamer/unnamed-chunk-47-1.pdf>]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [47
+
+] [48
+
+]
+<./images/leeds_table.png, id=552, 962.59625pt x 294.09875pt>
+File: ./images/leeds_table.png Graphic file (type png)
+<use ./images/leeds_table.png>
+Package pdftex.def Info: ./images/leeds_table.png  used on input line 1081.
+(pdftex.def)             Requested size: 277.75734pt x 84.86012pt.
+[49
+
+ <./images/leeds_table.png>] [50
+
+]
+<./images/table_1.png, id=570, 922.44624pt x 410.53375pt>
+File: ./images/table_1.png Graphic file (type png)
+<use ./images/table_1.png>
+Package pdftex.def Info: ./images/table_1.png  used on input line 1097.
+(pdftex.def)             Requested size: 277.75734pt x 123.61209pt.
+[51
+
+ <./images/table_1.png>]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [52
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [53
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [54
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [55
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [56
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [57
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [58
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [59
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [60
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [61
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [62
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [63
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb
+<predicting_distributions_files/figure-beamer/unnamed-chunk-67-1.pdf, id=666, 7
+12.6625pt x 421.575pt>
+File: predicting_distributions_files/figure-beamer/unnamed-chunk-67-1.pdf Graph
+ic file (type pdf)
+<use predicting_distributions_files/figure-beamer/unnamed-chunk-67-1.pdf>
+Package pdftex.def Info: predicting_distributions_files/figure-beamer/unnamed-c
+hunk-67-1.pdf  used on input line 12.
+(pdftex.def)             Requested size: 277.75734pt x 164.30423pt.
+) [64
+
+ <./predicting_distributions_files/figure-beamer/unnamed-chunk-67-1.pdf>]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb
+<predicting_distributions_files/figure-beamer/unnamed-chunk-68-1.pdf, id=681, 7
+12.6625pt x 421.575pt>
+File: predicting_distributions_files/figure-beamer/unnamed-chunk-68-1.pdf Graph
+ic file (type pdf)
+<use predicting_distributions_files/figure-beamer/unnamed-chunk-68-1.pdf>
+Package pdftex.def Info: predicting_distributions_files/figure-beamer/unnamed-c
+hunk-68-1.pdf  used on input line 14.
+(pdftex.def)             Requested size: 277.75734pt x 164.30423pt.
+) [65
+
+ <./predicting_distributions_files/figure-beamer/unnamed-chunk-68-1.pdf>]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb
+
+LaTeX Font Warning: Font shape `TS1/lmtt/bx/it' in size <8> not available
+(Font)              Font shape `TS1/lmtt/b/sl' tried instead on input line 22.
+
+) [66
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [67
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [68
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb
+<predicting_distributions_files/figure-beamer/unnamed-chunk-72-1.pdf, id=720, 7
+12.6625pt x 421.575pt>
+File: predicting_distributions_files/figure-beamer/unnamed-chunk-72-1.pdf Graph
+ic file (type pdf)
+<use predicting_distributions_files/figure-beamer/unnamed-chunk-72-1.pdf>
+Package pdftex.def Info: predicting_distributions_files/figure-beamer/unnamed-c
+hunk-72-1.pdf  used on input line 13.
+(pdftex.def)             Requested size: 277.75734pt x 164.30423pt.
+) [69
+
+ <./predicting_distributions_files/figure-beamer/unnamed-chunk-72-1.pdf>]
+\openout4 = `predicting_distributions.vrb'.
+
+(./predicting_distributions.vrb) [70
+
 ]
 \tf@nav=\write6
 \openout6 = `predicting_distributions.nav'.
@@ -1149,28 +1526,31 @@ hunk-7-1.pdf  used on input line 13.
 
 (./predicting_distributions.aux) ) 
 Here is how much of TeX's memory you used:
- 25040 strings out of 478268
- 491673 string characters out of 5846347
- 767902 words of memory out of 5000000
- 42579 multiletter control sequences out of 15000+600000
- 516311 words of font info for 89 fonts, out of 8000000 for 9000
+ 25743 strings out of 478268
+ 509518 string characters out of 5846347
+ 772902 words of memory out of 5000000
+ 42984 multiletter control sequences out of 15000+600000
+ 517631 words of font info for 99 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,15n,122p,1021b,495s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 128i,15n,122p,1021b,657s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc
 /dvips/lm/lm-ts1.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-
-ec.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/u
-sr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texli
-ve/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/local/texlive/2022/te
-xmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2022/texmf-dist/fo
-nts/type1/public/lm/lmss8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/p
-ublic/lm/lmssbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm
-/lmsso8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy8.pfb
-></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtko10.pfb></usr/lo
-cal/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtt8.pfb>
-Output written on predicting_distributions.pdf (13 pages, 195735 bytes).
+ec.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/u
+sr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/t
+exlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2022/te
+xmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/local/texlive/2022/texmf-dist/f
+onts/type1/public/lm/lmex10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1
+/public/lm/lmmi8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/
+lmss8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmssbx10.pf
+b></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsso8.pfb></usr/lo
+cal/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive
+/2022/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2022/texm
+f-dist/fonts/type1/public/lm/lmtko10.pfb></usr/local/texlive/2022/texmf-dist/fo
+nts/type1/public/lm/lmtt8.pfb>
+Output written on predicting_distributions.pdf (70 pages, 1505607 bytes).
 PDF statistics:
- 218 PDF objects out of 1000 (max. 8388607)
- 159 compressed objects within 2 object streams
- 39 named destinations out of 1000 (max. 500000)
- 28751 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 843 PDF objects out of 1000 (max. 8388607)
+ 637 compressed objects within 7 object streams
+ 217 named destinations out of 1000 (max. 500000)
+ 29070 words of extra memory for PDF output out of 29859 (max. 10000000)
 
