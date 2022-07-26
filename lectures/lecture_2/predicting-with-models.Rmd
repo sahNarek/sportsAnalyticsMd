@@ -1,0 +1,802 @@
+---
+title: "CSE 270 Sports Analytics"
+subtitle: "Predicting with models"
+author: "Habet Madoyan"
+date: "July 14, 2018"
+fontsize: 8pt
+output:
+  beamer_presentation:
+    theme: "CambridgeUS"
+    colortheme: "dolphin"
+    fonttheme: "structurebold"
+    pandoc_args: '--pdf-engine=xelatex'
+    includes: 
+      in_header: "../customtexfuncs.tex"
+---
+
+# Poisson regression
+
+## Predicting game outcome with Poisson regression
+
+
+
+# Poisson regression
+
+First we are going to test the hypothesis that Home goals and Away goals are
+independent.
+
+We will use a $\chi^2$ test of independence of two categorical variables
+
+\bcenter
+
+$H_0:$ Two variables are independent
+
+\ecenter
+
+\bcenter
+
+$H_1:$ Two variables are NOT independent
+
+\ecenter
+ 
+Calculate p-value and compare with significance level of $\alpha$, if p-value < $\alpha$ reject
+the NULL hypothesis
+
+
+# Poisson regression
+
+
+First we are going to create categoric variables for Home and Away team goals in a way that
+more than 3 goals will be combined together
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=F, warning=F)
+library(dplyr)
+library(VGAM)
+library(ggplot2)
+library(SportsAnalytics270)
+
+```
+
+
+```{r}
+library(dplyr)
+data("f_data_sm")
+df <- f_data_sm %>% mutate(FTAG = ifelse(FTAG>=4, "4+", FTAG),
+                           FTHG = ifelse(FTHG >=4, "4+", FTHG))
+```
+
+# Poisson regression
+
+Recall that $\chi^2$ test is using Expected and Observed frequencies as an input. Thus we
+will need to provide a table with joint frequencies of Home and away team goals
+
+```{r}
+table(Away=df$FTAG, Home = df$FTHG)
+```
+
+
+# Poisson regression
+
+We do the test for the last season
+
+* We use function chisq.test
+* We specify table with Observed Frequencies
+* And specify simulate.p.values = TRUE: This will add robustness to our
+test
+* We do the test for each country and extract p-values of the test
+
+
+# Poisson regression
+
+
+```{r, tidy=F}
+df %>% filter(SEASON==2019) %>% group_by(COUNTRY) %>% 
+  summarise(pvalue=chisq.test(table(FTAG, FTHG),
+                              simulate.p.value=T)$p.value)
+```
+
+The hypothesis of independence is not
+rejected, at $\alpha$ = 0.05 , Thus they are
+independent
+
+# Poisson regression
+
+* Poisson regression is used when the dependent variable is a
+count data, i.e. y=0,1,2,3…, thus we assume that the dependent
+variable has Poisson distribution
+* Independent variables can be both numeric and categorical
+* Poisson regression is a part of Generalized Linear Regression
+(GLM) models family
+
+# Poisson regression: the general definition
+
+In this chapter we are fitting the model of the following form
+
+\bcenter
+$log(\lambda) = \beta_0 + \beta_1X_1 + \beta_2X_2 + ...$
+\ecenter
+
+Where $\lambda$ is the mean of Poisson distribution and $X_1,..X_n$ are the independent
+variables
+
+With the estimate of the $\lambda$ we can generate Poisson distribution and calculate the
+probabilities for the number of the goals
+
+# Preparing data for the Poisson regression model
+
+The initial data for Portugal, season 2018-2019
+
+Making Predictions for Portugal Liga 1
+
+```{r}
+data(f_data_sm)
+portugal <- f_data_sm %>%
+            filter(SEASON==2019, COUNTRY=="Portugal") %>%
+            select(HOMETEAM, AWAYTEAM, FTHG, FTAG)  
+
+head(portugal, n=5)
+dim(portugal)
+```
+
+# Preparing data for the Poisson regression model
+
+The data need to be in the following format: 2 rows for each game and the indicator showing if the team is a home team
+
+
+```{r}
+port1<-data.frame(portugal[,c("HOMETEAM", "AWAYTEAM", "FTHG")], Home=1)
+port2<-data.frame(portugal[,c("AWAYTEAM", "HOMETEAM", "FTAG")], Home=0)
+colnames(port1)<-c("Team", "Opponent", "Goal", "Home")
+colnames(port2)<-c("Team", "Opponent","Goal", "Home")
+portugal2<-rbind(port1, port2)
+head(portugal2)
+```
+
+# Preparing data for the Poisson regression model
+
+Now lets have a look at the first game of the season:
+Benfica vs Guimaraes
+* Benfica was the home team, and the game ended with 3-2
+```{r}
+portugal[1,]
+```
+
+* Lets look at our new dataset
+
+```{r}
+portugal2[1,]
+portugal2[307,]
+```
+
+
+The number of the rows in the portugal2 dataset is twice of the original one
+
+```{r}
+dim(portugal)
+dim(portugal2)
+```
+
+# The model 
+
+
+```{r, eval=F}
+model<-glm(Goal~Team+Opponent+Home, data=portugal2, family=poisson(link=log))
+coefficients(model)
+```
+
+
+\tiny
+```{r, echo=F}
+model<-glm(Goal~Team+Opponent+Home, data=portugal2, family=poisson(link=log))
+coefficients(model)
+```
+
+# Making predictions
+
+* Benfica is playing against Porto at home
+
+```{r}
+options(scipen=1, digits=4)
+predict(model, data.frame(Home=1, Team="Benfica", Opponent="Porto"), type="response")
+```
+
+* The same for Porto
+```{r}
+options(scipen=1, digits=4)
+predict(model, data.frame(Home=0, Team="Porto", Opponent="Benfica"),
+        type="response")
+```
+
+When Benfica is playing Porto at Home, the expected (average) number of
+goals for Benfica is 1.522 and For Porto 1.342
+
+# Lets do the calculations by hand for Benfica
+
+Calculations of $\lambda$ for Benfica
+
+\bcenter
+
+$log(\lambda) = \beta_0 + \beta_{TeamBenfica} + \beta_{OpponentPorto} + \beta_{Home}$
+
+\ecenter
+
+```{r }
+options(scipen=1, digits=4)
+coefficients(model)["(Intercept)"]
+```
+
+```{r}
+coefficients(model)["TeamBenfica"]
+```
+
+
+```{r}
+coefficients(model)["OpponentPorto"]
+```
+
+```{r}
+coefficients(model)["Home"]
+```
+
+$log(\lambda) = -0.0495 + 1.06 + (-0.8486) + 0.2581$ \ 
+$\lambda = exp(0.42) = 1.52$
+
+
+# Making predictions: Home advantage
+
+
+The average expected goals of the home team divided by the average expected goals by the same team playing away will be equal to exponent of Home coefficient
+
+
+```{r}
+# lambda for Benfica playing at home
+b_h<-exp(-0.0495+1.06-0.8486 + 0.2581)
+# lambda for Benfica playing against Porto away
+b_a<-exp(-0.0495+1.06-0.8486)
+b_h/b_a
+```
+
+```{r}
+exp(coefficients(model)["Home"])
+```
+
+# Making predictions
+
+
+As we have $\lambda$ for both teams, we can use skellam distribution to come up with the probabilities.
+
+```{r, tidy=F}
+# Benfica's lambda
+1.522
+# Porto's lambda
+1.342
+
+# Simulate game results
+set.seed(1)
+k <- rskellam(10000,mu1 = 1.522, mu2 = 1.342)
+```
+
+# Making predictions
+
+A slight home team advantage
+
+```{r, fig.width=10, fig.height=4}
+ggplot()+geom_bar(aes(x=k))+
+  labs(x="Goal difference", title="Skellam distribution for Benfica vs Porto")
+```
+
+# Making predictions 
+
+Calculate the game output probabilities
+
+```{r}
+# Away team to win
+sum(dskellam(c(-100:-1),1.522, 1.342))
+# Draw
+sum(dskellam(0 ,1.522, 1.342))
+# Home team to win
+sum(dskellam(c(1:100),1.522, 1.342))
+```
+
+
+# Predicting with models
+
+## Bradley-Terry model
+
+# Bradley-Terry model
+
+The Bradley-Terry model (Bradley and Terry 1952) assumes that in a ‘contest’
+between any two ‘players’, say player $i$ and player $j$ ( $i$, $j$ $\in$ {1, ... . , $K$}) the ,odds
+that $i$ beats $j$ are $\alpha_i / \alpha_j$ , where $\alpha_i$ and $\alpha_j$ are positive-valued parameters which represent the “ability” of each player/team. \ 
+
+The general model definition 
+
+\bcenter
+
+$P(\text{i beats j}) = \frac{\alpha_i}{\alpha_i + \alpha_j}$
+
+\ecenter
+
+Sometimes the modification with exponential score function \ 
+
+\bcenter
+
+$P(\text{i beats j}) = \frac{e^{\alpha_i}}{e^{\alpha_i} + e^{\alpha_j}}$
+
+\ecenter
+
+
+# Bradley-Terry model
+
+$P(\text{i beats j}) = \frac{\alpha_i}{\alpha_i + \alpha_j}$
+
+
+$logit(P(\text{i beats j})) = \log(\frac{P(\text{i beats j})}{P(\text{j beats i})}) = \log(\frac{P(\text{i beats j})}{1 - P(\text{i beats j})}) = log( \frac{\alpha_i}{\alpha_i + \alpha_j} * \frac{\alpha_i + \alpha_j}{\alpha_j}) = log(\alpha_i) - log(\alpha_j) = \lambda_i - \lambda_j$
+
+
+The goal of the modeling is to find the best estimate for $\lambda_i, \lambda_j$ 
+
+# Bradley-Terry model
+
+The modification with exponential score function
+
+\bcenter
+$P(\text{i beats j}) = \frac{e^{\alpha_i}}{e^{\alpha_i} + e^{\alpha_j}}$
+\ecenter
+
+$logit(P(\text{i beats j})) = \log(\frac{P(\text{i beats j})}{P(\text{j beats i})}) = \log(\frac{P(\text{i beats j})}{1 - P(\text{i beats j})}) = log(\frac{ e^{\alpha_i} } {e^{\alpha_i} + e ^ {\alpha_j} } * \frac{ e^{\alpha_i} + e^{ \alpha_j } } { e ^ {\alpha_j}} ) = \alpha_i - \alpha_j$ 
+
+logit - log of odds
+
+# Bradley-Terry model
+
+The basic Bradley-Terry model does not predict draw/tie games. \ 
+You can use Davidson’s extension on Bradley-Terry model if want to predict draw: \ 
+[https://www.jstor.org/stable/2283595?seq=1#page_scan_tab_contents](https://www.jstor.org/stable/2283595?seq=1#page_scan_tab_contents)
+
+# Bradley-Terry model
+
+```{r}
+library(SportsAnalytics270)
+data(nfl)
+```
+
+```{r, eval=F}
+head(nfl, n=5)
+```
+\tiny
+```{r, echo=F}
+head(nfl, n=5)
+```
+
+# Bradley-Terry model
+
+* Data on NFL matches
+* Description
+* Format
+* A data frame with 4848 rows and 16 variables
+* schedule_season: from 2000-2016
+* schedule_week: The number of the week when the game was played
+* schedule_date: The actual date of the game
+* team_away: Away team
+* score_away: The score of the away team
+* team_home: Home team
+* score_home: The score of home team
+* stadium: The name of the stadium
+* stadium_type: indoor, outdoor, retractable
+* stadium_location: The location of the stadium: City and state abbreviation
+* odds: closing and opening betting odds
+* result: The result of the game: H=Home Win, T=Tie, A=Away Win
+* spread: points spread, the difference between away team and home team scores , 
+* home_odds_open, home_odds_close: Opening and closing decimal odds for the home team  
+* home_odds_open, away_odds_close: Opening and closing decimal odds for the away team
+
+# Bradley-Terry model
+
+Some data preparation
+
+```{r}
+nfl2 <- nfl%>%
+  select(team_home, team_away, result) %>%
+  filter(result !="T") %>%
+  mutate(ht_w = ifelse(result=="H",1,0),
+         at_w = ifelse(result=="A",1,0))
+head(nfl2)
+```
+
+
+# Bradley-Terry model
+
+The final dataset
+
+```{r}
+library(dplyr)
+nfl3 <- nfl2 %>%
+    mutate(team_home=as.factor(team_home),
+           team_away = as.factor(team_away)) %>%
+    group_by(team_home, team_away) %>%
+    summarise(ht=sum(ht_w), at=sum(at_w))
+    
+head(nfl3, n=5)
+```
+
+# Bradley-Terry model
+
+Fitting the bradley-terry model
+```{r, eval=F}
+install.packages("BradleyTerry2")
+```
+
+```{r}
+library(BradleyTerry2)
+model <- BTm(cbind(ht, at), team_home, team_away, data=nfl3, id="team_")
+```
+
+# Bradley-Terry model
+
+
+Coefficients represent the teams abilities to win
+```{r, eval=F}
+summary(model)
+```
+
+\tiny
+```{r, echo=F}
+summary(model)
+```
+
+
+
+# Bradley-Terry model
+
+New England Patriots: the strongest team \ 
+Cleveland Browns: the weakest team
+
+```{r, eval=F}
+coef<-model$coefficients
+sort(coef, decreasing = T)
+```
+
+\tiny
+```{r, echo=F}
+coef<-model$coefficients
+sort(coef, decreasing = T)
+```
+
+# Bradley-Terry model
+
+
+Overall there are 32 teams in the data
+
+```{r}
+length(unique(nfl3$team_home))
+# and we have coefficients for 31
+length(coef)
+```
+
+
+* One team is taken as a reference level
+* Its ability is = 0
+* In our case that is Arizona Cardinals as it comes first alphabetically
+
+# Bradley-Terry model
+
+* Abilities are calculated relative to Arizona Cardinales
+* Thus, positive ability means that the team is doing better than Cardinals
+* Negative ability is showing that the team is doing worst than Cardinals
+
+```{r}
+BTabilities(model)
+```
+
+# Bradley-Terry model
+
+* Let’s do some plotting
+* First let's create a
+dataframe with abilities
+
+```{r}
+abilities <- as.data.frame(BTabilities(model))
+abilities$team <- rownames(abilities)
+abilities <- abilities[order(abilities$ability, decreasing = T),]
+abilities
+```
+
+# Bradley-Terry model
+Abilities from strongest to weakest
+```{r, fig.width=12, fig.height=6}
+ggplot(data=abilities, aes(x=reorder(team,ability), y=ability)) +
+  geom_bar(stat="identity", fill=1:32) + coord_flip()+
+  labs(x="Teams", y="Ability to Win", title="Ability to win of NFL teams")
+  
+``` 
+
+
+# Bradley-Terry model
+
+everything relative to the worst team (Cleveland Browns)
+
+* Lets say we want to calculate the abilities relative to the weakest team, so all the abilities would be $\ge$ 0
+* You could do this by re leveling the team variables
+
+```{r, tidy=F, eval=F}
+nfl4<-nfl2 %>%
+    mutate(team_home = relevel(team_home, ref="Detroit Lions"),
+           team_away = relevel(team_away, ref="Detroit Lions")) %>%
+    group_by(team_home, team_away) %>%
+    summarise(ht=sum(ht_w), at=sum(at_w))
+
+model_browns <- BTm(cbind(ht, at), team_home, team_away, data=nfl4, id="team_")
+```
+
+OR \ 
+Standardize the variable ability around its minimum (these two approaches will give exactly the same result)
+
+```{r, eval=F}
+abilities_brown <- abilities
+abilities_brown$ability <- abilities_brown$ability - min(abilities$ability)
+head(abilities_brown)
+```
+
+\tiny
+```{r, echo=F}
+abilities_brown <- abilities
+abilities_brown$ability <- abilities_brown$ability - min(abilities$ability)
+head(abilities_brown)
+```
+
+
+
+# Bradley-Terry model
+
+Abilities plot
+
+```{r, fig.width=12, fig.height=6}
+ggplot(data=abilities_brown, aes(x=reorder(team,ability), y=ability)) +
+  geom_bar(stat="identity", fill=1:32) + coord_flip()+
+  labs(x="Teams", y="Ability to Win", title="Ability to win of NFL teams")
+```
+
+
+
+# Bradley-Terry model
+
+
+Lets do predictions for a sample of games for Denver Broncos
+
+```{r tidy=FALSE}
+broncos<-data.frame(team_home=rep("Denver Broncos", 4),
+                    team_away=c("Cleveland Browns", "Tennessee Titans",
+                                "Chicago Bears", "Detroit Lions"))
+# we need to make team_home and team_away having the same factor structure 
+# as in the initial model
+
+broncos$team_home<-factor(broncos$team_home,
+                          levels(nfl3$team_away))
+
+broncos$team_away<-factor(broncos$team_away,
+                          levels(nfl3$team_away))
+str(broncos)
+broncos
+```
+
+# Bradley-Terry model
+
+
+```{r}
+#This is the probability of Denver Broncos winning
+
+broncos_prob<-predict(model, newdata=broncos, level=2, type="response")
+broncos_prob
+```
+
+Make a dataframe with probs
+
+```{r}
+broncos_df<-data.frame(broncos, ht_w=broncos_prob,
+                                at_w=1-broncos_prob)
+broncos_df
+```
+
+# Bradley-Terry model
+Probabilities are predicted using the following formula
+
+$P(\text{i beats j}) = \frac{e^{\alpha_i}}{e^{\alpha_i} + e^{\alpha_j}}$
+
+$P(\text{j beats i}) = \frac{e^{\alpha_j}}{e^{\alpha_i} + e^{\alpha_j}}$
+
+# Bradley-Terry model
+
+Calculating probabilities manually for Denver Broncos-Cleveland Browns
+
+```{r}
+#first get abbilities
+broncos_ab <- abilities[rownames(abilities)=="Denver Broncos",1]
+browns_ab <- abilities[rownames(abilities)=="Cleveland Browns",1]
+
+broncos_ab
+browns_ab
+
+# probability of Broncos to win
+exp(broncos_ab)/(exp(broncos_ab)+exp(browns_ab))
+```
+
+$P(\text{i beats j}) = \frac{e^{\alpha_i}}{e^{\alpha_i} + e^{\alpha_j}}$
+
+
+# Bradley-Terry model with order effect
+
+## Bradley-Terry model with order effect
+
+# Bradley-Terry model with order effect
+
+* In certain types of application some or all contests have an associated `bias', related to the order in which items are presented to a judge or with the location in which a contest takes place, for example.
+* In sports this can be related to home advantage: the ability of the team is different when it plays at home compared to when it plays away.
+* In this case the model has the following structure
+
+z = 1 if i has the supposed advantage and \ 
+z = -1 if j has it
+z = 0 if there is no advantage
+ 
+# Bradley-Terry model with order effect
+
+We need to do several data transformations to get the model to account home advantage factor.
+
+```{r}
+nfl3$team_home <- data.frame(team = nfl3$team_home, at.home = 1)
+nfl3$team_away <- data.frame(team = nfl3$team_away, at.home = 0)
+
+```
+
+The result is a grouped_df
+
+```{r, eval=F}
+str(nfl3)
+```
+
+\tiny
+```{r, echo=F}
+str(nfl3)
+```
+
+# Bradley-Terry model with order effect
+
+```{r}
+head(nfl3$team_home, n=5)
+```
+
+# Bradley-Terry model with order effect
+
+```{r}
+model2 <- BTm(cbind(ht, at), team_home, team_away, formula=~team+at.home,
+            data=nfl3, id="team")
+```
+
+```{r, eval=F}
+model2$coefficients
+```
+\tiny
+```{r, echo=F}
+model2$coefficients
+```
+
+# Bradley-Terry model with order effect
+
+
+Let make predictions for Broncos vs Browns by hand, 
+assuming that Broncos are playing at home
+
+```{r}
+db <- coefficients(model2)['teamDenver Broncos']
+db
+```
+
+```{r}
+cb <- coefficients(model2)['teamCleveland Browns']
+cb
+```
+
+```{r}
+h <- coefficients(model2)['at.home']
+h
+```
+
+# Bradley-Terry model with order effect
+
+$P(\text{i beats j}) = \frac{e^{\alpha_i}}{e^{\alpha_i} + e^{\alpha_j}}$
+
+
+Probability of Broncos to win at home
+
+```{r}
+w_h <- exp(db+h)/(exp(db+h)+exp(cb))
+w_h
+```
+
+Odds of Broncos to win at home
+
+```{r}
+od_h <- w_h/(1-w_h)
+od_h
+```
+
+# Bradley-Terry model with order effect
+
+Playing at "neutral" field, no advantage for any team
+
+
+$P(\text{i beats j}) = \frac{e^{\alpha_i}}{e^{\alpha_i} + e^{\alpha_j}}$
+
+```{r}
+w_n <- exp(db)/(exp(db)+exp(cb))
+w_n
+```
+
+Odds of wining at "neutral" field
+
+```{r}
+od_n <- w_n/(1-w_n)
+od_n
+```
+
+# Bradley-Terry model with order effect
+
+
+Odds ratio and home team advantage
+
+```{r}
+od_h/od_n
+exp(coefficients(model2)['at.home'])
+```
+
+$e^{\text{at.home}}$ is the odd multiplier for a home team to win compared to the neutral field
+
+
+# Bradley-Terry model with order effect
+
+The same game, now Broncos is away, Browns is at home
+
+$P(\text{j beats i}) = \frac{e^{\alpha_j + h}}{e^{\alpha_i} + e^{\alpha_j + h}}$
+
+
+```{r}
+w_a <- exp(db-h)/(exp(db-h)+exp(cb))
+w_a
+```
+
+
+Probability of Browns to win at home
+
+```{r}
+1 - exp(db-h)/(exp(db-h)+exp(cb))
+# OR
+exp(cb+h)/(exp(db)+exp(cb+h))
+```
+
+
+
+# Bradley-Terry model
+
+Making predictions for the series of games
+```{r }
+broncos <- data.frame(team_home=rep("Denver Broncos", 4),
+                    team_away=c("Cleveland Browns", "Tennessee Titans",
+                                "Chicago Bears", "Detroit Lions"))
+
+broncos$team_home<-data.frame(team = factor(broncos$team_home,
+                                      levels(nfl3$team_home$team)),   
+                                      at.home = 1)
+broncos$team_away<-data.frame(team = factor(broncos$team_away,
+                                      levels(nfl3$team_home$team)),
+                                      at.home = 0)
+broncos
+```
+
+# Bradley-Terry model
+
+```{r}
+br2 <- predict(model2, newdata=broncos, level=2, type="response")
+br2
+```
+

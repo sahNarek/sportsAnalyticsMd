@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.21)  20 JUL 2022 20:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.21)  22 JUL 2022 17:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -955,7 +955,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Trying to load font information for OT1+lmss on input line 
-205.
+220.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/ot1lmss.fd
 File: ot1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -964,34 +964,34 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
-05.
+20.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-205.
+220.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-205.
+220.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 205.
+(Font)              <8> on input line 220.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 205.
+(Font)              <6> on input line 220.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 205.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 205
+(Font)              <5> on input line 220.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 220
 .
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 205
+LaTeX Font Info:    Trying to load font information for U+msb on input line 220
 .
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -999,11 +999,11 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <8> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 205.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 220.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <6> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 205.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 220.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <5> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 205.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 220.
 [2
 
 ]
@@ -1088,7 +1088,7 @@ Package pdftex.def Info: predicting_distributions_files/figure-beamer/unnamed-c
 hunk-5-1.pdf  used on input line 15.
 (pdftex.def)             Requested size: 277.75734pt x 164.30423pt.
 )
-Overfull \vbox (6.8807pt too high) detected at line 313
+Overfull \vbox (6.8807pt too high) detected at line 328
  []
 
 [8
@@ -1106,7 +1106,7 @@ Package pdftex.def Info: predicting_distributions_files/figure-beamer/unnamed-c
 hunk-6-1.pdf  used on input line 15.
 (pdftex.def)             Requested size: 277.75734pt x 164.30423pt.
 )
-Overfull \vbox (6.8807pt too high) detected at line 330
+Overfull \vbox (6.8807pt too high) detected at line 345
  []
 
 [9
@@ -1148,7 +1148,7 @@ hunk-7-1.pdf  used on input line 13.
 <./images/wizards.png, id=182, 1068.99374pt x 434.62375pt>
 File: ./images/wizards.png Graphic file (type png)
 <use ./images/wizards.png>
-Package pdftex.def Info: ./images/wizards.png  used on input line 461.
+Package pdftex.def Info: ./images/wizards.png  used on input line 502.
 (pdftex.def)             Requested size: 277.75734pt x 112.92656pt.
 [16
 
@@ -1197,7 +1197,7 @@ hunk-14-1.pdf  used on input line 15.
 <./images/poisson.png, id=311, 990.70125pt x 451.6875pt>
 File: ./images/poisson.png Graphic file (type png)
 <use ./images/poisson.png>
-Package pdftex.def Info: ./images/poisson.png  used on input line 605.
+Package pdftex.def Info: ./images/poisson.png  used on input line 650.
 (pdftex.def)             Requested size: 277.75734pt x 126.63704pt.
 [24
 
@@ -1219,7 +1219,7 @@ Package pdftex.def Info: predicting_distributions_files/figure-beamer/unnamed-c
 hunk-22-1.pdf  used on input line 15.
 (pdftex.def)             Requested size: 277.75734pt x 164.30423pt.
 )
-Overfull \vbox (4.02185pt too high) detected at line 649
+Overfull \vbox (4.02185pt too high) detected at line 694
  []
 
 [26
@@ -1237,7 +1237,7 @@ Package pdftex.def Info: predicting_distributions_files/figure-beamer/unnamed-c
 hunk-23-1.pdf  used on input line 14.
 (pdftex.def)             Requested size: 277.75734pt x 164.30423pt.
 )
-Overfull \vbox (4.02185pt too high) detected at line 666
+Overfull \vbox (4.02185pt too high) detected at line 711
  []
 
 [27
@@ -1268,7 +1268,7 @@ Overfull \vbox (4.02185pt too high) detected at line 666
 <./images/lazio.png, id=417, 950.55125pt x 427.5975pt>
 File: ./images/lazio.png Graphic file (type png)
 <use ./images/lazio.png>
-Package pdftex.def Info: ./images/lazio.png  used on input line 782.
+Package pdftex.def Info: ./images/lazio.png  used on input line 836.
 (pdftex.def)             Requested size: 277.75734pt x 124.94617pt.
 [33
 
@@ -1298,7 +1298,7 @@ Package pdftex.def Info: ./images/lazio.png  used on input line 782.
 <./images/prob_table_1.png, id=463, 525.965pt x 178.6675pt>
 File: ./images/prob_table_1.png Graphic file (type png)
 <use ./images/prob_table_1.png>
-Package pdftex.def Info: ./images/prob_table_1.png  used on input line 901.
+Package pdftex.def Info: ./images/prob_table_1.png  used on input line 959.
 (pdftex.def)             Requested size: 277.75734pt x 94.35526pt.
 [39
 
@@ -1306,7 +1306,7 @@ Package pdftex.def Info: ./images/prob_table_1.png  used on input line 901.
 <./images/prob_table_2.png, id=472, 538.01pt x 176.66pt>
 File: ./images/prob_table_2.png Graphic file (type png)
 <use ./images/prob_table_2.png>
-Package pdftex.def Info: ./images/prob_table_2.png  used on input line 908.
+Package pdftex.def Info: ./images/prob_table_2.png  used on input line 966.
 (pdftex.def)             Requested size: 277.75734pt x 91.2033pt.
 [40
 
@@ -1314,7 +1314,7 @@ Package pdftex.def Info: ./images/prob_table_2.png  used on input line 908.
 <./images/prob_table_3.png, id=481, 757.83125pt x 266.9975pt>
 File: ./images/prob_table_3.png Graphic file (type png)
 <use ./images/prob_table_3.png>
-Package pdftex.def Info: ./images/prob_table_3.png  used on input line 915.
+Package pdftex.def Info: ./images/prob_table_3.png  used on input line 973.
 (pdftex.def)             Requested size: 277.75734pt x 97.85863pt.
 [41
 
@@ -1322,7 +1322,7 @@ Package pdftex.def Info: ./images/prob_table_3.png  used on input line 915.
 <./images/prob_table_4.png, id=490, 767.86874pt x 254.9525pt>
 File: ./images/prob_table_4.png Graphic file (type png)
 <use ./images/prob_table_4.png>
-Package pdftex.def Info: ./images/prob_table_4.png  used on input line 923.
+Package pdftex.def Info: ./images/prob_table_4.png  used on input line 981.
 (pdftex.def)             Requested size: 277.75734pt x 92.22241pt.
 [42
 
@@ -1330,7 +1330,7 @@ Package pdftex.def Info: ./images/prob_table_4.png  used on input line 923.
 <./images/prob_table_5.png, id=499, 752.8125pt x 265.99374pt>
 File: ./images/prob_table_5.png Graphic file (type png)
 <use ./images/prob_table_5.png>
-Package pdftex.def Info: ./images/prob_table_5.png  used on input line 931.
+Package pdftex.def Info: ./images/prob_table_5.png  used on input line 989.
 (pdftex.def)             Requested size: 277.75734pt x 98.1442pt.
 [43
 
@@ -1357,7 +1357,7 @@ Package pdftex.def Info: predicting_distributions_files/figure-beamer/unnamed-c
 hunk-47-1.pdf  used on input line 15.
 (pdftex.def)             Requested size: 277.75734pt x 164.30423pt.
 )
-Overfull \vbox (6.8807pt too high) detected at line 1006
+Overfull \vbox (6.8807pt too high) detected at line 1064
  []
 
 [46
@@ -1369,30 +1369,27 @@ Overfull \vbox (6.8807pt too high) detected at line 1006
 
 ] [48
 
+] [49
+
 ]
-<./images/leeds_table.png, id=552, 962.59625pt x 294.09875pt>
+<./images/leeds_table.png, id=570, 962.59625pt x 294.09875pt>
 File: ./images/leeds_table.png Graphic file (type png)
 <use ./images/leeds_table.png>
-Package pdftex.def Info: ./images/leeds_table.png  used on input line 1081.
+Package pdftex.def Info: ./images/leeds_table.png  used on input line 1148.
 (pdftex.def)             Requested size: 277.75734pt x 84.86012pt.
-[49
+[50
 
- <./images/leeds_table.png>] [50
+ <./images/leeds_table.png>] [51
 
 ]
-<./images/table_1.png, id=570, 922.44624pt x 410.53375pt>
+<./images/table_1.png, id=588, 922.44624pt x 410.53375pt>
 File: ./images/table_1.png Graphic file (type png)
 <use ./images/table_1.png>
-Package pdftex.def Info: ./images/table_1.png  used on input line 1097.
+Package pdftex.def Info: ./images/table_1.png  used on input line 1174.
 (pdftex.def)             Requested size: 277.75734pt x 123.61209pt.
-[51
+[52
 
  <./images/table_1.png>]
-\openout4 = `predicting_distributions.vrb'.
-
-(./predicting_distributions.vrb) [52
-
-]
 \openout4 = `predicting_distributions.vrb'.
 
 (./predicting_distributions.vrb) [53
@@ -1450,8 +1447,13 @@ Package pdftex.def Info: ./images/table_1.png  used on input line 1097.
 ]
 \openout4 = `predicting_distributions.vrb'.
 
+(./predicting_distributions.vrb) [64
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
 (./predicting_distributions.vrb
-<predicting_distributions_files/figure-beamer/unnamed-chunk-67-1.pdf, id=666, 7
+<predicting_distributions_files/figure-beamer/unnamed-chunk-67-1.pdf, id=683, 7
 12.6625pt x 421.575pt>
 File: predicting_distributions_files/figure-beamer/unnamed-chunk-67-1.pdf Graph
 ic file (type pdf)
@@ -1459,13 +1461,13 @@ ic file (type pdf)
 Package pdftex.def Info: predicting_distributions_files/figure-beamer/unnamed-c
 hunk-67-1.pdf  used on input line 12.
 (pdftex.def)             Requested size: 277.75734pt x 164.30423pt.
-) [64
+) [65
 
  <./predicting_distributions_files/figure-beamer/unnamed-chunk-67-1.pdf>]
 \openout4 = `predicting_distributions.vrb'.
 
 (./predicting_distributions.vrb
-<predicting_distributions_files/figure-beamer/unnamed-chunk-68-1.pdf, id=681, 7
+<predicting_distributions_files/figure-beamer/unnamed-chunk-68-1.pdf, id=698, 7
 12.6625pt x 421.575pt>
 File: predicting_distributions_files/figure-beamer/unnamed-chunk-68-1.pdf Graph
 ic file (type pdf)
@@ -1473,7 +1475,7 @@ ic file (type pdf)
 Package pdftex.def Info: predicting_distributions_files/figure-beamer/unnamed-c
 hunk-68-1.pdf  used on input line 14.
 (pdftex.def)             Requested size: 277.75734pt x 164.30423pt.
-) [65
+) [66
 
  <./predicting_distributions_files/figure-beamer/unnamed-chunk-68-1.pdf>]
 \openout4 = `predicting_distributions.vrb'.
@@ -1483,12 +1485,7 @@ hunk-68-1.pdf  used on input line 14.
 LaTeX Font Warning: Font shape `TS1/lmtt/bx/it' in size <8> not available
 (Font)              Font shape `TS1/lmtt/b/sl' tried instead on input line 22.
 
-) [66
-
-]
-\openout4 = `predicting_distributions.vrb'.
-
-(./predicting_distributions.vrb) [67
+) [67
 
 ]
 \openout4 = `predicting_distributions.vrb'.
@@ -1498,8 +1495,13 @@ LaTeX Font Warning: Font shape `TS1/lmtt/bx/it' in size <8> not available
 ]
 \openout4 = `predicting_distributions.vrb'.
 
+(./predicting_distributions.vrb) [69
+
+]
+\openout4 = `predicting_distributions.vrb'.
+
 (./predicting_distributions.vrb
-<predicting_distributions_files/figure-beamer/unnamed-chunk-72-1.pdf, id=720, 7
+<predicting_distributions_files/figure-beamer/unnamed-chunk-72-1.pdf, id=737, 7
 12.6625pt x 421.575pt>
 File: predicting_distributions_files/figure-beamer/unnamed-chunk-72-1.pdf Graph
 ic file (type pdf)
@@ -1507,12 +1509,12 @@ ic file (type pdf)
 Package pdftex.def Info: predicting_distributions_files/figure-beamer/unnamed-c
 hunk-72-1.pdf  used on input line 13.
 (pdftex.def)             Requested size: 277.75734pt x 164.30423pt.
-) [69
+) [70
 
  <./predicting_distributions_files/figure-beamer/unnamed-chunk-72-1.pdf>]
 \openout4 = `predicting_distributions.vrb'.
 
-(./predicting_distributions.vrb) [70
+(./predicting_distributions.vrb) [71
 
 ]
 \tf@nav=\write6
@@ -1526,10 +1528,10 @@ hunk-72-1.pdf  used on input line 13.
 
 (./predicting_distributions.aux) ) 
 Here is how much of TeX's memory you used:
- 25743 strings out of 478268
- 509518 string characters out of 5846347
- 772902 words of memory out of 5000000
- 42984 multiletter control sequences out of 15000+600000
+ 25749 strings out of 478268
+ 509609 string characters out of 5846347
+ 774902 words of memory out of 5000000
+ 42986 multiletter control sequences out of 15000+600000
  517631 words of font info for 99 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,15n,122p,1021b,657s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1547,10 +1549,10 @@ cal/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive
 /2022/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2022/texm
 f-dist/fonts/type1/public/lm/lmtko10.pfb></usr/local/texlive/2022/texmf-dist/fo
 nts/type1/public/lm/lmtt8.pfb>
-Output written on predicting_distributions.pdf (70 pages, 1505607 bytes).
+Output written on predicting_distributions.pdf (71 pages, 1507696 bytes).
 PDF statistics:
- 843 PDF objects out of 1000 (max. 8388607)
- 637 compressed objects within 7 object streams
- 217 named destinations out of 1000 (max. 500000)
- 29070 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 860 PDF objects out of 1000 (max. 8388607)
+ 648 compressed objects within 7 object streams
+ 221 named destinations out of 1000 (max. 500000)
+ 29100 words of extra memory for PDF output out of 29859 (max. 10000000)
 

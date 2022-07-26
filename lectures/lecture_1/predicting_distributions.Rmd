@@ -11,7 +11,7 @@ output:
     fonttheme: "structurebold"
     pandoc_args: '--pdf-engine=xelatex'
     includes: 
-      in_header: "./customtexfuncs.tex"
+      in_header: "../customtexfuncs.tex"
 ---
 
 
@@ -22,16 +22,31 @@ Suppose we have two variables with normal distribution,
 * Home team score
 * Away team score
 
-$H \sim N( \mu_H, \sigma_H ^ 2)$\
+\begin{center}
+$H \sim N( \mu_H, \sigma_H ^ 2)$
+\end{center}
+\bcenter
 $A \sim N( \mu_A, \sigma_A ^ 2)$
+\ecenter
+
 
 Then the difference between the home and away teams scores will also have normal
 distribution with the following parameters (assuming this two are independent)
 
+\bcenter
+
 $\mu_d = \mu_H - m_A$\
-$\sigma_D ^ 2 = \sigma_H ^ 2 + \sigma_A ^ 2$
+$\sigma_D ^ 2 = \sigma_H ^ 2 + \sigma_A ^ 2$ \
+
+\ecenter
+
 Thus the difference will have a normal distribution with the following parameters
+
+\bcenter
+
 $D \sim N( \mu_H - \mu_A, \sigma_H ^ 2 + \sigma_A ^ 2 )$
+
+\ecenter
 
 # Predicting with distributions
 * In NBA (National Basketball Association) points scored per
@@ -133,8 +148,12 @@ ggplot(nba2009_2018, aes(x=Diff))+geom_histogram(bins=50)+
 
 Test hypothesis of Normality:
 
+\bcenter
+
 $H_0:$ *sample came from normal distribution* \
 $H_1:$ *sample did not come from normal distribution* \
+
+\ecenter
 
 Find the p-value of the test: if is more than $\alpha$ 0.05 then it has a normal
 distribution, failed to reject $H_0$
@@ -167,19 +186,34 @@ nba2009_2018 %>%
 # Predicting with distributions
 
 Suppose we have two variables with normal distribution,
+
 * Home team score
 * Away team score
+
+\bcenter
 
 $H \sim N( \mu_H, \sigma_H ^ 2)$\
 $A \sim N( \mu_A, \sigma_A ^ 2)$
 
+\ecenter
+
 Then the difference between the home and away teams scores will also have normal
 distribution with the following parameters (assuming this two are independent)
 
+\bcenter
+
 $\mu_d = \mu_H - m_A$\
 $\sigma_D ^ 2 = \sigma_H ^ 2 + \sigma_A ^ 2$
+
+\ecenter
+
 Thus the difference will have a normal distribution with the following parameters
+
+\bcenter
+
 $D \sim N( \mu_H - \mu_A, \sigma_H ^ 2 + \sigma_A ^ 2 )$
+
+\ecenter
 
 # Predicting with distributions
 
@@ -213,7 +247,11 @@ knitr::include_graphics("./images/wizards.png")
 
 Calculate the mean and standard deviation for the points difference between these two teams
 
+\bcenter
+
 $s_D = \sqrt(\sigma^2_H + \sigma^2_A)$
+
+\ecenter
 
 ```{r}
 mean <- home$mean[home$home.TEAM_ABBREVIATION=="WAS"]-
@@ -264,7 +302,7 @@ pnorm(0, mean, sd, lower.tail = F)
 
 # Predicting with distributions
 
-## Probability of home team to win with more then 15 points difference
+## Probability of home team to win with more than 15 points difference
 
 ## Home team will win with spread of 15 points
 
@@ -345,7 +383,7 @@ ggtitle("Full time home team goals distribution for Serie A- 2019")
 
 # Predicting with distributions
 
-Does the total number of goals scored follows Poisson distribution?
+Does the total number of goals scored follows Poisson distribution? \ 
 First find the $\lambda$ (average number of goals per game)
 
 ```{r}
@@ -358,8 +396,17 @@ f_data_sm %>%
 
 We can test the hypothesis, whether the goal’s distribution is Poisson: Our hypothesis is the following:
 
-$H_0:$ *The variables has Poisson distribution* \
-$H_1:$ *The variables does not have Poisson distribution* \
+\bcenter
+
+$H_0:$ *The variables have Poisson distribution*
+
+\ecenter
+
+\bcenter
+
+$H_1:$ *The variables does not have Poisson distribution* 
+
+\ecenter
 
 We will test the hypothesis with Chi-square test: thus comparing empirical probability distribution (from the data) and hypothethical Poisson distribution
 
@@ -426,8 +473,12 @@ knitr::include_graphics("./images/lazio.png")
 $P(L=0 \cap F=0 \cap L=1 \cap F=1 \cap L=2 \cap F=2)$
 * As {$L=0 \cap F=0 \cap L=1 \cap F=1 \cap L=2 \cap F=2$} events are mutually exclusive, \ the probability of the draw can be calculated as.
 
+\bcenter
+
 $P(L=0 \cap F=0) + P(L=1 \cap F=1) + P(L=2 \cap F=2) ... =$
 $P(L=0) * P(F=0) + P(L=1) * P(F=1) ...$
+
+\ecenter
 
 # Predicting with distributions
 
@@ -602,12 +653,17 @@ sum(k<0)/10000
 
 
 # Predicting with Ratings
+## Predicting with Ratings
+
+# Predicting with the rating
 
 * Every team can have some kind of rating, describing its ability to win.
 * In football (soccer) the rating can be expressed as the number of points earned, number of goals scored, number of goals conceded, etc.
 * One way to go with rating football teams is to calculate goal supremacy for each team.
 
+\bcenter
 **Goal supremacy = Number of scored goals- Number of conceded goals**
+\ecenter
 
 # Predicting with the rating
 
@@ -624,6 +680,7 @@ Adapted from: [“Fixed Odds Sports Betting” – Joseph Buchdahl](https://www.
 # Predicting with the rating
 
 Steps for Power Rating calculation
+
 * Get the Goal Supremacy Rating (Power) for each team $n$ games before the given game.
 * Calculate Power Difference for home/away teams – Match rating
 * Look at the relative frequencies for home team win, draw and away team win for the
@@ -732,7 +789,7 @@ england_wide <- reshape(england_long1, direction="wide",
 ```
 
 ```{r}
-options(width=200)
+options(width=80)
 head(england_wide)
 ```
 
@@ -759,7 +816,7 @@ england_wide <- england_wide[,c("SEASON","DATE","TEAM1","TEAM2","value.FTHG",
 Take out remaining NA’s
 
 ```{r}
-options(width=200)
+options(width=80)
 england_wide <- england_wide[! is.na(england_wide$POWERDIFF),]
 head(england_wide)
 ```
