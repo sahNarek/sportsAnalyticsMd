@@ -1,0 +1,11 @@
+\frametitle{Standard Deviations: Serie A}
+\protect\hypertarget{standard-deviations-serie-a-19}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(brier\_score, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{SEASON, }\AttributeTok{y=}\NormalTok{SCORE))}\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{\textquotesingle{}identity\textquotesingle{}}\NormalTok{,}\AttributeTok{position=}\FunctionTok{position\_dodge}\NormalTok{(}\AttributeTok{width=}\DecValTok{1}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{facet\_grid}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{COUNTRY)}\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{()}\SpecialCharTok{+}\FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Brier Score by Country"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{mean_regression_files/figure-beamer/unnamed-chunk-90-1.pdf}
