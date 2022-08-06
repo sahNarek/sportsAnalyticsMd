@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.21)  7 AUG 2022 00:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.21)  7 AUG 2022 01:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1274,19 +1274,15 @@ Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-21-1
 \openout4 = `mean_regression.vrb'.
 
 (./mean_regression.vrb
-<mean_regression_files/figure-beamer/unnamed-chunk-25-1.pdf, id=331, 712.6625pt
- x 493.845pt>
+<mean_regression_files/figure-beamer/unnamed-chunk-25-1.pdf, id=331, 568.1225pt
+ x 277.035pt>
 File: mean_regression_files/figure-beamer/unnamed-chunk-25-1.pdf Graphic file (
 type pdf)
 <use mean_regression_files/figure-beamer/unnamed-chunk-25-1.pdf>
 Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-25-1
 .pdf  used on input line 11.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-)
-Overfull \vbox (49.91858pt too high) detected at line 829
- []
-
-[33
+(pdftex.def)             Requested size: 347.20438pt x 169.30814pt.
+) [33
 
  <./mean_regression_files/figure-beamer/unnamed-chunk-25-1.pdf>] [34
 
@@ -1330,344 +1326,124 @@ Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-28-1
 \openout4 = `mean_regression.vrb'.
 
 (./mean_regression.vrb
-<mean_regression_files/figure-beamer/unnamed-chunk-29-1.pdf, id=429, 712.6625pt
- x 493.845pt>
+<mean_regression_files/figure-beamer/unnamed-chunk-29-1.pdf, id=429, 568.1225pt
+ x 277.035pt>
 File: mean_regression_files/figure-beamer/unnamed-chunk-29-1.pdf Graphic file (
 type pdf)
 <use mean_regression_files/figure-beamer/unnamed-chunk-29-1.pdf>
 Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-29-1
 .pdf  used on input line 12.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-)
-Overfull \vbox (73.66858pt too high) detected at line 1009
- []
-
-[44
+(pdftex.def)             Requested size: 347.20438pt x 169.30814pt.
+) [44
 
  <./mean_regression_files/figure-beamer/unnamed-chunk-29-1.pdf>]
+<./images/competetive_table.png, id=444, 920.43875pt x 401.5pt>
+File: ./images/competetive_table.png Graphic file (type png)
+<use ./images/competetive_table.png>
+Package pdftex.def Info: ./images/competetive_table.png  used on input line 101
+2.
+(pdftex.def)             Requested size: 277.76294pt x 121.16158pt.
+[45
+
+ <./images/competetive_table.png>] [46
+
+] [47
+
+]
 \openout4 = `mean_regression.vrb'.
 
-(./mean_regression.vrb)
-Overfull \vbox (130.2842pt too high) detected at line 1071
- []
-
-[45
+(./mean_regression.vrb) [48
 
 ]
 \openout4 = `mean_regression.vrb'.
 
 (./mean_regression.vrb
-<mean_regression_files/figure-beamer/unnamed-chunk-33-1.pdf, id=464, 712.6625pt
- x 493.845pt>
+<mean_regression_files/figure-beamer/unnamed-chunk-32-1.pdf, id=500, 568.1225pt
+ x 277.035pt>
+File: mean_regression_files/figure-beamer/unnamed-chunk-32-1.pdf Graphic file (
+type pdf)
+<use mean_regression_files/figure-beamer/unnamed-chunk-32-1.pdf>
+Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-32-1
+.pdf  used on input line 11.
+(pdftex.def)             Requested size: 347.20438pt x 169.30814pt.
+) [49
+
+ <./mean_regression_files/figure-beamer/unnamed-chunk-32-1.pdf>]
+\openout4 = `mean_regression.vrb'.
+
+(./mean_regression.vrb
+<mean_regression_files/figure-beamer/unnamed-chunk-33-1.pdf, id=516, 568.1225pt
+ x 277.035pt>
 File: mean_regression_files/figure-beamer/unnamed-chunk-33-1.pdf Graphic file (
 type pdf)
 <use mean_regression_files/figure-beamer/unnamed-chunk-33-1.pdf>
 Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-33-1
-.pdf  used on input line 11.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-)
-Overfull \vbox (49.91858pt too high) detected at line 1085
- []
-
-[46
-
- <./mean_regression_files/figure-beamer/unnamed-chunk-33-1.pdf>]
-\openout4 = `mean_regression.vrb'.
-
-(./mean_regression.vrb
-<mean_regression_files/figure-beamer/unnamed-chunk-34-1.pdf, id=479, 712.6625pt
- x 493.845pt>
-File: mean_regression_files/figure-beamer/unnamed-chunk-34-1.pdf Graphic file (
-type pdf)
-<use mean_regression_files/figure-beamer/unnamed-chunk-34-1.pdf>
-Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-34-1
 .pdf  used on input line 12.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-)
-Overfull \vbox (113.06299pt too high) detected at line 1110
- []
+(pdftex.def)             Requested size: 347.20438pt x 169.30814pt.
+) [50
 
-[47
-
- <./mean_regression_files/figure-beamer/unnamed-chunk-34-1.pdf>]
-\openout4 = `mean_regression.vrb'.
-
-(./mean_regression.vrb
-<mean_regression_files/figure-beamer/unnamed-chunk-36-1.pdf, id=494, 712.6625pt
- x 493.845pt>
-File: mean_regression_files/figure-beamer/unnamed-chunk-36-1.pdf Graphic file (
-type pdf)
-<use mean_regression_files/figure-beamer/unnamed-chunk-36-1.pdf>
-Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-36-1
-.pdf  used on input line 13.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-<mean_regression_files/figure-beamer/unnamed-chunk-39-1.pdf, id=495, 712.6625pt
- x 493.845pt>
-File: mean_regression_files/figure-beamer/unnamed-chunk-39-1.pdf Graphic file (
-type pdf)
-<use mean_regression_files/figure-beamer/unnamed-chunk-39-1.pdf>
-Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-39-1
-.pdf  used on input line 62.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-)
-Overfull \vbox (596.05501pt too high) detected at line 1175
- []
-
-[48
-
- <./mean_regression_files/figure-beamer/unnamed-chunk-36-1.pdf> <./mean_regress
-ion_files/figure-beamer/unnamed-chunk-39-1.pdf>]
-\openout4 = `mean_regression.vrb'.
-
-(./mean_regression.vrb
-Overfull \hbox (73.55464pt too wide) in paragraph at lines 23--23
-[]\T1/lmtt/m/n/8 ##  $ Team  : chr  "Anaheim Angels" "Arizona Diamondbacks" "At
-lanta Braves" "Baltimore Orioles" ...[] 
- []
-
-) [49
+ <./mean_regression_files/figure-beamer/unnamed-chunk-33-1.pdf>] [51
 
 ]
 \openout4 = `mean_regression.vrb'.
 
-(./mean_regression.vrb) [50
+(./mean_regression.vrb) [52
+
+] [53
+
+] [54
+
+] [55
+
+] [56
+
+] [57
+
+]
+\openout4 = `mean_regression.vrb'.
+
+(./mean_regression.vrb) [58
 
 ]
 \openout4 = `mean_regression.vrb'.
 
 (./mean_regression.vrb
-<mean_regression_files/figure-beamer/unnamed-chunk-42-1.pdf, id=532, 712.6625pt
- x 493.845pt>
-File: mean_regression_files/figure-beamer/unnamed-chunk-42-1.pdf Graphic file (
+<mean_regression_files/figure-beamer/unnamed-chunk-37-1.pdf, id=600, 568.1225pt
+ x 277.035pt>
+File: mean_regression_files/figure-beamer/unnamed-chunk-37-1.pdf Graphic file (
 type pdf)
-<use mean_regression_files/figure-beamer/unnamed-chunk-42-1.pdf>
-Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-42-1
-.pdf  used on input line 12.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-)
-Overfull \vbox (59.41858pt too high) detected at line 1230
- []
-
-[51
-
- <./mean_regression_files/figure-beamer/unnamed-chunk-42-1.pdf>]
-\openout4 = `mean_regression.vrb'.
-
-(./mean_regression.vrb
-Overfull \hbox (73.55464pt too wide) in paragraph at lines 21--21
-[]\T1/lmtt/m/n/8 ##  $ Team       : chr  "New York Yankees" "Texas Rangers" "At
-lanta Braves" "Cleveland Indians" ...[] 
- []
-
-)
-Overfull \vbox (154.48088pt too high) detected at line 1317
- []
-
-[52
-
-]
-\openout4 = `mean_regression.vrb'.
-
-(./mean_regression.vrb) [53
-
-]
-\openout4 = `mean_regression.vrb'.
-
-(./mean_regression.vrb) [54
-
-]
-\openout4 = `mean_regression.vrb'.
-
-(./mean_regression.vrb)
-Overfull \vbox (13.65443pt too high) detected at line 1416
- []
-
-[55
-
-]
-\openout4 = `mean_regression.vrb'.
-
-(./mean_regression.vrb
-<mean_regression_files/figure-beamer/unnamed-chunk-54-1.pdf, id=577, 712.6625pt
- x 493.845pt>
-File: mean_regression_files/figure-beamer/unnamed-chunk-54-1.pdf Graphic file (
-type pdf)
-<use mean_regression_files/figure-beamer/unnamed-chunk-54-1.pdf>
-Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-54-1
-.pdf  used on input line 10.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-)
-Overfull \vbox (103.96031pt too high) detected at line 1440
- []
-
-[56
-
- <./mean_regression_files/figure-beamer/unnamed-chunk-54-1.pdf>]
-\openout4 = `mean_regression.vrb'.
-
-(./mean_regression.vrb
-<mean_regression_files/figure-beamer/unnamed-chunk-56-1.pdf, id=592, 712.6625pt
- x 493.845pt>
-File: mean_regression_files/figure-beamer/unnamed-chunk-56-1.pdf Graphic file (
-type pdf)
-<use mean_regression_files/figure-beamer/unnamed-chunk-56-1.pdf>
-Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-56-1
-.pdf  used on input line 10.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-)
-Overfull \vbox (40.41858pt too high) detected at line 1453
- []
-
-[57
-
- <./mean_regression_files/figure-beamer/unnamed-chunk-56-1.pdf>]
-\openout4 = `mean_regression.vrb'.
-
-(./mean_regression.vrb
-<mean_regression_files/figure-beamer/unnamed-chunk-57-1.pdf, id=607, 712.6625pt
- x 493.845pt>
-File: mean_regression_files/figure-beamer/unnamed-chunk-57-1.pdf Graphic file (
-type pdf)
-<use mean_regression_files/figure-beamer/unnamed-chunk-57-1.pdf>
-Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-57-1
+<use mean_regression_files/figure-beamer/unnamed-chunk-37-1.pdf>
+Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-37-1
 .pdf  used on input line 11.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-)
-Overfull \vbox (49.91858pt too high) detected at line 1467
- []
-
-[58
-
- <./mean_regression_files/figure-beamer/unnamed-chunk-57-1.pdf>]
-\openout4 = `mean_regression.vrb'.
-
-(./mean_regression.vrb
-Overfull \hbox (52.30464pt too wide) in paragraph at lines 29--29
-[]\T1/lmtt/m/n/8 ##  $ Tm    : chr  "New York Jets" "Miami Dolphins" "Buffalo B
-ills" "New England Patriots" ...[] 
- []
-
+(pdftex.def)             Requested size: 347.20438pt x 169.30814pt.
 ) [59
 
-]
+ <./mean_regression_files/figure-beamer/unnamed-chunk-37-1.pdf>]
 \openout4 = `mean_regression.vrb'.
 
 (./mean_regression.vrb) [60
 
-]
-\openout4 = `mean_regression.vrb'.
-
-(./mean_regression.vrb) [61
+] [61
 
 ]
 \openout4 = `mean_regression.vrb'.
 
 (./mean_regression.vrb
-<mean_regression_files/figure-beamer/unnamed-chunk-61-1.pdf, id=644, 712.6625pt
- x 493.845pt>
-File: mean_regression_files/figure-beamer/unnamed-chunk-61-1.pdf Graphic file (
+<mean_regression_files/figure-beamer/unnamed-chunk-40-1.pdf, id=630, 712.6625pt
+ x 349.305pt>
+File: mean_regression_files/figure-beamer/unnamed-chunk-40-1.pdf Graphic file (
 type pdf)
-<use mean_regression_files/figure-beamer/unnamed-chunk-61-1.pdf>
-Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-61-1
-.pdf  used on input line 14.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-)
-Overfull \vbox (73.66858pt too high) detected at line 1564
- []
+<use mean_regression_files/figure-beamer/unnamed-chunk-40-1.pdf>
+Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-40-1
+.pdf  used on input line 25.
+(pdftex.def)             Requested size: 347.19592pt x 170.1749pt.
+) [62
 
-[62
+ <./mean_regression_files/figure-beamer/unnamed-chunk-40-1.pdf>] [63
 
- <./mean_regression_files/figure-beamer/unnamed-chunk-61-1.pdf>]
-\openout4 = `mean_regression.vrb'.
-
-(./mean_regression.vrb
-<mean_regression_files/figure-beamer/unnamed-chunk-62-1.pdf, id=659, 712.6625pt
- x 493.845pt>
-File: mean_regression_files/figure-beamer/unnamed-chunk-62-1.pdf Graphic file (
-type pdf)
-<use mean_regression_files/figure-beamer/unnamed-chunk-62-1.pdf>
-Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-62-1
-.pdf  used on input line 12.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-)
-Overfull \vbox (73.66858pt too high) detected at line 1580
- []
-
-[63
-
- <./mean_regression_files/figure-beamer/unnamed-chunk-62-1.pdf>]
-\openout4 = `mean_regression.vrb'.
-
-(./mean_regression.vrb)
-Overfull \vbox (130.2842pt too high) detected at line 1641
- []
-
-[64
+] [64
 
 ]
-\openout4 = `mean_regression.vrb'.
-
-(./mean_regression.vrb
-<mean_regression_files/figure-beamer/unnamed-chunk-66-1.pdf, id=691, 712.6625pt
- x 493.845pt>
-File: mean_regression_files/figure-beamer/unnamed-chunk-66-1.pdf Graphic file (
-type pdf)
-<use mean_regression_files/figure-beamer/unnamed-chunk-66-1.pdf>
-Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-66-1
-.pdf  used on input line 11.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-)
-Overfull \vbox (49.91858pt too high) detected at line 1654
- []
-
-[65
-
- <./mean_regression_files/figure-beamer/unnamed-chunk-66-1.pdf>]
-\openout4 = `mean_regression.vrb'.
-
-(./mean_regression.vrb
-<mean_regression_files/figure-beamer/unnamed-chunk-67-1.pdf, id=707, 712.6625pt
- x 493.845pt>
-File: mean_regression_files/figure-beamer/unnamed-chunk-67-1.pdf Graphic file (
-type pdf)
-<use mean_regression_files/figure-beamer/unnamed-chunk-67-1.pdf>
-Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-67-1
-.pdf  used on input line 12.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-)
-Overfull \vbox (113.06299pt too high) detected at line 1678
- []
-
-[66
-
- <./mean_regression_files/figure-beamer/unnamed-chunk-67-1.pdf>]
-\openout4 = `mean_regression.vrb'.
-
-(./mean_regression.vrb
-<mean_regression_files/figure-beamer/unnamed-chunk-69-1.pdf, id=722, 712.6625pt
- x 493.845pt>
-File: mean_regression_files/figure-beamer/unnamed-chunk-69-1.pdf Graphic file (
-type pdf)
-<use mean_regression_files/figure-beamer/unnamed-chunk-69-1.pdf>
-Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-69-1
-.pdf  used on input line 13.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-<mean_regression_files/figure-beamer/unnamed-chunk-72-1.pdf, id=723, 712.6625pt
- x 493.845pt>
-File: mean_regression_files/figure-beamer/unnamed-chunk-72-1.pdf Graphic file (
-type pdf)
-<use mean_regression_files/figure-beamer/unnamed-chunk-72-1.pdf>
-Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-72-1
-.pdf  used on input line 62.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-)
-Overfull \vbox (596.05501pt too high) detected at line 1742
- []
-
-[67
-
- <./mean_regression_files/figure-beamer/unnamed-chunk-69-1.pdf> <./mean_regress
-ion_files/figure-beamer/unnamed-chunk-72-1.pdf>]
 \openout4 = `mean_regression.vrb'.
 
 (./mean_regression.vrb
@@ -1676,32 +1452,30 @@ Overfull \hbox (73.55464pt too wide) in paragraph at lines 23--23
 lanta Braves" "Baltimore Orioles" ...[] 
  []
 
-) [68
+) [65
 
 ]
 \openout4 = `mean_regression.vrb'.
 
-(./mean_regression.vrb) [69
+(./mean_regression.vrb) [66
 
 ]
 \openout4 = `mean_regression.vrb'.
 
 (./mean_regression.vrb
-<mean_regression_files/figure-beamer/unnamed-chunk-75-1.pdf, id=760, 712.6625pt
- x 493.845pt>
-File: mean_regression_files/figure-beamer/unnamed-chunk-75-1.pdf Graphic file (
+<mean_regression_files/figure-beamer/unnamed-chunk-43-1.pdf, id=673, 712.6625pt
+ x 349.305pt>
+File: mean_regression_files/figure-beamer/unnamed-chunk-43-1.pdf Graphic file (
 type pdf)
-<use mean_regression_files/figure-beamer/unnamed-chunk-75-1.pdf>
-Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-75-1
+<use mean_regression_files/figure-beamer/unnamed-chunk-43-1.pdf>
+Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-43-1
 .pdf  used on input line 12.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-)
-Overfull \vbox (59.41858pt too high) detected at line 1794
- []
+(pdftex.def)             Requested size: 347.19592pt x 170.1749pt.
+) [67
 
-[70
+ <./mean_regression_files/figure-beamer/unnamed-chunk-43-1.pdf>] [68
 
- <./mean_regression_files/figure-beamer/unnamed-chunk-75-1.pdf>]
+]
 \openout4 = `mean_regression.vrb'.
 
 (./mean_regression.vrb
@@ -1710,86 +1484,95 @@ Overfull \hbox (73.55464pt too wide) in paragraph at lines 21--21
 lanta Braves" "Cleveland Indians" ...[] 
  []
 
-)
-Overfull \vbox (154.48088pt too high) detected at line 1880
- []
+) [69
 
-[71
+]
+\openout4 = `mean_regression.vrb'.
+
+(./mean_regression.vrb) [70
+
+]
+\openout4 = `mean_regression.vrb'.
+
+(./mean_regression.vrb) [71
 
 ]
 \openout4 = `mean_regression.vrb'.
 
 (./mean_regression.vrb) [72
 
+] [73
+
+] [74
+
 ]
 \openout4 = `mean_regression.vrb'.
 
-(./mean_regression.vrb) [73
+(./mean_regression.vrb) [75
 
 ]
 \openout4 = `mean_regression.vrb'.
 
-(./mean_regression.vrb)
-Overfull \vbox (13.65443pt too high) detected at line 1976
- []
+(./mean_regression.vrb) [76
 
-[74
+]
+\openout4 = `mean_regression.vrb'.
+
+(./mean_regression.vrb) [77
+
+]
+\openout4 = `mean_regression.vrb'.
+
+(./mean_regression.vrb) [78
 
 ]
 \openout4 = `mean_regression.vrb'.
 
 (./mean_regression.vrb
-<mean_regression_files/figure-beamer/unnamed-chunk-87-1.pdf, id=804, 712.6625pt
- x 493.845pt>
-File: mean_regression_files/figure-beamer/unnamed-chunk-87-1.pdf Graphic file (
+<mean_regression_files/figure-beamer/unnamed-chunk-55-1.pdf, id=778, 712.6625pt
+ x 349.305pt>
+File: mean_regression_files/figure-beamer/unnamed-chunk-55-1.pdf Graphic file (
 type pdf)
-<use mean_regression_files/figure-beamer/unnamed-chunk-87-1.pdf>
-Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-87-1
+<use mean_regression_files/figure-beamer/unnamed-chunk-55-1.pdf>
+Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-55-1
 .pdf  used on input line 10.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-)
-Overfull \vbox (103.96031pt too high) detected at line 1999
- []
+(pdftex.def)             Requested size: 347.19592pt x 170.1749pt.
+) [79
 
-[75
+ <./mean_regression_files/figure-beamer/unnamed-chunk-55-1.pdf>]
+\openout4 = `mean_regression.vrb'.
 
- <./mean_regression_files/figure-beamer/unnamed-chunk-87-1.pdf>]
+(./mean_regression.vrb) [80
+
+]
 \openout4 = `mean_regression.vrb'.
 
 (./mean_regression.vrb
-<mean_regression_files/figure-beamer/unnamed-chunk-89-1.pdf, id=819, 712.6625pt
- x 493.845pt>
-File: mean_regression_files/figure-beamer/unnamed-chunk-89-1.pdf Graphic file (
+<mean_regression_files/figure-beamer/unnamed-chunk-57-1.pdf, id=801, 712.6625pt
+ x 349.305pt>
+File: mean_regression_files/figure-beamer/unnamed-chunk-57-1.pdf Graphic file (
 type pdf)
-<use mean_regression_files/figure-beamer/unnamed-chunk-89-1.pdf>
-Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-89-1
-.pdf  used on input line 10.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-)
-Overfull \vbox (40.41858pt too high) detected at line 2011
- []
-
-[76
-
- <./mean_regression_files/figure-beamer/unnamed-chunk-89-1.pdf>]
-\openout4 = `mean_regression.vrb'.
-
-(./mean_regression.vrb
-<mean_regression_files/figure-beamer/unnamed-chunk-90-1.pdf, id=835, 712.6625pt
- x 493.845pt>
-File: mean_regression_files/figure-beamer/unnamed-chunk-90-1.pdf Graphic file (
-type pdf)
-<use mean_regression_files/figure-beamer/unnamed-chunk-90-1.pdf>
-Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-90-1
+<use mean_regression_files/figure-beamer/unnamed-chunk-57-1.pdf>
+Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-57-1
 .pdf  used on input line 11.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-)
-Overfull \vbox (49.91858pt too high) detected at line 2024
- []
+(pdftex.def)             Requested size: 347.19592pt x 170.1749pt.
+) [81
 
-[77
+ <./mean_regression_files/figure-beamer/unnamed-chunk-57-1.pdf>]
+\openout4 = `mean_regression.vrb'.
 
- <./mean_regression_files/figure-beamer/unnamed-chunk-90-1.pdf>]
+(./mean_regression.vrb
+<mean_regression_files/figure-beamer/unnamed-chunk-58-1.pdf, id=816, 712.6625pt
+ x 349.305pt>
+File: mean_regression_files/figure-beamer/unnamed-chunk-58-1.pdf Graphic file (
+type pdf)
+<use mean_regression_files/figure-beamer/unnamed-chunk-58-1.pdf>
+Package pdftex.def Info: mean_regression_files/figure-beamer/unnamed-chunk-58-1
+.pdf  used on input line 11.
+(pdftex.def)             Requested size: 347.19592pt x 170.1749pt.
+) [82
+
+ <./mean_regression_files/figure-beamer/unnamed-chunk-58-1.pdf>]
 \tf@nav=\write6
 \openout6 = `mean_regression.nav'.
 
@@ -1801,10 +1584,10 @@ Overfull \vbox (49.91858pt too high) detected at line 2024
 
 (./mean_regression.aux) ) 
 Here is how much of TeX's memory you used:
- 27501 strings out of 478268
- 543403 string characters out of 5846347
+ 27455 strings out of 478268
+ 539377 string characters out of 5846347
  811597 words of memory out of 5000000
- 44671 multiletter control sequences out of 15000+600000
+ 44637 multiletter control sequences out of 15000+600000
  527249 words of font info for 114 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,15n,122p,1012b,626s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1824,10 +1607,10 @@ fonts/type1/public/lm/lmsy6.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1
 /public/lm/lmsy8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/
 lmtt8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtti10.pfb
 >
-Output written on mean_regression.pdf (77 pages, 1617432 bytes).
+Output written on mean_regression.pdf (82 pages, 1676858 bytes).
 PDF statistics:
- 963 PDF objects out of 1000 (max. 8388607)
- 732 compressed objects within 8 object streams
- 235 named destinations out of 1000 (max. 500000)
- 37218 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 947 PDF objects out of 1000 (max. 8388607)
+ 728 compressed objects within 8 object streams
+ 252 named destinations out of 1000 (max. 500000)
+ 37239 words of extra memory for PDF output out of 42996 (max. 10000000)
 

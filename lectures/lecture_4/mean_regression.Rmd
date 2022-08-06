@@ -398,7 +398,7 @@ summary(nfl_st)
 
 # NFL data: SD
 
-```{r, fig.width=8, fig.height=4}
+```{r}
 library(dplyr)
 nfl_s<-nfl_st %>%
   group_by(Season) %>%
@@ -410,7 +410,7 @@ nfl_s
 # NFL data: SD
 
 
-```{r}
+```{r, fig.width=8, fig.height=4}
 ggplot(nfl_s, aes(Season, SD))+geom_bar(stat="identity")+
   ggtitle("NFL standard deviations by season")+
   coord_cartesian(ylim=c(0.1,0.25))
@@ -533,7 +533,7 @@ ggplot(nfl_s, aes(Season, NS))+geom_bar(stat="identity")+
 # Measuring Seasonal Dimensions: Noll-Scully number
 
 
-```{r}
+```{r, fig.width=8, fig.height=4}
 ggplot(nfl_s, aes(Season, NS))+geom_bar(stat="identity")+
   ggtitle("Noll-Skully number by season")+
   coord_cartesian(ylim=c(1,1.75))+
@@ -541,13 +541,71 @@ ggplot(nfl_s, aes(Season, NS))+geom_bar(stat="identity")+
   
 ```
 
-The HHI for Italian Serie A
+
+# Previous studies
+
+```{r,echo=F,out.height="80%",out.width="80%"}
+knitr::include_graphics("./images/competetive_table.png")
+```
+
+# Concentration indexes
+
+## Concentration indexes
+
+# Measuring Seasonal dimensions: Concentration of points
+
+**Concentration Index for points**
+
+\bcenter
+$C5 = \frac{\text{Number of points earned by top N clubs}}{\text{Total number of points earned by all clubs}}$
+\ecenter
+
+# Measuring Seasonal dimensions: Concentration of points
+
+## Concentration index for points
+```{r}
+
+top5<- seriea_st %>%
+    group_by(Season) %>%
+    filter(Rank<6) %>%
+    summarize(TopP=sum(Pt))
+all<-seriea_st %>%
+    group_by(Season) %>%
+    summarize(Pt=sum(Pt))
+
+C5<-data.frame(Season=top5$Season,C5=top5$TopP/all$Pt)
+    
+```
+
+# Measuring Seasonal dimensions: Competitive imbalance
+
+```{r, fig.width=8, fig.height=4}
+ggplot(C5, aes(Season, C5))+geom_bar(stat="identity")+
+  ggtitle("C5 index for Serie A, 1996-2018")+
+  coord_cartesian(ylim=c(0.2,0.42))
+```
+
+# Measuring Seasonal dimensions: Competitive Balance
+
+```{r, fig.width=8, fig.height=4}
+library(ggplot2)
+ggplot(C5, aes(Season, 1-C5))+geom_bar(stat="identity")+
+  ggtitle("C5 index for Serie A, 1996-2018")+
+  coord_cartesian(ylim=c(0.4,0.65))
+```
+
+# Measuring Long Run dimensions
+
+Concentration Index  
+\    
+\  
+\  
+Proportion of championships (or points) by top n teams
+
+e.g. $CI_5:$ dominance of top 5 teams
 
 
-
-# Measuring Seasonal Dimensions: Noll-Scully number
-
-CI for championship
+# Measuring Long Run dimensions
 
 How many times did every team become a champion?
 ```{r}
@@ -568,39 +626,59 @@ CI4 for championship
 
 If you take CI5 the concentration index is going to be 100%
 
-## Concentration index for points
-```{r}
+# Herfindahl-Hirschman Index - HHI
 
-top5<- seriea_st %>%
-    group_by(Season) %>%
-    filter(Rank<6) %>%
-    summarize(TopP=sum(Pt))
-all<-seriea_st %>%
-    group_by(Season) %>%
-    summarize(Pt=sum(Pt))
+## Herfindahl-Hirschman Index - HHI
 
-C5<-data.frame(Season=top5$Season,C5=top5$TopP/all$Pt)
-    
-```
+# Herfindahl-Hirschman Index - HHI
 
-# Measuring Seasonal Dimensions: Noll-Scully number
+Definition comes from economics  
 
-```{r}
-ggplot(C5, aes(Season, C5))+geom_bar(stat="identity")+
-  ggtitle("C5 index for Serie A, 1996-2018")+
-  coord_cartesian(ylim=c(0.2,0.42))
-```
+The Herfindahl-Hirschman index (HHI) is a commonly accepted measure of market  
+concentration. It is calculated by squaring the market share of each firm competing  
+in a market, and then summing the resulting numbers  
 
-# Measuring Seasonal Dimensions: Noll-Scully number
+Read more: [http://www.investopedia.com/terms/h/hhi.asp#ixzz4t8sTjDns](http://www.investopedia.com/terms/h/hhi.asp#ixzz4t8sTjDns)
 
-```{r}
-library(ggplot2)
-ggplot(C5, aes(Season, 1-C5))+geom_bar(stat="identity")+
-  ggtitle("C5 index for Serie A, 1996-2018")+
-  coord_cartesian(ylim=c(0.4,0.65))
-```
+# Herfindahl-Hirschman Index - HHI
 
+\bcenter
+$HHI = \sum_{\text{i=1}}^n w_{i}^2$
+\ecenter
 
+Simple case: 2 firms in the market  
+
+* Highly competitive industry, both firms have the same market share  
+
+$HHI = \sum_{\text{i=1}}^2 w_{i}^2 = 0.5^2 + 0.5^2$
+
+* Monopoly, 1 firm has 100%  
+
+$HHI = \sum_{\text{i=1}}^2 w_{i}^2 = 1^2 + 0^2$
+
+# Herfindahl-Hirschman Index - HHI
+
+\bcenter
+$HHI = \sum_{\text{i=1}}^n w_{i}^2$
+\ecenter
+
+lower and upper bounds
+
+\bcenter
+$1/n \le HHI \le 1$
+\ecenter
+
+# Herfindahl-Hirschman Index – in sports
+
+Several variations of the index exists.  
+
+\bcenter
+$HHI = \sum_{\text{i=1}}^{n} (\frac{p_i}{ \sum_{\text{i=1}}^{n}p_i})^2$
+\ecenter
+
+$p_i$ is the number of the points the team has earned.
+
+# Doing it in R: Serie A
 
 ```{r}
 library(dplyr)
@@ -611,17 +689,16 @@ HHI<-seriea_st %>%
 ```
 
 
-# Measuring Seasonal Dimensions: Noll-Scully number
+# Doing it in R: Serie A
 
-Plotting
 
-```{r}
+```{r, fig.width=8, fig.height=4}
 ggplot(HHI, aes(Season, HHI))+geom_bar(stat="identity")+
   ggtitle("HHI index by season")+
-  coord_cartesian(ylim=c(0.04,0.065))
+  coord_cartesian(ylim=c(0,0.065))
 ```
 
-
+# Doing it in R: Serie A
 
 Number of the teams per season
 
@@ -630,10 +707,18 @@ seriea_st %>%
       group_by(Season) %>%
       summarise(count=n())
 ```
+# Adjusted HHI
 
-Adjust HHI
-dHHI
+Increasing number of the teams affects lower bound (in some cases upper bound as well)  
 
+\bcenter
+$dHHI = \sum_{\text{i=1}}^n w_i^2 - 1/n$
+\ecenter
+
+# Adjusted HHI
+
+\tiny
+ 
 ```{r}
 dHHI<-seriea_st %>%
       group_by(Season) %>%
@@ -641,15 +726,47 @@ dHHI<-seriea_st %>%
       summarise(HHI=(sum(Perc^2)-1/n()))
 ```
 
-
 dHHI 
 
-```{r}
+\tiny
+```{r,fig.height=5}
 ggplot(dHHI, aes(Season, HHI))+geom_bar(stat="identity")+
   ggtitle("dHHI index by season")
 ```
 
-# Measuring Seasonal Dimensions: Noll-Scully number
+# HHI defined by Depken
+
+\bcenter
+$HHI = \sum_{\text{i=1}}^n (\frac{2*wins_i}{N*G_i})^2$  
+
+$wins_i$- *number of wins by each team*  
+
+*N - Number of teams*  
+
+$G_i$ - *number of games played*
+
+\ecenter
+
+
+Assumptions
+
+* No ties
+* Number of games played by each is an even number
+
+Source: Free-Agency and the Competitiveness of Major League Baseball, CRAIG A. DEPKEN, II, Review of Industrial Organization, Vol. 14, No. 3 (May 1999), pp. 205-217
+
+# HHI defined by Depken
+
+\bcenter
+$HHI = \frac{4}{N^2G^2} \sum_{\text{i=1}}^n (wins_i)^2$  
+
+\ecenter
+
+Source: Free-Agency and the Competitiveness of Major League Baseball, CRAIG A. DEPKEN, II, Review of Industrial Organization, Vol. 14, No. 3 (May 1999), pp. 205-217
+
+
+
+# Major League of Baseball: dataset
 
 ```{r}
 library(SportsAnalytics270)
@@ -657,8 +774,12 @@ library(SportsAnalytics270)
 str(mlb_standings)
 ```
 
-# Measuring Seasonal Dimensions: Noll-Scully number
-HHI Index
+# MLB
+
+* Each team plays 162 games per regular season
+  + small violations occur, 160,161,163
+  + We will assume the number of games to be 162
+* 30 teams since 1999
 
 ```{r}
 mlb_HHI <- mlb_standings %>%
@@ -666,25 +787,41 @@ mlb_HHI <- mlb_standings %>%
       summarise(HHI=sum(W^2)*(4/(30^2*162^2)))
 ```
 
-# Measuring Seasonal Dimensions: Noll-Scully number
 
+# HHI in MLB
 
-```{r}
+```{r, fig.height=5}
 ggplot(mlb_HHI, aes(Season, HHI))+geom_bar(stat="identity")+
   geom_hline(yintercept = 1/30, col="red", size=1.5)+
   coord_cartesian(ylim=c(0.03,0.035))+
   ggtitle("HHI index by season for MLB")
 ```
 
-# Measuring Seasonal Dimensions: Noll-Scully number
+# Correlating imbalance measures with other variables
 
-Leading indicators: Salaries
+* Leading indicators: input indicators  
+
+  Why is there a imbalance ?  
+  
+  Salary gap ? Macro, socio-economic variables?  
+  
+* Lagging indicators: output indicators
+  + What is affected by the change in imbalance ? 
+  + Attendance?
+  + Teams revenue ?
+
+
+# MLB: Salaries
+
+Leading indicators: SalarY
 
 ```{r}
 library(SportsAnalytics270)
 data(mlb_salary)
 str(mlb_salary)
 ```
+
+# MLB: Salaries
 
 Aggregate data by year
 
@@ -698,6 +835,8 @@ mlb_s<-mlb_salary %>%
 cor(mlb_s$Tot.salary, mlb_HHI$HHI)
 ```
 
+# MLB: Salaries
+
 What about the standard deviation of the salary ?
 
 ```{r}
@@ -709,6 +848,8 @@ mlb_s<-mlb_salary %>%
 ```{r}
 cor(mlb_s$SD, mlb_HHI$HHI)
 ```
+
+# MLB: Salaries
 
 HHI for salary
 
@@ -725,8 +866,20 @@ Correlations for HHI_S and HHI
 cor(mlb_HHI_s$HHI_S, mlb_HHI$HHI)
 ```
 
-# Measuring Seasonal Dimensions: Noll-Scully number
+# Short run competitiveness
 
+## Short run competitiveness
+
+# Short run competitiveness
+
+* We are looking at how predictable are individual games.
+* We can do it by using some machine learning or simpler algorithms (like Elo) to predict the probability of game outcome then calculate the prediction error – High error will indicate higher uncertainty, thus higher competitiveness.
+* However, here we will look at the bookmaker’s odds as a predicted probabilities of events
+
+# Match Outcome uncertainty
+
+* Filter the data, by taking seasons starting from 2009, major leagues and exclude NA’s
+* The variables H,D,A are bookmaker’s odds from Bet365
 
 ```{r,tidy=F}
 data("f_data_sm")
@@ -737,7 +890,12 @@ f_2009 <- f_data_sm %>%
 head(f_2009)
 ```
 
-# Measuring Seasonal Dimensions: Noll-Scully number
+# Match Outcome uncertainty
+
+* We need to convert odds to prboabilities
+* We also need to have vig (“vigorish”) free probabilities, thus probabilities that sums
+to 1.
+* Try library odds.converter
 
 ```{r}
 library(odds.converter)
@@ -747,8 +905,9 @@ sum(x)
 
 ```
 
-# Measuring Seasonal Dimensions: Noll-Scully number
+# Match Outcome uncertainty
 
+Replace variables H,D,A with vig-free probabilities
 
 ```{r}
 library(odds.converter)
@@ -757,6 +916,9 @@ f_2009[,c("H", "D", "A")] <- odds.fv(f_2009[,c("H", "D", "A")],
 head(f_2009)
 ```
 
+# Match Outcome uncertainty
+
+Calculate brier score by country
 
 ```{r}
 library(measures)
@@ -767,357 +929,39 @@ brier_score <- as.data.frame(brier_score)
 brier_score$SCORE <- unlist(brier_score$SCORE)
 ```
 
-# Measuring Seasonal Dimensions: Noll-Scully number
+# Match Outcome uncertainty
 
-
-```{r}
+```{r, fig.height=5}
 ggplot(brier_score, aes(x=COUNTRY, y = SCORE))+geom_bar(stat='identity')+
   coord_cartesian(ylim = c(0.5,0.6))+ggtitle('Match Uncertainity by Country')
 ```
 
 
+# Match Outcome uncertainty
+
 
 ```{r}
-library(measures)
-
 brier_score <- f_2009 %>% group_by(COUNTRY, SEASON) %>%
   do(SCORE = multiclass.Brier(.[,c("H", "D", "A")], .$FTR))
 brier_score <- as.data.frame(brier_score)
 brier_score$SCORE <- unlist(brier_score$SCORE)
 ```
 
-# Measuring Seasonal Dimensions: Noll-Scully number
+# Match Outcome uncertainty: Italy
 
 
-```{r}
+```{r, fig.height=5}
 brier_score %>% filter(COUNTRY=='Italy') %>%
-ggplot(aes(x=SEASON, y=SCORE))+geom_bar(stat='identity')
+ggplot(aes(x=SEASON, y=SCORE))+geom_bar(stat='identity') + 
+  scale_x_continuous(breaks = 2009:2019)
 ```
 
-# Measuring Seasonal Dimensions: Noll-Scully number
+# Match Outcome uncertainty
 
-```{r}
+```{r, fig.height=5}
 ggplot(brier_score, aes(x=SEASON, y=SCORE))+
   geom_bar(stat='identity',position=position_dodge(width=1))+
   facet_grid(~COUNTRY)+ coord_flip()+ggtitle("Brier Score by Country")
 ```
 
-
-# Noll-Scully number: Calculations
-
-```{r}
-library(SportsAnalytics270)
-data("nfl_st")
-str(nfl_st)
-```
-
-# Standard Deviations: Serie A
-
-Noll-Scully number
-
-```{r}
-#Ideal StDev
-id_s<-0.5/sqrt(16)
-# Win percentage StDev
-sd_wpct<-sd(nfl_st$Wpct)
-# Noll-Scully number
-sd_wpct/id_s
-
-```
-
-# Standard Deviations: Serie A
-
-```{r}
-library(dplyr)
-nfl_s<-nfl_st %>%
-  group_by(Season) %>%
-  summarise(NS=sd(Wpct)/id_s)
-nfl_s
-```
-
-
-# Standard Deviations: Serie A
-
-ploting
-
-```{r}
-library(ggplot2)
-ggplot(nfl_s, aes(Season, NS))+geom_bar(stat="identity")+
-  coord_cartesian(ylim=c(1,1.75))+
-  ggtitle("Noll-Skully number by season")
-  
-```
-
-
-# Standard Deviations: Serie A
-
-
-```{r}
-ggplot(nfl_s, aes(Season, NS))+geom_bar(stat="identity")+
-  ggtitle("Noll-Skully number by season")+
-  coord_cartesian(ylim=c(1,1.75))+
-  geom_hline(yintercept=mean(nfl_s$NS), col="red", size=1.5)
-  
-```
-
-The HHI for Italian Serie A
-
-
-
-# Standard Deviations: Serie A
-
-CI for championship
-
-How many times did every team become a champion?
-```{r}
-champ_c<- seriea_st %>%
-  filter(Rank ==1) %>%
-  group_by(Team) %>%
-  summarize(champ=n()) %>%
-  arrange(desc(champ))
-
-champ_c
-```
-
-CI4 for championship
-
-```{r}
-100*sum(champ_c[1:4,2])/sum(champ_c$champ)
-```
-
-If you take CI5 the concentration index is going to be 100%
-
-## Concentration index for points
-```{r}
-
-top5<- seriea_st %>%
-    group_by(Season) %>%
-    filter(Rank<6) %>%
-    summarize(TopP=sum(Pt))
-all<-seriea_st %>%
-    group_by(Season) %>%
-    summarize(Pt=sum(Pt))
-
-C5<-data.frame(Season=top5$Season,C5=top5$TopP/all$Pt)
-    
-```
-
-# Standard Deviations: Serie A
-
-```{r}
-ggplot(C5, aes(Season, C5))+geom_bar(stat="identity")+
-  ggtitle("C5 index for Serie A, 1996-2018")+
-  coord_cartesian(ylim=c(0.2,0.42))
-```
-
-# Standard Deviations: Serie A
-
-```{r}
-library(ggplot2)
-ggplot(C5, aes(Season, 1-C5))+geom_bar(stat="identity")+
-  ggtitle("C5 index for Serie A, 1996-2018")+
-  coord_cartesian(ylim=c(0.4,0.65))
-```
-
-
-
-```{r}
-library(dplyr)
-HHI<-seriea_st %>%
-        group_by(Season) %>%
-        mutate(Perc=Pt/sum(Pt))%>%
-        summarise(HHI = sum(Perc^2))
-```
-
-
-# Standard Deviations: Serie A
-
-Plotting
-
-```{r}
-ggplot(HHI, aes(Season, HHI))+geom_bar(stat="identity")+
-  ggtitle("HHI index by season")+
-  coord_cartesian(ylim=c(0.04,0.065))
-```
-
-
-
-Number of the teams per season
-
-```{r}
-seriea_st %>%
-      group_by(Season) %>%
-      summarise(count=n())
-```
-
-Adjust HHI
-dHHI
-
-```{r}
-dHHI<-seriea_st %>%
-      group_by(Season) %>%
-      mutate(Perc=Pt/sum(Pt)) %>%
-      summarise(HHI=(sum(Perc^2)-1/n()))
-```
-
-
-dHHI 
-
-```{r}
-ggplot(dHHI, aes(Season, HHI))+geom_bar(stat="identity")+
-  ggtitle("dHHI index by season")
-```
-
-# Standard Deviations: Serie A
-
-```{r}
-library(SportsAnalytics270)
-
-str(mlb_standings)
-```
-
-# Standard Deviations: Serie A
-HHI Index
-
-```{r}
-mlb_HHI <- mlb_standings %>%
-      group_by(Season) %>%
-      summarise(HHI=sum(W^2)*(4/(30^2*162^2)))
-```
-
-# Standard Deviations: Serie A
-
-
-```{r}
-ggplot(mlb_HHI, aes(Season, HHI))+geom_bar(stat="identity")+
-  geom_hline(yintercept = 1/30, col="red", size=1.5)+
-  coord_cartesian(ylim=c(0.03,0.035))+
-  ggtitle("HHI index by season for MLB")
-```
-
-# Standard Deviations: Serie A
-
-Leading indicators: Salaries
-
-```{r}
-library(SportsAnalytics270)
-data(mlb_salary)
-str(mlb_salary)
-```
-
-Aggregate data by year
-
-```{r}
-mlb_s<-mlb_salary %>%
-      group_by(Season) %>%
-      summarise(Tot.salary=sum(Current))
-```
-
-```{r}
-cor(mlb_s$Tot.salary, mlb_HHI$HHI)
-```
-
-What about the standard deviation of the salary ?
-
-```{r}
-mlb_s<-mlb_salary %>%
-      group_by(Season) %>%
-      summarise(Tot.salary=sum(Current), SD=sd(Current))
-```
-
-```{r}
-cor(mlb_s$SD, mlb_HHI$HHI)
-```
-
-HHI for salary
-
-```{r}
-mlb_HHI_s<-mlb_salary %>%
-        group_by(Season) %>%
-        mutate(Perc=Current/sum(Current)) %>%
-        summarise(HHI_S=sum(Perc^2))
-```
-
-Correlations for HHI_S and HHI
-
-```{r}
-cor(mlb_HHI_s$HHI_S, mlb_HHI$HHI)
-```
-
-# Standard Deviations: Serie A
-
-
-```{r,tidy=F}
-data("f_data_sm")
-f_2009 <- f_data_sm %>%
-  filter(SEASON > 2008,
-         COUNTRY %in% c("Italy", "Germany", "Spain","England", 
-            "Netherlands", "Portugal"), !is.na(H) )
-head(f_2009)
-```
-
-# Standard Deviations: Serie A
-
-```{r}
-library(odds.converter)
-x <- odds.fv(c(1.4,3.8,8), input = 'dec', output = 'prob')
-x
-sum(x)
-
-```
-
-# Standard Deviations: Serie A
-
-
-```{r}
-library(odds.converter)
-f_2009[,c("H", "D", "A")] <- odds.fv(f_2009[,c("H", "D", "A")], 
-                      input = 'dec',output = 'prob')
-head(f_2009)
-```
-
-
-```{r}
-library(measures)
-
-brier_score <- f_2009 %>% group_by(COUNTRY) %>%
-  do(SCORE = multiclass.Brier(.[,c("H", "D", "A")], .$FTR))
-brier_score <- as.data.frame(brier_score)
-brier_score$SCORE <- unlist(brier_score$SCORE)
-```
-
-# Standard Deviations: Serie A
-
-
-```{r}
-ggplot(brier_score, aes(x=COUNTRY, y = SCORE))+geom_bar(stat='identity')+
-  coord_cartesian(ylim = c(0.5,0.6))+ggtitle('Match Uncertainity by Country')
-```
-
-
-
-```{r}
-library(measures)
-
-brier_score <- f_2009 %>% group_by(COUNTRY, SEASON) %>%
-  do(SCORE = multiclass.Brier(.[,c("H", "D", "A")], .$FTR))
-brier_score <- as.data.frame(brier_score)
-brier_score$SCORE <- unlist(brier_score$SCORE)
-```
-
-# Standard Deviations: Serie A
-
-
-```{r}
-brier_score %>% filter(COUNTRY=='Italy') %>%
-ggplot(aes(x=SEASON, y=SCORE))+geom_bar(stat='identity')
-```
-
-# Standard Deviations: Serie A
-
-```{r}
-ggplot(brier_score, aes(x=SEASON, y=SCORE))+
-  geom_bar(stat='identity',position=position_dodge(width=1))+
-  facet_grid(~COUNTRY)+ coord_flip()+ggtitle("Brier Score by Country")
-```
 

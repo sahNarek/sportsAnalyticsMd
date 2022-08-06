@@ -1,5 +1,5 @@
-\frametitle{Standard Deviations: Serie A}
-\protect\hypertarget{standard-deviations-serie-a-19}{}
+\frametitle{Match Outcome uncertainty}
+\protect\hypertarget{match-outcome-uncertainty-6}{}
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{ggplot}\NormalTok{(brier\_score, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{SEASON, }\AttributeTok{y=}\NormalTok{SCORE))}\SpecialCharTok{+}
@@ -8,4 +8,4 @@
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{mean_regression_files/figure-beamer/unnamed-chunk-90-1.pdf}
+\includegraphics{mean_regression_files/figure-beamer/unnamed-chunk-58-1.pdf}
