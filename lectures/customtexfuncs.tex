@@ -1,12 +1,8 @@
+\newenvironment{cols}[1][]{}{}
+
 \newcommand<>\boldred[1]{\textcolor{red}{\textbf{#1}}}
 \newcommand{\bcenter}{\begin{center}}
 \newcommand{\ecenter}{\end{center}}
-
-
-\def\begincols{\begin{columns}}
-\def\begincol{\begin{column}}
-\def\endcol{\end{column}}
-\def\endcols{\end{columns}}
 
 
 \definecolor{UBCblue}{rgb}{0.04706, 0.13725, 0.26667} % UBC Blue (primary)
@@ -33,6 +29,24 @@
       \usebeamerfont{section title}\insertsection\par
     \end{beamercolorbox}
   \endgroup
+}
+\makeatother
+
+
+
+\newenvironment{col}[1]{\begin{minipage}{#1}\ignorespaces}{%
+\end{minipage}
+\ifhmode\unskip\fi
+\aftergroup\useignorespacesandallpars}
+
+\def\useignorespacesandallpars#1\ignorespaces\fi{%
+#1\fi\ignorespacesandallpars}
+
+\makeatletter
+\def\ignorespacesandallpars{%
+  \@ifnextchar\par
+    {\expandafter\ignorespacesandallpars\@gobble}%
+    {}%
 }
 \makeatother
 
