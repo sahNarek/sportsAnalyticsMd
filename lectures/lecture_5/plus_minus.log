@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.21)  7 AUG 2022 20:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.21)  7 AUG 2022 21:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1132,13 +1132,13 @@ LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <5> not available
 \openout4 = `plus_minus.vrb'.
 
 (./plus_minus.vrb
-Overfull \hbox (1.29465pt too wide) in paragraph at lines 26--26
+Overfull \hbox (1.29465pt too wide) in paragraph at lines 28--28
 []\T1/lmtt/m/n/8 ##     X1027      X453      X936      X678      X900      X158
       X904      X781[] 
  []
 
 
-Overfull \hbox (1.28465pt too wide) in paragraph at lines 26--26
+Overfull \hbox (1.28465pt too wide) in paragraph at lines 28--28
 []\T1/lmtt/m/n/8 ## 2.1176032 1.8681832 1.5567575 1.0007997 0.9188331 0.8786333
  0.8486712 0.8390129[] 
  []
@@ -1163,20 +1163,21 @@ File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ]
 \openout4 = `plus_minus.vrb'.
 
+(./plus_minus.vrb) [24
+
+]
+\openout4 = `plus_minus.vrb'.
+
 (./plus_minus.vrb
-<plus_minus_files/figure-beamer/unnamed-chunk-27-1.pdf, id=231, 712.6625pt x 49
-5.8525pt>
+<plus_minus_files/figure-beamer/unnamed-chunk-27-1.pdf, id=239, 712.6625pt x 27
+9.0425pt>
 File: plus_minus_files/figure-beamer/unnamed-chunk-27-1.pdf Graphic file (type 
 pdf)
 <use plus_minus_files/figure-beamer/unnamed-chunk-27-1.pdf>
 Package pdftex.def Info: plus_minus_files/figure-beamer/unnamed-chunk-27-1.pdf 
- used on input line 21.
-(pdftex.def)             Requested size: 347.19592pt x 241.57011pt.
-)
-Overfull \vbox (81.9021pt too high) detected at line 723
- []
-
-[24
+ used on input line 25.
+(pdftex.def)             Requested size: 347.19592pt x 135.9443pt.
+) [25
 
  <./plus_minus_files/figure-beamer/unnamed-chunk-27-1.pdf>]
 \openout4 = `plus_minus.vrb'.
@@ -1193,12 +1194,7 @@ Overfull \hbox (1.27466pt too wide) in paragraph at lines 45--45
  0.6435656 0.6088434[] 
  []
 
-) [25
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb) [26
+) [26
 
 ]
 \openout4 = `plus_minus.vrb'.
@@ -1208,79 +1204,135 @@ Overfull \hbox (1.27466pt too wide) in paragraph at lines 45--45
 ]
 \openout4 = `plus_minus.vrb'.
 
-(./plus_minus.vrb
-Overfull \hbox (31.05464pt too wide) in paragraph at lines 47--47
-[]\T1/lmtt/m/n/8 ##  $ GameID          : Factor w/ 883 levels "20111225BOSNYK",
-..: 1 1 1 1 1 1 1 1 1 1 ...[] 
+(./plus_minus.vrb) [28
+
+]
+\openout4 = `plus_minus.vrb'.
+
+(./plus_minus.vrb) [29
+
+] [30
+
+]
+\openout4 = `plus_minus.vrb'.
+
+(./plus_minus.vrb)
+Overfull \vbox (11.32648pt too high) detected at line 924
  []
 
+[31
 
-Overfull \hbox (1.30464pt too wide) in paragraph at lines 47--47
-[]\T1/lmtt/m/n/8 ##  $ HomePlayer4Name : chr  "Stoudemire" "Stoudemire" "Stoude
-mire" "Jeffries" ...[] 
- []
+]
+\openout4 = `plus_minus.vrb'.
 
-)
-Overfull \vbox (141.49315pt too high) detected at line 876
- []
+(./plus_minus.vrb) [32
 
-[28
+]
+\openout4 = `plus_minus.vrb'.
+
+(./plus_minus.vrb) [33
 
 ]
 \openout4 = `plus_minus.vrb'.
 
 (./plus_minus.vrb
-Overfull \hbox (1.30464pt too wide) in paragraph at lines 89--89
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 15--15
 []\T1/lmtt/m/n/8 ##     Nash, Steve  Nelson, Jameer    Mahinmi, Ian  Hudson, Le
 ster    Duhon, Chris[] 
  []
 
 
-Overfull \hbox (1.29265pt too wide) in paragraph at lines 89--89
+Overfull \hbox (1.29265pt too wide) in paragraph at lines 15--15
 []\T1/lmtt/m/n/8 ##       0.3479366       0.3374820       0.3280165       0.324
 3823       0.2744698[] 
  []
 
 
-Overfull \hbox (1.30464pt too wide) in paragraph at lines 89--89
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 15--15
 []\T1/lmtt/m/n/8 ##   Millsap, Paul   Kapono, Jason Humphries, Kris    Rondo, R
 ajon  Curry, Stephen[] 
  []
 
 
-Overfull \hbox (1.29865pt too wide) in paragraph at lines 89--89
+Overfull \hbox (1.29865pt too wide) in paragraph at lines 15--15
 []\T1/lmtt/m/n/8 ##       0.2454976       0.2445955       0.2423881       0.240
 5524       0.2374232[] 
  []
 
-)
-Overfull \vbox (207.44647pt too high) detected at line 967
- []
-
-[29
+) [34
 
 ]
 \openout4 = `plus_minus.vrb'.
 
 (./plus_minus.vrb
-<plus_minus_files/figure-beamer/unnamed-chunk-42-1.pdf, id=283, 712.6625pt x 49
-3.845pt>
-File: plus_minus_files/figure-beamer/unnamed-chunk-42-1.pdf Graphic file (type 
-pdf)
-<use plus_minus_files/figure-beamer/unnamed-chunk-42-1.pdf>
-Package pdftex.def Info: plus_minus_files/figure-beamer/unnamed-chunk-42-1.pdf 
- used on input line 48.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-)
-Overfull \vbox (217.824pt too high) detected at line 1017
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 19--19
+[]\T1/lmtt/m/n/8 ##     Nash, Steve  Nelson, Jameer    Mahinmi, Ian  Hudson, Le
+ster    Duhon, Chris[] 
  []
 
-[30
 
- <./plus_minus_files/figure-beamer/unnamed-chunk-42-1.pdf>]
+Overfull \hbox (1.29265pt too wide) in paragraph at lines 19--19
+[]\T1/lmtt/m/n/8 ##       0.3479366       0.3374820       0.3280165       0.324
+3823       0.2744698[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 19--19
+[]\T1/lmtt/m/n/8 ##   Millsap, Paul   Kapono, Jason Humphries, Kris    Rondo, R
+ajon  Curry, Stephen[] 
+ []
+
+
+Overfull \hbox (1.29865pt too wide) in paragraph at lines 19--19
+[]\T1/lmtt/m/n/8 ##       0.2454976       0.2445955       0.2423881       0.240
+5524       0.2374232[] 
+ []
+
+) [35
+
+]
 \openout4 = `plus_minus.vrb'.
 
-(./plus_minus.vrb) [31
+(./plus_minus.vrb) [36
+
+]
+\openout4 = `plus_minus.vrb'.
+
+(./plus_minus.vrb
+<plus_minus_files/figure-beamer/unnamed-chunk-44-1.pdf, id=340, 712.6625pt x 27
+7.035pt>
+File: plus_minus_files/figure-beamer/unnamed-chunk-44-1.pdf Graphic file (type 
+pdf)
+<use plus_minus_files/figure-beamer/unnamed-chunk-44-1.pdf>
+Package pdftex.def Info: plus_minus_files/figure-beamer/unnamed-chunk-44-1.pdf 
+ used on input line 20.
+(pdftex.def)             Requested size: 347.19592pt x 134.9663pt.
+) [37
+
+ <./plus_minus_files/figure-beamer/unnamed-chunk-44-1.pdf>] [38
+
+]
+\openout4 = `plus_minus.vrb'.
+
+(./plus_minus.vrb) [39
+
+] [40
+
+] [41
+
+]
+<./images/statistics.png, id=384, 712.6625pt x 482.80376pt>
+File: ./images/statistics.png Graphic file (type png)
+<use ./images/statistics.png>
+Package pdftex.def Info: ./images/statistics.png  used on input line 1183.
+(pdftex.def)             Requested size: 277.7524pt x 188.16747pt.
+[42
+
+ <./images/statistics.png>] [43
+
+] [44
+
+] [45
 
 ]
 \tf@nav=\write6
@@ -1294,13 +1346,13 @@ Overfull \vbox (217.824pt too high) detected at line 1017
 
 (./plus_minus.aux) ) 
 Here is how much of TeX's memory you used:
- 25218 strings out of 478268
- 492767 string characters out of 5846347
- 784150 words of memory out of 5000000
- 42670 multiletter control sequences out of 15000+600000
- 516938 words of font info for 93 fonts, out of 8000000 for 9000
+ 25413 strings out of 478268
+ 496714 string characters out of 5846347
+ 783150 words of memory out of 5000000
+ 42798 multiletter control sequences out of 15000+600000
+ 523291 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,15n,122p,1007b,565s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 128i,15n,122p,1007b,628s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-t
 s1.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/u
 sr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/t
@@ -1312,10 +1364,10 @@ x10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsso8.pfb></
 usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/t
 exlive/2022/texmf-dist/fonts/type1/public/lm/lmtt8.pfb></usr/local/texlive/2022
 /texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on plus_minus.pdf (31 pages, 200741 bytes).
+Output written on plus_minus.pdf (45 pages, 354309 bytes).
 PDF statistics:
- 366 PDF objects out of 1000 (max. 8388607)
- 283 compressed objects within 3 object streams
- 95 named destinations out of 1000 (max. 500000)
- 28807 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 490 PDF objects out of 1000 (max. 8388607)
+ 388 compressed objects within 4 object streams
+ 137 named destinations out of 1000 (max. 500000)
+ 32920 words of extra memory for PDF output out of 35830 (max. 10000000)
 

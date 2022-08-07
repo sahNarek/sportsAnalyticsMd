@@ -271,7 +271,10 @@ load("./data/nba5.rda")
 dim(nba5)
 ```
 
-# Plus/minus for NBA
+# Adjusted plus/minus
+
+Coefficients are named by player ID, we need to match with player names  
+
 
 Add plus/minus as dependent variable
 
@@ -295,14 +298,15 @@ name1<-gsub("X", "", name1)
 name1<-as.data.frame(name1)
 ```
 
-# Plus/minus for NBA
+# Adjusted plus/minus
+Corresponding dataframe with player level information
 
 ```{r}
 load("./data/nba12p.rda")
 head(nba12p[,1:3],5)
 ```
 
-# Plus/minus for NBA
+# Adjusted plus/minus
 
 ```{r}
 nba12p$PlayerID<-as.character(nba12p$PlayerID)
@@ -316,25 +320,33 @@ rename coefficients by names
 names(coeff)<-name2$PlayerTrueName
 ```
 
+# Adjusted plus/minus
+
+Do you know this players?  
+
 Lets look at top ten players
 
 ```{r}
 coeff[1:10]
 ```
 
-# Plus/minus for NBA
+Benson, Keith - [https://goo.gl/YxMsJ9](https://goo.gl/YxMsJ9)
+
+# Adjusted plus/minus
+
+Leave only players that has played more than 250 minutes (By Rosenbaum)  
 
 ```{r}
 summary(nba12p$SimpleMin)
 ```
 
-
-```{r}
+\tiny
+```{r, fig.height=4}
 ggplot(data=nba12p, aes(SimpleMin))+geom_histogram()+
   ggtitle("Histogram for Played Minutes")
 ```
 
-# Plus/minus for NBA
+# Adjusted plus/minus
 
 Getting players with more than 250m of play
 
@@ -357,7 +369,9 @@ coeff2<-sort(coefficients(model2), decreasing=T)
 coeff2[1:10]
 ```
 
-# Plus/minus for NBA
+# Adjusted plus/minus
+
+Get the adjust plus/minus from coefficients
 
 ```{r}
 name1<-names(coeff2)
@@ -367,13 +381,16 @@ name2<-left_join(name1, nba12p[,1:2], by=c("name1"="PlayerID"))
 names(coeff2)<-name2$PlayerTrueName
 ```
 
+# Adjusted plus/minus
+
 ```{r}
 coeff2[1:10]
 ```
 
+Nelson Jameer [https://goo.gl/eNj7sq](https://goo.gl/eNj7sq)
 
 
-# Plus/minus for NBA
+# Adjusted plus/minus
 
 Where is Durant ?
 
@@ -386,16 +403,35 @@ Where is Lebron ?
 name2[name2$PlayerTrueName=="James, LeBron",]
 ```
 
-# Plus/minus for NBA
+# Adjusted plus/minus
 
-```{r}
+* Modifications
+  + Take only players that played more then 250 minutes during one season
+  + As a depended variable, take margin of Plus/minus per 100 possessions
+  
+
+\bcenter
+$\text{Margin} = \frac{\text{Home Points}}{\text{Home Possession}} - \frac{\text{Away Points}}{\text{Away Possesssion}}$
+\ecenter
+
+
+# Adjusted Plus/Minus
+
+```{r, eval=F}
 str(nba12)
 ```
 
-# Plus/minus for NBA
+\tiny
+```{r, echo=F}
+str(nba12)
+```
+
+
+# Adjusted Plus/Minus
 
 PM for possessions
-#getting the PM for possessions
+
+
 ```{r}
 nba12$PM_Home<-nba12$PointsScoredHome/nba12$PossessionsHome
 nba12$PM_Away<-nba12$PointsScoredAway/nba12$PossessionsAway
@@ -408,6 +444,7 @@ summary(nba12$Margin)
 We have choice, remove cases with not number values, or impute with the mean
 
 We will remove
+\tiny
 ```{r}
 nba6$PM<-nba12$Margin
 nba6$Secs<-nba12$ElapsedSecs/60
@@ -415,8 +452,10 @@ nba7<-nba6[is.finite(nba6$PM),]
 dim(nba7)
 ```
 
-The model
 
+# Adjusted Plus/Minus
+
+The model
 
 ```{r}
 model3<-lm(PM~.,data=nba7)
@@ -430,14 +469,25 @@ name2<-left_join(name1, nba12p[,1:2], by=c("name1"="PlayerID"))
 names(coeff3)<-name2$PlayerTrueName
 ```
 
-Take everything into dataframe
+# Adjusted Plus/Minus
 
 ```{r}
 # top 10
 coeff3[1:10]
 ```
 
-# Plus/minus for NBA
+Steve Nash, Phoenix, [https://goo.gl/BczeBv](https://goo.gl/BczeBv)
+
+# Adjusted Plus/Minus
+
+Interpretations: If you take 4 average players and Steve Nash than the team will make by 0.35 points/per possession more then another team with 5 average players
+
+```{r}
+# top 10
+coeff3[1:10]
+```
+
+# Adjusted Plus/Minus
 
 Where is Durant ?
 
@@ -451,21 +501,36 @@ Where is LeBron ?
 name2[name2$PlayerTrueName=="James, LeBron",]
 ```
 
-Scaling the rating
+# Adjusted Plus/Minus
+
+We can scale the Plus/Minus values around the mean, such as the positive coefficient will show that the player is doing better than the average and negative will mean that the player is doing worst than the average.
 
 ```{r}
 coeff3<-coeff3-mean(coeff3)
 ```
 
 
-```{r}
+```{r, fig.height=4}
 ggplot()+aes(coeff3)+geom_histogram()+
   ggtitle("Histogram for scaled coefficients")
 ```
 
-# Plus/minus for NBA
+# Other considerations for regression
 
-```{r}
+* Weighted by the duration of the stint, so longer time periods have bigger weights
+* Weighting cases by clutch time vs garbage time  
+
+**Clutch Time:** During the 4th quarter or overtime, with less than five minutes remaining, and neither team ahead by more than X points.  
+
+**Garbage Time:** 4th quarter and overtime where either team has a lead of X points   
+
+The value of X varies for different analyses, most often 5 and 10.  
+
+
+
+# Weighted regression
+
+```{r, echo = F}
 load("./data/nba12.rda")
 ```
 
@@ -482,4 +547,65 @@ name2<-left_join(name1, nba12p[,1:2], by=c("name1"="PlayerID"))
 names(coeff4)<-name2$PlayerTrueName
 coeff[1:10]
 ```
+
+# Adjusted Plus/Minus
+
+* The APM is not an indicator on how good or bad the player is.
+* The APM shows how helpful where the players for their team success.
+
+# APM regressed against other statistics
+
+Dan Rosenbaum suggests to run the following regression to understand the impact of the box score statistics on APM  
+
+\bcenter
+$Y = \beta_0 + \beta_1X_1 + \beta_2X_@ + ... \beta_kX_k + \epsilon$
+\ecenter
+
+Where Y is the coefficients of the players from Plus/Minus model,  
+
+$X_1,..X_k$ are box score statistics
+
+# APM regressed against other statistics
+
+The results of the regression are the following:  
+
+Each coefficient shows the effect of the players box-score statistics on the APM  
+
+\bcenter
+```{r, echo=F,out.width="80%", out.height="80%"}
+knitr::include_graphics("./images/statistics.png")
+```
+\ecenter
+
+
+# Other metrics
+
+* Box-Score PM (Statistical Plus/Minus)- use Box-Score statistics for each stint of time of time for each player as inputs (steals, rebounds, offensive rating, etc)
+* ESPN-Real Plus/Minus – is calculated by ESPN again using some sort of regression analysis.
+* Offensive Plus/Minus and Defensive Plus/Minus
+* Win shares: Contribution of each player into wins of the
+team.
+* VORP – Value Over Replacement Level
+
+# Where to find the ratings?
+
+Plus/Minus  
+
+* Best lineup by plus/minus  
+[https://stats.nba.com/lineups/traditional/](https://stats.nba.com/lineups/traditional/)  
+
+* ESPN: Offensive Real Plus/Minus, Defensive real Plus/Minus, RPM and Wins share (from 2014)
+[https://www.espn.com/nba/statistics/rpm/_/sort/RPM](https://www.espn.com/nba/statistics/rpm/_/sort/RPM)  
+
+* Plus minus by player  
+[https://www.basketball-reference.com/players/d/duranke01/gamelog/2012/](https://www.basketball-reference.com/players/d/duranke01/gamelog/2012/)
+
+
+# Other Metrics
+
+* WINVAL by Wayne Winston: The exact method of calculating tha Adjusted P/M is not public, however.  
+
+\bcenter
+*Margin of victory = sum(Rating of all 5 home team players) - sum(Rating of all 5 away team players)*
+\ecenter
 
