@@ -2,7 +2,6 @@
 title: "CSE 270 Sports Analytics"
 subtitle: "Predicting with distributions"
 author: "Habet Madoyan"
-date: "July 14, 2018"
 fontsize: 8pt
 output:
   beamer_presentation:
@@ -76,13 +75,13 @@ library(SportsAnalytics270)
 
 # Predicting with distributions
 
-Dataframe nba2009_2018 contains NBA regular season games from 2009 to 2018-
-2019 season 
+Dataframe nba2009_2021 contains NBA regular season games from 2009 to 2021-
+2022 season 
 
 ```{r}
 options(width = 65)
-data(nba2009_2018)
-head(nba2009_2018, 2)
+data("nba2009_2021")
+head(nba2009_2021, 2)
 ```
 
 # Predicting with distributions
@@ -91,7 +90,7 @@ Plot the histogram for home points
 
 ```{r}
 library(ggplot2)
-ggplot(nba2009_2018, aes(x=home.PTS))+geom_histogram()
+ggplot(nba2009_2021, aes(x=home.PTS))+geom_histogram()
 ```
 
 # Predicting with distributions
@@ -100,14 +99,14 @@ Exclude Boston-Celtics game
 
 ```{r, fig.height=5}
 library(ggplot2)
-ggplot(nba2009_2018, aes(x=home.PTS))+geom_histogram()+xlim(c(50,155))+
+ggplot(nba2009_2021, aes(x=home.PTS))+geom_histogram()+xlim(c(50,155))+
   labs(x="Home Points", title="Histogram for points per game by home team")
 ```
 
 # Predicting with distributions
 
 ```{r}
-ggplot(nba2009_2018, aes(x=away.PTS))+geom_histogram()+xlim(c(50,150))+
+ggplot(nba2009_2021, aes(x=away.PTS))+geom_histogram()+xlim(c(50,150))+
   labs(x="Away Points", title="Histogram for points per game by away team")
 ```
 
@@ -116,7 +115,7 @@ ggplot(nba2009_2018, aes(x=away.PTS))+geom_histogram()+xlim(c(50,150))+
 Histogram of home and away points together
 
 ```{r}
-ggplot(nba2009_2018)+
+ggplot(nba2009_2021)+
   geom_histogram(aes(x=away.PTS), fill='red')+
   geom_histogram(aes(x=home.PTS),fill='blue')+
   xlim(c(50,155))+
@@ -128,7 +127,7 @@ Home points for last season only
 
 ```{r}
 library(dplyr)
-nba2009_2018 %>%
+nba2009_2021 %>%
   filter(SEASON_ID=='2018') %>%
 ggplot(aes(x=home.PTS))+geom_histogram()+xlim(c(50,155))+
   labs(x="Home Points", title="Histogram for points for last season")
@@ -138,8 +137,8 @@ ggplot(aes(x=home.PTS))+geom_histogram()+xlim(c(50,155))+
 What about Points difference ?
 
 ```{r}
-nba2009_2018$Diff <- nba2009_2018$home.PTS-nba2009_2018$away.PTS
-ggplot(nba2009_2018, aes(x=Diff))+geom_histogram(bins=50)+
+nba2009_2021$Diff <- nba2009_2021$home.PTS-nba2009_2021$away.PTS
+ggplot(nba2009_2021, aes(x=Diff))+geom_histogram(bins=50)+
   labs(x="Points Difference", title="Histogram for points points difference")
 ```
 
@@ -162,7 +161,7 @@ distribution, failed to reject $H_0$
 # Predicting with distributions
 
 ```{r}
-nba2009_2018 %>%
+nba2009_2021 %>%
   filter(SEASON_ID=='2018') %>%
   group_by(home.TEAM_ABBREVIATION) %>%
   summarise(p_value = shapiro.test(home.PTS)$p.value)%>%
@@ -175,7 +174,7 @@ Away points: Normal distribution with $\alpha$ = 0.05
 
 ```{r}
 
-nba2009_2018 %>%
+nba2009_2021 %>%
   filter(SEASON_ID=='2018') %>%
   group_by(away.TEAM_ABBREVIATION) %>%
   summarise(p_value = shapiro.test(away.PTS)$p.value)%>%
@@ -221,13 +220,13 @@ Create dataframes with means and standard deviations for each team, for the last
 
 
 ```{r}
-home <- nba2009_2018 %>%
+home <- nba2009_2021 %>%
         filter(SEASON_ID=='2018') %>%
         group_by(home.TEAM_ABBREVIATION) %>%
         summarise(mean = mean(home.PTS),
                   var  = var(home.PTS))
 
-away <- nba2009_2018 %>%
+away <- nba2009_2021 %>%
         filter(SEASON_ID=='2018') %>%
         group_by(away.TEAM_ABBREVIATION) %>%
         summarise(mean = mean(away.PTS),

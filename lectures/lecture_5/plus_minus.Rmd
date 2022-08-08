@@ -2,7 +2,7 @@
 title: "CSE 270 Sports Analytics"
 subtitle: "Measuring individual performance in team sports"
 author: "Habet Madoyan"
-date: "July 14, 2018"
+
 fontsize: 8pt
 output:
   beamer_presentation:
