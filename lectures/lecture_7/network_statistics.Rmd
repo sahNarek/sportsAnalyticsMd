@@ -977,4 +977,304 @@ assortativity.degree(usa_i, directed=T)
 reciprocity(usa_i)
 ```
 
+# US air flights network
+
+How many airports can you reach from Ney York’s JFK directly ?
+
+```{r}
+ego(usa_i,1, "JFK", mode=c("out"))
+```
+
+# US air flights network
+
+How many airports can you reach from Ney York’s JFK directly ?
+
+```{r}
+ego(usa_i,2, "JFK", mode=c("out"))
+```
+
+
+```{r}
+ego_size(usa_i,2, "JFK", mode=c("out"))
+```
+
+# US air flights network
+
+What are the airports that have direct flights TO JFK
+
+```{r}
+neighbors(usa_i, "JFK", mode="in")
+```
+
+# US air flights network
+
+Find the degree centrality
+
+
+```{r}
+d_out <- igraph::degree(usa_i, mode = "out", normalized = T)
+which.max(d_out)
+d_out[41]
+```
+
+ATL- Atlanta has the highest number of outgoing connections  
+
+You can reach 153 airports from Atlanta
+
+
+# US air flights network
+
+```{r, fig.width=10, fig.height=5}
+ggplot()+geom_histogram(aes(x=d_out))+
+  labs(x="Outgoing Flights", 
+       title="Histogram of outgoing flights")
+```
+
+# Us air flights network
+
+Normalized version of degree centrality
+
+```{r}
+d_in <- igraph::degree(usa_i, mode = "in", normalized = T)
+which.max(d_in)
+d_in[41]
+```
+
+
+# US air flights network
+
+How many flights?
+* As an edge weight, the edge attribute “weight” is used
+* In order for igraph to recognize the weights, the attribute needs to be named
+exactly “weight
+
+```{r, fig.width=10, fig.height=4}
+f_in <- strength(usa_i, mode = "in")
+which.max(f_in)
+f_in[41]
+```
+
+# US air flights network
+
+```{r, fig.width=10, fig.height=6}
+ggplot()+geom_histogram(aes(x=f_in))+
+  labs(x="Flights", title="Distribution of incoming flights")
+```
+
+# US air flights network
+
+Closeness:  
+weight is considered as a cost, so we take its inverse.
+
+
+```{r}
+close <- igraph::closeness(usa_i,weights = 1/E(usa_i)$weight,
+                           normalize=T, mode="all")
+df_c <- data.frame(airports=names(close),closeness=close)
+df_c <- df_c[order(df_c$closeness, decreasing=T),]
+head(df_c)
+```
+
+# US air flights network
+
+Betweenness
+
+```{r}
+bet <- igraph::betweenness(usa_i, weights = 1/E(usa_i)$weight,
+                           normalize=T)
+sort(bet, decreasing = T)[1:5]
+```
+
+# US air flights network
+
+For page rank calculations, weight is considered as a strength
+
+```{r}
+p_rank <- page_rank(usa_i)$vector
+sort(p_rank, decreasing = T)
+```
+
+# US air flights network
+
+* Community detection, using fastgreedy algorithm
+* You need to transform the graph into undirected first
+
+```{r}
+usa_i1 <- as.undirected(usa_i, mode = "collapse")
+com <- fastgreedy.community(usa_i1) 
+sizes(com)
+```
+
+# US air flights network
+\tiny
+```{r, fig.width=17, fig.height=11, fig.align = 'center' ,out.height="70%", out.width="100%"}
+plot(com, usa_i1)
+```
+
+
+# NBA passing
+
+## NBA passing
+
+
+# NBA passing
+
+Load n_pass, Golden State Warriors passing network
+
+
+```{r}
+load("./data/n_pass.rda")
+i_pass <- asIgraph(n_pass)
+igraph::list.edge.attributes(i_pass)
+igraph::list.vertex.attributes(i_pass)
+```
+
+# NBA passing
+
+* Set edge attribute (weight)
+* Set vertex attribute (name)
+
+```{r}
+i_pass <- set.edge.attribute(i_pass, "weight", value = E(i_pass)$passes)
+i_pass <- set.vertex.attribute(i_pass, "name", value=V(i_pass)$vertex.names)
+```
+
+# NBA passing
+
+```{r}
+edge_density(i_pass)
+```
+
+```{r}
+mean_distance(i_pass, directed=T)
+```
+
+# NBA passing
+
+```{r}
+pos_num <- as.numeric(as.factor(V(i_pass)$position))
+assortativity(i_pass, pos_num)
+```
+
+
+# NBA passing
+
+```{r}
+actual <- assortativity(i_pass, pos_num)
+
+results <- vector(length=1000)
+for(i in 1:1000){
+  results[i] <- assortativity(i_pass,sample(pos_num))
+}
+```
+
+# NBA passing
+
+```{r, fig.height=5}
+ggplot()+geom_histogram(aes(x=results))+
+  geom_vline(xintercept = actual,
+            size=1.2, color="red")
+```
+
+# NBA passing
+
+Degree assortativity
+
+```{r}
+assortativity.degree(i_pass)
+```
+
+# NBA passing
+
+For sure we are going to have high reciprocity value
+
+```{r}
+reciprocity(i_pass)
+```
+
+# NBA passing
+
+Now calculate node level statistics Passes recieved  
+Passes received  
+
+
+```{r}
+recieved <- strength(i_pass, mode="in")
+recieved
+```
+
+# NBA passing
+
+passes given
+
+```{r}
+gave <- strength(i_pass, mode="out")
+gave
+```
+
+# NBA passing
+\tiny
+```{r, fig.height=4}
+df_p <- data.frame(gave, recieved, players=names(recieved))
+ggplot(df_p, aes(recieved, gave, label=players))+
+  geom_point()+geom_label()+
+  ggtitle("Given and recieved passes")
+```
+
+# NBA passing
+
+Degree centrality
+
+```{r}
+degree(i_pass)
+```
+
+# NBA passing
+
+Closeness: weighted graph, weights as cost, take inverse
+
+```{r}
+pass_close <- igraph::closeness(i_pass, weights = 1/E(i_pass)$weight,
+                normalized = T, mode="all")
+sort(pass_close, decreasing = T)
+```
+
+# NBA passing
+
+Betweenness
+
+```{r}
+pass_bet <- igraph::betweenness(i_pass, weights = 1/E(i_pass)$weight,
+                normalized = T)
+sort(pass_bet, decreasing=T)
+```
+
+# NBA passing
+
+```{r}
+p_rank <- page_rank(i_pass)$vector
+sort(p_rank, decreasing = T)
+```
+
+# NBA passing
+
+```{r, fig.width=11, fig.height=5}
+plot(n_pass, vertex.cex=10*pass_bet, displaylabels=T)
+```
+
+# NBA passing
+
+```{r, fig.width=11, fig.height=5}
+x <- (pass_close-mean(pass_close))/sd(pass_close)
+plot(n_pass, vertex.cex=x, displaylabels=T)
+```
+
+# NBA passing
+
+```{r, fig.width=11, fig.height=5}
+
+plot(n_pass, vertex.cex=10*p_rank, displaylabels=T)
+```
+
+
 
