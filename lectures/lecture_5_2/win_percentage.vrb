@@ -1,0 +1,12 @@
+\frametitle{Pythagorean wins in NBA}
+\protect\hypertarget{pythagorean-wins-in-nba-9}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nba\_st }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Season}\SpecialCharTok{==}\DecValTok{2019}\NormalTok{)}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{PW\_G, }\AttributeTok{y=}\NormalTok{W, }\AttributeTok{label=}\NormalTok{Team))}\SpecialCharTok{+}\FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{geom\_abline}\NormalTok{(}\AttributeTok{intercept =}\DecValTok{0}\NormalTok{ , }\AttributeTok{slope =} \DecValTok{1}\NormalTok{, }\AttributeTok{col=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{geom\_text}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{win_percentage_files/figure-beamer/unnamed-chunk-29-1.pdf}
