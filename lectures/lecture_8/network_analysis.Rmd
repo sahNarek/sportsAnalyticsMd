@@ -216,11 +216,15 @@ plot(net4)
 
 # Vizualizing with gplot
 
+gplot comes from the package sna
+
 ```{r, fig.height=4, fig.align='center', out.height="80%"}
 sna::gplot(net1, displaylabels = T)
 ```
 
 # Converting from igraph to network and vice versa
+
+Use package Intergraph to convert types of objects from igraph to networka nd vice versa
 
 ```{r}
 net_i<-intergraph::asIgraph(net1)
@@ -320,25 +324,24 @@ plot(net1,label=network.vertex.names(net1),
 
 # Graph layout
 use set.seed(<the same integer here>) when running the plot command
-```{r}
+```{r, fig.height=4, out.height="80%", fig.align='center'}
 set.seed(1)
 plot(net1,label=network.vertex.names(net1))
 ```
 
 <!-- page_32 -->
 # Graph layout
+
 Make the coordinates matrix
 
-```{r}
+```{r, fig.height=4, out.height="80%", fig.align='center'}
 set.seed(1)
 my_coord<-plot(net1,displaylabels=T)
-my_coord
 ```
 
-<!-- page_33 -->
 # Graph layout
 Use argument coord
-```{r}
+```{r, fig.height=4, out.height="80%", fig.align='center'}
 plot(net1,label=network.vertex.names(net1), coord=my_coord)
 ```
 
@@ -366,7 +369,7 @@ knitr::include_graphics("./images/layout_1.png")
 
 Set argument ***mode=“circle"***
 
-```{r, fig.height=4, out.height="70%"}
+```{r, fig.height=4, out.height="70%", fig.align='center'}
 plot(net1,label=network.vertex.names(net1), 
      mode="circle", main="Circle Layout")
 ```
@@ -374,7 +377,7 @@ plot(net1,label=network.vertex.names(net1),
 <!-- page_37 -->
 # Graph layout
 
-```{r, fig.height=4,out.height="70%"}
+```{r, fig.height=4,out.height="70%",fig.align='center'}
 plot(net1,label=network.vertex.names(net1), 
      mode="fruchtermanreingold", 
      main="Fruchterman - Reingold: The default layout")
@@ -383,7 +386,7 @@ plot(net1,label=network.vertex.names(net1),
 <!-- page_38 -->
 # Graph layout
 
-```{r, fig.height=4, out.height="70%"}
+```{r, fig.height=4, out.height="70%",fig.align='center'}
 plot(net1,label=network.vertex.names(net1), 
      mode="kamadakawai", main="Kamada-kawai")
 ```
@@ -404,28 +407,28 @@ Note: Coordinates are generated randomly, so if you don’t specify set.seed() y
 <!-- page 40 -->
 # Graph layout
 
-```{r}
+```{r, fig.height=4, out.height="70%",fig.align='center'}
 plot(net5, layout=coords, main="Circle Layout")
 ```
 
 <!-- page 41 -->
 # Graph layout
 
-```{r}
+```{r, fig.height=4, out.height="70%",fig.align='center'}
 plot(net5, layout=layout_with_fr(net5), main="Fruchterman - Reingold")
 ```
 
 <!-- page 42 -->
 # Graph layout
 
-```{r}
+```{r, fig.height=4, out.height="70%",fig.align='center'}
 plot(net5, layout=layout_on_grid(net5), main="Grid layout")
 ```
 
 <!-- page 43 -->
 # Graph layout
 
-```{r}
+```{r, fig.height=4, out.height="70%",fig.align='center'}
 plot(net5, layout=layout_nicely(net5), main="Nice layout")
 ```
 
@@ -446,7 +449,7 @@ coord1<-plot(net1,displaylabels=T, mode="circle", main="Circle Layout", suppress
 
 Lets say you want to bring Node C to the center
 
-```{r, fig.height=4, out.height="70%"}
+```{r, fig.height=4, out.height="70%", fig.align='center'}
 #C is the third node, set coordinates to zero
 coord1[3,]<-0
 plot(net1,displaylabels=T, mode="circle", main="Circle Layout", coord=coord1)
@@ -456,7 +459,7 @@ plot(net1,displaylabels=T, mode="circle", main="Circle Layout", coord=coord1)
 
 # Sub setting the graph: by vertex attribute
 
-```{r, fig.height=4, out.height="60%"}
+```{r, fig.height=4, out.height="60%", fig.align='center'}
 # library network
 net1 %v% "gender"
 net_f<-get.inducedSubgraph(net1, v=which(net1 %v% "gender" == "F"))
@@ -467,7 +470,7 @@ plot(net_f, label=network.vertex.names(net_f))
 
 # Sub setting the graph: by edge attribute
 
-```{r, fig.height=4, out.height="70%"}
+```{r, fig.height=4, out.height="70%", fig.align='center'}
 net1 %e% "edge.size"
 # get the edges for which the edge.size is >= 3
 net_e<-get.inducedSubgraph(net1, eid=which(net1 %e% "edge.size" >=3))
@@ -500,6 +503,12 @@ Setting edge attributes
 # change the first element of the gender attribute to M
 V(net4)$gender[1]<-"M"
 V(net4)$gender
+```
+
+```{r}
+net4<-set_edge_attr(net4,"edge.val", value=c(5, 0, 3,
+1, 0, 3))
+E(net4)$edge.val
 ```
 
 <!-- page 50 -->
@@ -1016,6 +1025,7 @@ gsw$PLAYER
 
 # NBA: passing network
 
+Set vertex attribute
 
 ```{r}
 network::set.vertex.attribute(n_pass, "position", gsw$POSITION)
@@ -1038,6 +1048,7 @@ ngames
 
 # NBA: passing network
 
+Set the right order
 
 ```{r}
 ngames <- ngames[order(match(ngames$PLAYER_NAME,p)),]
@@ -1432,6 +1443,13 @@ network::set.vertex.attribute(net_arg, "player.name",
           wc_14_final$argentina_team$Player_name)
 get.vertex.attribute(net_arg, "player.name")
 
+```
+
+# Passing in football
+
+Player positions
+
+```{r}
 network::set.vertex.attribute(net_arg, "player.position",
         as.character(wc_14_final$argentina_team$Position))
 get.vertex.attribute(net_arg, "player.position")
