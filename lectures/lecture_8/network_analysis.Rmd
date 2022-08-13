@@ -911,8 +911,11 @@ i_pass <- graph_from_edgelist(
 
 # NBA: passing network
 
+Loops
 
-```{r}
+\tiniy
+
+```{r, fig.width=12, fig.height=7, fig.align='center', out.height="75%"}
 plot(i_pass)
 ```
 
@@ -931,7 +934,9 @@ passing <- passing[passing$PLAYER_NAME !=passing$PASS_TEAMMATE_PLAYER_NAME,]
 
 # NBA: passing network
 
-```{r, fig.width=12, fig.height=12}
+\tiny
+
+```{r, fig.width=12, fig.height=7, fig.align='center', out.height="75%"}
 i_pass <- graph_from_edgelist(
   as.matrix(passing[,c("PLAYER_NAME", 
                        "PASS_TEAMMATE_PLAYER_NAME")]), directed = T)
@@ -945,7 +950,7 @@ plot(i_pass)
 
 Transform to network object
 
-```{r, fig.width=12, fig.height=12}
+```{r, fig.width=12, fig.height=6, fig.align='center', out.height="65%"}
 library(intergraph)
 n_pass <- asNetwork(i_pass)
 plot(n_pass)
@@ -1046,8 +1051,8 @@ library(ggplot2)
 
 Lets look at two more variables for edge attributes  
 Field Goals made
-
-```{r}
+\tiny
+```{r, fig.width=12, fig.height=6, fig.align='center', out.height="75%", warning=F}
 ggplot(passing, aes(x=FGM))+geom_histogram()+
   labs(x="Field Goals ", title = "FG")
 ```
@@ -1060,7 +1065,7 @@ ggplot(passing, aes(x=FGM))+geom_histogram()+
 
 Field goal percentage
 
-```{r}
+```{r, fig.width=12, fig.height=6, fig.align='center', out.height="75%", warning=F}
 ggplot(passing, aes(x=FG_PCT))+geom_histogram()+
   labs(x="Field Goal Percentage", title = "FGP")
 ```
@@ -1081,12 +1086,13 @@ n_pass %e% "FGP"
 # NBA: passing network
 
 Lets look at the distribution of the passes
+\tiny
 
 ```{r}
 summary(n_pass %e% "passes")
 ```
 
-```{r}
+```{r, fig.width=12, fig.height=5, fig.align='center', out.height="55%"}
 ggplot(passing, aes(x=PASS))+geom_histogram()+
   labs(x="Passes", title = "Distribution of passes")
 ```
@@ -1095,7 +1101,9 @@ ggplot(passing, aes(x=PASS))+geom_histogram()+
 
 # NBA: passing network
 
-```{r, fig.width=12, fig.height=12}
+\tiny
+
+```{r, fig.width=12, fig.height=7, fig.align='center', out.height="75%"}
 n_pass1<-get.inducedSubgraph(n_pass, 
                            eid=which(n_pass %e% "passes" > 30))
 plot(n_pass1, displaylabels=T, mode="circle")
@@ -1105,8 +1113,9 @@ plot(n_pass1, displaylabels=T, mode="circle")
 <!-- page 99 -->
 
 # NBA: passing network
+\tiny
 
-```{r, fig.width=12, fig.height=12}
+```{r, fig.width=12, fig.height=7, fig.align='center', out.height="75%"}
 mat <- as.matrix(n_pass1, matrix.type = "adjacency",
                  attrname="passes")
 library(circlize)
@@ -1128,8 +1137,9 @@ z
 <!-- page 101 -->
 
 # NBA: passing network
+\tiny
 
-```{r, fig.width=12, fig.height=12}
+```{r, fig.width=12, fig.height=7, fig.align='center', out.height="75%"}
 plot(n_pass1, displaylabels=T, mode="circle",
      vertex.cex = z)
 ```
@@ -1139,8 +1149,9 @@ plot(n_pass1, displaylabels=T, mode="circle",
 # NBA: passing network
 
 Colorize by player position
+\tiny
 
-```{r, fig.width=12, fig.height=12}
+```{r, fig.width=12, fig.height=7, fig.align='center', out.height="75%"}
 plot(n_pass1, displaylabels=T, mode="circle",
      vertex.cex = z, vertex.col = "position")
 
@@ -1151,7 +1162,9 @@ plot(n_pass1, displaylabels=T, mode="circle",
 
 # NBA: passing network
 
-```{r, fig.width=12, fig.height=12}
+\tiny
+
+```{r, fig.width=12, fig.height=7, fig.align='center', out.height="75%"}
 plot(n_pass1, displaylabels=T, mode="circle",
      vertex.cex = z, vertex.col = "position",
      label = n_pass1 %v% "position")
@@ -1187,8 +1200,9 @@ n_pass2 <- get.inducedSubgraph(n_pass1,
 # NBA: passing network
 
 Plot with two additional arguments
+\tiny
 
-```{r, fig.width=12, fig.height=12}
+```{r, fig.width=12, fig.height=7, fig.align='center', out.height="65%"}
 plot(n_pass2, displaylabels=T, 
       usecurve=T, edge.curve=0.025)
 ```
@@ -1197,8 +1211,9 @@ plot(n_pass2, displaylabels=T,
 
 # NBA: passing network
 
+\tiny
 
-```{r, fig.width=12, fig.height=12}
+```{r, fig.width=12, fig.height=7, fig.align='center', out.height="75%"}
 coords <- plot(n_pass2, displaylabels=T, 
       suppress.axes = F)
 ```
@@ -1237,7 +1252,9 @@ coords[5,] <- c(-2.7, -3.2)
 
 # NBA: passing network
 
-```{r, fig.width=12, fig.height=12}
+\tiny
+
+```{r, fig.width=12, fig.height=8, fig.align='center', out.height="75%"}
 plot(n_pass2, displaylabels=T, coord = coords,
      usecurve=T, edge.curve=0.015)
 ```
@@ -1250,9 +1267,9 @@ plot(n_pass2, displaylabels=T, coord = coords,
 
 Number of passes as edge attribute
 
-```{r, fig.width=12, fig.height=12}
+\tiny
 
-x <- n_pass2 %e% "passes"
+```{r, fig.width=12, fig.height=7, fig.align='center', out.height="65%"}
 z <- 10*(x - min(x))/(max(x)-min(x))
 plot(n_pass2, displaylabels=T, coord = coords,
      usecurve=T, edge.curve=0.015, 
@@ -1265,7 +1282,9 @@ plot(n_pass2, displaylabels=T, coord = coords,
 
 Field goal percentage in each edge
 
-```{r fig.width=12, fig.height=12}
+\tiny
+
+```{r, fig.width=12, fig.height=7, fig.align='center', out.height="65%"}
 plot(n_pass2, displaylabels=T, coord = coords,
      usecurve=T, edge.curve=0.015, 
      edge.label = n_pass2 %e% "FGP")
@@ -1275,7 +1294,8 @@ plot(n_pass2, displaylabels=T, coord = coords,
 
 # NBA: passing network
 
-```{r, fig.width=12, fig.height=12}
+\tiny
+```{r, fig.width=12, fig.height=8, fig.align='center', out.height="75%"}
 i_pass2 <- intergraph::asIgraph(n_pass2)
 plot(i_pass2, vertex.label = V(i_pass2)$vertex.names)
 ```
@@ -1284,7 +1304,9 @@ plot(i_pass2, vertex.label = V(i_pass2)$vertex.names)
 
 # NBA: passing network
 
-```{r, fig.width=12, fig.height=12}
+\tiny
+
+```{r, fig.width=12, fig.height=8, fig.align='center', out.height="75%"}
 plot(i_pass2, vertex.label = V(i_pass2)$vertex.names,
      layout=coords)
 ```
@@ -1293,8 +1315,8 @@ plot(i_pass2, vertex.label = V(i_pass2)$vertex.names,
 <!-- page 114 -->
 
 # NBA: passing network
-
-```{r, fig.width=12, fig.height=12}
+\tiny
+```{r, fig.width=12, fig.height=8, fig.align='center', out.height="75%"}
 x <- E(i_pass2)$passes
 z <- 10*(x - min(x))/(max(x)-min(x))
 

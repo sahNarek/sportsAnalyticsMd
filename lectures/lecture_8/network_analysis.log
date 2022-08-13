@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.21)  13 AUG 2022 13:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.21)  13 AUG 2022 13:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -768,7 +768,8 @@ Package: xurl 2022/01/09 v 0.10 modify URL breaks
 File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count348
 \l__pdf_internal_box=\box78
-) (./network_analysis.aux)
+)
+No file network_analysis.aux.
 \openout1 = `network_analysis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 206.
@@ -951,12 +952,13 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-(./network_analysis.nav) [1
+No file network_analysis.nav.
+[1
 
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
 
 ]
-<./images/fb.png, id=33, 665.48625pt x 510.90875pt>
+<./images/fb.png, id=32, 665.48625pt x 510.90875pt>
 File: ./images/fb.png Graphic file (type png)
 <use ./images/fb.png>
 Package pdftex.def Info: ./images/fb.png  used on input line 233.
@@ -964,7 +966,7 @@ Package pdftex.def Info: ./images/fb.png  used on input line 233.
 [3
 
  <./images/fb.png>]
-<./images/twitter.png, id=43, 538.01pt x 468.75125pt>
+<./images/twitter.png, id=42, 538.01pt x 468.75125pt>
 File: ./images/twitter.png Graphic file (type png)
 <use ./images/twitter.png>
 Package pdftex.def Info: ./images/twitter.png  used on input line 243.
@@ -987,7 +989,7 @@ File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 (./network_analysis.vrb) [6
 
 ]
-<./images/network_data_1.png, id=67, 919.435pt x 236.885pt>
+<./images/network_data_1.png, id=66, 919.435pt x 236.885pt>
 File: ./images/network_data_1.png Graphic file (type png)
 <use ./images/network_data_1.png>
 Package pdftex.def Info: ./images/network_data_1.png  used on input line 302.
@@ -1010,14 +1012,14 @@ Package pdftex.def Info: ./images/network_data_1.png  used on input line 302.
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-8-1.pdf, id=98, 150.5625pt 
-x 186.6975pt>
+<network_analysis_files/figure-beamer/unnamed-chunk-8-1.pdf, id=97, 151.56625pt
+ x 185.69376pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-8-1.pdf Graphic file (
 type pdf)
 <use network_analysis_files/figure-beamer/unnamed-chunk-8-1.pdf>
 Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-8-1
 .pdf  used on input line 9.
-(pdftex.def)             Requested size: 150.569pt x 186.70558pt.
+(pdftex.def)             Requested size: 151.56818pt x 185.69612pt.
 ) [11
 
  <./network_analysis_files/figure-beamer/unnamed-chunk-8-1.pdf>]
@@ -1026,60 +1028,56 @@ Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-8-1
 (./network_analysis.vrb
 LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <8> not available
 (Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 3.
-<network_analysis_files/figure-beamer/unnamed-chunk-9-1.pdf, id=114, 151.56625p
-t x 187.70125pt>
+<network_analysis_files/figure-beamer/unnamed-chunk-9-1.pdf, id=113, 151.56625p
+t x 180.675pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-9-1.pdf Graphic file (
 type pdf)
 <use network_analysis_files/figure-beamer/unnamed-chunk-9-1.pdf>
 Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-9-1
 .pdf  used on input line 11.
-(pdftex.def)             Requested size: 151.56818pt x 187.70364pt.
+(pdftex.def)             Requested size: 151.56587pt x 180.67455pt.
 ) [12
 
  <./network_analysis_files/figure-beamer/unnamed-chunk-9-1.pdf>]
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-10-1.pdf, id=131, 119.44624
-pt x 191.71625pt>
+<network_analysis_files/figure-beamer/unnamed-chunk-10-1.pdf, id=130, 154.5775p
+t x 179.67125pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-10-1.pdf Graphic file 
 (type pdf)
 <use network_analysis_files/figure-beamer/unnamed-chunk-10-1.pdf>
 Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-10-
 1.pdf  used on input line 12.
-(pdftex.def)             Requested size: 119.44594pt x 191.71577pt.
+(pdftex.def)             Requested size: 154.58888pt x 179.6845pt.
 ) [13
 
  <./network_analysis_files/figure-beamer/unnamed-chunk-10-1.pdf>]
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-11-1.pdf, id=148, 165.61874
-pt x 191.71625pt>
+<network_analysis_files/figure-beamer/unnamed-chunk-11-1.pdf, id=147, 163.61125
+pt x 185.69376pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-11-1.pdf Graphic file 
 (type pdf)
 <use network_analysis_files/figure-beamer/unnamed-chunk-11-1.pdf>
 Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-11-
 1.pdf  used on input line 12.
-(pdftex.def)             Requested size: 165.6259pt x 191.72455pt.
-)
-Overfull \vbox (5.13525pt too high) detected at line 437
- []
-
-[14
+(pdftex.def)             Requested size: 163.61084pt x 185.6933pt.
+) [14
 
  <./network_analysis_files/figure-beamer/unnamed-chunk-11-1.pdf>]
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-12-1.pdf, id=165, 165.61874
-pt x 176.66pt>
+<network_analysis_files/figure-beamer/unnamed-chunk-12-1.pdf, id=164, 132.495pt
+ x 191.71625pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-12-1.pdf Graphic file 
 (type pdf)
 <use network_analysis_files/figure-beamer/unnamed-chunk-12-1.pdf>
 Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-12-
 1.pdf  used on input line 12.
-(pdftex.def)             Requested size: 165.6259pt x 176.66763pt.
+(pdftex.def)             Requested size: 132.50476pt x 191.7304pt.
 ) [15
 
  <./network_analysis_files/figure-beamer/unnamed-chunk-12-1.pdf>]
@@ -1091,14 +1089,14 @@ Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-12-
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-15-1.pdf, id=188, 165.61874
-pt x 191.71625pt>
+<network_analysis_files/figure-beamer/unnamed-chunk-15-1.pdf, id=187, 163.61125
+pt x 182.6825pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-15-1.pdf Graphic file 
 (type pdf)
 <use network_analysis_files/figure-beamer/unnamed-chunk-15-1.pdf>
 Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-15-
 1.pdf  used on input line 20.
-(pdftex.def)             Requested size: 130.72365pt x 151.32253pt.
+(pdftex.def)             Requested size: 135.52518pt x 151.32259pt.
 ) [17
 
  <./network_analysis_files/figure-beamer/unnamed-chunk-15-1.pdf>]
@@ -1110,7 +1108,7 @@ Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-15-
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-17-1.pdf, id=211, 145.54375
+<network_analysis_files/figure-beamer/unnamed-chunk-17-1.pdf, id=210, 145.54375
 pt x 146.5475pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-17-1.pdf Graphic file 
 (type pdf)
@@ -1124,7 +1122,7 @@ Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-17-
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-18-1.pdf, id=227, 145.54375
+<network_analysis_files/figure-beamer/unnamed-chunk-18-1.pdf, id=226, 145.54375
 pt x 146.5475pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-18-1.pdf Graphic file 
 (type pdf)
@@ -1138,14 +1136,14 @@ Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-18-
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-19-1.pdf, id=242, 155.58125
-pt x 128.48pt>
+<network_analysis_files/figure-beamer/unnamed-chunk-19-1.pdf, id=241, 155.58125
+pt x 151.56625pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-19-1.pdf Graphic file 
 (type pdf)
 <use network_analysis_files/figure-beamer/unnamed-chunk-19-1.pdf>
 Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-19-
 1.pdf  used on input line 9.
-(pdftex.def)             Requested size: 155.58322pt x 128.48163pt.
+(pdftex.def)             Requested size: 155.58322pt x 151.56818pt.
 ) [21
 
  <./network_analysis_files/figure-beamer/unnamed-chunk-19-1.pdf>]
@@ -1167,16 +1165,16 @@ Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-19-
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-24-1.pdf, id=279, 229.85875
-pt x 180.675pt>
+<network_analysis_files/figure-beamer/unnamed-chunk-24-1.pdf, id=278, 229.85875
+pt x 191.71625pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-24-1.pdf Graphic file 
 (type pdf)
 <use network_analysis_files/figure-beamer/unnamed-chunk-24-1.pdf>
 Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-24-
 1.pdf  used on input line 14.
-(pdftex.def)             Requested size: 224.58661pt x 176.53096pt.
+(pdftex.def)             Requested size: 211.6655pt x 176.54198pt.
 )
-Overfull \vbox (9.60744pt too high) detected at line 677
+Overfull \vbox (9.61845pt too high) detected at line 677
  []
 
 [25
@@ -1195,28 +1193,28 @@ Overfull \vbox (9.60744pt too high) detected at line 677
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/page_28-1.pdf, id=311, 229.85875pt x 179.
-67125pt>
+<network_analysis_files/figure-beamer/page_28-1.pdf, id=310, 229.85875pt x 182.
+6825pt>
 File: network_analysis_files/figure-beamer/page_28-1.pdf Graphic file (type pdf
 )
 <use network_analysis_files/figure-beamer/page_28-1.pdf>
 Package pdftex.def Info: network_analysis_files/figure-beamer/page_28-1.pdf  us
 ed on input line 15.
-(pdftex.def)             Requested size: 193.5956pt x 151.3258pt.
+(pdftex.def)             Requested size: 190.40039pt x 151.32259pt.
 ) [28
 
  <./network_analysis_files/figure-beamer/page_28-1.pdf>]
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/page_29-1.pdf, id=327, 229.85875pt x 188.
-705pt>
+<network_analysis_files/figure-beamer/page_29-1.pdf, id=326, 229.85875pt x 191.
+71625pt>
 File: network_analysis_files/figure-beamer/page_29-1.pdf Graphic file (type pdf
 )
 <use network_analysis_files/figure-beamer/page_29-1.pdf>
 Package pdftex.def Info: network_analysis_files/figure-beamer/page_29-1.pdf  us
 ed on input line 15.
-(pdftex.def)             Requested size: 184.31512pt x 151.31548pt.
+(pdftex.def)             Requested size: 181.42857pt x 151.32253pt.
 ) [29
 
  <./network_analysis_files/figure-beamer/page_29-1.pdf>] [30
@@ -1225,7 +1223,7 @@ ed on input line 15.
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-27-1.pdf, id=350, 323.2075p
+<network_analysis_files/figure-beamer/unnamed-chunk-27-1.pdf, id=349, 323.2075p
 t x 334.24875pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-27-1.pdf Graphic file 
 (type pdf)
@@ -1243,7 +1241,7 @@ Overfull \vbox (66.27208pt too high) detected at line 793
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-28-1.pdf, id=366, 323.2075p
+<network_analysis_files/figure-beamer/unnamed-chunk-28-1.pdf, id=365, 323.2075p
 t x 334.24875pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-28-1.pdf Graphic file 
 (type pdf)
@@ -1261,7 +1259,7 @@ Overfull \vbox (145.21635pt too high) detected at line 822
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-29-1.pdf, id=381, 329.23pt 
+<network_analysis_files/figure-beamer/unnamed-chunk-29-1.pdf, id=380, 329.23pt 
 x 334.24875pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-29-1.pdf Graphic file 
 (type pdf)
@@ -1278,7 +1276,7 @@ Overfull \vbox (56.77208pt too high) detected at line 835
  <./network_analysis_files/figure-beamer/unnamed-chunk-29-1.pdf>] [34
 
 ]
-<./images/layout_1.png, id=403, 911.405pt x 618.31pt>
+<./images/layout_1.png, id=402, 911.405pt x 618.31pt>
 File: ./images/layout_1.png Graphic file (type png)
 <use ./images/layout_1.png>
 Package pdftex.def Info: ./images/layout_1.png  used on input line 860.
@@ -1289,7 +1287,7 @@ Package pdftex.def Info: ./images/layout_1.png  used on input line 860.
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-31-1.pdf, id=412, 142.5325p
+<network_analysis_files/figure-beamer/unnamed-chunk-31-1.pdf, id=411, 142.5325p
 t x 179.67125pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-31-1.pdf Graphic file 
 (type pdf)
@@ -1303,7 +1301,7 @@ Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-31-
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-32-1.pdf, id=429, 290.08376
+<network_analysis_files/figure-beamer/unnamed-chunk-32-1.pdf, id=428, 290.08376
 pt x 190.7125pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-32-1.pdf Graphic file 
 (type pdf)
@@ -1317,7 +1315,7 @@ Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-32-
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-33-1.pdf, id=446, 148.555pt
+<network_analysis_files/figure-beamer/unnamed-chunk-33-1.pdf, id=445, 148.555pt
  x 166.6225pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-33-1.pdf Graphic file 
 (type pdf)
@@ -1336,7 +1334,7 @@ Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-33-
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-35-1.pdf, id=469, 346.29375
+<network_analysis_files/figure-beamer/unnamed-chunk-35-1.pdf, id=468, 346.29375
 pt x 395.4775pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-35-1.pdf Graphic file 
 (type pdf)
@@ -1354,7 +1352,7 @@ Overfull \vbox (42.51396pt too high) detected at line 935
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-36-1.pdf, id=485, 346.29375
+<network_analysis_files/figure-beamer/unnamed-chunk-36-1.pdf, id=484, 346.29375
 pt x 395.4775pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-36-1.pdf Graphic file 
 (type pdf)
@@ -1372,7 +1370,7 @@ Overfull \vbox (42.51396pt too high) detected at line 946
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-37-1.pdf, id=501, 346.29375
+<network_analysis_files/figure-beamer/unnamed-chunk-37-1.pdf, id=500, 346.29375
 pt x 395.4775pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-37-1.pdf Graphic file 
 (type pdf)
@@ -1390,7 +1388,7 @@ Overfull \vbox (42.51396pt too high) detected at line 957
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-38-1.pdf, id=517, 346.29375
+<network_analysis_files/figure-beamer/unnamed-chunk-38-1.pdf, id=516, 346.29375
 pt x 395.4775pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-38-1.pdf Graphic file 
 (type pdf)
@@ -1408,7 +1406,7 @@ Overfull \vbox (42.51396pt too high) detected at line 968
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-39-1.pdf, id=534, 371.3875p
+<network_analysis_files/figure-beamer/unnamed-chunk-39-1.pdf, id=533, 371.3875p
 t x 217.81375pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-39-1.pdf Graphic file 
 (type pdf)
@@ -1422,7 +1420,7 @@ Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-39-
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-40-1.pdf, id=550, 142.5325p
+<network_analysis_files/figure-beamer/unnamed-chunk-40-1.pdf, id=549, 142.5325p
 t x 184.69pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-40-1.pdf Graphic file 
 (type pdf)
@@ -1436,7 +1434,7 @@ Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-40-
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-41-1.pdf, id=567, 142.5325p
+<network_analysis_files/figure-beamer/unnamed-chunk-41-1.pdf, id=566, 142.5325p
 t x 91.34125pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-41-1.pdf Graphic file 
 (type pdf)
@@ -1450,7 +1448,7 @@ Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-41-
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-42-1.pdf, id=582, 145.54375
+<network_analysis_files/figure-beamer/unnamed-chunk-42-1.pdf, id=581, 145.54375
 pt x 149.55875pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-42-1.pdf Graphic file 
 (type pdf)
@@ -1473,7 +1471,7 @@ Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-42-
 ] [50
 
 ]
-<./images/marvel_1.png, id=634, 884.30376pt x 590.205pt>
+<./images/marvel_1.png, id=633, 884.30376pt x 590.205pt>
 File: ./images/marvel_1.png Graphic file (type png)
 <use ./images/marvel_1.png>
 Package pdftex.def Info: ./images/marvel_1.png  used on input line 1114.
@@ -1494,7 +1492,7 @@ Package pdftex.def Info: ./images/marvel_1.png  used on input line 1114.
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-48-1.pdf, id=657, 708.6475p
+<network_analysis_files/figure-beamer/unnamed-chunk-48-1.pdf, id=656, 708.6475p
 t x 681.54625pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-48-1.pdf Graphic file 
 (type pdf)
@@ -1512,7 +1510,7 @@ Overfull \vbox (42.51544pt too high) detected at line 1172
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-49-1.pdf, id=672, 342.27875
+<network_analysis_files/figure-beamer/unnamed-chunk-49-1.pdf, id=671, 342.27875
 pt x 275.0275pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-49-1.pdf Graphic file 
 (type pdf)
@@ -1530,7 +1528,7 @@ Overfull \vbox (66.27393pt too high) detected at line 1186
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-50-1.pdf, id=686, 835.12pt 
+<network_analysis_files/figure-beamer/unnamed-chunk-50-1.pdf, id=685, 835.12pt 
 x 604.2575pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-50-1.pdf Graphic file 
 (type pdf)
@@ -1580,7 +1578,7 @@ Overfull \hbox (1.28865pt too wide) in paragraph at lines 28--28
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-56-1.pdf, id=724, 834.11626
+<network_analysis_files/figure-beamer/unnamed-chunk-56-1.pdf, id=723, 834.11626
 pt x 604.2575pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-56-1.pdf Graphic file 
 (type pdf)
@@ -1598,7 +1596,7 @@ Overfull \vbox (65.59473pt too high) detected at line 1301
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-57-1.pdf, id=739, 850.17625
+<network_analysis_files/figure-beamer/unnamed-chunk-57-1.pdf, id=738, 850.17625
 pt x 602.25pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-57-1.pdf Graphic file 
 (type pdf)
@@ -1616,7 +1614,7 @@ Overfull \vbox (60.02647pt too high) detected at line 1315
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-58-1.pdf, id=755, 837.1275p
+<network_analysis_files/figure-beamer/unnamed-chunk-58-1.pdf, id=754, 837.1275p
 t x 604.2575pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-58-1.pdf Graphic file 
 (type pdf)
@@ -1634,7 +1632,7 @@ Overfull \vbox (64.68192pt too high) detected at line 1329
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-59-1.pdf, id=770, 633.36626
+<network_analysis_files/figure-beamer/unnamed-chunk-59-1.pdf, id=769, 633.36626
 pt x 373.395pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-59-1.pdf Graphic file 
 (type pdf)
@@ -1657,7 +1655,7 @@ Overfull \vbox (37.05258pt too high) detected at line 1351
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-61-1.pdf, id=792, 818.05624
+<network_analysis_files/figure-beamer/unnamed-chunk-61-1.pdf, id=791, 818.05624
 pt x 599.23875pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-61-1.pdf Graphic file 
 (type pdf)
@@ -1680,7 +1678,7 @@ Overfull \vbox (60.39684pt too high) detected at line 1376
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-63-1.pdf, id=814, 717.68124
+<network_analysis_files/figure-beamer/unnamed-chunk-63-1.pdf, id=813, 717.68124
 pt x 718.685pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-63-1.pdf Graphic file 
 (type pdf)
@@ -1698,7 +1696,7 @@ Overfull \vbox (277.7725pt too high) detected at line 1446
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-64-1.pdf, id=832, 717.68124
+<network_analysis_files/figure-beamer/unnamed-chunk-64-1.pdf, id=831, 717.68124
 pt x 719.68875pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-64-1.pdf Graphic file 
 (type pdf)
@@ -1733,7 +1731,7 @@ Overfull \vbox (66.2678pt too high) detected at line 1460
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-68-1.pdf, id=876, 661.47125
+<network_analysis_files/figure-beamer/unnamed-chunk-68-1.pdf, id=875, 661.47125
 pt x 634.37pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-68-1.pdf Graphic file 
 (type pdf)
@@ -1751,7 +1749,7 @@ Overfull \vbox (52.01154pt too high) detected at line 1520
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-69-1.pdf, id=892, 683.55376
+<network_analysis_files/figure-beamer/unnamed-chunk-69-1.pdf, id=891, 683.55376
 pt x 634.37pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-69-1.pdf Graphic file 
 (type pdf)
@@ -1769,7 +1767,7 @@ Overfull \vbox (80.51154pt too high) detected at line 1535
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-70-1.pdf, id=908, 689.57625
+<network_analysis_files/figure-beamer/unnamed-chunk-70-1.pdf, id=907, 689.57625
 pt x 691.58376pt>
 File: network_analysis_files/figure-beamer/unnamed-chunk-70-1.pdf Graphic file 
 (type pdf)
@@ -1866,642 +1864,16 @@ Overfull \hbox (1.29665pt too wide) in paragraph at lines 32--32
 \openout4 = `network_analysis.vrb'.
 
 (./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-80-1.pdf, id=996, 390.45876
-pt x 347.2975pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-80-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-80-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-80-
-1.pdf  used on input line 9.
-(pdftex.def)             Requested size: 283.53708pt x 252.19493pt.
-)
-Overfull \vbox (42.52141pt too high) detected at line 1735
- []
-
-[84
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-80-1.pdf>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [85
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-82-1.pdf, id=1019, 702.625p
-t x 681.54625pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-82-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-82-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-82-
-1.pdf  used on input line 12.
-(pdftex.def)             Requested size: 259.98862pt x 252.18896pt.
-)
-Overfull \vbox (71.01544pt too high) detected at line 1760
- []
-
-[86
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-82-1.pdf>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-83-1.pdf, id=1034, 500.8712
-5pt x 630.355pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-83-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-83-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-83-
-1.pdf  used on input line 13.
-(pdftex.def)             Requested size: 200.38315pt x 252.18562pt.
-)
-Overfull \vbox (75.7621pt too high) detected at line 1775
- []
-
-[87
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-83-1.pdf>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [88
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [89
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [90
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [91
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [92
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [93
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [94
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-91-1.pdf, id=1098, 712.6625
-pt x 493.845pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-91-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-91-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-91-
-1.pdf  used on input line 17.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-)
-Overfull \vbox (79.53058pt too high) detected at line 1965
- []
-
-[95
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-91-1.pdf>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-92-1.pdf, id=1113, 712.6625
-pt x 495.8525pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-92-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-92-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-92-
-1.pdf  used on input line 16.
-(pdftex.def)             Requested size: 347.19592pt x 241.57011pt.
-)
-Overfull \vbox (71.67436pt too high) detected at line 1983
- []
-
-[96
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-92-1.pdf>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [97
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-95-1.pdf, id=1136, 712.6625
-pt x 493.845pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-95-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-95-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-95-
-1.pdf  used on input line 27.
-(pdftex.def)             Requested size: 347.19592pt x 240.5921pt.
-)
-Overfull \vbox (111.20186pt too high) detected at line 2042
- []
-
-[98
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-95-1.pdf>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-96-1.pdf, id=1151, 752.8125
-pt x 603.25375pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-96-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-96-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-96-
-1.pdf  used on input line 11.
-(pdftex.def)             Requested size: 314.70876pt x 252.18661pt.
-)
-Overfull \vbox (61.51309pt too high) detected at line 2055
- []
-
-[99
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-96-1.pdf>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-97-1.pdf, id=1166, 784.9325
-pt x 781.92125pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-97-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-97-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-97-
-1.pdf  used on input line 12.
-(pdftex.def)             Requested size: 253.15974pt x 252.18855pt.
-)
-Overfull \vbox (71.01503pt too high) detected at line 2069
- []
-
-[100
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-97-1.pdf>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [101
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-99-1.pdf, id=1189, 755.8237
-5pt x 606.265pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-99-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-99-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-99-
-1.pdf  used on input line 10.
-(pdftex.def)             Requested size: 314.39911pt x 252.18733pt.
-)
-Overfull \vbox (50.90271pt too high) detected at line 2099
- []
-
-[102
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-99-1.pdf>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-100-1.pdf, id=1204, 774.895
-pt x 600.2425pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-100-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-100-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-100
--1.pdf  used on input line 12.
-(pdftex.def)             Requested size: 325.56009pt x 252.18256pt.
-)
-Overfull \vbox (66.25903pt too high) detected at line 2113
- []
-
-[103
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-100-1.pdf>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-101-1.pdf, id=1220, 596.227
-5pt x 606.265pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-101-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-101-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-101
--1.pdf  used on input line 11.
-(pdftex.def)             Requested size: 248.01205pt x 252.18733pt.
-)
-Overfull \vbox (61.51381pt too high) detected at line 2126
- []
-
-[104
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-101-1.pdf>]
-<./images/nba_squad.png, id=1236, 863.225pt x 677.53125pt>
-File: ./images/nba_squad.png Graphic file (type png)
-<use ./images/nba_squad.png>
-Package pdftex.def Info: ./images/nba_squad.png  used on input line 2134.
-(pdftex.def)             Requested size: 257.04642pt x 201.75154pt.
-[105
-
- <./images/nba_squad.png>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [106
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-104-1.pdf, id=1252, 737.756
-26pt x 586.19pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-104-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-104-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-104
--1.pdf  used on input line 12.
-(pdftex.def)             Requested size: 317.38661pt x 252.182pt.
-)
-Overfull \vbox (66.25848pt too high) detected at line 2163
- []
-
-[107
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-104-1.pdf>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-105-1.pdf, id=1267, 805.007
-5pt x 761.84625pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-105-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-105-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-105
--1.pdf  used on input line 10.
-(pdftex.def)             Requested size: 266.464pt x 252.17728pt.
-)
-Overfull \vbox (52.00375pt too high) detected at line 2175
- []
-
-[108
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-105-1.pdf>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [109
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [110
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-108-1.pdf, id=1297, 719.688
-75pt x 554.07pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-108-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-108-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-108
--1.pdf  used on input line 10.
-(pdftex.def)             Requested size: 327.56871pt x 252.18678pt.
-)
-Overfull \vbox (52.01326pt too high) detected at line 2236
- []
-
-[111
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-108-1.pdf>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-109-1.pdf, id=1312, 719.688
-75pt x 554.07pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-109-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-109-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-109
--1.pdf  used on input line 15.
-(pdftex.def)             Requested size: 327.56871pt x 252.18678pt.
-)
-Overfull \vbox (94.76326pt too high) detected at line 2253
- []
-
-[112
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-109-1.pdf>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-110-1.pdf, id=1327, 720.692
-5pt x 566.115pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-110-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-110-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-110
--1.pdf  used on input line 13.
-(pdftex.def)             Requested size: 321.04256pt x 252.18384pt.
-)
-Overfull \vbox (75.76031pt too high) detected at line 2268
- []
-
-[113
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-110-1.pdf>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-111-1.pdf, id=1342, 707.643
-75pt x 681.54625pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-111-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-111-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-111
--1.pdf  used on input line 10.
-(pdftex.def)             Requested size: 261.84569pt x 252.18896pt.
-)
-Overfull \vbox (52.01544pt too high) detected at line 2280
- []
-
-[114
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-111-1.pdf>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-112-1.pdf, id=1358, 707.643
-75pt x 681.54625pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-112-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-112-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-112
--1.pdf  used on input line 10.
-(pdftex.def)             Requested size: 261.84569pt x 252.18896pt.
-)
-Overfull \vbox (52.01544pt too high) detected at line 2292
- []
-
-[115
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-112-1.pdf>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-113-1.pdf, id=1374, 707.643
-75pt x 697.60625pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-113-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-113-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-113
--1.pdf  used on input line 13.
-(pdftex.def)             Requested size: 255.82053pt x 252.19186pt.
-)
-Overfull \vbox (80.51834pt too high) detected at line 2307
- []
-
-[116
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-113-1.pdf>] [117
-
-]
-LaTeX Font Info:    Trying to load font information for OT1+lmss on input line 
-2334.
-(/usr/local/texlive/2022/texmf-dist/tex/latex/lm/ot1lmss.fd
-File: ot1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `lmss' (encoding: OT1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
-334.
-(/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omllmm.fd
-File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-2334.
-(/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omslmsy.fd
-File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-2334.
-(/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omxlmex.fd
-File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 2334.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 2334.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 2334.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 233
-4.
-(/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-) (/usr/local/texlive/2022/texmf-dist/tex/latex/microtype/mt-msa.cfg
-File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 233
-4.
-(/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (/usr/local/texlive/2022/texmf-dist/tex/latex/microtype/mt-msb.cfg
-File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-)
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <8> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 2334.
-
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <6> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 2334.
-
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <5> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 2334.
-
-<./images/wc_14.png, id=1406, 474.77374pt x 667.49374pt>
-File: ./images/wc_14.png Graphic file (type png)
-<use ./images/wc_14.png>
-Package pdftex.def Info: ./images/wc_14.png  used on input line 2334.
-(pdftex.def)             Requested size: 124.98857pt x 175.72389pt.
-
-Overfull \hbox (12.70209pt too wide) in paragraph at lines 2334--2334
-[]$[]$$[]$$[]$\T1/lmss/m/n/8 (-20) ::::::  
- []
-
-[118
-
- <./images/wc_14.png>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [119
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [120
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [121
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [122
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [123
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [124
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-125-1.pdf, id=1458, 660.467
-5pt x 328.22626pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-125-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-125-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-125
--1.pdf  used on input line 20.
-(pdftex.def)             Requested size: 347.20413pt x 172.54674pt.
-) [125
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-125-1.pdf>]
-File: ./images/wc_14.png Graphic file (type png)
-<use ./images/wc_14.png>
-Package pdftex.def Info: ./images/wc_14.png  used on input line 2554.
-(pdftex.def)             Requested size: 124.98857pt x 175.72389pt.
-
-Overfull \hbox (12.70209pt too wide) in paragraph at lines 2554--2554
-[]$[]$$[]$$[]$\T1/lmss/m/n/8 (-20) ::::::  
- []
-
-[126
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [127
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-128-1.pdf, id=1488, 732.737
-5pt x 472.76625pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-128-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-128-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-128
--1.pdf  used on input line 12.
-(pdftex.def)             Requested size: 312.70068pt x 201.7562pt.
-) [128
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-128-1.pdf>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-129-1.pdf, id=1504, 400.496
-25pt x 310.15875pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-129-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-129-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-129
--1.pdf  used on input line 12.
-(pdftex.def)             Requested size: 260.51503pt x 201.75224pt.
-)
-Overfull \vbox (4.46901pt too high) detected at line 2612
- []
-
-[129
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-129-1.pdf>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-130-1.pdf, id=1517, 594.22p
-t x 324.21124pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-130-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-130-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-130
--1.pdf  used on input line 13.
-(pdftex.def)             Requested size: 347.20474pt x 189.43771pt.
-) [130
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-130-1.pdf>]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [131
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-132-1.pdf, id=1539, 456.706
-25pt x 454.69875pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-132-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-132-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-132
--1.pdf  used on input line 9.
-(pdftex.def)             Requested size: 202.64478pt x 201.75403pt.
-) [132
-
- <./network_analysis_files/figure-beamer/unnamed-chunk-132-1.pdf>]
-\tf@nav=\write6
-\openout6 = `network_analysis.nav'.
-
-\tf@toc=\write7
-\openout7 = `network_analysis.toc'.
-
-\tf@snm=\write8
-\openout8 = `network_analysis.snm'.
-
-(./network_analysis.aux) ) 
+! Undefined control sequence.
+l.5 \tiniy
+           
 Here is how much of TeX's memory you used:
- 26507 strings out of 478268
- 534457 string characters out of 5846347
- 787748 words of memory out of 5000000
- 43393 multiletter control sequences out of 15000+600000
- 520736 words of font info for 101 fonts, out of 8000000 for 9000
+ 25597 strings out of 478268
+ 512752 string characters out of 5846347
+ 781724 words of memory out of 5000000
+ 42826 multiletter control sequences out of 15000+600000
+ 496353 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,15n,122p,1013b,566s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/l
-m/lm-ec.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}<
-/usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmss8.pfb></usr/local/
-texlive/2022/texmf-dist/fonts/type1/public/lm/lmssbo10.pfb></usr/local/texlive/
-2022/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2022/tex
-mf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2022/texmf-dist/fo
-nts/type1/public/lm/lmtt8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/p
-ublic/lm/lmtti10.pfb>
-Output written on network_analysis.pdf (132 pages, 3112461 bytes).
-PDF statistics:
- 1674 PDF objects out of 1728 (max. 8388607)
- 1285 compressed objects within 13 object streams
- 399 named destinations out of 1000 (max. 500000)
- 31227 words of extra memory for PDF output out of 35830 (max. 10000000)
 
+!  ==> Fatal error occurred, no output PDF file produced!
