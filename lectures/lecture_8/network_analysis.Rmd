@@ -523,7 +523,8 @@ knitr::include_graphics("./images/marvel_1.png")
 
 # Marvel network
 
-Number of common characters in the movies
+Number of common characters in the movies  
+
 row 1: Ant Man and Avengers Age of Ultron have 2 common characters
 
 
@@ -549,7 +550,7 @@ class(m_igraph)
 
 # Marvel network
 
-```{r, fig.width=13, fig.height=12}
+```{r, fig.align='center', fig.width=13, fig.height=8, out.height="70%"}
 plot(m_igraph, layout = layout_in_circle(m_igraph))
 ```
 
@@ -559,7 +560,7 @@ plot(m_igraph, layout = layout_in_circle(m_igraph))
 
 Convert to network object
 
-```{r}
+```{r, fig.align='center', fig.width=13, fig.height=8, out.height="70%"}
 m_net <- intergraph::asNetwork(m_igraph)
 plot(m_net)
 ```
@@ -568,7 +569,7 @@ plot(m_net)
 
 # Marvel network
 
-```{r, fig.width=13, fig.height=12}
+```{r, fig.align='center', fig.width=13, fig.height=8, out.height="70%"}
 
 plot(m_net, mode="circle", displaylabels=T, label.pos=6)
 ```
@@ -621,7 +622,7 @@ V(m_igraph)$BoxOffice
 
 Plot the network with the common characters as edge label
 
-```{r, fig.width=13, fig.height=12}
+```{r, fig.align='center', fig.width=13, fig.height=8, out.height="70%"}
 plot(m_net, mode="circle", displaylabels=T, 
      label.pos=6, edge.label="characters")
 ```
@@ -632,7 +633,7 @@ plot(m_net, mode="circle", displaylabels=T,
 
 Set the size of the edge as a
 
-```{r, fig.width=13, fig.height=12}
+```{r, fig.align='center', fig.width=13, fig.height=8, out.height="70%"}
 plot(m_net, mode="circle", displaylabels=T, 
      label.pos=6, edge.lwd="characters",  label.cex=1.1)
 ```
@@ -643,7 +644,7 @@ plot(m_net, mode="circle", displaylabels=T,
 
 Number of characters as an edge color
 
-```{r, fig.width=13, fig.height=12}
+```{r, fig.align='center', fig.width=13, fig.height=8, out.height="70%"}
 plot(m_net, mode="circle", displaylabels=T, 
      label.pos=6, edge.col="characters")
 ```
@@ -656,7 +657,7 @@ plot(m_net, mode="circle", displaylabels=T,
 * The conventional method will not work, need to transform the variable BoxOffice
 
 
-```{r}
+```{r, fig.height = 4}
 plot(m_net, mode="circle", displaylabels=T, 
      label.pos=6, edge.lwd="characters", 
      vertex.cex = m_net %v% "BoxOffice")
@@ -679,7 +680,7 @@ z <- (x-mean(x))/sd(x)
 
 # Marvel network
 
-```{r fig.width=13, fig.height=12}
+```{r, fig.align='center', fig.width=13, fig.height=8, out.height="70%"}
 plot(m_net, mode="circle", displaylabels=T, 
      label.pos=6, edge.lwd="characters", 
      vertex.cex = z)
@@ -699,8 +700,11 @@ as_m[upper.tri(as_m)] <- 0
 
 # Marvel network
 
-```{r, fig.width=11, fig.height=12}
+```{r setup_circilize, echo = T, include=F}
 library(circlize)
+```
+
+```{r, fig.width=11, fig.align='center', out.height="80%"}
 chordDiagram(as_m)
 ```
 
@@ -710,24 +714,49 @@ chordDiagram(as_m)
 
 Lets get rid of the connections, edges, where the edge value = 1
 
-```{r, fig.width=11, fig.height=12}
+```{r, fig.width=11, fig.align = 'center', out.height="70%"}
 as_m[as_m==1] <- 0
 chordDiagram(as_m)
 ```
 
-<!-- page 69 -->
-
 # Marvel network
 
-Lets induce the graph
+Lets induce the graph  
+
 * Keep only edges where the number of characters >= 2
 * Keep only vertices where box office is more than 600 mln
 
-<!-- page 70 -->
 
 # Marvel network
 
-Now we will look at the case where
+```{r, fig.align='center', fig.width=13, fig.height=8, out.height="70%"}
+m_net1 <- get.inducedSubgraph(m_net, 
+          eid=which(m_net %e% "characters" >=2))
+
+plot(m_net1, mode="circle", displaylabels=T, 
+     label.pos=6, edge.lwd="characters")
+
+```
+
+
+# Marvel network
+
+```{r, fig.align='center', fig.width=13, fig.height=8, out.height="70%"}
+m_net2 <- get.inducedSubgraph(m_net, 
+          v=which(m_net %v% "BoxOffice" >=600))
+
+plot(m_net2, mode="circle", displaylabels=T, 
+     label.pos=6, edge.lwd="characters")
+
+```
+
+<!-- page 69 -->
+
+
+# Marvel network
+
+Now we will look at the case where  
+
 * each vertex is a character from the movie
 * each edge shows if the two vertexes were in the same movie
 * edge attribute weight shows in how many movies do they appear together
@@ -741,7 +770,7 @@ list.edge.attributes(marvel_roles)
 
 # Marvel network
 
-```{r fig.width=11, fig.height=12, eval=F}
+```{r, fig.align='center', fig.width=13, fig.height=8, out.height="70%"}
 set.seed(1)
 plot(marvel_roles, main="Marvel characters network")
 ```
@@ -760,8 +789,8 @@ marvel_roles1 <- get.inducedSubgraph(marvel_roles,
 <!-- page 73 -->
 
 # Marvel network
-
-```{r fig.width=11, fig.height=12}
+\tiny
+```{r, fig.width=11, fig.height=7, out.height="80%"}
 set.seed(1)
 plot(marvel_roles1, main="Marvel characters network")
 ```
@@ -770,7 +799,8 @@ plot(marvel_roles1, main="Marvel characters network")
 
 # Marvel network
 
-```{r fig.width=11, fig.height=12}
+\tiny
+```{r, fig.width=11, fig.align="center", fig.height=6, out.height="65%"}
 set.seed(1)
 plot(marvel_roles1, main="Marvel characters network, weighted", 
      edge.col = "weight")
@@ -781,8 +811,8 @@ legend("topleft",fill = unique(marvel_roles1 %e% "weight"),
 <!-- page 75 -->
 
 # Marvel network
-
-```{r fig.width=11, fig.height=12}
+\tiny
+```{r, fig.width=20, fig.height=6, out.height="70%"}
 set.seed(1)
 marvel_roles2 <- get.inducedSubgraph(marvel_roles, eid=which(marvel_roles %e% "weight"==3))
 
@@ -913,7 +943,7 @@ i_pass <- graph_from_edgelist(
 
 Loops
 
-\tiniy
+\tiny
 
 ```{r, fig.width=12, fig.height=7, fig.align='center', out.height="75%"}
 plot(i_pass)
