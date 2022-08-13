@@ -1171,6 +1171,9 @@ knitr::include_graphics("./images/nba_squad.png")
 <!-- page 104 -->
 
 # NBA: passing network
+
+Create a new network with the given lineup
+
 ```{r}
 lineup <- c("Kevin Durant", "Zaza Pachulia", 
             "Draymond Green", "Stephen Curry",
@@ -1183,6 +1186,7 @@ n_pass2 <- get.inducedSubgraph(n_pass1,
 
 # NBA: passing network
 
+Plot with two additional arguments
 
 ```{r, fig.width=12, fig.height=12}
 plot(n_pass2, displaylabels=T, 
@@ -1299,46 +1303,35 @@ plot(i_pass2, vertex.label = V(i_pass2)$vertex.names,
 ```
 
 
-# Nba passing
-
-```{r, fig.width=12, fig.height=12}
-plot(i_pass2, vertex.label = V(i_pass2)$vertex.names,
-     layout=coords, edge.width = z, edge.curved=0.2)
-```
-
-
-# Nba passing
-
-```{r fig.width=12, fig.height=12}
-plot(n_pass2, displaylabels=T, coord = coords,
-     usecurve=T, edge.curve=0.015, 
-     edge.label = n_pass2 %e% "FGP")
-```
-
-
-# Nba passing
-
-```{r fig.width=12, fig.height=12}
-plot(n_pass2, displaylabels=T, coord = coords,
-     usecurve=T, edge.curve=0.015, 
-     edge.label = n_pass2 %e% "FGP")
-```
-
-
-# Nba passing
-
-```{r fig.width=12, fig.height=12}
-x <- n_pass2 %e% "FGP"
-z <- 5*(x - min(x))/(max(x)-min(x))
-
-plot(n_pass2, displaylabels=T, coord = coords,
-     usecurve=T, edge.curve=0.015, 
-     edge.lwd = z)
-```
-
 # Passing in football
 
 ## Passing in football
+
+# Passing in football
+
+
+::: {.col data-latex="{0.55\textwidth}"}
+
+World cup final Germany 1-0 Argentina
+
+
+:::
+
+::: {.col data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.col data-latex="{0.4\textwidth}"}
+
+
+```{r,out.width="90%", out.height="90%", echo=FALSE}
+knitr::include_graphics("./images/wc_14.png")
+```
+:::
+::::::
+
 
 
 # Passing in football
@@ -1349,13 +1342,18 @@ names(wc_14_final)
 ```
 
 
-```{r}
-head(wc_14_final$argentina_team)
-```
+The passing network is given in the form of adjacency matrix
 
 ```{r}
 dim(wc_14_final$argentina_passing)
 ```
+
+# Passing in football
+
+```{r}
+head(wc_14_final$argentina_team)
+```
+
 
 # Passing in football
 
@@ -1371,7 +1369,11 @@ list.edge.attributes(net_arg)
 list.vertex.attributes(net_arg)
 ```
 
-ading vertex attributes
+# Passing in football
+
+Adding vertex attributes
+
+Player positions
 
 ```{r, tidy=F}
 network::set.vertex.attribute(net_arg, "player.name",
@@ -1384,6 +1386,8 @@ get.vertex.attribute(net_arg, "player.position")
 ```
 
 # Passing in football
+
+Number of completed passes and completion %
 
 ```{r, tidy=F}
 network::set.vertex.attribute(net_arg, "passes.completed",
@@ -1406,7 +1410,7 @@ get.vertex.attribute(net_arg, "completion")
 
 # Passing in football
 
-I will make another object with only starting 11 players
+Create a subgraph with starting 11 only
 
 ```{r}
 net_st <- get.inducedSubgraph(net_arg, v=1:11)
@@ -1415,12 +1419,41 @@ get.vertex.attribute(net_st, "player.name")
 
 # Passing in football
 
-plotting
+* Random layout
+* Save the coordinates
 
-```{r}
+\tiny
+
+```{r, fig.height=6, out.height="80%"}
 set.seed(1)
 coords <- plot(net_st, suppress.axes=F)
 ```
+
+
+
+# Passing in football
+
+::: {.col data-latex="{0.55\textwidth}"}
+
+Change the coordinates to get approximate positions of the players on the field
+
+:::
+
+::: {.col data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.col data-latex="{0.4\textwidth}"}
+
+
+```{r, echo=FALSE, out.width="90%", out.height="90%"}
+knitr::include_graphics("./images/wc_14.png")
+```
+:::
+::::::
+
 
 # Passing in football
 
@@ -1450,8 +1483,8 @@ coords[6,] <- c(14.5, 3.5)
 ```
 
 # Passing in football
-
-```{r, fig.width=11, fig.height=12}
+\tiny
+```{r, fig.width=11, fig.height=8, out.height="80%"}
 plot(net_st, coord=coords, suppress.axes=F, 
      label = net_st %v% "player.name")
 ```
@@ -1459,16 +1492,18 @@ plot(net_st, coord=coords, suppress.axes=F,
 
 # Passing in football
 
-```{r, fig.width=11, fig.height=12}
+Passing density
+\tiny
+```{r, fig.width=11, fig.height=8, out.height="80%"}
 plot(net_st, vertex.col="player.position", edge.lwd="weight",
      coord=coords)
 ```
 
 # Passing in football
 
-
-
-```{r, fig.width=11, fig.height=12}
+Completion rate
+\tiny
+```{r, fig.width=11, fig.height=8}
 plot(net_st, vertex.col="player.position",
      coord=coords, vertex.cex = 2*(net_st %v% "completion"),
      label = net_st %v% "player.name")
@@ -1476,15 +1511,18 @@ plot(net_st, vertex.col="player.position",
 
 # Passing in football
 
+Last: create a chord diagram
+
 ```{r}
 st_mat <- as.matrix(net_st, matrix.type = "adjacency", attrname = "weight")
 colnames(st_mat) <- net_st %v% "player.name"
 rownames(st_mat) <- colnames(st_mat)
 ```
 
+
 # Passing in football
 
-```{r, fig.width=12, fig.height=12}
+```{r, fig.width=12, fig.align = 'center', out.height="80%"}
 chordDiagram(st_mat, directional = T)
 ```
 
