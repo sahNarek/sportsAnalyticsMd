@@ -18,6 +18,7 @@ knitr::opts_chunk$set(echo = TRUE, warning=F, message=F)
 library(dplyr)
 library(elo)
 library(ggplot2)
+library(SportsAnalytics270)
 ```
 
 # Predictions based on Performance Ratings
@@ -31,7 +32,7 @@ library(ggplot2)
 * Initially was used to rank chess players.
 * Can be used to predict the game outcome for any two-players or two-teams game.
 
-```{r, echo=F,out.width="50%", out.height="80%"}
+```{r, echo=F, out.width="50%", out.height="80%"}
 knitr::include_graphics("./images/elo_picture.png")
 ```
 
@@ -102,7 +103,6 @@ install.packages("EloRating")
 * Calculate the odds to win
 
 ```{r}
-library(elo)
 elo.prob(elo.A=1500, elo.B=1500)
 ```
 
@@ -210,9 +210,8 @@ elo.update(elo.A=1500,elo.B=1600,wins.A=1, k=20)
 Dataset on EPL games for seasons 2000-2018
 
 ```{r}
-library(SportsAnalytics270)
-data(epl_00_18)
-str(epl_00_18)
+data("epl_00_22")
+str(epl_00_22)
 ```
 
 # Elo rating system
@@ -235,7 +234,7 @@ Run Elo model
 
 ```{r}
 elos <- elo.run(score(HG, AG) ~ Home + Away,
-        data = epl_00_18, k = 20)
+        data = epl_00_22, k = 20)
 elos_df <- as.data.frame(elos)
 ```
 
@@ -315,7 +314,7 @@ $Y^A = 1 - \frac{1}{1+c^{(R^A - 200 - R^H)/d}}$
 
 ```{r tidy=F}
 epl2 <- elo.run(score(HG, AG) ~ adjust(Home, 200) +
-                              Away,  data = epl_00_18, k = 20)
+                              Away,  data = epl_00_22, k = 20)
 ```
 
 
@@ -357,20 +356,20 @@ $$
 Adding the goal difference factor
 
 ```{r}
-epl_00_18$G <- ifelse(abs(epl_00_18$HG-epl_00_18$AG)<=1, 1,
-                    ifelse(abs(epl_00_18$HG-epl_00_18$AG)==2,1.5,
-                           (abs(epl_00_18$HG-epl_00_18$AG)+11)/8))
+epl_00_22$G <- ifelse(abs(epl_00_22$HG-epl_00_22$AG)<=1, 1,
+                    ifelse(abs(epl_00_22$HG-epl_00_22$AG)==2,1.5,
+                           (abs(epl_00_22$HG-epl_00_22$AG)+11)/8))
 ```
 
 ```{r}
-head(epl_00_18,5)
+head(epl_00_22,5)
 ```
 
 # Elo rating system
 
 ```{r}
 epl3<-elo.run(score(HG, AG) ~ adjust(Home, 200) + Away +
-                              k(20*epl_00_18$G),  data = epl_00_18 )
+                              k(20*epl_00_22$G),  data = epl_00_22 )
 ```
 
 
@@ -402,7 +401,7 @@ $$
 ```{r}
 
 epl2 <- elo.run(score(HG, AG) ~ adjust(Home, 50) +
-                              Away,  data = epl_00_18, k = 20)
+                              Away,  data = epl_00_22, k = 20)
 epl2 <- as.data.frame(epl2)
 
 epl2$Predicted <- ifelse(epl2$p.A>=0.55, 1,

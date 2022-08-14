@@ -54,14 +54,13 @@ library(dplyr)
 library(VGAM)
 library(ggplot2)
 library(SportsAnalytics270)
-
+library(BradleyTerry2)
 ```
 
 
 ```{r}
-library(dplyr)
 data("f_data_sm")
-df <- f_data_sm %>% mutate(FTAG = ifelse(FTAG>=4, "4+", FTAG),
+df = f_data_sm %>% mutate(FTAG = ifelse(FTAG>=4, "4+", FTAG),
                            FTHG = ifelse(FTHG >=4, "4+", FTHG))
 ```
 
@@ -130,7 +129,7 @@ Making Predictions for Portugal Liga 1
 
 ```{r}
 data(f_data_sm)
-portugal <- f_data_sm %>%
+portugal = f_data_sm %>%
             filter(SEASON==2019, COUNTRY=="Portugal") %>%
             select(HOMETEAM, AWAYTEAM, FTHG, FTAG)  
 
@@ -144,11 +143,11 @@ The data need to be in the following format: 2 rows for each game and the indica
 
 
 ```{r}
-port1<-data.frame(portugal[,c("HOMETEAM", "AWAYTEAM", "FTHG")], Home=1)
-port2<-data.frame(portugal[,c("AWAYTEAM", "HOMETEAM", "FTAG")], Home=0)
-colnames(port1)<-c("Team", "Opponent", "Goal", "Home")
-colnames(port2)<-c("Team", "Opponent","Goal", "Home")
-portugal2<-rbind(port1, port2)
+port1=data.frame(portugal[,c("HOMETEAM", "AWAYTEAM", "FTHG")], Home=1)
+port2=data.frame(portugal[,c("AWAYTEAM", "HOMETEAM", "FTAG")], Home=0)
+colnames(port1)=c("Team", "Opponent", "Goal", "Home")
+colnames(port2)=c("Team", "Opponent","Goal", "Home")
+portugal2=rbind(port1, port2)
 head(portugal2)
 ```
 
@@ -180,14 +179,14 @@ dim(portugal2)
 
 
 ```{r, eval=F}
-model<-glm(Goal~Team+Opponent+Home, data=portugal2, family=poisson(link=log))
+model=glm(Goal~Team+Opponent+Home, data=portugal2, family=poisson(link=log))
 coefficients(model)
 ```
 
 
 \tiny
 ```{r, echo=F}
-model<-glm(Goal~Team+Opponent+Home, data=portugal2, family=poisson(link=log))
+model=glm(Goal~Team+Opponent+Home, data=portugal2, family=poisson(link=log))
 coefficients(model)
 ```
 
@@ -250,9 +249,9 @@ The average expected goals of the home team divided by the average expected goal
 
 ```{r}
 # lambda for Benfica playing at home
-b_h<-exp(-0.0495+1.06-0.8486 + 0.2581)
+b_h=exp(-0.0495+1.06-0.8486 + 0.2581)
 # lambda for Benfica playing against Porto away
-b_a<-exp(-0.0495+1.06-0.8486)
+b_a=exp(-0.0495+1.06-0.8486)
 b_h/b_a
 ```
 
@@ -273,7 +272,7 @@ As we have $\lambda$ for both teams, we can use skellam distribution to come up 
 
 # Simulate game results
 set.seed(1)
-k <- rskellam(10000,mu1 = 1.522, mu2 = 1.342)
+k = rskellam(10000,mu1 = 1.522, mu2 = 1.342)
 ```
 
 # Making predictions
@@ -357,7 +356,6 @@ You can use Davidson’s extension on Bradley-Terry model if want to predict dra
 # Bradley-Terry model
 
 ```{r}
-library(SportsAnalytics270)
 data(nfl)
 ```
 
@@ -396,7 +394,7 @@ head(nfl, n=5)
 Some data preparation
 
 ```{r}
-nfl2 <- nfl%>%
+nfl2 = nfl %>%
   select(team_home, team_away, result) %>%
   filter(result !="T") %>%
   mutate(ht_w = ifelse(result=="H",1,0),
@@ -410,8 +408,7 @@ head(nfl2)
 The final dataset
 
 ```{r}
-library(dplyr)
-nfl3 <- nfl2 %>%
+nfl3 = nfl2 %>%
     mutate(team_home=as.factor(team_home),
            team_away = as.factor(team_away)) %>%
     group_by(team_home, team_away) %>%
@@ -428,8 +425,8 @@ install.packages("BradleyTerry2")
 ```
 
 ```{r}
-library(BradleyTerry2)
-model <- BTm(cbind(ht, at), team_home, team_away, data=nfl3, id="team_")
+
+model = BTm(cbind(ht, at), team_home, team_away, data=nfl3, id="team_")
 ```
 
 # Bradley-Terry model
@@ -453,13 +450,13 @@ New England Patriots: the strongest team \
 Cleveland Browns: the weakest team
 
 ```{r, eval=F}
-coef<-model$coefficients
+coef=model$coefficients
 sort(coef, decreasing = T)
 ```
 
 \tiny
 ```{r, echo=F}
-coef<-model$coefficients
+coef=model$coefficients
 sort(coef, decreasing = T)
 ```
 
@@ -496,17 +493,17 @@ BTabilities(model)
 dataframe with abilities
 
 ```{r}
-abilities <- as.data.frame(BTabilities(model))
-abilities$team <- rownames(abilities)
-abilities <- abilities[order(abilities$ability, decreasing = T),]
+abilities = as.data.frame(BTabilities(model))
+abilities$team = rownames(abilities)
+abilities = abilities[order(abilities$ability, decreasing = T),]
 abilities
 ```
 
 # Bradley-Terry model
 Abilities from strongest to weakest
 ```{r, fig.width=12, fig.height=6}
-ggplot(data=abilities, aes(x=reorder(team,ability), y=ability)) +
-  geom_bar(stat="identity", fill=1:32) + coord_flip()+
+ggplot(data=abilities, aes(x = reorder(team, ability), y = ability)) +
+  geom_bar(stat="identity") + coord_flip() +
   labs(x="Teams", y="Ability to Win", title="Ability to win of NFL teams")
   
 ``` 
@@ -520,28 +517,29 @@ everything relative to the worst team (Cleveland Browns)
 * You could do this by re leveling the team variables
 
 ```{r, tidy=F, eval=F}
-nfl4<-nfl2 %>%
-    mutate(team_home = relevel(team_home, ref="Detroit Lions"),
-           team_away = relevel(team_away, ref="Detroit Lions")) %>%
-    group_by(team_home, team_away) %>%
-    summarise(ht=sum(ht_w), at=sum(at_w))
-
-model_browns <- BTm(cbind(ht, at), team_home, team_away, data=nfl4, id="team_")
+nfl4=nfl2 %>%
+    mutate(team_home = relevel(team_home, ref="Cleveland Browns"),
+           team_away = relevel(team_away, ref="Cleveland Browns")) %>%
+    group_by(team_home, team_away) %>% summarise(ht=sum(ht_w), at=sum(at_w))
+model_browns = BTm(cbind(ht, at), team_home, team_away, data=nfl4, id="team_")
 ```
+
+
+
 
 OR \ 
 Standardize the variable ability around its minimum (these two approaches will give exactly the same result)
 
 ```{r, eval=F}
-abilities_brown <- abilities
-abilities_brown$ability <- abilities_brown$ability - min(abilities$ability)
+abilities_brown = abilities
+abilities_brown$ability = abilities_brown$ability - min(abilities$ability)
 head(abilities_brown)
 ```
 
 \tiny
 ```{r, echo=F}
-abilities_brown <- abilities
-abilities_brown$ability <- abilities_brown$ability - min(abilities$ability)
+abilities_brown = abilities
+abilities_brown$ability = abilities_brown$ability - min(abilities$ability)
 head(abilities_brown)
 ```
 
@@ -553,7 +551,7 @@ Abilities plot
 
 ```{r, fig.width=12, fig.height=6}
 ggplot(data=abilities_brown, aes(x=reorder(team,ability), y=ability)) +
-  geom_bar(stat="identity", fill=1:32) + coord_flip()+
+  geom_bar(stat="identity") + coord_flip() +
   labs(x="Teams", y="Ability to Win", title="Ability to win of NFL teams")
 ```
 
@@ -565,16 +563,16 @@ ggplot(data=abilities_brown, aes(x=reorder(team,ability), y=ability)) +
 Lets do predictions for a sample of games for Denver Broncos
 
 ```{r tidy=FALSE}
-broncos<-data.frame(team_home=rep("Denver Broncos", 4),
+broncos=data.frame(team_home=rep("Denver Broncos", 4),
                     team_away=c("Cleveland Browns", "Tennessee Titans",
                                 "Chicago Bears", "Detroit Lions"))
 # we need to make team_home and team_away having the same factor structure 
 # as in the initial model
 
-broncos$team_home<-factor(broncos$team_home,
+broncos$team_home=factor(broncos$team_home,
                           levels(nfl3$team_away))
 
-broncos$team_away<-factor(broncos$team_away,
+broncos$team_away=factor(broncos$team_away,
                           levels(nfl3$team_away))
 str(broncos)
 broncos
@@ -582,20 +580,18 @@ broncos
 
 # Bradley-Terry model
 
+This is the probability of Denver Broncos winning
 
 ```{r}
-#This is the probability of Denver Broncos winning
+( broncos_prob = predict(model, newdata=broncos, level=2, type="response") )
 
-broncos_prob<-predict(model, newdata=broncos, level=2, type="response")
-broncos_prob
 ```
 
 Make a dataframe with probs
 
 ```{r}
-broncos_df<-data.frame(broncos, ht_w=broncos_prob,
-                                at_w=1-broncos_prob)
-broncos_df
+( broncos_df = data.frame(broncos, ht_w=broncos_prob,
+                                at_w=1-broncos_prob) )
 ```
 
 # Bradley-Terry model
@@ -611,8 +607,8 @@ Calculating probabilities manually for Denver Broncos-Cleveland Browns
 
 ```{r}
 #first get abbilities
-broncos_ab <- abilities[rownames(abilities)=="Denver Broncos",1]
-browns_ab <- abilities[rownames(abilities)=="Cleveland Browns",1]
+broncos_ab = abilities[rownames(abilities)=="Denver Broncos",1]
+browns_ab = abilities[rownames(abilities)=="Cleveland Browns",1]
 
 broncos_ab
 browns_ab
@@ -643,8 +639,8 @@ z = 0 if there is no advantage
 We need to do several data transformations to get the model to account home advantage factor.
 
 ```{r}
-nfl3$team_home <- data.frame(team = nfl3$team_home, at.home = 1)
-nfl3$team_away <- data.frame(team = nfl3$team_away, at.home = 0)
+nfl3$team_home = data.frame(team = nfl3$team_home, at.home = 1)
+nfl3$team_away = data.frame(team = nfl3$team_away, at.home = 0)
 
 ```
 
@@ -668,7 +664,7 @@ head(nfl3$team_home, n=5)
 # Bradley-Terry model with order effect
 
 ```{r}
-model2 <- BTm(cbind(ht, at), team_home, team_away, formula=~team+at.home,
+model2 = BTm(cbind(ht, at), team_home, team_away, formula=~team+at.home,
             data=nfl3, id="team")
 ```
 
@@ -687,18 +683,15 @@ Let make predictions for Broncos vs Browns by hand,
 assuming that Broncos are playing at home
 
 ```{r}
-db <- coefficients(model2)['teamDenver Broncos']
-db
+( db = coefficients(model2)['teamDenver Broncos'] )
 ```
 
 ```{r}
-cb <- coefficients(model2)['teamCleveland Browns']
-cb
+( cb = coefficients(model2)['teamCleveland Browns'] )
 ```
 
 ```{r}
-h <- coefficients(model2)['at.home']
-h
+(h = coefficients(model2)['at.home'])
 ```
 
 # Bradley-Terry model with order effect
@@ -709,15 +702,14 @@ $P(\text{i beats j}) = \frac{e^{\alpha_i}}{e^{\alpha_i} + e^{\alpha_j}}$
 Probability of Broncos to win at home
 
 ```{r}
-w_h <- exp(db+h)/(exp(db+h)+exp(cb))
-w_h
+( w_h = exp(db+h)/(exp(db+h)+exp(cb)) )
+
 ```
 
 Odds of Broncos to win at home
 
 ```{r}
-od_h <- w_h/(1-w_h)
-od_h
+( od_h = w_h/(1-w_h) )
 ```
 
 # Bradley-Terry model with order effect
@@ -728,15 +720,14 @@ Playing at "neutral" field, no advantage for any team
 $P(\text{i beats j}) = \frac{e^{\alpha_i}}{e^{\alpha_i} + e^{\alpha_j}}$
 
 ```{r}
-w_n <- exp(db)/(exp(db)+exp(cb))
-w_n
+( w_n = exp(db)/(exp(db)+exp(cb)) )
+
 ```
 
 Odds of wining at "neutral" field
 
 ```{r}
-od_n <- w_n/(1-w_n)
-od_n
+( od_n = w_n/(1-w_n) )
 ```
 
 # Bradley-Terry model with order effect
@@ -760,8 +751,7 @@ $P(\text{j beats i}) = \frac{e^{\alpha_j + h}}{e^{\alpha_i} + e^{\alpha_j + h}}$
 
 
 ```{r}
-w_a <- exp(db-h)/(exp(db-h)+exp(cb))
-w_a
+( w_a = exp(db-h)/(exp(db-h)+exp(cb)) )
 ```
 
 
@@ -779,14 +769,14 @@ exp(cb+h)/(exp(db)+exp(cb+h))
 
 Making predictions for the series of games
 ```{r }
-broncos <- data.frame(team_home=rep("Denver Broncos", 4),
+broncos = data.frame(team_home=rep("Denver Broncos", 4),
                     team_away=c("Cleveland Browns", "Tennessee Titans",
                                 "Chicago Bears", "Detroit Lions"))
 
-broncos$team_home<-data.frame(team = factor(broncos$team_home,
+broncos$team_home=data.frame(team = factor(broncos$team_home,
                                       levels(nfl3$team_home$team)),   
                                       at.home = 1)
-broncos$team_away<-data.frame(team = factor(broncos$team_away,
+broncos$team_away=data.frame(team = factor(broncos$team_away,
                                       levels(nfl3$team_home$team)),
                                       at.home = 0)
 broncos
@@ -795,7 +785,6 @@ broncos
 # Bradley-Terry model
 
 ```{r}
-br2 <- predict(model2, newdata=broncos, level=2, type="response")
-br2
+( br2 = predict(model2, newdata=broncos, level=2, type="response") )
 ```
 

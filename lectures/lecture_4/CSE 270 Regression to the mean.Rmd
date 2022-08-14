@@ -17,6 +17,17 @@ output:
     orientation: rows
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=F, warning = F)
+library(knitr)
+library(dplyr)
+library(ggplot2)
+library(measures)
+library(odds.converter)
+library(SportsAnalytics270)
+```
+
+
 # Regression to the mean: Height
 
 Sir Francis Galton proved that the kids of shorter parents have higher height than their parents, and kids of taller parents have shorter height than their parents
@@ -128,15 +139,8 @@ $\sigma^2 = np(1-p)$
 
 # Example: NBA
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message=F, warning = F)
-library(dplyr)
-library(ggplot2)
-library(SportsAnalytics270)
-```
 
 ```{r, eval=F}
-library(SportsAnalytics270)
 data("nba_misc")
 head(nba_misc)
 ```
@@ -219,7 +223,7 @@ Overall
 Box-Score Statistics
 
 ```{r, echo=F}
-library(knitr)
+
 mu_table <- data.frame(Statistic = c("Goals Scored", "Total Shots", "Shots on target",
                                      "Ball possession", "Corner kicks", "Fouls committed", 
                                      "Offsides", "Yellow cards", "Red cards"),
@@ -345,7 +349,6 @@ Match uncertainty Outcome of contest
 
 
 ```{r }
-library(SportsAnalytics270)
 data("seriea_st")
 colnames(seriea_st)
 
@@ -363,7 +366,6 @@ head(seriea_st)
 
 
 ```{r}
-library(dplyr)
 seriea_s<-seriea_st %>%
   group_by(Season) %>%
   summarise(SD=sd(Pt))
@@ -399,7 +401,6 @@ summary(nfl_st)
 # NFL data: SD
 
 ```{r}
-library(dplyr)
 nfl_s<-nfl_st %>%
   group_by(Season) %>%
   summarise(SD=sd(Wpct))
@@ -500,9 +501,9 @@ Noll-Scully number
 
 ```{r}
 #Ideal StDev
-id_s<-0.5/sqrt(16)
+id_s <- 0.5/sqrt(16)
 # Win percentage StDev
-sd_wpct<-sd(nfl_st$Wpct)
+sd_wpct <- sd(nfl_st$Wpct)
 # Noll-Scully number
 sd_wpct/id_s
 
@@ -511,7 +512,6 @@ sd_wpct/id_s
 # Calculating season-by season
 
 ```{r}
-library(dplyr)
 nfl_s<-nfl_st %>%
   group_by(Season) %>%
   summarise(NS=sd(Wpct)/id_s)
@@ -523,7 +523,6 @@ nfl_s
 
 
 ```{r, fig.width=8, fig.height=4}
-library(ggplot2)
 ggplot(nfl_s, aes(Season, NS))+geom_bar(stat="identity")+
   coord_cartesian(ylim=c(1,1.75))+
   ggtitle("Noll-Skully number by season")
@@ -569,6 +568,7 @@ top5<- seriea_st %>%
     group_by(Season) %>%
     filter(Rank<6) %>%
     summarize(TopP=sum(Pt))
+
 all<-seriea_st %>%
     group_by(Season) %>%
     summarize(Pt=sum(Pt))
@@ -588,7 +588,6 @@ ggplot(C5, aes(Season, C5))+geom_bar(stat="identity")+
 # Measuring Seasonal dimensions: Competitive Balance
 
 ```{r, fig.width=8, fig.height=4}
-library(ggplot2)
 ggplot(C5, aes(Season, 1-C5))+geom_bar(stat="identity")+
   ggtitle("C5 index for Serie A, 1996-2018")+
   coord_cartesian(ylim=c(0.4,0.65))
@@ -609,11 +608,9 @@ e.g. $CI_5:$ dominance of top 5 teams
 
 How many times did every team become a champion?
 ```{r}
-champ_c<- seriea_st %>%
-  filter(Rank ==1) %>%
-  group_by(Team) %>%
-  summarize(champ=n()) %>%
-  arrange(desc(champ))
+champ_c = seriea_st %>%
+  filter(Rank ==1) %>% group_by(Team) %>%
+  summarize(champ=n()) %>% arrange(desc(champ))
 
 champ_c
 ```
@@ -681,8 +678,7 @@ $p_i$ is the number of the points the team has earned.
 # Doing it in R: Serie A
 
 ```{r}
-library(dplyr)
-HHI<-seriea_st %>%
+HHI = seriea_st %>%
         group_by(Season) %>%
         mutate(Perc=Pt/sum(Pt))%>%
         summarise(HHI = sum(Perc^2))
@@ -769,8 +765,6 @@ Source: Free-Agency and the Competitiveness of Major League Baseball, CRAIG A. D
 # Major League of Baseball: dataset
 
 ```{r}
-library(SportsAnalytics270)
-
 str(mlb_standings)
 ```
 
@@ -816,7 +810,6 @@ ggplot(mlb_HHI, aes(Season, HHI))+geom_bar(stat="identity")+
 Leading indicators: SalarY
 
 ```{r}
-library(SportsAnalytics270)
 data(mlb_salary)
 str(mlb_salary)
 ```
@@ -898,9 +891,7 @@ to 1.
 * Try library odds.converter
 
 ```{r}
-library(odds.converter)
-x <- odds.fv(c(1.4,3.8,8), input = 'dec', output = 'prob')
-x
+( x <- odds.fv(c(1.4,3.8,8), input = 'dec', output = 'prob'))
 sum(x)
 
 ```
@@ -910,7 +901,6 @@ sum(x)
 Replace variables H,D,A with vig-free probabilities
 
 ```{r}
-library(odds.converter)
 f_2009[,c("H", "D", "A")] <- odds.fv(f_2009[,c("H", "D", "A")], 
                       input = 'dec',output = 'prob')
 head(f_2009)
@@ -921,8 +911,6 @@ head(f_2009)
 Calculate brier score by country
 
 ```{r}
-library(measures)
-
 brier_score <- f_2009 %>% group_by(COUNTRY) %>%
   do(SCORE = multiclass.Brier(.[,c("H", "D", "A")], .$FTR))
 brier_score <- as.data.frame(brier_score)

@@ -61,6 +61,7 @@ library(SportsAnalytics270)
 library(dplyr)
 library(ggplot2)
 library(reshape2)
+library(zoo)
 ```
 
 ```{r cse_270_setup_1, eval=FALSE, warning=FALSE, message=FALSE}
@@ -69,9 +70,6 @@ install_github("HABET/CSE270")
 library(SportsAnalytics270)
 ```
 
-```{r cse_270_setup_2, eval=FALSE}
-library(SportsAnalytics270)
-```
 
 # Predicting with distributions
 
@@ -89,7 +87,6 @@ head(nba2009_2021, 2)
 Plot the histogram for home points
 
 ```{r}
-library(ggplot2)
 ggplot(nba2009_2021, aes(x=home.PTS))+geom_histogram()
 ```
 
@@ -98,15 +95,14 @@ ggplot(nba2009_2021, aes(x=home.PTS))+geom_histogram()
 Exclude Boston-Celtics game
 
 ```{r, fig.height=5}
-library(ggplot2)
-ggplot(nba2009_2021, aes(x=home.PTS))+geom_histogram()+xlim(c(50,155))+
+ggplot(nba2009_2021, aes(x=home.PTS)) + geom_histogram() + xlim(c(50,155))+
   labs(x="Home Points", title="Histogram for points per game by home team")
 ```
 
 # Predicting with distributions
 
 ```{r}
-ggplot(nba2009_2021, aes(x=away.PTS))+geom_histogram()+xlim(c(50,150))+
+ggplot(nba2009_2021, aes(x=away.PTS)) + geom_histogram() + xlim(c(50,150)) +
   labs(x="Away Points", title="Histogram for points per game by away team")
 ```
 
@@ -115,21 +111,17 @@ ggplot(nba2009_2021, aes(x=away.PTS))+geom_histogram()+xlim(c(50,150))+
 Histogram of home and away points together
 
 ```{r}
-ggplot(nba2009_2021)+
-  geom_histogram(aes(x=away.PTS), fill='red')+
-  geom_histogram(aes(x=home.PTS),fill='blue')+
-  xlim(c(50,155))+
-  labs(x="Points", title="Home/away points")
+ggplot(nba2009_2021) + geom_histogram(aes(x=away.PTS), fill='red') +
+  geom_histogram(aes(x=home.PTS),fill='blue') +
+  xlim(c(50,155)) + labs(x="Points", title="Home/away points")
 ```
 
 # Predicting with distributions
 Home points for last season only
 
 ```{r}
-library(dplyr)
-nba2009_2021 %>%
-  filter(SEASON_ID=='2018') %>%
-ggplot(aes(x=home.PTS))+geom_histogram()+xlim(c(50,155))+
+nba2009_2021 %>% filter(SEASON_ID=='2018') %>%
+ggplot(aes(x = home.PTS)) + geom_histogram() + xlim(c(50,155))+
   labs(x="Home Points", title="Histogram for points for last season")
 ```
 
@@ -137,8 +129,8 @@ ggplot(aes(x=home.PTS))+geom_histogram()+xlim(c(50,155))+
 What about Points difference ?
 
 ```{r}
-nba2009_2021$Diff <- nba2009_2021$home.PTS-nba2009_2021$away.PTS
-ggplot(nba2009_2021, aes(x=Diff))+geom_histogram(bins=50)+
+nba2009_2021$Diff = nba2009_2021$home.PTS-nba2009_2021$away.PTS
+ggplot(nba2009_2021, aes(x=Diff)) + geom_histogram(bins=50) +
   labs(x="Points Difference", title="Histogram for points points difference")
 ```
 
@@ -220,13 +212,13 @@ Create dataframes with means and standard deviations for each team, for the last
 
 
 ```{r}
-home <- nba2009_2021 %>%
+home = nba2009_2021 %>%
         filter(SEASON_ID=='2018') %>%
         group_by(home.TEAM_ABBREVIATION) %>%
         summarise(mean = mean(home.PTS),
                   var  = var(home.PTS))
 
-away <- nba2009_2021 %>%
+away = nba2009_2021 %>%
         filter(SEASON_ID=='2018') %>%
         group_by(away.TEAM_ABBREVIATION) %>%
         summarise(mean = mean(away.PTS),
@@ -248,15 +240,15 @@ Calculate the mean and standard deviation for the points difference between thes
 
 \bcenter
 
-$s_D = \sqrt(\sigma^2_H + \sigma^2_A)$
+$s_D = \sqrt{\sigma^2_H + \sigma^2_A}$
 
 \ecenter
 
 ```{r}
-mean <- home$mean[home$home.TEAM_ABBREVIATION=="WAS"]-
+mean = home$mean[home$home.TEAM_ABBREVIATION=="WAS"]-
   away$mean[away$away.TEAM_ABBREVIATION=="DAL"]
 
-sd <- sqrt(home$var[home$home.TEAM_ABBREVIATION=="WAS"]+
+sd = sqrt(home$var[home$home.TEAM_ABBREVIATION=="WAS"]+
   away$var[away$away.TEAM_ABBREVIATION=="DAL"])
 
 mean
@@ -273,7 +265,7 @@ Simulate 10,000 games and plot the histogram. Can you see the home team advantag
 
 ```{r}
 set.seed(1)
-diff <- rnorm(10000, mean, sd)
+diff = rnorm(10000, mean, sd)
 ggplot()+geom_histogram(aes(x=diff))+
   labs(x="Points Difference", title="Histogram of Points difference")
 ```
@@ -313,19 +305,19 @@ pnorm(15, mean, sd, lower.tail = F)
 # Predicting with distributions
 
 ```{r}
-home_away <- list(home,away)
-probs <- function(data, home, away, spread=0){
-  home_df <- data[[1]]
-  away_df <- data[[2]]
-  mean_home <- home_df$mean[home_df$home.TEAM_ABBREVIATION==home]
-  mean_away <- away_df$mean[away_df$away.TEAM_ABBREVIATION==away]
-  mean_diff <- mean_home-mean_away
-  var_home <- home_df$var[home_df$home.TEAM_ABBREVIATION==home]
-  var_away <- away_df$var[home_df$home.TEAM_ABBREVIATION==away]
-  sd_diff <- sqrt(var_home+var_away)
-  df <- data.frame(pnorm(spread, mean_diff, sd_diff, lower.tail = F),
+home_away = list(home,away)
+probs = function(data, home, away, spread=0){
+  home_df = data[[1]]
+  away_df = data[[2]]
+  mean_home = home_df$mean[home_df$home.TEAM_ABBREVIATION==home]
+  mean_away = away_df$mean[away_df$away.TEAM_ABBREVIATION==away]
+  mean_diff = mean_home-mean_away
+  var_home = home_df$var[home_df$home.TEAM_ABBREVIATION==home]
+  var_away = away_df$var[home_df$home.TEAM_ABBREVIATION==away]
+  sd_diff = sqrt(var_home+var_away)
+  df = data.frame(pnorm(spread, mean_diff, sd_diff, lower.tail = F),
                    pnorm(spread, mean_diff, sd_diff))
-  colnames(df) <- c(home, away)
+  colnames(df) = c(home, away)
   return(df)
 }
 ```
@@ -352,8 +344,6 @@ knitr::include_graphics("./images/poisson.png")
 # Dataset
 
 ```{r}
-library(SportsAnalytics270)
-library(ggplot2)
 data(f_data_sm)
 head(f_data_sm)
 ```
@@ -403,7 +393,7 @@ $H_0:$ *The variables have Poisson distribution*
 
 \bcenter
 
-$H_1:$ *The variables does not have Poisson distribution* 
+$H_1:$ *The variables do not have Poisson distribution* 
 
 \ecenter
 
@@ -412,7 +402,7 @@ We will test the hypothesis with Chi-square test: thus comparing empirical proba
 # Goal frequencies
 
 ```{r}
-seriea <- f_data_sm %>%
+seriea = f_data_sm %>%
           filter(COUNTRY=="Italy", SEASON=="2019") %>%
           group_by(FTHG) %>%
           summarise(count = n()) %>%
@@ -427,7 +417,7 @@ We will use chi-square test
 First create a vector with observed relative frequencies
 
 ```{r}
-rel_fr<-seriea$count/sum(seriea$count)
+rel_fr=seriea$count/sum(seriea$count)
 rel_fr
 ```
 
@@ -441,7 +431,7 @@ f_data_sm %>%
 
 
 ```{r}
-probs<-dpois(c(0:6), lambda=1.484211)
+probs=dpois(c(0:6), lambda=1.484211)
 probs
 ```
 
@@ -450,7 +440,7 @@ probs
 Is there a significant difference between these two ?
 
 ```{r}
-chisq.test(rel_fr, p=probs, rescale.p = T) 
+chisq.test(rel_fr, p=probs, rescale.p = T, simulate.p.value = TRUE) 
 ```
 
 Large p-value talks in favor for NULL hypothesis, thus we have a Poisson distribution
@@ -484,13 +474,13 @@ $P(L=0) * P(F=0) + P(L=1) * P(F=1) ...$
 Means ( $\lambda$ parameters) for home and away teams
 
 ```{r}
-home_means <- f_data_sm %>%
-                filter(COUNTRY=="Italy", SEASON=="2019") %>%
+home_means = f_data_sm %>%
+                filter(COUNTRY=="Italy", SEASON=="2022") %>%
                 group_by(HOMETEAM) %>%
                 summarise(mean = mean(FTHG))
 
-away_means <- f_data_sm %>%
-                filter(COUNTRY=="Italy", SEASON=="2019") %>%
+away_means = f_data_sm %>%
+                filter(COUNTRY=="Italy", SEASON=="2022") %>%
                 group_by(AWAYTEAM) %>%
                 summarise(mean = mean(FTAG))
 
@@ -503,8 +493,9 @@ and for Fiorentina as an away team
 
 ```{r tidy=F}
 
-home_means$mean[home_means$HOMETEAM=="Lazio"]
-away_means$mean[away_means$AWAYTEAM=="Fiorentina"]
+(lazio = home_means$mean[home_means$HOMETEAM=="Lazio"])
+
+(fiorentina = away_means$mean[away_means$AWAYTEAM=="Fiorentina"])
 
 ```
 
@@ -515,8 +506,8 @@ Generate vector of probabilities for number of goals scored for both teams.
 
 ```{r}
 options(scipen=999)
-goal_probs_lazio<-dpois(c(0:9), lambda=1.894737)
-goal_probs_fior<-dpois(c(0:9), lambda=1.157895)
+goal_probs_lazio=dpois(c(0:9), lambda=lazio)
+goal_probs_fior=dpois(c(0:9), lambda=fiorentina)
 ```
 
 ```{r}
@@ -533,13 +524,14 @@ Multiplying two vectors of probabilities we will get the matrix of probabilities
 
 ```{r }
 options(width = 300)
-a<-goal_probs_lazio %*% t(goal_probs_fior)
+a=goal_probs_lazio %*% t(goal_probs_fior)
 print(round(a, digits=4))
 ```
 
 # Predicting with distributions
 
-The probability that the game will end 0-0
+The probability that the game will end 0-0 
+(the matrix is for demonstration only and not the real data)
 
 
 ```{r echo=F}
@@ -604,7 +596,7 @@ sum(a[upper.tri(a, diag=F)])
 
 * Suppose $Y$ is a Poisson random variable with mean $\lambda_y$ that describes the number of the goals the away team scores on average.
 
-* $Z = X - Y $ random variable has a Skellam distribution and $Z$ represents the outcome of the game with respect to the Home team. If $Z > 0$, then the home team has won, if $Z = 0$, then it was a draw, and if $Z < 0$, the home team has lost.
+* $Z = X - Y$ random variable has a Skellam distribution and $Z$ represents the outcome of the game with respect to the Home team. If $Z > 0$, then the home team has won, if $Z = 0$, then it was a draw, and if $Z < 0$, the home team has lost.
 
 Library for skellam distribution
 
@@ -623,8 +615,7 @@ Histogram for goal difference
 
 ```{r}
 set.seed(1)
-k <- rskellam(10000,mu1=1.894737, mu2=1.157895) 
-
+k = rskellam(10000,mu1=1.894737, mu2=1.157895) 
 ggplot()+geom_bar(aes(x=k))+
   labs(x="Goal difference", title="Skellam distribution for goal difference")
 ```
@@ -701,7 +692,7 @@ knitr::include_graphics("./images/table_1.png")
 
 ```{r}
 data(f_data_sm)
-england <- f_data_sm %>%
+england = f_data_sm %>%
   filter(COUNTRY == "England") %>%
   arrange(DATE) %>%
   select("SEASON","DATE","HOMETEAM",  "AWAYTEAM","FTHG", "FTAG")%>%
@@ -711,12 +702,14 @@ england <- f_data_sm %>%
 reshape the data into long format
 
 ```{r, tidy=F}
-england_long <- reshape2::melt(england, 
+england_long = england %>% reshape2::melt(
           id.vars = c("ID","HOMETEAM",  "AWAYTEAM",  "SEASON", "DATE"), 
-          measure.vars = c("FTHG", "FTAG"), variable.name="H_A")
+          measure.vars = c("FTHG", "FTAG"), variable.name="H_A") %>% 
+          arrange(ID)
+  
 
-england_long <- england_long[order(england_long$ID),]
-rownames(england_long) <- NULL
+england_long = england_long[order(england_long$ID),]
+rownames(england_long) = NULL
 ```
 
 # Predicting with the rating
@@ -733,13 +726,14 @@ Make changes in H_A variable
 
 
 ```{r, tidy=F}
-england_long$TEAM1 <- ifelse(england_long$H_A =='FTAG', 
+england_long$TEAM1 = ifelse(england_long$H_A =='FTAG', 
                              england_long$AWAYTEAM, england_long$HOMETEAM)
 
-england_long$TEAM2 <- ifelse(england_long$H_A =='FTAG', 
+england_long$TEAM2 = ifelse(england_long$H_A =='FTAG', 
                              england_long$HOMETEAM, england_long$AWAYTEAM)
 
-england_long <- england_long[,c("ID","SEASON","DATE", "TEAM1","TEAM2", "H_A","value")]
+england_long = england_long %>% 
+  select(ID, SEASON, DATE, TEAM1, TEAM2, H_A, value)
 ```
 # Predicting with the rating
 ```{r}
@@ -755,16 +749,13 @@ head(england_long)
 default for dplyr)
 
 ```{r}
-library(dplyr)
-library(zoo)
-england_long1 <- england_long %>%
+england_long1 = england_long %>%
 group_by(SEASON, TEAM1) %>%
 mutate(CUM_SC = dplyr::lag(rollapply(value,6,sum, fill=NA, align='right'),1)) %>%
 ungroup() %>%
 group_by(SEASON, TEAM2) %>%
 mutate(CUM_C = dplyr::lag(rollapply(value,6,sum, fill=NA, align='right'),1)) %>%
-filter(CUM_SC != "NA")
-england_long1 <- as.data.frame(england_long1)
+filter(CUM_SC != "NA") %>% as.data.frame()
 ```
 
 # Predicting with the rating
@@ -782,7 +773,7 @@ head(england_long1)
 Get back to wide format
 
 ```{r}
-england_wide <- reshape(england_long1, direction="wide",
+england_wide = reshape(england_long1, direction="wide",
                           timevar = "H_A", idvar = "ID", 
                           v.names=c("value", "CUM_SC", "CUM_C"))
 ```
@@ -797,15 +788,16 @@ head(england_wide)
 Calculate POWERHOME, POWERAWAY and POWERDIFF and RESULT
 
 ```{r, tidy=F}
-england_wide$POWERHOME <- england_wide$CUM_SC.FTHG-england_wide$CUM_C.FTAG
-england_wide$POWERAWAY <- england_wide$CUM_SC.FTAG-england_wide$CUM_C.FTHG
-england_wide$POWERDIFF <- england_wide$POWERHOME-england_wide$POWERAWAY
+england_wide$POWERHOME = england_wide$CUM_SC.FTHG-england_wide$CUM_C.FTAG
+england_wide$POWERAWAY = england_wide$CUM_SC.FTAG-england_wide$CUM_C.FTHG
+england_wide$POWERDIFF = england_wide$POWERHOME-england_wide$POWERAWAY
 
-england_wide$RESULT <- ifelse(england_wide$value.FTHG>england_wide$value.FTAG,"HW",
+england_wide$RESULT = ifelse(england_wide$value.FTHG>england_wide$value.FTAG,"HW",
 ifelse(england_wide$value.FTHG<england_wide$value.FTAG, "AW", "D"))
 
-england_wide <- england_wide[,c("SEASON","DATE","TEAM1","TEAM2","value.FTHG",
-                  "value.FTAG","POWERHOME", "POWERAWAY","POWERDIFF", "RESULT")]
+england_wide = england_wide %>% 
+  select(SEASON, DATE, TEAM1, TEAM2, value.FTHG,
+                  value.FTAG, POWERHOME, POWERAWAY, POWERDIFF, RESULT)
 
 
 ```
@@ -816,7 +808,7 @@ Take out remaining NA’s
 
 ```{r}
 options(width=80)
-england_wide <- england_wide[! is.na(england_wide$POWERDIFF),]
+england_wide = england_wide[! is.na(england_wide$POWERDIFF),]
 head(england_wide)
 ```
 
@@ -825,7 +817,7 @@ head(england_wide)
 Now lets calculate the game result frequencies by Match rating (POWERDIFF)
 
 ```{r}
-freqs <- dcast(england_wide, POWERDIFF~RESULT)
+freqs = dcast(england_wide, POWERDIFF~RESULT)
 head(freqs)
 ```
 
@@ -834,7 +826,7 @@ head(freqs)
 Add relative frequencies
 
 ```{r}
-freqs <- data.frame(freqs, freqs[,2:4]/rowSums(freqs[,2:4]))
+freqs = data.frame(freqs, freqs[,2:4]/rowSums(freqs[,2:4]))
 head(freqs)
 ```
 
@@ -868,7 +860,7 @@ ggplot(freqs, aes(x=POWERDIFF, y=HW.1))+geom_point()+
 Look at the model
 
 ```{r}
-modelH <- lm(HW.1~POWERDIFF, data=freqs)
+modelH = lm(HW.1~POWERDIFF, data=freqs)
 summary(modelH)
 ```
 # Predicting with the rating
@@ -876,7 +868,7 @@ summary(modelH)
 Away team probability
 
 ```{r}
-modelA <- lm(AW.1~POWERDIFF, data=freqs)
+modelA = lm(AW.1~POWERDIFF, data=freqs)
 summary(modelA)
 ```
 
@@ -885,7 +877,7 @@ summary(modelA)
 Draw: bad model
 
 ```{r}
-modelD <- lm(D.1~POWERDIFF, data=freqs)
+modelD = lm(D.1~POWERDIFF, data=freqs)
 summary(modelD)
 ```
 # Predicting with the rating
@@ -904,6 +896,6 @@ ggplot(freqs, aes(x=POWERDIFF, y=D.1))+geom_point()+
 Draw: very hard to predict
 
 ```{r}
-modelD <- lm(D.1~poly(POWERDIFF,2), data=freqs)
+modelD = lm(D.1~poly(POWERDIFF,2), data=freqs)
 summary(modelD)
 ```
