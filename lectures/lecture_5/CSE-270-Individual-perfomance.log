@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.21)  10 AUG 2022 03:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.15)  15 AUG 2022 09:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**network_statistics.tex
-(./network_statistics.tex
+**CSE-270-Individual-perfomance.tex
+(./CSE-270-Individual-perfomance.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-02-24> (/usr/local/texlive/2022/texmf-dist/tex/latex
 /beamer/beamer.cls
@@ -768,8 +768,8 @@ Package: xurl 2022/01/09 v 0.10 modify URL breaks
 File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count348
 \l__pdf_internal_box=\box78
-) (./network_statistics.aux)
-\openout1 = `network_statistics.aux'.
+) (./CSE-270-Individual-perfomance.aux)
+\openout1 = `CSE-270-Individual-perfomance.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 206.
 LaTeX Font Info:    ... okay on input line 206.
@@ -951,20 +951,123 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-(./network_statistics.nav) [1
+(./CSE-270-Individual-perfomance.nav) [1
 
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
 
 ] [3
 
 ]
-<./images/bacon.png, id=40, 689.57625pt x 433.62pt>
-File: ./images/bacon.png Graphic file (type png)
-<use ./images/bacon.png>
-Package pdftex.def Info: ./images/bacon.png  used on input line 245.
-(pdftex.def)             Requested size: 312.47398pt x 196.49019pt.
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
+
+(./CSE-270-Individual-perfomance.vrb
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 4
+.
+(/usr/local/texlive/2022/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 19--19
+[]\T1/lmtt/m/n/8 ## [17] "AwayPlayer4ID"    "AwayPlayer5ID"    "HomePlayer1Name
+"  "HomePlayer2Name"[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 19--19
+[]\T1/lmtt/m/n/8 ## [21] "HomePlayer3Name"  "HomePlayer4Name"  "HomePlayer5Name
+"  "AwayPlayer1Name"[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 19--19
+[]\T1/lmtt/m/n/8 ## [25] "AwayPlayer2Name"  "AwayPlayer3Name"  "AwayPlayer4Name
+"  "AwayPlayer5Name"[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 19--19
+[]\T1/lmtt/m/n/8 ## [33] "PointsScoredHome" "PointsScoredAway" "PossessionsHome
+"  "PossessionsAway"[] 
+ []
+
+) [4
+
+]
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
+
+(./CSE-270-Individual-perfomance.vrb) [5
+
+]
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
+
+(./CSE-270-Individual-perfomance.vrb) [6
+
+]
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
+
+(./CSE-270-Individual-perfomance.vrb) [7
+
+]
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
+
+(./CSE-270-Individual-perfomance.vrb) [8
+
+]
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
+
+(./CSE-270-Individual-perfomance.vrb) [9
+
+]
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
+
+(./CSE-270-Individual-perfomance.vrb
+<CSE-270-Individual-perfomance_files/figure-beamer/unnamed-chunk-11-1.pdf, id=9
+8, 717.68124pt x 349.305pt>
+File: CSE-270-Individual-perfomance_files/figure-beamer/unnamed-chunk-11-1.pdf 
+Graphic file (type pdf)
+<use CSE-270-Individual-perfomance_files/figure-beamer/unnamed-chunk-11-1.pdf>
+Package pdftex.def Info: CSE-270-Individual-perfomance_files/figure-beamer/unna
+med-chunk-11-1.pdf  used on input line 11.
+(pdftex.def)             Requested size: 347.19891pt x 168.98631pt.
+) [10
+
+ <./CSE-270-Individual-perfomance_files/figure-beamer/unnamed-chunk-11-1.pdf>] 
+[11
+
+]
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
+
+(./CSE-270-Individual-perfomance.vrb) [12
+
+]
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
+
+(./CSE-270-Individual-perfomance.vrb) [13
+
+]
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
+
+(./CSE-270-Individual-perfomance.vrb) [14
+
+]
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
+
+(./CSE-270-Individual-perfomance.vrb
+<CSE-270-Individual-perfomance_files/figure-beamer/unnamed-chunk-15-1.pdf, id=1
+42, 717.68124pt x 349.305pt>
+File: CSE-270-Individual-perfomance_files/figure-beamer/unnamed-chunk-15-1.pdf 
+Graphic file (type pdf)
+<use CSE-270-Individual-perfomance_files/figure-beamer/unnamed-chunk-15-1.pdf>
+Package pdftex.def Info: CSE-270-Individual-perfomance_files/figure-beamer/unna
+med-chunk-15-1.pdf  used on input line 11.
+(pdftex.def)             Requested size: 347.19891pt x 168.98631pt.
+) [15
+
+ <./CSE-270-Individual-perfomance_files/figure-beamer/unnamed-chunk-15-1.pdf>] 
+[16
+
+]
 LaTeX Font Info:    Trying to load font information for OT1+lmss on input line 
-245.
+525.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/ot1lmss.fd
 File: ot1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -972,35 +1075,35 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
-45.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 5
+25.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-245.
+525.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-245.
+525.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 245.
+(Font)              <8> on input line 525.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 245.
+(Font)              <6> on input line 525.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 245.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 245
+(Font)              <5> on input line 525.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 525
 .
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 245
+LaTeX Font Info:    Trying to load font information for U+msb on input line 525
 .
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1008,880 +1111,266 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <8> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 245.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 525.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <6> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 245.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 525.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <5> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 245.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 525.
+[17
 
-Overfull \vbox (2.11671pt too high) detected at line 245
+] [18
+
+]
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
+
+(./CSE-270-Individual-perfomance.vrb) [19
+
+]
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
+
+(./CSE-270-Individual-perfomance.vrb) [20
+
+]
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
+
+(./CSE-270-Individual-perfomance.vrb
+Overfull \hbox (1.29465pt too wide) in paragraph at lines 28--28
+[]\T1/lmtt/m/n/8 ##     X1027      X453      X936      X678      X900      X158
+      X904      X781[] 
  []
 
-[4
 
- <./images/bacon.png>] [5
-
-]
-<./images/morgan.png, id=59, 651.43375pt x 304.13625pt>
-File: ./images/morgan.png Graphic file (type png)
-<use ./images/morgan.png>
-Package pdftex.def Info: ./images/morgan.png  used on input line 265.
-(pdftex.def)             Requested size: 277.76518pt x 129.68082pt.
-[6
-
- <./images/morgan.png>]
-<./images/frunzik_1.png, id=68, 659.46375pt x 484.81125pt>
-File: ./images/frunzik_1.png Graphic file (type png)
-<use ./images/frunzik_1.png>
-Package pdftex.def Info: ./images/frunzik_1.png  used on input line 272.
-(pdftex.def)             Requested size: 274.4371pt x 201.75513pt.
-[7
-
- <./images/frunzik_1.png>]
-<./images/frunzik_2.png, id=78, 610.28pt x 507.8975pt>
-File: ./images/frunzik_2.png Graphic file (type png)
-<use ./images/frunzik_2.png>
-Package pdftex.def Info: ./images/frunzik_2.png  used on input line 280.
-(pdftex.def)             Requested size: 242.42218pt x 201.75267pt.
-[8
-
- <./images/frunzik_2.png>] [9
-
-] [10
-
-] [11
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 4
-.
-(/usr/local/texlive/2022/texmf-dist/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-<network_statistics_files/figure-beamer/unnamed-chunk-7-1.pdf, id=111, 147.5512
-5pt x 146.5475pt>
-File: network_statistics_files/figure-beamer/unnamed-chunk-7-1.pdf Graphic file
- (type pdf)
-<use network_statistics_files/figure-beamer/unnamed-chunk-7-1.pdf>
-Package pdftex.def Info: network_statistics_files/figure-beamer/unnamed-chunk-7
--1.pdf  used on input line 21.
-(pdftex.def)             Requested size: 147.55087pt x 146.54712pt.
-)
-Overfull \vbox (10.6291pt too high) detected at line 357
+Overfull \hbox (1.28465pt too wide) in paragraph at lines 28--28
+[]\T1/lmtt/m/n/8 ## 2.1176032 1.8681832 1.5567575 1.0007997 0.9188331 0.8786333
+ 0.8486712 0.8390129[] 
  []
 
-[12
-
- <./network_statistics_files/figure-beamer/unnamed-chunk-7-1.pdf>]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [13
-
-] [14
+) [21
 
 ]
-\openout4 = `network_statistics.vrb'.
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
 
-(./network_statistics.vrb
-<network_statistics_files/figure-beamer/unnamed-chunk-11-1.pdf, id=141, 147.551
-25pt x 146.5475pt>
-File: network_statistics_files/figure-beamer/unnamed-chunk-11-1.pdf Graphic fil
-e (type pdf)
-<use network_statistics_files/figure-beamer/unnamed-chunk-11-1.pdf>
-Package pdftex.def Info: network_statistics_files/figure-beamer/unnamed-chunk-1
-1-1.pdf  used on input line 12.
-(pdftex.def)             Requested size: 147.55087pt x 146.54712pt.
-) [15
-
- <./network_statistics_files/figure-beamer/unnamed-chunk-11-1.pdf>]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [16
-
-] [17
+(./CSE-270-Individual-perfomance.vrb) [22
 
 ]
-\openout4 = `network_statistics.vrb'.
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
 
-(./network_statistics.vrb) [18
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [19
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [20
-
-] [21
+(./CSE-270-Individual-perfomance.vrb
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
+18.
+(/usr/local/texlive/2022/texmf-dist/tex/latex/lm/ts1lmtt.fd
+File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)) [23
 
 ]
-LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <8> not available
-(Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 588.
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
 
-[22
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [23
+(./CSE-270-Individual-perfomance.vrb) [24
 
 ]
-\openout4 = `network_statistics.vrb'.
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
 
-(./network_statistics.vrb) [24
+(./CSE-270-Individual-perfomance.vrb
+<CSE-270-Individual-perfomance_files/figure-beamer/unnamed-chunk-27-1.pdf, id=2
+39, 711.65875pt x 279.0425pt>
+File: CSE-270-Individual-perfomance_files/figure-beamer/unnamed-chunk-27-1.pdf 
+Graphic file (type pdf)
+<use CSE-270-Individual-perfomance_files/figure-beamer/unnamed-chunk-27-1.pdf>
+Package pdftex.def Info: CSE-270-Individual-perfomance_files/figure-beamer/unna
+med-chunk-27-1.pdf  used on input line 25.
+(pdftex.def)             Requested size: 347.19557pt x 136.13591pt.
+) [25
 
-]
-\openout4 = `network_statistics.vrb'.
+ <./CSE-270-Individual-perfomance_files/figure-beamer/unnamed-chunk-27-1.pdf>]
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
 
-(./network_statistics.vrb) [25
+(./CSE-270-Individual-perfomance.vrb
+Overfull \hbox (1.30064pt too wide) in paragraph at lines 45--45
+[]\T1/lmtt/m/n/8 ##      X158      X113      X807       X70      X144      X904
+      X821      X791[] 
+ []
 
-]
-\openout4 = `network_statistics.vrb'.
 
-(./network_statistics.vrb
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <8> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 10.
+Overfull \hbox (1.27466pt too wide) in paragraph at lines 45--45
+[]\T1/lmtt/m/n/8 ## 0.8779187 0.7791911 0.7605357 0.6760659 0.6705972 0.6580038
+ 0.6435656 0.6088434[] 
+ []
+
 ) [26
 
 ]
-\openout4 = `network_statistics.vrb'.
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
 
-(./network_statistics.vrb
-LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
-13.
-(/usr/local/texlive/2022/texmf-dist/tex/latex/lm/ts1lmtt.fd
-File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-<network_statistics_files/figure-beamer/unnamed-chunk-21-1.pdf, id=252, 712.662
-5pt x 351.3125pt>
-File: network_statistics_files/figure-beamer/unnamed-chunk-21-1.pdf Graphic fil
-e (type pdf)
-<use network_statistics_files/figure-beamer/unnamed-chunk-21-1.pdf>
-Package pdftex.def Info: network_statistics_files/figure-beamer/unnamed-chunk-2
-1-1.pdf  used on input line 15.
-(pdftex.def)             Requested size: 347.19592pt x 171.15291pt.
-) [27
-
- <./network_statistics_files/figure-beamer/unnamed-chunk-21-1.pdf>]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [28
-
-] [29
+(./CSE-270-Individual-perfomance.vrb) [27
 
 ]
-\openout4 = `network_statistics.vrb'.
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
 
-(./network_statistics.vrb
-<network_statistics_files/figure-beamer/unnamed-chunk-23-1.pdf, id=293, 145.543
-75pt x 146.5475pt>
-File: network_statistics_files/figure-beamer/unnamed-chunk-23-1.pdf Graphic fil
-e (type pdf)
-<use network_statistics_files/figure-beamer/unnamed-chunk-23-1.pdf>
-Package pdftex.def Info: network_statistics_files/figure-beamer/unnamed-chunk-2
-3-1.pdf  used on input line 9.
-(pdftex.def)             Requested size: 145.54338pt x 146.54712pt.
-) [30
-
- <./network_statistics_files/figure-beamer/unnamed-chunk-23-1.pdf>]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [31
+(./CSE-270-Individual-perfomance.vrb) [28
 
 ]
-\openout4 = `network_statistics.vrb'.
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
 
-(./network_statistics.vrb) [32
+(./CSE-270-Individual-perfomance.vrb) [29
 
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [33
+] [30
 
 ]
-\openout4 = `network_statistics.vrb'.
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
 
-(./network_statistics.vrb) [34
+(./CSE-270-Individual-perfomance.vrb)
+Overfull \vbox (11.32648pt too high) detected at line 924
+ []
 
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [35
-
-] [36
+[31
 
 ]
-\openout4 = `network_statistics.vrb'.
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
 
-(./network_statistics.vrb) [37
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [38
-
-] [39
+(./CSE-270-Individual-perfomance.vrb) [32
 
 ]
-\openout4 = `network_statistics.vrb'.
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
 
-(./network_statistics.vrb) [40
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [41
+(./CSE-270-Individual-perfomance.vrb) [33
 
 ]
-\openout4 = `network_statistics.vrb'.
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
 
-(./network_statistics.vrb) [42
+(./CSE-270-Individual-perfomance.vrb
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 15--15
+[]\T1/lmtt/m/n/8 ##     Nash, Steve  Nelson, Jameer    Mahinmi, Ian  Hudson, Le
+ster    Duhon, Chris[] 
+ []
 
-] [43
+
+Overfull \hbox (1.29265pt too wide) in paragraph at lines 15--15
+[]\T1/lmtt/m/n/8 ##       0.3479366       0.3374820       0.3280165       0.324
+3823       0.2744698[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 15--15
+[]\T1/lmtt/m/n/8 ##   Millsap, Paul   Kapono, Jason Humphries, Kris    Rondo, R
+ajon  Curry, Stephen[] 
+ []
+
+
+Overfull \hbox (1.29865pt too wide) in paragraph at lines 15--15
+[]\T1/lmtt/m/n/8 ##       0.2454976       0.2445955       0.2423881       0.240
+5524       0.2374232[] 
+ []
+
+) [34
+
+]
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
+
+(./CSE-270-Individual-perfomance.vrb
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 19--19
+[]\T1/lmtt/m/n/8 ##     Nash, Steve  Nelson, Jameer    Mahinmi, Ian  Hudson, Le
+ster    Duhon, Chris[] 
+ []
+
+
+Overfull \hbox (1.29265pt too wide) in paragraph at lines 19--19
+[]\T1/lmtt/m/n/8 ##       0.3479366       0.3374820       0.3280165       0.324
+3823       0.2744698[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 19--19
+[]\T1/lmtt/m/n/8 ##   Millsap, Paul   Kapono, Jason Humphries, Kris    Rondo, R
+ajon  Curry, Stephen[] 
+ []
+
+
+Overfull \hbox (1.29865pt too wide) in paragraph at lines 19--19
+[]\T1/lmtt/m/n/8 ##       0.2454976       0.2445955       0.2423881       0.240
+5524       0.2374232[] 
+ []
+
+) [35
+
+]
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
+
+(./CSE-270-Individual-perfomance.vrb) [36
+
+]
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
+
+(./CSE-270-Individual-perfomance.vrb
+<CSE-270-Individual-perfomance_files/figure-beamer/unnamed-chunk-44-1.pdf, id=3
+40, 711.65875pt x 277.035pt>
+File: CSE-270-Individual-perfomance_files/figure-beamer/unnamed-chunk-44-1.pdf 
+Graphic file (type pdf)
+<use CSE-270-Individual-perfomance_files/figure-beamer/unnamed-chunk-44-1.pdf>
+Package pdftex.def Info: CSE-270-Individual-perfomance_files/figure-beamer/unna
+med-chunk-44-1.pdf  used on input line 20.
+(pdftex.def)             Requested size: 347.19557pt x 135.15652pt.
+) [37
+
+ <./CSE-270-Individual-perfomance_files/figure-beamer/unnamed-chunk-44-1.pdf>] 
+[38
+
+]
+\openout4 = `CSE-270-Individual-perfomance.vrb'.
+
+(./CSE-270-Individual-perfomance.vrb) [39
+
+] [40
+
+] [41
+
+]
+<./images/statistics.png, id=384, 712.6625pt x 482.80376pt>
+File: ./images/statistics.png Graphic file (type png)
+<use ./images/statistics.png>
+Package pdftex.def Info: ./images/statistics.png  used on input line 1183.
+(pdftex.def)             Requested size: 277.7524pt x 188.16747pt.
+[42
+
+ <./images/statistics.png>] [43
 
 ] [44
 
 ] [45
 
 ]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [46
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb
-<network_statistics_files/figure-beamer/unnamed-chunk-43-1.pdf, id=437, 122.457
-5pt x 154.5775pt>
-File: network_statistics_files/figure-beamer/unnamed-chunk-43-1.pdf Graphic fil
-e (type pdf)
-<use network_statistics_files/figure-beamer/unnamed-chunk-43-1.pdf>
-Package pdftex.def Info: network_statistics_files/figure-beamer/unnamed-chunk-4
-3-1.pdf  used on input line 19.
-(pdftex.def)             Requested size: 122.4609pt x 154.58182pt.
-) [47
-
- <./network_statistics_files/figure-beamer/unnamed-chunk-43-1.pdf>]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [48
-
-] [49
-
-] [50
-
-] [51
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb
-<network_statistics_files/figure-beamer/unnamed-chunk-47-1.pdf, id=483, 131.491
-26pt x 154.5775pt>
-File: network_statistics_files/figure-beamer/unnamed-chunk-47-1.pdf Graphic fil
-e (type pdf)
-<use network_statistics_files/figure-beamer/unnamed-chunk-47-1.pdf>
-Package pdftex.def Info: network_statistics_files/figure-beamer/unnamed-chunk-4
-7-1.pdf  used on input line 22.
-(pdftex.def)             Requested size: 131.49693pt x 154.58417pt.
-) [52
-
- <./network_statistics_files/figure-beamer/unnamed-chunk-47-1.pdf>]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [53
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [54
-
-] [55
-
-] [56
-
-]
-<./images/network_1.png, id=527, 392.46625pt x 442.65375pt>
-File: ./images/network_1.png Graphic file (type png)
-<use ./images/network_1.png>
-Package pdftex.def Info: ./images/network_1.png  used on input line 1349.
-(pdftex.def)             Requested size: 178.87782pt x 201.75223pt.
-
-Overfull \vbox (5.8232pt too high) detected at line 1349
- []
-
-[57
-
- <./images/network_1.png>] [58
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [59
-
-] [60
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [61
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [62
-
-] [63
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [64
-
-] [65
-
-]
-<./images/network_2.png, id=604, 605.26125pt x 453.695pt>
-File: ./images/network_2.png Graphic file (type png)
-<use ./images/network_2.png>
-Package pdftex.def Info: ./images/network_2.png  used on input line 1496.
-(pdftex.def)             Requested size: 269.15106pt x 201.75172pt.
-
-Overfull \vbox (0.62825pt too high) detected at line 1496
- []
-
-[66
-
- <./images/network_2.png>]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb
-<network_statistics_files/figure-beamer/unnamed-chunk-59-1.pdf, id=613, 213.798
-75pt x 212.795pt>
-File: network_statistics_files/figure-beamer/unnamed-chunk-59-1.pdf Graphic fil
-e (type pdf)
-<use network_statistics_files/figure-beamer/unnamed-chunk-59-1.pdf>
-Package pdftex.def Info: network_statistics_files/figure-beamer/unnamed-chunk-5
-9-1.pdf  used on input line 11.
-(pdftex.def)             Requested size: 213.79822pt x 212.79446pt.
-)
-Overfull \vbox (22.12094pt too high) detected at line 1509
- []
-
-[67
-
- <./network_statistics_files/figure-beamer/unnamed-chunk-59-1.pdf>]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [68
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [69
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb
-<network_statistics_files/figure-beamer/unnamed-chunk-62-1.pdf, id=643, 712.662
-5pt x 277.035pt>
-File: network_statistics_files/figure-beamer/unnamed-chunk-62-1.pdf Graphic fil
-e (type pdf)
-<use network_statistics_files/figure-beamer/unnamed-chunk-62-1.pdf>
-Package pdftex.def Info: network_statistics_files/figure-beamer/unnamed-chunk-6
-2-1.pdf  used on input line 15.
-(pdftex.def)             Requested size: 347.19592pt x 134.9663pt.
-) [70
-
- <./network_statistics_files/figure-beamer/unnamed-chunk-62-1.pdf>]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [71
-
-] [72
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb
-<network_statistics_files/figure-beamer/unnamed-chunk-65-1.pdf, id=674, 213.798
-75pt x 212.795pt>
-File: network_statistics_files/figure-beamer/unnamed-chunk-65-1.pdf Graphic fil
-e (type pdf)
-<use network_statistics_files/figure-beamer/unnamed-chunk-65-1.pdf>
-Package pdftex.def Info: network_statistics_files/figure-beamer/unnamed-chunk-6
-5-1.pdf  used on input line 9.
-(pdftex.def)             Requested size: 213.79822pt x 212.79446pt.
-)
-Overfull \vbox (3.12094pt too high) detected at line 1625
- []
-
-[73
-
- <./network_statistics_files/figure-beamer/unnamed-chunk-65-1.pdf>]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [74
-
-]
-<./images/community_1.png, id=698, 484.81125pt x 491.8375pt>
-File: ./images/community_1.png Graphic file (type png)
-<use ./images/community_1.png>
-Package pdftex.def Info: ./images/community_1.png  used on input line 1652.
-(pdftex.def)             Requested size: 198.87006pt x 201.75223pt.
-
-Overfull \vbox (8.5732pt too high) detected at line 1652
- []
-
-[75
-
- <./images/community_1.png>] [76
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [77
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb
-<network_statistics_files/figure-beamer/unnamed-chunk-70-1.pdf, id=721, 574.145
-pt x 584.1825pt>
-File: network_statistics_files/figure-beamer/unnamed-chunk-70-1.pdf Graphic fil
-e (type pdf)
-<use network_statistics_files/figure-beamer/unnamed-chunk-70-1.pdf>
-Package pdftex.def Info: network_statistics_files/figure-beamer/unnamed-chunk-7
-0-1.pdf  used on input line 9.
-(pdftex.def)             Requested size: 247.85873pt x 252.19193pt.
-)
-Overfull \vbox (42.5184pt too high) detected at line 1705
- []
-
-[78
-
- <./network_statistics_files/figure-beamer/unnamed-chunk-70-1.pdf>]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [79
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb
-<network_statistics_files/figure-beamer/unnamed-chunk-72-1.pdf, id=747, 222.832
-5pt x 227.85126pt>
-File: network_statistics_files/figure-beamer/unnamed-chunk-72-1.pdf Graphic fil
-e (type pdf)
-<use network_statistics_files/figure-beamer/unnamed-chunk-72-1.pdf>
-Package pdftex.def Info: network_statistics_files/figure-beamer/unnamed-chunk-7
-2-1.pdf  used on input line 11.
-(pdftex.def)             Requested size: 222.83534pt x 227.85416pt.
-)
-Overfull \vbox (11.95981pt too high) detected at line 1736
- []
-
-[80
-
- <./network_statistics_files/figure-beamer/unnamed-chunk-72-1.pdf>]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb
-<network_statistics_files/figure-beamer/unnamed-chunk-73-1.pdf, id=765, 623.328
-75pt x 354.32375pt>
-File: network_statistics_files/figure-beamer/unnamed-chunk-73-1.pdf Graphic fil
-e (type pdf)
-<use network_statistics_files/figure-beamer/unnamed-chunk-73-1.pdf>
-Package pdftex.def Info: network_statistics_files/figure-beamer/unnamed-chunk-7
-3-1.pdf  used on input line 11.
-(pdftex.def)             Requested size: 347.19753pt x 197.36026pt.
-)
-Overfull \vbox (6.68674pt too high) detected at line 1749
- []
-
-[81
-
- <./network_statistics_files/figure-beamer/unnamed-chunk-73-1.pdf>]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [82
-
-]
-<./images/k_cores_1.png, id=791, 917.4275pt x 554.07pt>
-File: ./images/k_cores_1.png Graphic file (type png)
-<use ./images/k_cores_1.png>
-Package pdftex.def Info: ./images/k_cores_1.png  used on input line 1783.
-(pdftex.def)             Requested size: 312.46718pt x 188.71103pt.
-[83
-
- <./images/k_cores_1.png>]
-<./images/k_cores_2.png, id=800, 921.4425pt x 550.055pt>
-File: ./images/k_cores_2.png Graphic file (type png)
-<use ./images/k_cores_2.png>
-Package pdftex.def Info: ./images/k_cores_2.png  used on input line 1794.
-(pdftex.def)             Requested size: 312.47083pt x 186.52942pt.
-[84
-
- <./images/k_cores_2.png>] [85
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [86
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb
-<network_statistics_files/figure-beamer/unnamed-chunk-78-1.pdf, id=835, 189.708
-76pt x 216.81pt>
-File: network_statistics_files/figure-beamer/unnamed-chunk-78-1.pdf Graphic fil
-e (type pdf)
-<use network_statistics_files/figure-beamer/unnamed-chunk-78-1.pdf>
-Package pdftex.def Info: network_statistics_files/figure-beamer/unnamed-chunk-7
-8-1.pdf  used on input line 9.
-(pdftex.def)             Requested size: 189.71117pt x 216.81276pt.
-)
-Overfull \vbox (7.13924pt too high) detected at line 1848
- []
-
-[87
-
- <./network_statistics_files/figure-beamer/unnamed-chunk-78-1.pdf>]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [88
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [89
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [90
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb
-Overfull \hbox (5.55464pt too wide) in paragraph at lines 18--18
-[]\T1/lmtt/m/n/8 ##  [1] JFK ABQ ATL AUS BNA BOS BTV BUF BUR BWI CHS CLE CLT CM
-H CVG DCA DEN DFW DTW[] 
- []
-
-
-Overfull \hbox (5.55464pt too wide) in paragraph at lines 18--18
-[]\T1/lmtt/m/n/8 ## [20] FLL HNL HOU IAD IND JAX LAS LAX LGB MCO MIA MSP MSY OA
-K ORD ORF PBI PDX PHL[] 
- []
-
-
-Overfull \hbox (5.55264pt too wide) in paragraph at lines 18--18
-[]\T1/lmtt/m/n/8 ## [39] PHX PIT PWM RDU RIC ROC RSW SAN SAT SAV SDF SEA SFO SJ
-C SLC SMF SRQ STL SYR[] 
- []
-
-) [91
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [92
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb
-Overfull \hbox (5.55464pt too wide) in paragraph at lines 16--16
-[]\T1/lmtt/m/n/8 ##  [1] ABQ ATL AUS BNA BOS BTV BUF BUR BWI CHS CLE CLT CMH CV
-G DCA DEN DFW DTW FLL[] 
- []
-
-
-Overfull \hbox (5.55464pt too wide) in paragraph at lines 16--16
-[]\T1/lmtt/m/n/8 ## [20] HNL HOU IAD IND JAX LAS LAX LGB MCO MIA MSP MSY OAK OR
-D ORF PBI PDX PHL PHX[] 
- []
-
-
-Overfull \hbox (5.55264pt too wide) in paragraph at lines 16--16
-[]\T1/lmtt/m/n/8 ## [39] PIT PWM RDU RIC ROC RSW SAN SAT SAV SDF SEA SFO SJC SL
-C SMF SRQ STL SYR TPA[] 
- []
-
-) [93
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [94
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb
-<network_statistics_files/figure-beamer/unnamed-chunk-91-1.pdf, id=898, 712.662
-5pt x 351.3125pt>
-File: network_statistics_files/figure-beamer/unnamed-chunk-91-1.pdf Graphic fil
-e (type pdf)
-<use network_statistics_files/figure-beamer/unnamed-chunk-91-1.pdf>
-Package pdftex.def Info: network_statistics_files/figure-beamer/unnamed-chunk-9
-1-1.pdf  used on input line 15.
-(pdftex.def)             Requested size: 347.19592pt x 171.15291pt.
-) [95
-
- <./network_statistics_files/figure-beamer/unnamed-chunk-91-1.pdf>]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [96
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [97
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb
-<network_statistics_files/figure-beamer/unnamed-chunk-94-1.pdf, id=928, 712.662
-5pt x 423.5825pt>
-File: network_statistics_files/figure-beamer/unnamed-chunk-94-1.pdf Graphic fil
-e (type pdf)
-<use network_statistics_files/figure-beamer/unnamed-chunk-94-1.pdf>
-Package pdftex.def Info: network_statistics_files/figure-beamer/unnamed-chunk-9
-4-1.pdf  used on input line 14.
-(pdftex.def)             Requested size: 347.19592pt x 206.36153pt.
-)
-Overfull \vbox (22.21577pt too high) detected at line 2150
- []
-
-[98
-
- <./network_statistics_files/figure-beamer/unnamed-chunk-94-1.pdf>]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [99
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [100
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb)
-Overfull \vbox (1751.07648pt too high) detected at line 2413
- []
-
-[101
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [102
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb
-<network_statistics_files/figure-beamer/unnamed-chunk-99-1.pdf, id=972, 646.415
-pt x 646.415pt>
-File: network_statistics_files/figure-beamer/unnamed-chunk-99-1.pdf Graphic fil
-e (type pdf)
-<use network_statistics_files/figure-beamer/unnamed-chunk-99-1.pdf>
-Package pdftex.def Info: network_statistics_files/figure-beamer/unnamed-chunk-9
-9-1.pdf  used on input line 11.
-(pdftex.def)             Requested size: 176.52681pt x 176.52681pt.
-) [103
-
- <./network_statistics_files/figure-beamer/unnamed-chunk-99-1.pdf>] [104
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [105
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [106
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [107
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [108
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [109
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb
-<network_statistics_files/figure-beamer/unnamed-chunk-106-1.pdf, id=1044, 712.6
-625pt x 349.305pt>
-File: network_statistics_files/figure-beamer/unnamed-chunk-106-1.pdf Graphic fi
-le (type pdf)
-<use network_statistics_files/figure-beamer/unnamed-chunk-106-1.pdf>
-Package pdftex.def Info: network_statistics_files/figure-beamer/unnamed-chunk-1
-06-1.pdf  used on input line 15.
-(pdftex.def)             Requested size: 347.19592pt x 170.1749pt.
-) [110
-
- <./network_statistics_files/figure-beamer/unnamed-chunk-106-1.pdf>]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [111
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [112
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [113
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [114
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb
-<network_statistics_files/figure-beamer/unnamed-chunk-111-1.pdf, id=1088, 710.6
-55pt x 277.035pt>
-File: network_statistics_files/figure-beamer/unnamed-chunk-111-1.pdf Graphic fi
-le (type pdf)
-<use network_statistics_files/figure-beamer/unnamed-chunk-111-1.pdf>
-Package pdftex.def Info: network_statistics_files/figure-beamer/unnamed-chunk-1
-11-1.pdf  used on input line 14.
-(pdftex.def)             Requested size: 347.20468pt x 135.35097pt.
-) [115
-
- <./network_statistics_files/figure-beamer/unnamed-chunk-111-1.pdf>]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [116
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [117
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [118
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb) [119
-
-]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb
-<network_statistics_files/figure-beamer/unnamed-chunk-116-1.pdf, id=1132, 353.3
-2pt x 184.69pt>
-File: network_statistics_files/figure-beamer/unnamed-chunk-116-1.pdf Graphic fi
-le (type pdf)
-<use network_statistics_files/figure-beamer/unnamed-chunk-116-1.pdf>
-Package pdftex.def Info: network_statistics_files/figure-beamer/unnamed-chunk-1
-16-1.pdf  used on input line 9.
-(pdftex.def)             Requested size: 347.20009pt x 181.49094pt.
-) [120
-
- <./network_statistics_files/figure-beamer/unnamed-chunk-116-1.pdf>]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb
-<network_statistics_files/figure-beamer/unnamed-chunk-117-1.pdf, id=1147, 343.2
-825pt x 196.735pt>
-File: network_statistics_files/figure-beamer/unnamed-chunk-117-1.pdf Graphic fi
-le (type pdf)
-<use network_statistics_files/figure-beamer/unnamed-chunk-117-1.pdf>
-Package pdftex.def Info: network_statistics_files/figure-beamer/unnamed-chunk-1
-17-1.pdf  used on input line 10.
-(pdftex.def)             Requested size: 343.28165pt x 196.7345pt.
-) [121
-
- <./network_statistics_files/figure-beamer/unnamed-chunk-117-1.pdf>]
-\openout4 = `network_statistics.vrb'.
-
-(./network_statistics.vrb
-<network_statistics_files/figure-beamer/unnamed-chunk-118-1.pdf, id=1163, 350.3
-0875pt x 189.70876pt>
-File: network_statistics_files/figure-beamer/unnamed-chunk-118-1.pdf Graphic fi
-le (type pdf)
-<use network_statistics_files/figure-beamer/unnamed-chunk-118-1.pdf>
-Package pdftex.def Info: network_statistics_files/figure-beamer/unnamed-chunk-1
-18-1.pdf  used on input line 9.
-(pdftex.def)             Requested size: 347.21832pt x 188.03513pt.
-) [122
-
- <./network_statistics_files/figure-beamer/unnamed-chunk-118-1.pdf>]
 \tf@nav=\write6
-\openout6 = `network_statistics.nav'.
+\openout6 = `CSE-270-Individual-perfomance.nav'.
 
 \tf@toc=\write7
-\openout7 = `network_statistics.toc'.
+\openout7 = `CSE-270-Individual-perfomance.toc'.
 
 \tf@snm=\write8
-\openout8 = `network_statistics.snm'.
+\openout8 = `CSE-270-Individual-perfomance.snm'.
 
-(./network_statistics.aux) ) 
+(./CSE-270-Individual-perfomance.aux) ) 
 Here is how much of TeX's memory you used:
- 26119 strings out of 478268
- 514466 string characters out of 5846347
- 978632 words of memory out of 5000000
- 43118 multiletter control sequences out of 15000+600000
- 521231 words of font info for 108 fonts, out of 8000000 for 9000
+ 25413 strings out of 478268
+ 498652 string characters out of 5846347
+ 783181 words of memory out of 5000000
+ 42798 multiletter control sequences out of 15000+600000
+ 523291 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,15n,122p,1015b,674s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips
-/lm/lm-mathsy.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mat
-hit.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr
-/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive
-/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2022/texm
-f-dist/fonts/enc/dvips/lm/lm-rm.enc}</usr/local/texlive/2022/texmf-dist/fonts/t
-ype1/public/lm/lmex10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/publi
-c/lm/lmmi5.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmmi6.
-pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/l
-ocal/texlive/2022/texmf-dist/fonts/type1/public/lm/lmss8.pfb></usr/local/texliv
-e/2022/texmf-dist/fonts/type1/public/lm/lmssbo10.pfb></usr/local/texlive/2022/t
-exmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2022/texmf-dis
-t/fonts/type1/public/lm/lmsso8.pfb></usr/local/texlive/2022/texmf-dist/fonts/ty
-pe1/public/lm/lmsy5.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/
-lm/lmsy6.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtk10.p
-fb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtt8.pfb></usr/lo
-cal/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on network_statistics.pdf (122 pages, 2246130 bytes).
+ 128i,15n,122p,1026b,628s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/usr/local/texlive/2022/texmf-dist/font
+s/enc/dvips/lm/lm-ts1.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/l
+m/lm-mathsy.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathi
+t.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/lo
+cal/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/local/texlive/20
+22/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2022/texmf-di
+st/fonts/type1/public/lm/lmss8.pfb></usr/local/texlive/2022/texmf-dist/fonts/ty
+pe1/public/lm/lmssbx10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/publ
+ic/lm/lmsso8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy
+8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtt8.pfb></usr
+/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
+Output written on CSE-270-Individual-perfomance.pdf (45 pages, 353282 bytes).
 PDF statistics:
- 1325 PDF objects out of 1440 (max. 8388607)
- 1040 compressed objects within 11 object streams
- 372 named destinations out of 1000 (max. 500000)
- 31117 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 490 PDF objects out of 1000 (max. 8388607)
+ 388 compressed objects within 4 object streams
+ 137 named destinations out of 1000 (max. 500000)
+ 32920 words of extra memory for PDF output out of 35830 (max. 10000000)
 

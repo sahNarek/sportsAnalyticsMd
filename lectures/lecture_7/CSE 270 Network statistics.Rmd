@@ -36,7 +36,7 @@ Kevon Bacon, Played in 86 movies
 ```{r, setup, include = F}
 library(UserNetR)
 library(network)
-library(igraph)
+library(igraph)ƒ
 library(intergraph)
 library(ggplot2)
 ```
@@ -923,7 +923,6 @@ network::list.edge.attributes(usa)
 usa_i <- asIgraph(usa)
 V(usa_i)$name <- V(usa_i)$vertex.names
 usa_i <- delete_vertex_attr(usa_i, "vertex.names")
-save(usa_i, file="usa_i.rda")
 ```
 
 # US air flights network

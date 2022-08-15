@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.21)  13 AUG 2022 17:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.15)  15 AUG 2022 10:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**network_analysis.tex
-(./network_analysis.tex
+**CSE-270-Network-analysis.tex
+(./CSE-270-Network-analysis.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-02-24> (/usr/local/texlive/2022/texmf-dist/tex/latex
 /beamer/beamer.cls
@@ -768,8 +768,8 @@ Package: xurl 2022/01/09 v 0.10 modify URL breaks
 File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count348
 \l__pdf_internal_box=\box78
-) (./network_analysis.aux)
-\openout1 = `network_analysis.aux'.
+) (./CSE-270-Network-analysis.aux)
+\openout1 = `CSE-270-Network-analysis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 206.
 LaTeX Font Info:    ... okay on input line 206.
@@ -951,7 +951,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-(./network_analysis.nav) [1
+(./CSE-270-Network-analysis.nav) [1
 
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
 
@@ -972,9 +972,9 @@ Package pdftex.def Info: ./images/twitter.png  used on input line 243.
 [4
 
  <./images/twitter.png>]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
+(./CSE-270-Network-analysis.vrb
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
 3.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/t1lmtt.fd
@@ -982,9 +982,9 @@ File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )) [5
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [6
+(./CSE-270-Network-analysis.vrb) [6
 
 ]
 <./images/network_data_1.png, id=67, 919.435pt x 236.885pt>
@@ -997,269 +997,269 @@ Package pdftex.def Info: ./images/network_data_1.png  used on input line 302.
  <./images/network_data_1.png>] [8
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [9
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [10
+(./CSE-270-Network-analysis.vrb) [9
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-8-1.pdf, id=98, 140.525pt x
- 189.70876pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-8-1.pdf Graphic file (
-type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-8-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-8-1
-.pdf  used on input line 9.
-(pdftex.def)             Requested size: 140.52678pt x 189.71117pt.
+(./CSE-270-Network-analysis.vrb) [10
+
+]
+\openout4 = `CSE-270-Network-analysis.vrb'.
+
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-8-1.pdf, id=98, 152
+.57pt x 172.645pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-8-1.pdf Graphi
+c file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-8-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-8-1.pdf  used on input line 9.
+(pdftex.def)             Requested size: 152.57195pt x 172.64719pt.
 ) [11
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-8-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-8-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
+(./CSE-270-Network-analysis.vrb
 LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <8> not available
 (Font)              Font shape `T1/lmss/bx/sl' tried instead on input line 3.
-<network_analysis_files/figure-beamer/unnamed-chunk-9-1.pdf, id=114, 152.57pt x
- 177.66376pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-9-1.pdf Graphic file (
-type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-9-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-9-1
-.pdf  used on input line 11.
-(pdftex.def)             Requested size: 152.57428pt x 177.66873pt.
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-9-1.pdf, id=114, 15
+1.56625pt x 182.6825pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-9-1.pdf Graphi
+c file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-9-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-9-1.pdf  used on input line 11.
+(pdftex.def)             Requested size: 151.56818pt x 182.68481pt.
 ) [12
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-9-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-9-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-10-1.pdf, id=131, 152.57pt 
-x 190.7125pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-10-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-10-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-10-
-1.pdf  used on input line 12.
-(pdftex.def)             Requested size: 152.5766pt x 190.72075pt.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-10-1.pdf, id=131, 1
+54.5775pt x 174.6525pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-10-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-10-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-10-1.pdf  used on input line 12.
+(pdftex.def)             Requested size: 154.58653pt x 174.66272pt.
 ) [13
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-10-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-10-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-11-1.pdf, id=148, 164.615pt
- x 181.67876pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-11-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-11-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-11-
-1.pdf  used on input line 12.
-(pdftex.def)             Requested size: 164.61961pt x 181.68384pt.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-11-1.pdf, id=148, 1
+64.615pt x 183.68625pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-11-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-11-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-11-1.pdf  used on input line 12.
+(pdftex.def)             Requested size: 164.61961pt x 183.69138pt.
 ) [14
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-11-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-11-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-12-1.pdf, id=165, 152.57pt 
-x 191.71625pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-12-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-12-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-12-
-1.pdf  used on input line 12.
-(pdftex.def)             Requested size: 152.5766pt x 191.72455pt.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-12-1.pdf, id=165, 1
+64.615pt x 180.675pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-12-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-12-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-12-1.pdf  used on input line 12.
+(pdftex.def)             Requested size: 164.61961pt x 180.68005pt.
 ) [15
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-12-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-12-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [16
+(./CSE-270-Network-analysis.vrb) [16
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-15-1.pdf, id=188, 165.61874
-pt x 180.675pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-15-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-15-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-15-
-1.pdf  used on input line 20.
-(pdftex.def)             Requested size: 138.70686pt x 151.31657pt.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-15-1.pdf, id=188, 1
+65.61874pt x 182.6825pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-15-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-15-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-15-1.pdf  used on input line 20.
+(pdftex.def)             Requested size: 137.18805pt x 151.32259pt.
 ) [17
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-15-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-15-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [18
+(./CSE-270-Network-analysis.vrb) [18
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-17-1.pdf, id=211, 145.54375
-pt x 146.5475pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-17-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-17-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-17-
-1.pdf  used on input line 10.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-17-1.pdf, id=211, 1
+45.54375pt x 146.5475pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-17-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-17-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-17-1.pdf  used on input line 10.
 (pdftex.def)             Requested size: 145.55447pt x 146.55829pt.
 ) [19
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-17-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-17-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-18-1.pdf, id=227, 145.54375
-pt x 146.5475pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-18-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-18-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-18-
-1.pdf  used on input line 12.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-18-1.pdf, id=227, 1
+45.54375pt x 146.5475pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-18-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-18-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-18-1.pdf  used on input line 12.
 (pdftex.def)             Requested size: 145.55447pt x 146.55829pt.
 ) [20
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-18-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-18-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-19-1.pdf, id=242, 155.58125
-pt x 146.5475pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-19-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-19-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-19-
-1.pdf  used on input line 11.
-(pdftex.def)             Requested size: 155.58322pt x 146.54935pt.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-19-1.pdf, id=242, 1
+55.58125pt x 126.4725pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-19-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-19-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-19-1.pdf  used on input line 11.
+(pdftex.def)             Requested size: 155.58322pt x 126.4741pt.
 ) [21
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-19-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-19-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [22
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [23
+(./CSE-270-Network-analysis.vrb) [22
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [24
+(./CSE-270-Network-analysis.vrb) [23
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-24-1.pdf, id=279, 229.85875
-pt x 178.6675pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-24-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-24-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-24-
-1.pdf  used on input line 14.
-(pdftex.def)             Requested size: 227.12242pt x 176.54057pt.
+(./CSE-270-Network-analysis.vrb) [24
+
+]
+\openout4 = `CSE-270-Network-analysis.vrb'.
+
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-24-1.pdf, id=279, 2
+29.85875pt x 180.675pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-24-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-24-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-24-1.pdf  used on input line 14.
+(pdftex.def)             Requested size: 224.58661pt x 176.53096pt.
 )
-Overfull \vbox (9.61705pt too high) detected at line 682
+Overfull \vbox (9.60744pt too high) detected at line 682
  []
 
 [25
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-24-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-24-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [26
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [27
+(./CSE-270-Network-analysis.vrb) [26
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/page_28-1.pdf, id=311, 229.85875pt x 191.
-71625pt>
-File: network_analysis_files/figure-beamer/page_28-1.pdf Graphic file (type pdf
-)
-<use network_analysis_files/figure-beamer/page_28-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/page_28-1.pdf  us
-ed on input line 15.
-(pdftex.def)             Requested size: 181.42857pt x 151.32253pt.
+(./CSE-270-Network-analysis.vrb) [27
+
+]
+\openout4 = `CSE-270-Network-analysis.vrb'.
+
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/page_28-1.pdf, id=311, 229.85875p
+t x 183.68625pt>
+File: CSE-270-Network-analysis_files/figure-beamer/page_28-1.pdf Graphic file (
+type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/page_28-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/page_28-1
+.pdf  used on input line 15.
+(pdftex.def)             Requested size: 189.36221pt x 151.32439pt.
 ) [28
 
- <./network_analysis_files/figure-beamer/page_28-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/page_28-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/page_29-1.pdf, id=327, 229.85875pt x 191.
-71625pt>
-File: network_analysis_files/figure-beamer/page_29-1.pdf Graphic file (type pdf
-)
-<use network_analysis_files/figure-beamer/page_29-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/page_29-1.pdf  us
-ed on input line 15.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/page_29-1.pdf, id=327, 229.85875p
+t x 191.71625pt>
+File: CSE-270-Network-analysis_files/figure-beamer/page_29-1.pdf Graphic file (
+type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/page_29-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/page_29-1
+.pdf  used on input line 15.
 (pdftex.def)             Requested size: 181.42857pt x 151.32253pt.
 ) [29
 
- <./network_analysis_files/figure-beamer/page_29-1.pdf>] [30
+ <./CSE-270-Network-analysis_files/figure-beamer/page_29-1.pdf>] [30
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-27-1.pdf, id=350, 147.55125
-pt x 152.57pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-27-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-27-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-27-
-1.pdf  used on input line 12.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-27-1.pdf, id=350, 1
+47.55125pt x 152.57pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-27-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-27-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-27-1.pdf  used on input line 12.
 (pdftex.def)             Requested size: 147.55312pt x 152.57195pt.
 ) [31
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-27-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-27-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-28-1.pdf, id=366, 147.55125
-pt x 152.57pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-28-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-28-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-28-
-1.pdf  used on input line 12.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-28-1.pdf, id=366, 1
+47.55125pt x 152.57pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-28-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-28-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-28-1.pdf  used on input line 12.
 (pdftex.def)             Requested size: 147.55312pt x 152.57195pt.
 ) [32
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-28-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-28-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-29-1.pdf, id=381, 149.55875
-pt x 152.57pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-29-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-29-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-29-
-1.pdf  used on input line 11.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-29-1.pdf, id=381, 1
+49.55875pt x 152.57pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-29-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-29-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-29-1.pdf  used on input line 11.
 (pdftex.def)             Requested size: 149.56978pt x 152.58125pt.
 ) [33
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-29-1.pdf>] [34
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-29-1.pdf>] [34
 
 ]
 <./images/layout_1.png, id=403, 911.405pt x 618.31pt>
@@ -1270,173 +1270,173 @@ Package pdftex.def Info: ./images/layout_1.png  used on input line 850.
 [35
 
  <./images/layout_1.png>]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-31-1.pdf, id=412, 142.5325p
-t x 179.67125pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-31-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-31-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-31-
-1.pdf  used on input line 12.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-31-1.pdf, id=412, 1
+42.5325pt x 179.67125pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-31-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-31-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-31-1.pdf  used on input line 12.
 (pdftex.def)             Requested size: 140.0506pt x 176.54266pt.
 ) [36
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-31-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-31-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-32-1.pdf, id=429, 290.08376
-pt x 190.7125pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-32-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-32-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-32-
-1.pdf  used on input line 11.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-32-1.pdf, id=429, 2
+90.08376pt x 190.7125pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-32-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-32-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-32-1.pdf  used on input line 11.
 (pdftex.def)             Requested size: 268.52245pt x 176.53723pt.
 ) [37
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-32-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-32-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-33-1.pdf, id=446, 148.555pt
- x 166.6225pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-33-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-33-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-33-
-1.pdf  used on input line 10.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-33-1.pdf, id=446, 1
+48.555pt x 166.6225pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-33-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-33-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-33-1.pdf  used on input line 10.
 (pdftex.def)             Requested size: 148.56142pt x 166.6297pt.
 ) [38
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-33-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-33-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [39
+(./CSE-270-Network-analysis.vrb) [39
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-35-1.pdf, id=469, 145.54375
-pt x 186.6975pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-35-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-35-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-35-
-1.pdf  used on input line 9.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-35-1.pdf, id=469, 1
+45.54375pt x 186.6975pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-35-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-35-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-35-1.pdf  used on input line 9.
 (pdftex.def)             Requested size: 137.62395pt x 176.53831pt.
 ) [40
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-35-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-35-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-36-1.pdf, id=485, 161.60374
-pt x 186.6975pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-36-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-36-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-36-
-1.pdf  used on input line 9.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-36-1.pdf, id=485, 1
+61.60374pt x 186.6975pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-36-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-36-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-36-1.pdf  used on input line 9.
 (pdftex.def)             Requested size: 152.81004pt x 176.53831pt.
 ) [41
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-36-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-36-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-37-1.pdf, id=501, 145.54375
-pt x 186.6975pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-37-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-37-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-37-
-1.pdf  used on input line 9.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-37-1.pdf, id=501, 1
+45.54375pt x 186.6975pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-37-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-37-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-37-1.pdf  used on input line 9.
 (pdftex.def)             Requested size: 137.62395pt x 176.53831pt.
 ) [42
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-37-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-37-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-38-1.pdf, id=517, 145.54375
-pt x 186.6975pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-38-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-38-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-38-
-1.pdf  used on input line 9.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-38-1.pdf, id=517, 1
+45.54375pt x 186.6975pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-38-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-38-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-38-1.pdf  used on input line 9.
 (pdftex.def)             Requested size: 137.62395pt x 176.53831pt.
 ) [43
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-38-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-38-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-39-1.pdf, id=534, 371.3875p
-t x 217.81375pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-39-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-39-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-39-
-1.pdf  used on input line 12.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-39-1.pdf, id=534, 3
+71.3875pt x 217.81375pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-39-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-39-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-39-1.pdf  used on input line 12.
 (pdftex.def)             Requested size: 300.9979pt x 176.53119pt.
 ) [44
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-39-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-39-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-40-1.pdf, id=550, 142.5325p
-t x 184.69pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-40-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-40-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-40-
-1.pdf  used on input line 13.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-40-1.pdf, id=550, 1
+42.5325pt x 184.69pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-40-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-40-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-40-1.pdf  used on input line 13.
 (pdftex.def)             Requested size: 136.23589pt x 176.531pt.
 ) [45
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-40-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-40-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-41-1.pdf, id=567, 142.5325p
-t x 91.34125pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-41-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-41-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-41-
-1.pdf  used on input line 21.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-41-1.pdf, id=567, 1
+42.5325pt x 91.34125pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-41-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-41-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-41-1.pdf  used on input line 21.
 (pdftex.def)             Requested size: 142.53214pt x 91.34102pt.
 ) [46
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-41-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-41-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-42-1.pdf, id=582, 145.54375
-pt x 149.55875pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-42-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-42-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-42-
-1.pdf  used on input line 21.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-42-1.pdf, id=582, 1
+45.54375pt x 149.55875pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-42-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-42-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-42-1.pdf  used on input line 21.
 (pdftex.def)             Requested size: 145.55447pt x 149.56978pt.
 ) [47
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-42-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-42-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [48
+(./CSE-270-Network-analysis.vrb) [48
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [49
+(./CSE-270-Network-analysis.vrb) [49
 
 ] [50
 
@@ -1449,66 +1449,66 @@ Package pdftex.def Info: ./images/marvel_1.png  used on input line 1116.
 [51
 
  <./images/marvel_1.png>]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [52
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [53
+(./CSE-270-Network-analysis.vrb) [52
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-49-1.pdf, id=657, 467.7475p
-t x 413.545pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-49-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-49-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-49-
-1.pdf  used on input line 9.
+(./CSE-270-Network-analysis.vrb) [53
+
+]
+\openout4 = `CSE-270-Network-analysis.vrb'.
+
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-49-1.pdf, id=657, 4
+67.7475pt x 413.545pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-49-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-49-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-49-1.pdf  used on input line 9.
 (pdftex.def)             Requested size: 199.6715pt x 176.5336pt.
 ) [54
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-49-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-49-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-50-1.pdf, id=672, 408.52625
-pt x 328.22626pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-50-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-50-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-50-
-1.pdf  used on input line 12.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-50-1.pdf, id=672, 4
+08.52625pt x 328.22626pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-50-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-50-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-50-1.pdf  used on input line 12.
 (pdftex.def)             Requested size: 219.72195pt x 176.53336pt.
 ) [55
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-50-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-50-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-51-1.pdf, id=686, 608.2725p
-t x 375.4025pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-51-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-51-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-51-
-1.pdf  used on input line 9.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-51-1.pdf, id=686, 6
+08.2725pt x 375.4025pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-51-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-51-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-51-1.pdf  used on input line 9.
 (pdftex.def)             Requested size: 286.03662pt x 176.53084pt.
 ) [56
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-51-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-51-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [57
+(./CSE-270-Network-analysis.vrb) [57
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
+(./CSE-270-Network-analysis.vrb
 LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
 19.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/ts1lmtt.fd
@@ -1516,9 +1516,9 @@ File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )) [58
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
+(./CSE-270-Network-analysis.vrb
 Overfull \hbox (1.28865pt too wide) in paragraph at lines 16--16
 []\T1/lmtt/m/n/8 ##  [1]  519 1405 1153  371  714  585  624  263 1215 1519  880
   449  650  645  678[] 
@@ -1533,126 +1533,126 @@ Overfull \hbox (1.28865pt too wide) in paragraph at lines 28--28
 ) [59
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-57-1.pdf, id=724, 606.265pt
- x 375.4025pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-57-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-57-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-57-
-1.pdf  used on input line 12.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-57-1.pdf, id=724, 6
+06.265pt x 375.4025pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-57-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-57-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-57-1.pdf  used on input line 12.
 (pdftex.def)             Requested size: 285.0926pt x 176.53084pt.
 ) [60
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-57-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-57-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-58-1.pdf, id=739, 630.355pt
- x 375.4025pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-58-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-58-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-58-
-1.pdf  used on input line 12.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-58-1.pdf, id=739, 6
+30.355pt x 375.4025pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-58-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-58-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-58-1.pdf  used on input line 12.
 (pdftex.def)             Requested size: 296.42078pt x 176.53084pt.
 ) [61
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-58-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-58-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-59-1.pdf, id=755, 608.2725p
-t x 377.41pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-59-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-59-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-59-
-1.pdf  used on input line 12.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-59-1.pdf, id=755, 6
+08.2725pt x 377.41pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-59-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-59-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-59-1.pdf  used on input line 12.
 (pdftex.def)             Requested size: 284.51447pt x 176.53041pt.
 ) [62
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-59-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-59-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-60-1.pdf, id=770, 633.36626
-pt x 156.585pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-60-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-60-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-60-
-1.pdf  used on input line 20.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-60-1.pdf, id=770, 6
+33.36626pt x 156.585pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-60-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-60-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-60-1.pdf  used on input line 20.
 (pdftex.def)             Requested size: 347.20245pt x 85.83768pt.
 ) [63
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-60-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-60-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [64
+(./CSE-270-Network-analysis.vrb) [64
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-62-1.pdf, id=792, 597.23125
-pt x 373.395pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-62-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-62-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-62-
-1.pdf  used on input line 11.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-62-1.pdf, id=792, 5
+97.23125pt x 373.395pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-62-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-62-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-62-1.pdf  used on input line 11.
 (pdftex.def)             Requested size: 282.35728pt x 176.53262pt.
 ) [65
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-62-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-62-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [66
+(./CSE-270-Network-analysis.vrb) [66
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-64-1.pdf, id=814, 455.7025p
-t x 457.71pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-64-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-64-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-64-
-1.pdf  used on input line 9.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-64-1.pdf, id=814, 4
+55.7025pt x 457.71pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-64-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-64-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-64-1.pdf  used on input line 9.
 (pdftex.def)             Requested size: 200.86433pt x 201.7492pt.
 ) [67
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-64-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-64-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-65-1.pdf, id=832, 453.695pt
- x 457.71pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-65-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-65-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-65-
-1.pdf  used on input line 12.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-65-1.pdf, id=832, 4
+53.695pt x 457.71pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-65-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-65-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-65-1.pdf  used on input line 12.
 (pdftex.def)             Requested size: 174.98117pt x 176.52968pt.
 ) [68
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-65-1.pdf>] [69
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-65-1.pdf>] [69
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-66-1.pdf, id=855, 595.22375
-pt x 371.3875pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-66-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-66-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-66-
-1.pdf  used on input line 13.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-66-1.pdf, id=855, 5
+95.22375pt x 371.3875pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-66-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-66-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-66-1.pdf  used on input line 13.
 (pdftex.def)             Requested size: 282.93404pt x 176.53555pt.
 )
 Overfull \vbox (4.86203pt too high) detected at line 1452
@@ -1660,17 +1660,17 @@ Overfull \vbox (4.86203pt too high) detected at line 1452
 
 [70
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-66-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-66-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-67-1.pdf, id=870, 550.055pt
- x 378.41376pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-67-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-67-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-67-
-1.pdf  used on input line 13.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-67-1.pdf, id=870, 5
+50.055pt x 378.41376pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-67-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-67-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-67-1.pdf  used on input line 13.
 (pdftex.def)             Requested size: 256.60385pt x 176.53221pt.
 )
 Overfull \vbox (4.85869pt too high) detected at line 1467
@@ -1678,98 +1678,98 @@ Overfull \vbox (4.85869pt too high) detected at line 1467
 
 [71
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-67-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-67-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [72
+(./CSE-270-Network-analysis.vrb) [72
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-69-1.pdf, id=892, 421.575pt
- x 394.47375pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-69-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-69-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-69-
-1.pdf  used on input line 10.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-69-1.pdf, id=892, 4
+21.575pt x 394.47375pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-69-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-69-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-69-1.pdf  used on input line 10.
 (pdftex.def)             Requested size: 188.65846pt x 176.53041pt.
 ) [73
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-69-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-69-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [74
+(./CSE-270-Network-analysis.vrb) [74
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-71-1.pdf, id=915, 350.30875
-pt x 344.28625pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-71-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-71-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-71-
-1.pdf  used on input line 12.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-71-1.pdf, id=915, 3
+50.30875pt x 344.28625pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-71-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-71-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-71-1.pdf  used on input line 12.
 (pdftex.def)             Requested size: 205.2799pt x 201.75073pt.
 ) [75
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-71-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-71-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-72-1.pdf, id=930, 493.845pt
- x 285.065pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-72-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-72-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-72-
-1.pdf  used on input line 15.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-72-1.pdf, id=930, 4
+93.845pt x 285.065pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-72-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-72-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-72-1.pdf  used on input line 15.
 (pdftex.def)             Requested size: 283.97372pt x 163.9198pt.
 ) [76
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-72-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-72-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-73-1.pdf, id=946, 490.83376
-pt x 316.18124pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-73-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-73-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-73-
-1.pdf  used on input line 15.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-73-1.pdf, id=946, 4
+90.83376pt x 316.18124pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-73-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-73-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-73-1.pdf  used on input line 15.
 (pdftex.def)             Requested size: 274.04866pt x 176.53441pt.
 ) [77
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-73-1.pdf>] [78
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-73-1.pdf>] [78
 
 ] [79
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [80
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [81
+(./CSE-270-Network-analysis.vrb) [80
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
+(./CSE-270-Network-analysis.vrb) [81
+
+]
+\openout4 = `CSE-270-Network-analysis.vrb'.
+
+(./CSE-270-Network-analysis.vrb
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <8> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 22.
 ) [82
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
+(./CSE-270-Network-analysis.vrb
 Overfull \hbox (1.30464pt too wide) in paragraph at lines 32--32
 []\T1/lmtt/m/n/8 ##   PASS_TYPE  G PASS_TEAMMATE_PLAYER_NAME PASS_TEAMMATE_PLAY
 ER_ID FREQUENCY PASS[] 
@@ -1814,224 +1814,224 @@ Overfull \hbox (1.29665pt too wide) in paragraph at lines 32--32
 ) [83
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [84
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [85
+(./CSE-270-Network-analysis.vrb) [84
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-83-1.pdf, id=1035, 390.4587
-6pt x 347.2975pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-83-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-83-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-83-
-1.pdf  used on input line 13.
+(./CSE-270-Network-analysis.vrb) [85
+
+]
+\openout4 = `CSE-270-Network-analysis.vrb'.
+
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-83-1.pdf, id=1035, 
+390.45876pt x 347.2975pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-83-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-83-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-83-1.pdf  used on input line 13.
 (pdftex.def)             Requested size: 212.65579pt x 189.14885pt.
 ) [86
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-83-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-83-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [87
+(./CSE-270-Network-analysis.vrb) [87
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-85-1.pdf, id=1057, 391.4625
-pt x 347.2975pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-85-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-85-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-85-
-1.pdf  used on input line 14.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-85-1.pdf, id=1057, 
+391.4625pt x 347.2975pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-85-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-85-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-85-1.pdf  used on input line 14.
 (pdftex.def)             Requested size: 213.20245pt x 189.14885pt.
 ) [88
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-85-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-85-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-86-1.pdf, id=1072, 205.7687
-5pt x 258.9675pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-86-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-86-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-86-
-1.pdf  used on input line 13.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-86-1.pdf, id=1072, 
+205.76875pt x 258.9675pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-86-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-86-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-86-1.pdf  used on input line 13.
 (pdftex.def)             Requested size: 130.25352pt x 163.92882pt.
 ) [89
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-86-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-86-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [90
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [91
+(./CSE-270-Network-analysis.vrb) [90
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [92
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [93
+(./CSE-270-Network-analysis.vrb) [91
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [94
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [95
+(./CSE-270-Network-analysis.vrb) [92
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [96
+(./CSE-270-Network-analysis.vrb) [93
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-94-1.pdf, id=1136, 857.2025
-pt x 421.575pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-94-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-94-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-94-
-1.pdf  used on input line 17.
-(pdftex.def)             Requested size: 347.19127pt x 170.7498pt.
+(./CSE-270-Network-analysis.vrb) [94
+
+]
+\openout4 = `CSE-270-Network-analysis.vrb'.
+
+(./CSE-270-Network-analysis.vrb) [95
+
+]
+\openout4 = `CSE-270-Network-analysis.vrb'.
+
+(./CSE-270-Network-analysis.vrb) [96
+
+]
+\openout4 = `CSE-270-Network-analysis.vrb'.
+
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-94-1.pdf, id=1136, 
+856.19875pt x 421.575pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-94-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-94-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-94-1.pdf  used on input line 17.
+(pdftex.def)             Requested size: 347.18973pt x 170.9492pt.
 ) [97
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-94-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-94-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-95-1.pdf, id=1152, 857.2025
-pt x 423.5825pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-95-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-95-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-95-
-1.pdf  used on input line 16.
-(pdftex.def)             Requested size: 347.19127pt x 171.5629pt.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-95-1.pdf, id=1152, 
+856.19875pt x 423.5825pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-95-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-95-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-95-1.pdf  used on input line 16.
+(pdftex.def)             Requested size: 347.18973pt x 171.76326pt.
 )
-Overfull \vbox (1.66714pt too high) detected at line 2009
+Overfull \vbox (1.86751pt too high) detected at line 2009
  []
 
 [98
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-95-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-95-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [99
+(./CSE-270-Network-analysis.vrb) [99
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-98-1.pdf, id=1174, 857.2025
-pt x 349.305pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-98-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-98-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-98-
-1.pdf  used on input line 27.
-(pdftex.def)             Requested size: 340.38976pt x 138.70682pt.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-98-1.pdf, id=1174, 
+856.19875pt x 349.305pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-98-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-98-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-98-1.pdf  used on input line 27.
+(pdftex.def)             Requested size: 339.99117pt x 138.70682pt.
 ) [100
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-98-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-98-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-99-1.pdf, id=1189, 474.7737
-4pt x 317.185pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-99-1.pdf Graphic file 
-(type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-99-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-99-
-1.pdf  used on input line 13.
-(pdftex.def)             Requested size: 283.12053pt x 189.14604pt.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-99-1.pdf, id=1189, 
+473.77pt x 317.185pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-99-1.pdf Graph
+ic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-99-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-99-1.pdf  used on input line 13.
+(pdftex.def)             Requested size: 282.52197pt x 189.14604pt.
 ) [101
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-99-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-99-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-100-1.pdf, id=1204, 456.706
-25pt x 454.69875pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-100-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-100-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-100
--1.pdf  used on input line 14.
-(pdftex.def)             Requested size: 189.97556pt x 189.1405pt.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-100-1.pdf, id=1204,
+ 455.7025pt x 454.69875pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-100-1.pdf Grap
+hic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-100-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-100-1.pdf  used on input line 14.
+(pdftex.def)             Requested size: 189.55803pt x 189.1405pt.
 ) [102
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-100-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-100-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [103
+(./CSE-270-Network-analysis.vrb) [103
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-102-1.pdf, id=1229, 476.781
-25pt x 320.19624pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-102-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-102-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-102
--1.pdf  used on input line 12.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-102-1.pdf, id=1229,
+ 476.78125pt x 320.19624pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-102-1.pdf Grap
+hic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-102-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-102-1.pdf  used on input line 12.
 (pdftex.def)             Requested size: 281.64043pt x 189.14377pt.
 ) [104
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-102-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-102-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-103-1.pdf, id=1244, 486.818
-76pt x 316.18124pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-103-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-103-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-103
--1.pdf  used on input line 12.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-103-1.pdf, id=1244,
+ 486.81876pt x 316.18124pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-103-1.pdf Grap
+hic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-103-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-103-1.pdf  used on input line 12.
 (pdftex.def)             Requested size: 291.2244pt x 189.14574pt.
 ) [105
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-103-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-103-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-104-1.pdf, id=1259, 320.196
-24pt x 318.18875pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-104-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-104-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-104
--1.pdf  used on input line 13.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-104-1.pdf, id=1259,
+ 320.19624pt x 318.18875pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-104-1.pdf Grap
+hic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-104-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-104-1.pdf  used on input line 13.
 (pdftex.def)             Requested size: 190.33101pt x 189.13773pt.
 ) [106
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-104-1.pdf>]
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-104-1.pdf>]
 <./images/nba_squad.png, id=1274, 863.225pt x 677.53125pt>
 File: ./images/nba_squad.png Graphic file (type png)
 <use ./images/nba_squad.png>
@@ -2040,133 +2040,133 @@ Package pdftex.def Info: ./images/nba_squad.png  used on input line 2168.
 [107
 
  <./images/nba_squad.png>]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [108
+(./CSE-270-Network-analysis.vrb) [108
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-107-1.pdf, id=1290, 462.728
-74pt x 309.155pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-107-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-107-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-107
--1.pdf  used on input line 12.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-107-1.pdf, id=1290,
+ 462.72874pt x 309.155pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-107-1.pdf Grap
+hic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-107-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-107-1.pdf  used on input line 12.
 (pdftex.def)             Requested size: 245.35803pt x 163.92683pt.
 ) [109
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-107-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-107-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-108-1.pdf, id=1306, 805.007
-5pt x 400.49625pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-108-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-108-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-108
--1.pdf  used on input line 12.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-108-1.pdf, id=1306,
+ 805.0075pt x 400.49625pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-108-1.pdf Grap
+hic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-108-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-108-1.pdf  used on input line 12.
 (pdftex.def)             Requested size: 347.19057pt x 172.72946pt.
 ) [110
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-108-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-108-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [111
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [112
+(./CSE-270-Network-analysis.vrb) [111
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-111-1.pdf, id=1335, 500.871
-25pt x 345.29pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-111-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-111-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-111
--1.pdf  used on input line 12.
+(./CSE-270-Network-analysis.vrb) [112
+
+]
+\openout4 = `CSE-270-Network-analysis.vrb'.
+
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-111-1.pdf, id=1335,
+ 500.87125pt x 345.29pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-111-1.pdf Grap
+hic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-111-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-111-1.pdf  used on input line 12.
 (pdftex.def)             Requested size: 274.3642pt x 189.14084pt.
 ) [113
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-111-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-111-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-112-1.pdf, id=1350, 446.668
-75pt x 288.07625pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-112-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-112-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-112
--1.pdf  used on input line 16.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-112-1.pdf, id=1350,
+ 446.66875pt x 288.07625pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-112-1.pdf Grap
+hic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-112-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-112-1.pdf  used on input line 16.
 (pdftex.def)             Requested size: 254.17444pt x 163.92822pt.
 ) [114
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-112-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-112-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-113-1.pdf, id=1366, 445.665
-pt x 297.11pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-113-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-113-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-113
--1.pdf  used on input line 15.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-113-1.pdf, id=1366,
+ 445.665pt x 297.11pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-113-1.pdf Grap
+hic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-113-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-113-1.pdf  used on input line 15.
 (pdftex.def)             Requested size: 245.89174pt x 163.92783pt.
 ) [115
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-113-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-113-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-114-1.pdf, id=1382, 458.713
-75pt x 413.545pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-114-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-114-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-114
--1.pdf  used on input line 12.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-114-1.pdf, id=1382,
+ 458.71375pt x 413.545pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-114-1.pdf Grap
+hic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-114-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-114-1.pdf  used on input line 12.
 (pdftex.def)             Requested size: 209.79999pt x 189.14134pt.
 ) [116
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-114-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-114-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-115-1.pdf, id=1397, 458.713
-75pt x 413.545pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-115-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-115-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-115
--1.pdf  used on input line 12.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-115-1.pdf, id=1397,
+ 458.71375pt x 413.545pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-115-1.pdf Grap
+hic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-115-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-115-1.pdf  used on input line 12.
 (pdftex.def)             Requested size: 209.79999pt x 189.14134pt.
 ) [117
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-115-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-115-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-116-1.pdf, id=1412, 458.713
-75pt x 424.58624pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-116-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-116-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-116
--1.pdf  used on input line 15.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-116-1.pdf, id=1412,
+ 458.71375pt x 424.58624pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-116-1.pdf Grap
+hic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-116-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-116-1.pdf  used on input line 15.
 (pdftex.def)             Requested size: 204.34746pt x 189.14436pt.
 ) [118
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-116-1.pdf>] [119
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-116-1.pdf>] [119
 
 ]
 LaTeX Font Info:    Trying to load font information for OT1+lmss on input line 
@@ -2235,55 +2235,55 @@ Overfull \hbox (12.70209pt too wide) in paragraph at lines 2381--2381
 [120
 
  <./images/wc_14.png>]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [121
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [122
+(./CSE-270-Network-analysis.vrb) [121
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [123
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [124
+(./CSE-270-Network-analysis.vrb) [122
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [125
-
-]
-\openout4 = `network_analysis.vrb'.
-
-(./network_analysis.vrb) [126
+(./CSE-270-Network-analysis.vrb) [123
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [127
+(./CSE-270-Network-analysis.vrb) [124
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-129-1.pdf, id=1505, 660.467
-5pt x 328.22626pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-129-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-129-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-129
--1.pdf  used on input line 20.
+(./CSE-270-Network-analysis.vrb) [125
+
+]
+\openout4 = `CSE-270-Network-analysis.vrb'.
+
+(./CSE-270-Network-analysis.vrb) [126
+
+]
+\openout4 = `CSE-270-Network-analysis.vrb'.
+
+(./CSE-270-Network-analysis.vrb) [127
+
+]
+\openout4 = `CSE-270-Network-analysis.vrb'.
+
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-129-1.pdf, id=1505,
+ 660.4675pt x 328.22626pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-129-1.pdf Grap
+hic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-129-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-129-1.pdf  used on input line 20.
 (pdftex.def)             Requested size: 347.20413pt x 172.54674pt.
 ) [128
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-129-1.pdf>]
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-129-1.pdf>]
 File: ./images/wc_14.png Graphic file (type png)
 <use ./images/wc_14.png>
 Package pdftex.def Info: ./images/wc_14.png  used on input line 2606.
@@ -2296,35 +2296,35 @@ Overfull \hbox (12.70209pt too wide) in paragraph at lines 2606--2606
 [129
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [130
+(./CSE-270-Network-analysis.vrb) [130
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-132-1.pdf, id=1534, 732.737
-5pt x 472.76625pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-132-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-132-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-132
--1.pdf  used on input line 12.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-132-1.pdf, id=1534,
+ 732.7375pt x 472.76625pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-132-1.pdf Grap
+hic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-132-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-132-1.pdf  used on input line 12.
 (pdftex.def)             Requested size: 312.70068pt x 201.7562pt.
 ) [131
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-132-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-132-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-133-1.pdf, id=1549, 400.496
-25pt x 310.15875pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-133-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-133-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-133
--1.pdf  used on input line 12.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-133-1.pdf, id=1549,
+ 400.49625pt x 310.15875pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-133-1.pdf Grap
+hic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-133-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-133-1.pdf  used on input line 12.
 (pdftex.def)             Requested size: 260.51503pt x 201.75224pt.
 )
 Overfull \vbox (4.46901pt too high) detected at line 2664
@@ -2332,67 +2332,67 @@ Overfull \vbox (4.46901pt too high) detected at line 2664
 
 [132
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-133-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-133-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-134-1.pdf, id=1562, 594.22p
-t x 324.21124pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-134-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-134-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-134
--1.pdf  used on input line 13.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-134-1.pdf, id=1562,
+ 594.22pt x 324.21124pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-134-1.pdf Grap
+hic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-134-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-134-1.pdf  used on input line 13.
 (pdftex.def)             Requested size: 347.20474pt x 189.43771pt.
 ) [133
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-134-1.pdf>]
-\openout4 = `network_analysis.vrb'.
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-134-1.pdf>]
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb) [134
+(./CSE-270-Network-analysis.vrb) [134
 
 ]
-\openout4 = `network_analysis.vrb'.
+\openout4 = `CSE-270-Network-analysis.vrb'.
 
-(./network_analysis.vrb
-<network_analysis_files/figure-beamer/unnamed-chunk-136-1.pdf, id=1585, 456.706
-25pt x 454.69875pt>
-File: network_analysis_files/figure-beamer/unnamed-chunk-136-1.pdf Graphic file
- (type pdf)
-<use network_analysis_files/figure-beamer/unnamed-chunk-136-1.pdf>
-Package pdftex.def Info: network_analysis_files/figure-beamer/unnamed-chunk-136
--1.pdf  used on input line 9.
+(./CSE-270-Network-analysis.vrb
+<CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-136-1.pdf, id=1585,
+ 456.70625pt x 454.69875pt>
+File: CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-136-1.pdf Grap
+hic file (type pdf)
+<use CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-136-1.pdf>
+Package pdftex.def Info: CSE-270-Network-analysis_files/figure-beamer/unnamed-c
+hunk-136-1.pdf  used on input line 9.
 (pdftex.def)             Requested size: 202.64478pt x 201.75403pt.
 ) [135
 
- <./network_analysis_files/figure-beamer/unnamed-chunk-136-1.pdf>]
+ <./CSE-270-Network-analysis_files/figure-beamer/unnamed-chunk-136-1.pdf>]
 \tf@nav=\write6
-\openout6 = `network_analysis.nav'.
+\openout6 = `CSE-270-Network-analysis.nav'.
 
 \tf@toc=\write7
-\openout7 = `network_analysis.toc'.
+\openout7 = `CSE-270-Network-analysis.toc'.
 
 \tf@snm=\write8
-\openout8 = `network_analysis.snm'.
+\openout8 = `CSE-270-Network-analysis.snm'.
 
-(./network_analysis.aux) ) 
+(./CSE-270-Network-analysis.aux) ) 
 Here is how much of TeX's memory you used:
  26627 strings out of 478268
- 541064 string characters out of 5846347
- 787946 words of memory out of 5000000
+ 547272 string characters out of 5846347
+ 788009 words of memory out of 5000000
  43501 multiletter control sequences out of 15000+600000
  520736 words of font info for 99 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,15n,122p,1013b,566s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/l
-m/lm-ec.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}<
-/usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmss8.pfb></usr/local/
-texlive/2022/texmf-dist/fonts/type1/public/lm/lmssbo10.pfb></usr/local/texlive/
-2022/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2022/tex
-mf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2022/texmf-dist/fo
-nts/type1/public/lm/lmtt8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/p
-ublic/lm/lmtti10.pfb>
-Output written on network_analysis.pdf (135 pages, 4095080 bytes).
+ 128i,15n,122p,1021b,566s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/usr/local/texlive/2022/texmf-dist/fonts/enc
+/dvips/lm/lm-ec.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-t
+s1.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmss8.pfb></us
+r/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmssbo10.pfb></usr/local/
+texlive/2022/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/
+2022/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2022/texmf
+-dist/fonts/type1/public/lm/lmtt8.pfb></usr/local/texlive/2022/texmf-dist/fonts
+/type1/public/lm/lmtti10.pfb>
+Output written on CSE-270-Network-analysis.pdf (135 pages, 4095881 bytes).
 PDF statistics:
  1722 PDF objects out of 1728 (max. 8388607)
  1320 compressed objects within 14 object streams

@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.21)  7 AUG 2022 21:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.15)  15 AUG 2022 10:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**plus_minus.tex
-(./plus_minus.tex
+**CSE-270-Rasch-model.tex
+(./CSE-270-Rasch-model.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-02-24> (/usr/local/texlive/2022/texmf-dist/tex/latex
 /beamer/beamer.cls
@@ -768,8 +768,8 @@ Package: xurl 2022/01/09 v 0.10 modify URL breaks
 File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count348
 \l__pdf_internal_box=\box78
-) (./plus_minus.aux)
-\openout1 = `plus_minus.aux'.
+) (./CSE-270-Rasch-model.aux)
+\openout1 = `CSE-270-Rasch-model.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 206.
 LaTeX Font Info:    ... okay on input line 206.
@@ -951,121 +951,15 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-(./plus_minus.nav) [1
+(./CSE-270-Rasch-model.nav) [1
 
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
 
 ] [3
 
 ]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 4
-.
-(/usr/local/texlive/2022/texmf-dist/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-Overfull \hbox (1.30464pt too wide) in paragraph at lines 19--19
-[]\T1/lmtt/m/n/8 ## [17] "AwayPlayer4ID"    "AwayPlayer5ID"    "HomePlayer1Name
-"  "HomePlayer2Name"[] 
- []
-
-
-Overfull \hbox (1.30464pt too wide) in paragraph at lines 19--19
-[]\T1/lmtt/m/n/8 ## [21] "HomePlayer3Name"  "HomePlayer4Name"  "HomePlayer5Name
-"  "AwayPlayer1Name"[] 
- []
-
-
-Overfull \hbox (1.30464pt too wide) in paragraph at lines 19--19
-[]\T1/lmtt/m/n/8 ## [25] "AwayPlayer2Name"  "AwayPlayer3Name"  "AwayPlayer4Name
-"  "AwayPlayer5Name"[] 
- []
-
-
-Overfull \hbox (1.30464pt too wide) in paragraph at lines 19--19
-[]\T1/lmtt/m/n/8 ## [33] "PointsScoredHome" "PointsScoredAway" "PossessionsHome
-"  "PossessionsAway"[] 
- []
-
-) [4
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb) [5
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb) [6
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb) [7
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb) [8
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb) [9
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb
-<plus_minus_files/figure-beamer/unnamed-chunk-11-1.pdf, id=98, 717.68124pt x 34
-9.305pt>
-File: plus_minus_files/figure-beamer/unnamed-chunk-11-1.pdf Graphic file (type 
-pdf)
-<use plus_minus_files/figure-beamer/unnamed-chunk-11-1.pdf>
-Package pdftex.def Info: plus_minus_files/figure-beamer/unnamed-chunk-11-1.pdf 
- used on input line 11.
-(pdftex.def)             Requested size: 347.19891pt x 168.98631pt.
-) [10
-
- <./plus_minus_files/figure-beamer/unnamed-chunk-11-1.pdf>] [11
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb) [12
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb) [13
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb) [14
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb
-<plus_minus_files/figure-beamer/unnamed-chunk-15-1.pdf, id=142, 717.68124pt x 3
-49.305pt>
-File: plus_minus_files/figure-beamer/unnamed-chunk-15-1.pdf Graphic file (type 
-pdf)
-<use plus_minus_files/figure-beamer/unnamed-chunk-15-1.pdf>
-Package pdftex.def Info: plus_minus_files/figure-beamer/unnamed-chunk-15-1.pdf 
- used on input line 11.
-(pdftex.def)             Requested size: 347.19891pt x 168.98631pt.
-) [15
-
- <./plus_minus_files/figure-beamer/unnamed-chunk-15-1.pdf>] [16
-
-]
 LaTeX Font Info:    Trying to load font information for OT1+lmss on input line 
-525.
+263.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/ot1lmss.fd
 File: ot1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1073,35 +967,35 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 5
-25.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
+63.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-525.
+263.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-525.
+263.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 525.
+(Font)              <8> on input line 263.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 525.
+(Font)              <6> on input line 263.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 525.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 525
+(Font)              <5> on input line 263.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 263
 .
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2022/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 525
+LaTeX Font Info:    Trying to load font information for U+msb on input line 263
 .
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1109,265 +1003,445 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <8> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 525.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 263.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <6> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 525.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 263.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <5> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 525.
-[17
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 263.
+[4
 
-] [18
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb) [19
+] [5
 
 ]
-\openout4 = `plus_minus.vrb'.
+<./images/rasch_1.png, id=60, 997.7275pt x 545.03625pt>
+File: ./images/rasch_1.png Graphic file (type png)
+<use ./images/rasch_1.png>
+Package pdftex.def Info: ./images/rasch_1.png  used on input line 282.
+(pdftex.def)             Requested size: 312.47415pt x 170.69765pt.
+[6
 
-(./plus_minus.vrb) [20
+ <./images/rasch_1.png>]
+<./images/rasch_2.png, id=70, 806.01125pt x 483.8075pt>
+File: ./images/rasch_2.png Graphic file (type png)
+<use ./images/rasch_2.png>
+Package pdftex.def Info: ./images/rasch_2.png  used on input line 292.
+(pdftex.def)             Requested size: 312.47371pt x 187.56206pt.
+[7
 
-]
-\openout4 = `plus_minus.vrb'.
+ <./images/rasch_2.png>]
+\openout4 = `CSE-270-Rasch-model.vrb'.
 
-(./plus_minus.vrb
-Overfull \hbox (1.29465pt too wide) in paragraph at lines 28--28
-[]\T1/lmtt/m/n/8 ##     X1027      X453      X936      X678      X900      X158
-      X904      X781[] 
+(./CSE-270-Rasch-model.vrb
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 7
+.
+(/usr/local/texlive/2022/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 35--35
+[]\T1/lmtt/m/n/8 ##                O1                O2              O3        
+    O4            O5[] 
  []
 
-
-Overfull \hbox (1.28465pt too wide) in paragraph at lines 28--28
-[]\T1/lmtt/m/n/8 ## 2.1176032 1.8681832 1.5567575 1.0007997 0.9188331 0.8786333
- 0.8486712 0.8390129[] 
- []
-
-) [21
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb) [22
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb
 LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
-18.
+35.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)) [23
+)
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 35--35
+[]\T1/lmtt/m/n/8 ## 1   Kevin Garnett    Sasha Pavlovic Jermaine O\TS1/lmtt/m/n
+/8 '\T1/lmtt/m/n/8 Neal     Ray Allen   Rajon Rondo[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 35--35
+[]\T1/lmtt/m/n/8 ## 2 Carmelo Anthony Amar\TS1/lmtt/m/n/8 '\T1/lmtt/m/n/8 e Sto
+udemire  Tyson Chandler Toney Douglas Landry Fields[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 35--35
+[]\T1/lmtt/m/n/8 ## 3   Kevin Garnett    Sasha Pavlovic Jermaine O\TS1/lmtt/m/n
+/8 '\T1/lmtt/m/n/8 Neal     Ray Allen   Rajon Rondo[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 35--35
+[]\T1/lmtt/m/n/8 ## 4 Carmelo Anthony Amar\TS1/lmtt/m/n/8 '\T1/lmtt/m/n/8 e Sto
+udemire  Tyson Chandler Toney Douglas Landry Fields[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 35--35
+[]\T1/lmtt/m/n/8 ## 5   Kevin Garnett    Sasha Pavlovic Jermaine O\TS1/lmtt/m/n
+/8 '\T1/lmtt/m/n/8 Neal     Ray Allen   Rajon Rondo[] 
+ []
+
+
+Overfull \hbox (1.30264pt too wide) in paragraph at lines 35--35
+[]\T1/lmtt/m/n/8 ## 6 Carmelo Anthony Amar\TS1/lmtt/m/n/8 '\T1/lmtt/m/n/8 e Sto
+udemire  Tyson Chandler Toney Douglas Landry Fields[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 35--35
+[]\T1/lmtt/m/n/8 ##                D1                D2              D3        
+    D4            D5[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 35--35
+[]\T1/lmtt/m/n/8 ## 1 Carmelo Anthony Amar\TS1/lmtt/m/n/8 '\T1/lmtt/m/n/8 e Sto
+udemire  Tyson Chandler Toney Douglas Landry Fields[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 35--35
+[]\T1/lmtt/m/n/8 ## 2   Kevin Garnett    Sasha Pavlovic Jermaine O\TS1/lmtt/m/n
+/8 '\T1/lmtt/m/n/8 Neal     Ray Allen   Rajon Rondo[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 35--35
+[]\T1/lmtt/m/n/8 ## 3 Carmelo Anthony Amar\TS1/lmtt/m/n/8 '\T1/lmtt/m/n/8 e Sto
+udemire  Tyson Chandler Toney Douglas Landry Fields[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 35--35
+[]\T1/lmtt/m/n/8 ## 4   Kevin Garnett    Sasha Pavlovic Jermaine O\TS1/lmtt/m/n
+/8 '\T1/lmtt/m/n/8 Neal     Ray Allen   Rajon Rondo[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 35--35
+[]\T1/lmtt/m/n/8 ## 5 Carmelo Anthony Amar\TS1/lmtt/m/n/8 '\T1/lmtt/m/n/8 e Sto
+udemire  Tyson Chandler Toney Douglas Landry Fields[] 
+ []
+
+
+Overfull \hbox (1.30264pt too wide) in paragraph at lines 35--35
+[]\T1/lmtt/m/n/8 ## 6   Kevin Garnett    Sasha Pavlovic Jermaine O\TS1/lmtt/m/n
+/8 '\T1/lmtt/m/n/8 Neal     Ray Allen   Rajon Rondo[] 
+ []
+
+)
+Overfull \vbox (11.8627pt too high) detected at line 329
+ []
+
+[8
 
 ]
-\openout4 = `plus_minus.vrb'.
+\openout4 = `CSE-270-Rasch-model.vrb'.
 
-(./plus_minus.vrb) [24
+(./CSE-270-Rasch-model.vrb
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 26--26
+[]\T1/lmtt/m/n/8 ##             O11             O12             O13            
+ O14             O15[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 26--26
+[]\T1/lmtt/m/n/8 ##   Kevin Garnett Carmelo Anthony   Kevin Garnett Carmelo Ant
+hony   Kevin Garnett[] 
+ []
+
+
+Overfull \hbox (1.30064pt too wide) in paragraph at lines 26--26
+[]\T1/lmtt/m/n/8 ##             O16             O17             O18            
+ O19            O110[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 26--26
+[]\T1/lmtt/m/n/8 ## Carmelo Anthony   Kevin Garnett Carmelo Anthony   Kevin Gar
+nett Carmelo Anthony[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 26--26
+[]\T1/lmtt/m/n/8 ##            O111            O112            O113            
+O114            O115[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 26--26
+[]\T1/lmtt/m/n/8 ##   Kevin Garnett Carmelo Anthony   Kevin Garnett Carmelo Ant
+hony   Kevin Garnett[] 
+ []
+
+
+Overfull \hbox (1.30064pt too wide) in paragraph at lines 26--26
+[]\T1/lmtt/m/n/8 ##            O116            O117            O118            
+O119            O120[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 26--26
+[]\T1/lmtt/m/n/8 ## Carmelo Anthony   Kevin Garnett Carmelo Anthony   Kevin Gar
+nett Carmelo Anthony[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 26--26
+[]\T1/lmtt/m/n/8 ##            O121            O122            O123            
+O124            O125[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 26--26
+[]\T1/lmtt/m/n/8 ## Carmelo Anthony   Kevin Garnett Carmelo Anthony       Ray A
+llen Carmelo Anthony[] 
+ []
+
+
+Overfull \hbox (1.30064pt too wide) in paragraph at lines 26--26
+[]\T1/lmtt/m/n/8 ##            O126            O127            O128            
+O129            O130[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 26--26
+[]\T1/lmtt/m/n/8 ##       Ray Allen Carmelo Anthony Carmelo Anthony       Ray A
+llen Carmelo Anthony[] 
+ []
+
+
+Overfull \hbox (9.80464pt too wide) in paragraph at lines 26--26
+[]\T1/lmtt/m/n/8 ## 478 Levels: A.J. Price Aaron Gray Al-Farouq Aminu Al Harrin
+gton ... Hamady Ndiaye[] 
+ []
+
+) [9
 
 ]
-\openout4 = `plus_minus.vrb'.
+\openout4 = `CSE-270-Rasch-model.vrb'.
 
-(./plus_minus.vrb
-<plus_minus_files/figure-beamer/unnamed-chunk-27-1.pdf, id=239, 712.6625pt x 27
-9.0425pt>
-File: plus_minus_files/figure-beamer/unnamed-chunk-27-1.pdf Graphic file (type 
-pdf)
-<use plus_minus_files/figure-beamer/unnamed-chunk-27-1.pdf>
-Package pdftex.def Info: plus_minus_files/figure-beamer/unnamed-chunk-27-1.pdf 
- used on input line 25.
-(pdftex.def)             Requested size: 347.19592pt x 135.9443pt.
+(./CSE-270-Rasch-model.vrb) [10
+
+]
+\openout4 = `CSE-270-Rasch-model.vrb'.
+
+(./CSE-270-Rasch-model.vrb) [11
+
+] [12
+
+]
+\openout4 = `CSE-270-Rasch-model.vrb'.
+
+(./CSE-270-Rasch-model.vrb) [13
+
+] [14
+
+]
+\openout4 = `CSE-270-Rasch-model.vrb'.
+
+(./CSE-270-Rasch-model.vrb) [15
+
+]
+\openout4 = `CSE-270-Rasch-model.vrb'.
+
+(./CSE-270-Rasch-model.vrb) [16
+
+]
+\openout4 = `CSE-270-Rasch-model.vrb'.
+
+(./CSE-270-Rasch-model.vrb) [17
+
+]
+\openout4 = `CSE-270-Rasch-model.vrb'.
+
+(./CSE-270-Rasch-model.vrb
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 21--21
+[]\T1/lmtt/m/n/8 ##      def Taj Gibson   def Kevin Garnett  def Andre Iguodala
+     def Ricky Rubio[] 
+ []
+
+
+Overfull \hbox (1.29865pt too wide) in paragraph at lines 21--21
+[]\T1/lmtt/m/n/8 ##         -0.04021855         -0.03304900         -0.02833276
+         -0.02826440[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 21--21
+[]\T1/lmtt/m/n/8 ##      def Tim Duncan      def Marc Gasol def Thabo Sefolosha
+     def Ian Mahinmi[] 
+ []
+
+
+Overfull \hbox (1.29865pt too wide) in paragraph at lines 21--21
+[]\T1/lmtt/m/n/8 ##         -0.02711243         -0.02642119         -0.02580529
+         -0.02437742[] 
+ []
+
+) [18
+
+]
+<./images/rasch_3.png, id=163, 930.47626pt x 199.74625pt>
+File: ./images/rasch_3.png Graphic file (type png)
+<use ./images/rasch_3.png>
+Package pdftex.def Info: ./images/rasch_3.png  used on input line 613.
+(pdftex.def)             Requested size: 312.46751pt x 67.0777pt.
+[19
+
+ <./images/rasch_3.png>]
+File: ./images/rasch_3.png Graphic file (type png)
+<use ./images/rasch_3.png>
+Package pdftex.def Info: ./images/rasch_3.png  used on input line 626.
+(pdftex.def)             Requested size: 312.46751pt x 67.0777pt.
+[20
+
+]
+\openout4 = `CSE-270-Rasch-model.vrb'.
+
+(./CSE-270-Rasch-model.vrb) [21
+
+]
+\openout4 = `CSE-270-Rasch-model.vrb'.
+
+(./CSE-270-Rasch-model.vrb) [22
+
+]
+\openout4 = `CSE-270-Rasch-model.vrb'.
+
+(./CSE-270-Rasch-model.vrb
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 31--31
+[]\T1/lmtt/m/n/8 ##      def Taj Gibson   def Kevin Garnett  def Andre Iguodala
+     def Ricky Rubio[] 
+ []
+
+
+Overfull \hbox (1.28465pt too wide) in paragraph at lines 31--31
+[]\T1/lmtt/m/n/8 ##            92.19264            92.90960            93.38122
+            93.38806[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 31--31
+[]\T1/lmtt/m/n/8 ##      def Tim Duncan      def Marc Gasol def Thabo Sefolosha
+     def Ian Mahinmi[] 
+ []
+
+
+Overfull \hbox (1.28665pt too wide) in paragraph at lines 31--31
+[]\T1/lmtt/m/n/8 ##            93.50326            93.57238            93.63397
+            93.77676[] 
+ []
+
+) [23
+
+]
+\openout4 = `CSE-270-Rasch-model.vrb'.
+
+(./CSE-270-Rasch-model.vrb) [24
+
+]
+\openout4 = `CSE-270-Rasch-model.vrb'.
+
+(./CSE-270-Rasch-model.vrb
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 23--23
+[]\T1/lmtt/m/n/8 ##       off Ike Diogu   off Hamady Ndiaye     off Patty Mills
+   off Jerome Jordan[] 
+ []
+
+
+Overfull \hbox (1.30264pt too wide) in paragraph at lines 23--23
+[]\T1/lmtt/m/n/8 ##            139.2857            114.2857            110.8108
+            107.4074[] 
+ []
+
+
+Overfull \hbox (1.30464pt too wide) in paragraph at lines 23--23
+[]\T1/lmtt/m/n/8 ##     off Eric Maynor    off James Harden   off Nick Collison
+   off Manu Ginobili[] 
+ []
+
+
+Overfull \hbox (1.30064pt too wide) in paragraph at lines 23--23
+[]\T1/lmtt/m/n/8 ##            107.1942            107.1523            107.0741
+            107.0286[] 
+ []
+
 ) [25
 
- <./plus_minus_files/figure-beamer/unnamed-chunk-27-1.pdf>]
-\openout4 = `plus_minus.vrb'.
+]
+\openout4 = `CSE-270-Rasch-model.vrb'.
 
-(./plus_minus.vrb
-Overfull \hbox (1.30064pt too wide) in paragraph at lines 45--45
-[]\T1/lmtt/m/n/8 ##      X158      X113      X807       X70      X144      X904
-      X821      X791[] 
- []
-
-
-Overfull \hbox (1.27466pt too wide) in paragraph at lines 45--45
-[]\T1/lmtt/m/n/8 ## 0.8779187 0.7791911 0.7605357 0.6760659 0.6705972 0.6580038
- 0.6435656 0.6088434[] 
- []
-
+(./CSE-270-Rasch-model.vrb
+<CSE-270-Rasch-model_files/figure-beamer/unnamed-chunk-27-1.pdf, id=217, 640.39
+25pt x 279.0425pt>
+File: CSE-270-Rasch-model_files/figure-beamer/unnamed-chunk-27-1.pdf Graphic fi
+le (type pdf)
+<use CSE-270-Rasch-model_files/figure-beamer/unnamed-chunk-27-1.pdf>
+Package pdftex.def Info: CSE-270-Rasch-model_files/figure-beamer/unnamed-chunk-
+27-1.pdf  used on input line 15.
+(pdftex.def)             Requested size: 347.19437pt x 151.28531pt.
 ) [26
 
-]
-\openout4 = `plus_minus.vrb'.
+ <./CSE-270-Rasch-model_files/figure-beamer/unnamed-chunk-27-1.pdf>]
+\openout4 = `CSE-270-Rasch-model.vrb'.
 
-(./plus_minus.vrb) [27
+(./CSE-270-Rasch-model.vrb
+<CSE-270-Rasch-model_files/figure-beamer/unnamed-chunk-29-1.pdf, id=232, 640.39
+25pt x 279.0425pt>
+File: CSE-270-Rasch-model_files/figure-beamer/unnamed-chunk-29-1.pdf Graphic fi
+le (type pdf)
+<use CSE-270-Rasch-model_files/figure-beamer/unnamed-chunk-29-1.pdf>
+Package pdftex.def Info: CSE-270-Rasch-model_files/figure-beamer/unnamed-chunk-
+29-1.pdf  used on input line 15.
+(pdftex.def)             Requested size: 347.19437pt x 151.28531pt.
+) [27
 
-]
-\openout4 = `plus_minus.vrb'.
+ <./CSE-270-Rasch-model_files/figure-beamer/unnamed-chunk-29-1.pdf>]
+\openout4 = `CSE-270-Rasch-model.vrb'.
 
-(./plus_minus.vrb) [28
+(./CSE-270-Rasch-model.vrb
+<CSE-270-Rasch-model_files/figure-beamer/unnamed-chunk-31-1.pdf, id=247, 568.12
+25pt x 279.0425pt>
+File: CSE-270-Rasch-model_files/figure-beamer/unnamed-chunk-31-1.pdf Graphic fi
+le (type pdf)
+<use CSE-270-Rasch-model_files/figure-beamer/unnamed-chunk-31-1.pdf>
+Package pdftex.def Info: CSE-270-Rasch-model_files/figure-beamer/unnamed-chunk-
+31-1.pdf  used on input line 13.
+(pdftex.def)             Requested size: 347.20438pt x 170.535pt.
+) [28
 
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb) [29
-
-] [30
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb)
-Overfull \vbox (11.32648pt too high) detected at line 924
- []
-
-[31
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb) [32
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb) [33
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb
-Overfull \hbox (1.30464pt too wide) in paragraph at lines 15--15
-[]\T1/lmtt/m/n/8 ##     Nash, Steve  Nelson, Jameer    Mahinmi, Ian  Hudson, Le
-ster    Duhon, Chris[] 
- []
-
-
-Overfull \hbox (1.29265pt too wide) in paragraph at lines 15--15
-[]\T1/lmtt/m/n/8 ##       0.3479366       0.3374820       0.3280165       0.324
-3823       0.2744698[] 
- []
-
-
-Overfull \hbox (1.30464pt too wide) in paragraph at lines 15--15
-[]\T1/lmtt/m/n/8 ##   Millsap, Paul   Kapono, Jason Humphries, Kris    Rondo, R
-ajon  Curry, Stephen[] 
- []
-
-
-Overfull \hbox (1.29865pt too wide) in paragraph at lines 15--15
-[]\T1/lmtt/m/n/8 ##       0.2454976       0.2445955       0.2423881       0.240
-5524       0.2374232[] 
- []
-
-) [34
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb
-Overfull \hbox (1.30464pt too wide) in paragraph at lines 19--19
-[]\T1/lmtt/m/n/8 ##     Nash, Steve  Nelson, Jameer    Mahinmi, Ian  Hudson, Le
-ster    Duhon, Chris[] 
- []
-
-
-Overfull \hbox (1.29265pt too wide) in paragraph at lines 19--19
-[]\T1/lmtt/m/n/8 ##       0.3479366       0.3374820       0.3280165       0.324
-3823       0.2744698[] 
- []
-
-
-Overfull \hbox (1.30464pt too wide) in paragraph at lines 19--19
-[]\T1/lmtt/m/n/8 ##   Millsap, Paul   Kapono, Jason Humphries, Kris    Rondo, R
-ajon  Curry, Stephen[] 
- []
-
-
-Overfull \hbox (1.29865pt too wide) in paragraph at lines 19--19
-[]\T1/lmtt/m/n/8 ##       0.2454976       0.2445955       0.2423881       0.240
-5524       0.2374232[] 
- []
-
-) [35
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb) [36
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb
-<plus_minus_files/figure-beamer/unnamed-chunk-44-1.pdf, id=340, 712.6625pt x 27
-7.035pt>
-File: plus_minus_files/figure-beamer/unnamed-chunk-44-1.pdf Graphic file (type 
-pdf)
-<use plus_minus_files/figure-beamer/unnamed-chunk-44-1.pdf>
-Package pdftex.def Info: plus_minus_files/figure-beamer/unnamed-chunk-44-1.pdf 
- used on input line 20.
-(pdftex.def)             Requested size: 347.19592pt x 134.9663pt.
-) [37
-
- <./plus_minus_files/figure-beamer/unnamed-chunk-44-1.pdf>] [38
-
-]
-\openout4 = `plus_minus.vrb'.
-
-(./plus_minus.vrb) [39
-
-] [40
-
-] [41
-
-]
-<./images/statistics.png, id=384, 712.6625pt x 482.80376pt>
-File: ./images/statistics.png Graphic file (type png)
-<use ./images/statistics.png>
-Package pdftex.def Info: ./images/statistics.png  used on input line 1183.
-(pdftex.def)             Requested size: 277.7524pt x 188.16747pt.
-[42
-
- <./images/statistics.png>] [43
-
-] [44
-
-] [45
-
-]
+ <./CSE-270-Rasch-model_files/figure-beamer/unnamed-chunk-31-1.pdf>]
 \tf@nav=\write6
-\openout6 = `plus_minus.nav'.
+\openout6 = `CSE-270-Rasch-model.nav'.
 
 \tf@toc=\write7
-\openout7 = `plus_minus.toc'.
+\openout7 = `CSE-270-Rasch-model.toc'.
 
 \tf@snm=\write8
-\openout8 = `plus_minus.snm'.
+\openout8 = `CSE-270-Rasch-model.snm'.
 
-(./plus_minus.aux) ) 
+(./CSE-270-Rasch-model.aux) ) 
 Here is how much of TeX's memory you used:
- 25413 strings out of 478268
- 496714 string characters out of 5846347
- 783150 words of memory out of 5000000
- 42798 multiletter control sequences out of 15000+600000
- 523291 words of font info for 101 fonts, out of 8000000 for 9000
+ 25192 strings out of 478268
+ 492641 string characters out of 5846347
+ 777695 words of memory out of 5000000
+ 42657 multiletter control sequences out of 15000+600000
+ 522564 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,15n,122p,1007b,628s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-t
-s1.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/u
-sr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/t
-exlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2022/te
-xmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/local/texlive/2022/texmf-dist/fonts
-/type1/public/lm/lmmi8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/publ
-ic/lm/lmss8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmssb
-x10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsso8.pfb></
-usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/t
-exlive/2022/texmf-dist/fonts/type1/public/lm/lmtt8.pfb></usr/local/texlive/2022
-/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on plus_minus.pdf (45 pages, 354309 bytes).
+ 128i,15n,122p,1016b,626s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvip
+s/lm/lm-mathsy.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ec
+.enc}{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/lo
+cal/texlive/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texliv
+e/2022/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2022/tex
+mf-dist/fonts/enc/dvips/lm/lm-rm.enc}</usr/local/texlive/2022/texmf-dist/fonts/
+type1/public/lm/lmex10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/publ
+ic/lm/lmmi8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmss8
+.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></u
+sr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmsso8.pfb></usr/local/t
+exlive/2022/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2022
+/texmf-dist/fonts/type1/public/lm/lmtt8.pfb></usr/local/texlive/2022/texmf-dist
+/fonts/type1/public/lm/lmtti10.pfb>
+Output written on CSE-270-Rasch-model.pdf (28 pages, 461911 bytes).
 PDF statistics:
- 490 PDF objects out of 1000 (max. 8388607)
- 388 compressed objects within 4 object streams
- 137 named destinations out of 1000 (max. 500000)
- 32920 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 326 PDF objects out of 1000 (max. 8388607)
+ 251 compressed objects within 3 object streams
+ 84 named destinations out of 1000 (max. 500000)
+ 32853 words of extra memory for PDF output out of 35830 (max. 10000000)
 
