@@ -11,6 +11,10 @@ output:
     pandoc_args: '--pdf-engine=xelatex'
     includes: 
       in_header: "../customtexfuncs.tex"
+header-includes:
+    - \definecolor{myred}{RGB}{248,101,112}
+    - \definecolor{myyellow}{RGB}{196,149,10}
+    - \definecolor{mygreen}{RGB}{12,194,48}
 ---
 
 
@@ -62,6 +66,7 @@ library(dplyr)
 library(ggplot2)
 library(reshape2)
 library(zoo)
+library(VGAM)
 ```
 
 ```{r cse_270_setup_1, eval=FALSE, warning=FALSE, message=FALSE}
@@ -70,6 +75,18 @@ install_github("HABET/CSE270")
 library(SportsAnalytics270)
 ```
 
+# Predictin with distributions
+
+The list of necessary packages
+
+```{r, eval=F, echo=T}
+library(SportsAnalytics270)
+library(dplyr)
+library(ggplot2)
+library(reshape2)
+library(zoo)
+library(VGAM)
+```
 
 # Predicting with distributions
 
@@ -120,7 +137,7 @@ ggplot(nba2009_2021) + geom_histogram(aes(x=away.PTS), fill='red') +
 Home points for last season only
 
 ```{r}
-nba2009_2021 %>% filter(SEASON_ID=='2018') %>%
+nba2009_2021 %>% filter(SEASON_ID=='2021') %>%
 ggplot(aes(x = home.PTS)) + geom_histogram() + xlim(c(50,155))+
   labs(x="Home Points", title="Histogram for points for last season")
 ```
@@ -154,7 +171,7 @@ distribution, failed to reject $H_0$
 
 ```{r}
 nba2009_2021 %>%
-  filter(SEASON_ID=='2018') %>%
+  filter(SEASON_ID=='2021') %>%
   group_by(home.TEAM_ABBREVIATION) %>%
   summarise(p_value = shapiro.test(home.PTS)$p.value)%>%
     arrange(p_value)
@@ -167,7 +184,7 @@ Away points: Normal distribution with $\alpha$ = 0.05
 ```{r}
 
 nba2009_2021 %>%
-  filter(SEASON_ID=='2018') %>%
+  filter(SEASON_ID=='2021') %>%
   group_by(away.TEAM_ABBREVIATION) %>%
   summarise(p_value = shapiro.test(away.PTS)$p.value)%>%
   arrange(p_value)
@@ -213,13 +230,13 @@ Create dataframes with means and standard deviations for each team, for the last
 
 ```{r}
 home = nba2009_2021 %>%
-        filter(SEASON_ID=='2018') %>%
+        filter(SEASON_ID=='2021') %>%
         group_by(home.TEAM_ABBREVIATION) %>%
         summarise(mean = mean(home.PTS),
                   var  = var(home.PTS))
 
 away = nba2009_2021 %>%
-        filter(SEASON_ID=='2018') %>%
+        filter(SEASON_ID=='2021') %>%
         group_by(away.TEAM_ABBREVIATION) %>%
         summarise(mean = mean(away.PTS),
                   var  = var(away.PTS))
@@ -245,18 +262,13 @@ $s_D = \sqrt{\sigma^2_H + \sigma^2_A}$
 \ecenter
 
 ```{r}
-mean = home$mean[home$home.TEAM_ABBREVIATION=="WAS"]-
-  away$mean[away$away.TEAM_ABBREVIATION=="DAL"]
+(mean = home$mean[home$home.TEAM_ABBREVIATION=="WAS"]-
+  away$mean[away$away.TEAM_ABBREVIATION=="DAL"])
 
-sd = sqrt(home$var[home$home.TEAM_ABBREVIATION=="WAS"]+
-  away$var[away$away.TEAM_ABBREVIATION=="DAL"])
-
-mean
+(sd = sqrt(home$var[home$home.TEAM_ABBREVIATION=="WAS"]+
+  away$var[away$away.TEAM_ABBREVIATION=="DAL"]))
 ```
 
-```{r}
-sd
-```
 
 # Predicting with distributions
 
@@ -293,9 +305,9 @@ pnorm(0, mean, sd, lower.tail = F)
 
 # Predicting with distributions
 
-## Probability of home team to win with more than 15 points difference
+**Probability of home team to win with more than 15 points difference**
 
-## Home team will win with spread of 15 points
+Home team will win with spread of 15 points
 
 ```{r}
 pnorm(15, mean, sd, lower.tail = F)
@@ -350,13 +362,13 @@ head(f_data_sm)
 
 # Predicting with distributions
 
-## Full time total goals distribution for Serie A, Season 2018-2019
+## Full time total goals distribution for Serie A, Season 2021-2022
 
 ```{r}
 f_data_sm %>%
-  filter(COUNTRY=="Italy", SEASON=="2019") %>%
+  filter(COUNTRY=="Italy", SEASON=="2022") %>%
 ggplot(aes(x=FTTG))+geom_bar()+
-ggtitle("Full time goals distribution for Serie A-2019")
+ggtitle("Full time goals distribution for Serie A-2022")
 ```
 
 
@@ -365,9 +377,9 @@ ggtitle("Full time goals distribution for Serie A-2019")
 ## Distribution of home team full time goals
 ```{r}
 f_data_sm %>%
-  filter(COUNTRY=="Italy", SEASON=="2019") %>%
+  filter(COUNTRY=="Italy", SEASON=="2022") %>%
 ggplot(aes(x=FTHG))+geom_bar()+
-ggtitle("Full time home team goals distribution for Serie A- 2019")
+ggtitle("Full time home team goals distribution for Serie A- 2022")
 ```
 
 # Predicting with distributions
@@ -377,7 +389,7 @@ First find the $\lambda$ (average number of goals per game)
 
 ```{r}
 f_data_sm %>%
-  filter(COUNTRY=="Italy", SEASON=='2019') %>%
+  filter(COUNTRY=="Italy", SEASON=='2022') %>%
   summarise(mean(FTTG))
 ```
 
@@ -402,12 +414,11 @@ We will test the hypothesis with Chi-square test: thus comparing empirical proba
 # Goal frequencies
 
 ```{r}
-seriea = f_data_sm %>%
-          filter(COUNTRY=="Italy", SEASON=="2019") %>%
+(seriea = f_data_sm %>%
+          filter(COUNTRY=="Italy", SEASON=="2022") %>%
           group_by(FTHG) %>%
           summarise(count = n()) %>%
-          as.data.frame()
-seriea
+          as.data.frame())
 ```
 
 # Predicting with distributions
@@ -417,22 +428,20 @@ We will use chi-square test
 First create a vector with observed relative frequencies
 
 ```{r}
-rel_fr=seriea$count/sum(seriea$count)
-rel_fr
+(rel_fr=seriea$count/sum(seriea$count))
 ```
 
 Then create expected relative frequencies (probabilities), under the assumption that the variable follows Poisson distribution with $\lambda$=1.4842
 
 ```{r}
 f_data_sm %>%
-   filter(COUNTRY=="Italy", SEASON=="2019") %>%
+   filter(COUNTRY=="Italy", SEASON=="2022") %>%
    summarize(mean(FTHG))
 ```
 
 
 ```{r}
-probs=dpois(c(0:6), lambda=1.484211)
-probs
+(probs=dpois(c(0:6), lambda=1.484211))
 ```
 
 # Predicting with distributions
@@ -483,8 +492,9 @@ away_means = f_data_sm %>%
                 filter(COUNTRY=="Italy", SEASON=="2022") %>%
                 group_by(AWAYTEAM) %>%
                 summarise(mean = mean(FTAG))
-
 ```
+
+
 
 # Predicting with distributions
 
@@ -525,27 +535,31 @@ Multiplying two vectors of probabilities we will get the matrix of probabilities
 ```{r }
 options(width = 300)
 a=goal_probs_lazio %*% t(goal_probs_fior)
-print(round(a, digits=4))
+a=round(a, digits=4)
+print(a)
 ```
 
 # Predicting with distributions
 
-The probability that the game will end 0-0 
-(the matrix is for demonstration only and not the real data)
+The probability that the game will end 0-0
 
+```{r, echo=F}
+options(kableExtra.latex.load_packages = FALSE) 
+library(kableExtra)
 
-```{r echo=F}
-knitr::include_graphics("./images/prob_table_1.png")
+a_df <- as.data.frame(a)
+colnames(a_df) <- 1:10
+
+library(knitr)
+library(kableExtra)
+
+# for (i in 1:(ncol(a_df))) {
+#   a_df[i,i] <- cell_spec(a_df[i, i], bold=T)
+# }
+a_df[1,1] <- cell_spec(a_df[1,1], bold=T)
+
+kable(a_df, "latex", escape=F)
 ```
-
-# Predicting with distributions
-
-3-1 Lazio winning (0.711)
-
-```{r echo=F}
-knitr::include_graphics("./images/prob_table_2.png")
-```
-
 
 # Predicting with distributions
 
@@ -605,17 +619,15 @@ install.packages("VGAM")
 library(VGAM)
 ```
 
-```{r, echo=F}
-library(VGAM)
-```
 
 # Predicting with distributions
 
 Histogram for goal difference
-
+\tiny
 ```{r}
 set.seed(1)
-k = rskellam(10000,mu1=1.894737, mu2=1.157895) 
+# lazio = 2.21 fiorentina = 1.10
+k = rskellam(10000,mu1=lazio, mu2=fiorentina) 
 ggplot()+geom_bar(aes(x=k))+
   labs(x="Goal difference", title="Skellam distribution for goal difference")
 ```
@@ -798,8 +810,6 @@ ifelse(england_wide$value.FTHG<england_wide$value.FTAG, "AW", "D"))
 england_wide = england_wide %>% 
   select(SEASON, DATE, TEAM1, TEAM2, value.FTHG,
                   value.FTAG, POWERHOME, POWERAWAY, POWERDIFF, RESULT)
-
-
 ```
 
 # Predicting with the rating
