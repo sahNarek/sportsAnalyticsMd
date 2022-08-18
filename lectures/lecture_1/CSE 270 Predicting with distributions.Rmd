@@ -556,7 +556,7 @@ library(kableExtra)
 # for (i in 1:(ncol(a_df))) {
 #   a_df[i,i] <- cell_spec(a_df[i, i], bold=T)
 # }
-a_df[1,1] <- cell_spec(a_df[1,1], bold=T, italic=T)
+a_df[1,1] <- paste0("\\textcolor{red}{\\textbf{", a_df[1,1], "}}")
 
 kable(a_df, "latex", escape=F)
 ```
@@ -577,12 +577,13 @@ library(kableExtra)
 
 
 for(i in 1:(ncol(a_df))){
-  a_df[2, i] <- cell_spec(a_df[2,i], bold=T, italic=T)
+  a_df[2, i] <- paste0("\\textcolor{red}{\\textbf{", a_df[2,i], "}}")
+  
 }
 
 for(i in 1:(ncol(a_df))){
   if(i!=2){
-      a_df[i,4] <- cell_spec(a_df[i,4], bold=T, italic=T)
+      a_df[i,4] <- paste0("\\textcolor{red}{\\textbf{", a_df[i,4], "}}")
   }
 }
 
@@ -605,7 +606,7 @@ library(knitr)
 library(kableExtra)
 
 for (i in 1:(ncol(a_df))) {
-  a_df[i,i] <- cell_spec(a_df[i, i], bold=T, italic=T)
+  a_df[i,i] <- paste0("\\textcolor{red}{\\textbf{", a_df[i,i], "}}")
 }
 kable(a_df, "latex", escape=F)
 ```
@@ -627,7 +628,7 @@ library(kableExtra)
 for (i in 2:(ncol(a_df))) {
   for( j in 1:i){
     if(i != j){
-        a_df[i,j] <- cell_spec(a_df[i, j], bold=T, italic=T)
+        a_df[i,j] <- paste0("\\textcolor{red}{\\textbf{", a_df[i,j], "}}")
     }
   }
 }
@@ -652,7 +653,7 @@ library(kableExtra)
 for (i in 2:(ncol(a_df))) {
   for( j in 1:(i-1)){
     if(i != j){
-     a_df[j,i] <- cell_spec(a_df[i, j], bold=T, italic=T) 
+     a_df[j,i] <- paste0("\\textcolor{red}{\\textbf{", a_df[j,i], "}}")
     }
   }
 }
