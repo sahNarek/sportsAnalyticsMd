@@ -511,8 +511,9 @@ and for Fiorentina as an away team
 
 # Predicting with distributions
 
-Generate vector of probabilities for number of goals scored for both teams.
-* range from 0 to 9 
+Generate vector of probabilities for number of goals scored for both teams.  
+
+Range from 0 to 9 
 
 ```{r}
 options(scipen=999)
@@ -548,7 +549,6 @@ options(kableExtra.latex.load_packages = FALSE)
 library(kableExtra)
 
 a_df <- as.data.frame(a)
-colnames(a_df) <- 1:10
 
 library(knitr)
 library(kableExtra)
@@ -557,6 +557,8 @@ library(kableExtra)
 #   a_df[i,i] <- cell_spec(a_df[i, i], bold=T)
 # }
 a_df[1,1] <- paste0("\\textcolor{red}{\\textbf{", a_df[1,1], "}}")
+a_df <- cbind((0:9), a_df)
+colnames(a_df) <- c("",0:9)
 
 kable(a_df, "latex", escape=F)
 ```
@@ -587,6 +589,9 @@ for(i in 1:(ncol(a_df))){
   }
 }
 
+a_df <- cbind((0:9), a_df)
+colnames(a_df) <- c("",0:9)
+
 kable(a_df, "latex", escape=F)
 ```
 
@@ -608,6 +613,10 @@ library(kableExtra)
 for (i in 1:(ncol(a_df))) {
   a_df[i,i] <- paste0("\\textcolor{red}{\\textbf{", a_df[i,i], "}}")
 }
+
+a_df <- cbind((0:9), a_df)
+colnames(a_df) <- c("",0:9)
+
 kable(a_df, "latex", escape=F)
 ```
 
@@ -633,6 +642,9 @@ for (i in 2:(ncol(a_df))) {
   }
 }
 
+a_df <- cbind((0:9), a_df)
+colnames(a_df) <- c("",0:9)
+
 kable(a_df, "latex", escape=F)
 ```
 
@@ -657,6 +669,9 @@ for (i in 2:(ncol(a_df))) {
     }
   }
 }
+
+a_df <- cbind((0:9), a_df)
+colnames(a_df) <- c("",0:9)
 
 kable(a_df, "latex", escape=F)
 ```
