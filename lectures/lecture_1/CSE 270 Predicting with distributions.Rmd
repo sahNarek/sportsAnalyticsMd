@@ -556,35 +556,109 @@ library(kableExtra)
 # for (i in 1:(ncol(a_df))) {
 #   a_df[i,i] <- cell_spec(a_df[i, i], bold=T)
 # }
-a_df[1,1] <- cell_spec(a_df[1,1], bold=T)
+a_df[1,1] <- cell_spec(a_df[1,1], bold=T, italic=T)
 
 kable(a_df, "latex", escape=F)
 ```
 
 # Predicting with distributions
 
+3 1 Lazio winning 
+
+```{r, echo=F}
+options(kableExtra.latex.load_packages = FALSE) 
+library(kableExtra)
+
+a_df <- as.data.frame(a)
+colnames(a_df) <- 1:10
+
+library(knitr)
+library(kableExtra)
+
+
+for(i in 1:(ncol(a_df))){
+  a_df[2, i] <- cell_spec(a_df[2,i], bold=T, italic=T)
+}
+
+for(i in 1:(ncol(a_df))){
+  if(i!=2){
+      a_df[i,4] <- cell_spec(a_df[i,4], bold=T, italic=T)
+  }
+}
+
+kable(a_df, "latex", escape=F)
+```
+
+
+# Predicting with distributions
+
 Probability of draw: sum all elements on the diagonal
 
-```{r echo=F}
-knitr::include_graphics("./images/prob_table_3.png")
+```{r, echo=F}
+options(kableExtra.latex.load_packages = FALSE) 
+library(kableExtra)
+
+a_df <- as.data.frame(a)
+colnames(a_df) <- 1:10
+
+library(knitr)
+library(kableExtra)
+
+for (i in 1:(ncol(a_df))) {
+  a_df[i,i] <- cell_spec(a_df[i, i], bold=T, italic=T)
+}
+kable(a_df, "latex", escape=F)
 ```
 
 # Predicting with distributions
 
 Probability of Lazio winning: Sum of all the probabilities in the lower triangle, without diagonal
 
-```{r echo=F}
-knitr::include_graphics("./images/prob_table_4.png")
+```{r, echo=F}
+options(kableExtra.latex.load_packages = FALSE) 
+library(kableExtra)
+
+a_df <- as.data.frame(a)
+colnames(a_df) <- 1:10
+
+library(knitr)
+library(kableExtra)
+
+for (i in 2:(ncol(a_df))) {
+  for( j in 1:i){
+    if(i != j){
+        a_df[i,j] <- cell_spec(a_df[i, j], bold=T, italic=T)
+    }
+  }
+}
+
+kable(a_df, "latex", escape=F)
 ```
 
 # Predicting with distributions
 
 Probability of Fiorentina winning: Sum of all the probabilities in the upper triangle, without diagonal
 
-```{r echo=F}
-knitr::include_graphics("./images/prob_table_5.png")
-```
+```{r, echo=F}
+options(kableExtra.latex.load_packages = FALSE) 
+library(kableExtra)
 
+a_df <- as.data.frame(a)
+colnames(a_df) <- 1:10
+
+library(knitr)
+library(kableExtra)
+
+for (i in 2:(ncol(a_df))) {
+  for( j in 1:(i-1)){
+    if(i != j){
+     a_df[j,i] <- cell_spec(a_df[i, j], bold=T, italic=T) 
+    }
+  }
+}
+
+kable(a_df, "latex", escape=F)
+```
 # Predicting with distributions
 
 Probability of game ending in draw
