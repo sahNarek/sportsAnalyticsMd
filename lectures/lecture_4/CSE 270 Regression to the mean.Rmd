@@ -28,6 +28,20 @@ library(SportsAnalytics270)
 ```
 
 
+# Regression to the mean
+
+Libraries used
+
+```{r echo=T, eval = F}
+library(knitr)
+library(dplyr)
+library(ggplot2)
+library(measures)
+library(odds.converter)
+library(SportsAnalytics270)
+```
+
+
 # Regression to the mean: Height
 
 Sir Francis Galton proved that the kids of shorter parents have higher height than their parents, and kids of taller parents have shorter height than their parents
@@ -366,10 +380,9 @@ head(seriea_st)
 
 
 ```{r}
-seriea_s<-seriea_st %>%
+(seriea_s<-seriea_st %>%
   group_by(Season) %>%
-  summarise(SD=sd(Pt))
-seriea_s
+  summarise(SD=sd(Pt)))
 ```
 
 
@@ -386,13 +399,9 @@ ggplot(seriea_s, aes(Season, SD))+geom_bar(stat="identity")+
 
 NFL data
 
-```{r,eval=F}
-data(nfl_st)
-summary(nfl_st)
-```
 
 \tiny
-```{r, echo=F}
+```{r}
 data(nfl_st)
 summary(nfl_st)
 ```
@@ -401,10 +410,9 @@ summary(nfl_st)
 # NFL data: SD
 
 ```{r}
-nfl_s<-nfl_st %>%
+(nfl_s<-nfl_st %>%
   group_by(Season) %>%
-  summarise(SD=sd(Wpct))
-nfl_s
+  summarise(SD=sd(Wpct)))
 ```
 
 
@@ -512,10 +520,9 @@ sd_wpct/id_s
 # Calculating season-by season
 
 ```{r}
-nfl_s<-nfl_st %>%
+(nfl_s<-nfl_st %>%
   group_by(Season) %>%
-  summarise(NS=sd(Wpct)/id_s)
-nfl_s
+  summarise(NS=sd(Wpct)/id_s))
 ```
 
 
@@ -581,7 +588,7 @@ C5<-data.frame(Season=top5$Season,C5=top5$TopP/all$Pt)
 
 ```{r, fig.width=8, fig.height=4}
 ggplot(C5, aes(Season, C5))+geom_bar(stat="identity")+
-  ggtitle("C5 index for Serie A, 1996-2018")+
+  ggtitle("C5 index for Serie A, 1996-2022")+
   coord_cartesian(ylim=c(0.2,0.42))
 ```
 
@@ -589,7 +596,7 @@ ggplot(C5, aes(Season, C5))+geom_bar(stat="identity")+
 
 ```{r, fig.width=8, fig.height=4}
 ggplot(C5, aes(Season, 1-C5))+geom_bar(stat="identity")+
-  ggtitle("C5 index for Serie A, 1996-2018")+
+  ggtitle("C5 index for Serie A, 1996-2022")+
   coord_cartesian(ylim=c(0.4,0.65))
 ```
 
@@ -608,11 +615,9 @@ e.g. $CI_5:$ dominance of top 5 teams
 
 How many times did every team become a champion?
 ```{r}
-champ_c = seriea_st %>%
+(champ_c <- seriea_st %>%
   filter(Rank ==1) %>% group_by(Team) %>%
-  summarize(champ=n()) %>% arrange(desc(champ))
-
-champ_c
+  summarize(champ=n()) %>% arrange(desc(champ)))
 ```
 
 CI4 for championship
@@ -942,7 +947,7 @@ brier_score$SCORE <- unlist(brier_score$SCORE)
 ```{r, fig.height=5}
 brier_score %>% filter(COUNTRY=='Italy') %>%
 ggplot(aes(x=SEASON, y=SCORE))+geom_bar(stat='identity') + 
-  scale_x_continuous(breaks = 2009:2019)
+  scale_x_continuous(breaks = 2009:2022)
 ```
 
 # Match Outcome uncertainty

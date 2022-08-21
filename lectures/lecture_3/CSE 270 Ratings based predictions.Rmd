@@ -19,11 +19,24 @@ library(dplyr)
 library(elo)
 library(ggplot2)
 library(SportsAnalytics270)
+library(caret)
 ```
 
 # Predictions based on Performance Ratings
 
 
+Libraries used
+
+```{r, echo=T, eval = F}
+knitr::opts_chunk$set(echo = TRUE, warning=F, message=F)
+library(dplyr)
+library(elo)
+library(ggplot2)
+library(SportsAnalytics270)
+library(caret)
+```
+
+# Predictions based on Performance Ratings
 ## Elo ratings
 
 # Elo rating system
@@ -207,7 +220,7 @@ elo.update(elo.A=1500,elo.B=1600,wins.A=1, k=20)
 
 # Elo rating system
 
-Dataset on EPL games for seasons 2000-2018
+Dataset on EPL games for seasons 2000-2022
 
 ```{r}
 data("epl_00_22")
