@@ -17,6 +17,17 @@ output:
 
 ## Predicting game outcome with Poisson regression
 
+# Poisson regression
+
+Libraries used
+
+```{r, echo=T, eval=F}
+library(dplyr)
+library(VGAM)
+library(ggplot2)
+library(SportsAnalytics270)
+library(BradleyTerry2)
+```
 
 
 # Poisson regression
@@ -196,14 +207,14 @@ coefficients(model)
 
 ```{r}
 options(scipen=1, digits=4)
-predict(model, data.frame(Home=1, Team="Benfica", Opponent="Porto"), type="response")
+(benfica_average <- predict(model, data.frame(Home=1, Team="Benfica", Opponent="Porto"), type="response"))
 ```
 
 * The same for Porto
 ```{r}
 options(scipen=1, digits=4)
-predict(model, data.frame(Home=0, Team="Porto", Opponent="Benfica"),
-        type="response")
+(porto_average <- predict(model, data.frame(Home=0, Team="Porto", Opponent="Benfica"),
+        type="response"))
 ```
 
 When Benfica is playing Porto at Home, the expected (average) number of
@@ -221,20 +232,20 @@ $log(\lambda) = \beta_0 + \beta_{TeamBenfica} + \beta_{OpponentPorto} + \beta_{H
 
 ```{r }
 options(scipen=1, digits=4)
-coefficients(model)["(Intercept)"]
+(intercept <- coefficients(model)["(Intercept)"])
 ```
 
 ```{r}
-coefficients(model)["TeamBenfica"]
+(team_benfica <- coefficients(model)["TeamBenfica"])
 ```
 
 
 ```{r}
-coefficients(model)["OpponentPorto"]
+(opponent_porto <- coefficients(model)["OpponentPorto"])
 ```
 
 ```{r}
-coefficients(model)["Home"]
+(home_coeff <- coefficients(model)["Home"])
 ```
 
 $log(\lambda) = -0.0495 + 1.06 + (-0.8486) + 0.2581$ \ 
@@ -249,14 +260,14 @@ The average expected goals of the home team divided by the average expected goal
 
 ```{r}
 # lambda for Benfica playing at home
-b_h=exp(-0.0495+1.06-0.8486 + 0.2581)
+b_h=exp(intercept + team_benfica + opponent_porto + home_coeff)
 # lambda for Benfica playing against Porto away
-b_a=exp(-0.0495+1.06-0.8486)
+b_a=exp(intercept + team_benfica + opponent_porto)
 b_h/b_a
 ```
 
 ```{r}
-exp(coefficients(model)["Home"])
+exp(home_coeff)
 ```
 
 # Making predictions
@@ -266,13 +277,13 @@ As we have $\lambda$ for both teams, we can use skellam distribution to come up 
 
 ```{r, tidy=F}
 # Benfica's lambda
-1.522
+benfica_average
 # Porto's lambda
-1.342
+porto_average
 
 # Simulate game results
 set.seed(1)
-k = rskellam(10000,mu1 = 1.522, mu2 = 1.342)
+k = rskellam(10000,mu1 = benfica_average, mu2 = porto_average)
 ```
 
 # Making predictions
@@ -290,11 +301,11 @@ Calculate the game output probabilities
 
 ```{r}
 # Away team to win
-sum(dskellam(c(-100:-1),1.522, 1.342))
+sum(dskellam(c(-100:-1),benfica_average, porto_average))
 # Draw
-sum(dskellam(0 ,1.522, 1.342))
+sum(dskellam(0 ,benfica_average, porto_average))
 # Home team to win
-sum(dskellam(c(1:100),1.522, 1.342))
+sum(dskellam(c(1:100),benfica_average, porto_average))
 ```
 
 
