@@ -20,6 +20,15 @@ output:
 
 # Plus/Minus
 
+Libraries used
+
+```{r, eval=F, echo=T}
+library(ggplot2)
+library(dplyr)
+```
+
+# Plus/Minus
+
 ## Plus/Minus
 
 # The concept
@@ -417,12 +426,7 @@ $\text{Margin} = \frac{\text{Home Points}}{\text{Home Possession}} - \frac{\text
 
 # Adjusted Plus/Minus
 
-```{r, eval=F}
-str(nba12)
-```
-
-\tiny
-```{r, echo=F}
+```{r}
 str(nba12)
 ```
 
