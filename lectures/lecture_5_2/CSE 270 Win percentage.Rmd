@@ -16,6 +16,17 @@ output:
     orientation: rows
 ---
 
+# Pythagorean wins and winning percentage
+
+Libraries used
+
+```{r echo=T, eval=F}
+library(ggplot2)
+library(dplyr)
+library(SportsAnalytics270)
+```
+
+
 # Major League of Baseball
 
 \bcenter
@@ -59,7 +70,8 @@ The two league winners then meet in the "World Series" (so called, because the f
 World Series  
 
 * Is played between the winners of playoffs of American League and National League.
-* Is a best-of-seven tournament. World Series is won by the team who will win 4 games out of 7.
+* Is a best-of-seven tournament.   
+* World Series is won by the team who will win 4 games out of 7.
 
 # Baseball: The game
 
@@ -292,7 +304,7 @@ sqrt(mean(mod$residuals^2))
 
 Bad or good luck ?  
 
-[https://www.baseball-reference.com/leagues/majors/2018-standings.shtml](https://www.baseball-reference.com/leagues/majors/2018-standings.shtml)
+[https://www.baseball-reference.com/leagues/majors/2021-standings.shtml](https://www.baseball-reference.com/leagues/majors/2021-standings.shtml)
 
 ```{r}
 mlb_standings$PW <- mlb_standings$PW_percentage*(mlb_standings$W+mlb_standings$L)
@@ -302,7 +314,7 @@ mlb_standings$PW <- round(mlb_standings$PW,0)
 
 ```{r}
 mlb_standings %>%
-  filter(Season == 2018)%>%
+  filter(Season == 2021)%>%
   select(Team, W, PW ) %>%
   head()
 ```
@@ -417,7 +429,7 @@ Create variable PW_G, Pythagorean expected wins
 ```{r}
 nba_st$G <- nba_st$W+nba_st$L
 nba_st$PW_G <- round(nba_st$PW*nba_st$G)
-nba_st %>% filter(Season==2019) %>% head()
+nba_st %>% filter(Season==2021) %>% head()
 ```
 
 # Pythagorean wins in NBA
@@ -425,7 +437,7 @@ nba_st %>% filter(Season==2019) %>% head()
 teams above the line are “lucky”, below the line are “unlucky”  
 
 ```{r, fig.height=5}
-nba_st %>% filter(Season==2019)%>%
+nba_st %>% filter(Season==2021)%>%
   ggplot(aes(x=PW_G, y=W))+geom_point()+
   geom_abline(intercept =0 , slope = 1, col='red')
 ```
@@ -433,7 +445,7 @@ nba_st %>% filter(Season==2019)%>%
 # Pythagorean wins in NBA
 
 ```{r, fig.height=5}
-nba_st %>% filter(Season==2019)%>%
+nba_st %>% filter(Season==2021)%>%
   ggplot(aes(x=PW_G, y=W, label=Team))+geom_point()+
   geom_abline(intercept =0 , slope = 1, col='red')+
   geom_text()
