@@ -16,6 +16,22 @@ output:
     orientation: rows
 ---
 
+# Rasch Model
+
+Libraries used
+
+```{r, setup, include=F}
+library(glmnet)
+library(ggplot2)
+library(Matrix)
+```
+
+```{r, echo=T, eval=F}
+library(glmnet)
+library(ggplot2)
+library(Matrix)
+```
+
 # Bradley-Terry and Rasch model
 
 * In Bradley-Terry model each team is either home team or away team
@@ -78,10 +94,6 @@ knitr::include_graphics("./images/rasch_2.png")
 # The data
 
 The game Boston Celtics vs. New York Knicks - [https://goo.gl/KSQBXe](https://goo.gl/KSQBXe)
-
-```{r, echo=F}
-library(ggplot2)
-```
 
 
 ```{r}
@@ -149,7 +161,6 @@ i <- rep(1:nrow(nba11_12), 10)
 j <- as.numeric(tag.factor)
 
 # Construct X as a sparse matrix.
-library(Matrix)
 X <- sparseMatrix(i, j)
 
 # Update i and j to include a column for home court advantage.
@@ -178,7 +189,6 @@ In our matrix ~99% of the entries are zeros, rest are one’s. Sparse Matrix rep
 Regularized linear model with the package glmnet
 
 ```{r}
-library(glmnet)
 set.seed(1)
 model<- cv.glmnet(X, y, alpha = 0, standardize = FALSE)
 
