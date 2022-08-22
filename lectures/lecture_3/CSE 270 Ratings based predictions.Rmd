@@ -28,7 +28,6 @@ library(caret)
 Libraries used
 
 ```{r, echo=T, eval = F}
-knitr::opts_chunk$set(echo = TRUE, warning=F, message=F)
 library(dplyr)
 library(elo)
 library(ggplot2)

@@ -16,6 +16,35 @@ output:
     orientation: rows
 ---
 
+# Network analysis
+
+Libraries used
+
+```{r, setup, include=FALSE, echo=F}
+library(igraph)
+library(intergraph)
+library(network)
+library(sna)
+library(statnet)
+library(statnetWeb)
+library(circlize)
+library(SportsAnalytics270)
+library(ggplot2)
+```
+
+```{r, eval=F, echo=T}
+library(igraph)
+library(intergraph)
+library(network)
+library(sna) 
+library(statnet) 
+library(statnetWeb)
+library(circlize)
+library(SportsAnalytics270)
+library(ggplot2)
+```
+
+
 # Introduction
 
 Networks are basically entities (peoples, players, clubs, magazines, countries, etc) and the connections among them.  
@@ -75,14 +104,6 @@ install.packages("statnet")
 install.packages("statnetWeb")
 ```
 
-```{r, setup, include=FALSE, echo=F}
-library(igraph)
-library(intergraph)
-library(network)
-library(sna) 
-library(statnet) 
-library(statnetWeb)
-```
 
 # Types of data stored in the network data object
 
@@ -194,8 +215,7 @@ plot(net1, main="Network example",
 We can also get the edge list from the network object
 
 ```{r}
-net_ed<-as.matrix(net,matrix.type = "edgelist")
-net_ed
+(net_ed<-as.matrix(net,matrix.type = "edgelist"))
 ```
 
 # Using igraph
@@ -460,7 +480,6 @@ plot(net1,displaylabels=T, mode="circle", main="Circle Layout", coord=coord1)
 # Sub setting the graph: by vertex attribute
 
 ```{r, fig.height=4, out.height="60%", fig.align='center'}
-# library network
 net1 %v% "gender"
 net_f<-get.inducedSubgraph(net1, v=which(net1 %v% "gender" == "F"))
 plot(net_f, label=network.vertex.names(net_f))
@@ -709,9 +728,6 @@ as_m[upper.tri(as_m)] <- 0
 
 # Marvel network
 
-```{r setup_circilize, echo = T, include=F}
-library(circlize)
-```
 
 ```{r, fig.width=11, fig.align='center', out.height="80%"}
 chordDiagram(as_m)
@@ -838,27 +854,14 @@ plot(marvel_roles2, main="Marvel characters network",
 
 <!-- page 77 -->
 
-# NBA passing network
-
-* NBA passing data can be obtained from NBA official api
-* You will need to provide player ID (as specified by nba api)
-
-<!-- page 78 -->
 
 # NBA: passing network
 
 * First we can get the roster
-* If it doesn’t work now, get it from roster.rda
-
-```{r, echo = T, eval = F}
-library(SportsAnalytics270)
-roster <- getPlayerID(2018)
-head(roster)
-```
+* Get it from roster.rda
 
 
-```{r, echo = F}
-library(SportsAnalytics270)
+```{r}
 load("./data/roster.rda")
 head(roster)
 ```
@@ -867,14 +870,7 @@ head(roster)
 
 # NBA: passing network
 
-Or you can get the roster for a given team by supplying teamID and the year
-This will give the roster for Golden State Warriors
-
-```{r, echo=T, eval = F}
-gsw <- getTeamRoster(2018,1610612744)
-head(gsw,5)
-```
-
+Load the roster for Golden State Warriors
 
 ```{r}
 load("./data/gsw.rda")
@@ -938,7 +934,6 @@ passing <- passing[passing$PASS_TEAMMATE_PLAYER_ID %in% x,]
 Create an igraph object from edgelist
 
 ```{r, fig.width=12, fig.height=12}
-library(igraph)
 i_pass <- graph_from_edgelist(
   as.matrix(passing[,c("PLAYER_NAME", 
                        "PASS_TEAMMATE_PLAYER_NAME")]), directed = T)
@@ -990,7 +985,6 @@ plot(i_pass)
 Transform to network object
 
 ```{r, fig.width=12, fig.height=6, fig.align='center', out.height="65%"}
-library(intergraph)
 n_pass <- asNetwork(i_pass)
 plot(n_pass)
 ```
@@ -1039,8 +1033,7 @@ n_pass %v% "position"
 Get the number of games played (variable G)
 
 ```{r}
-ngames <- unique(passing[,c("PLAYER_NAME", "G")])
-ngames
+(ngames <- unique(passing[,c("PLAYER_NAME", "G")]))
 ```
 
 <!-- page 92 -->
@@ -1051,8 +1044,7 @@ ngames
 Set the right order
 
 ```{r}
-ngames <- ngames[order(match(ngames$PLAYER_NAME,p)),]
-ngames
+(ngames <- ngames[order(match(ngames$PLAYER_NAME,p)),])
 ```
 
 <!-- page 93 -->
@@ -1085,10 +1077,6 @@ n_pass %e% "passes"
 
 
 # NBA: passing network
-
-```{r setup_1, include=FALSE}
-library(ggplot2)
-```
 
 Lets look at two more variables for edge attributes  
 Field Goals made
@@ -1159,7 +1147,6 @@ plot(n_pass1, displaylabels=T, mode="circle")
 ```{r, fig.width=12, fig.height=7, fig.align='center', out.height="75%"}
 mat <- as.matrix(n_pass1, matrix.type = "adjacency",
                  attrname="passes")
-library(circlize)
 chordDiagram(mat)
 ```
 
@@ -1171,8 +1158,7 @@ Lets plot the network with number of games played as vertex size
 
 ```{r}
 x <- n_pass1 %v% "ngames"
-z <- 2*(x - min(x))/(max(x)-min(x))
-z
+(z <- 2*(x - min(x))/(max(x)-min(x)))
 ```
 
 <!-- page 101 -->
