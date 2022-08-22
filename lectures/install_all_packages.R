@@ -4,7 +4,8 @@
 packages_list <- c("devtools", "dplyr", "ggplot2", "reshape2", "zoo", 
                    "VGAM", "BradleyTerry2", "caret", "measures", "odds.converter", 
                    "glmnet", "Matrix", "intergraph", "igraph",
-                   "network", "circlize", "statnet", "sna", "statnetWeb")
+                   "network", "circlize", "statnet", "sna", "statnetWeb", "kableExtra",
+                   "kable", "knitr")
 
 
 install_or_call <- function(list = packages_list){

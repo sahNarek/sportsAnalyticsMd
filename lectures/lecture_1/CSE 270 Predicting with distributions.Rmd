@@ -90,8 +90,7 @@ library(VGAM)
 
 # Predicting with distributions
 
-Dataframe nba2009_2021 contains NBA regular season games from 2009 to 2021-
-2022 season 
+Dataframe nba2009_2021 contains NBA regular season games from 2009 to 2021-2022 season 
 
 ```{r}
 options(width = 65)
@@ -148,7 +147,7 @@ What about Points difference ?
 ```{r}
 nba2009_2021$Diff = nba2009_2021$home.PTS-nba2009_2021$away.PTS
 ggplot(nba2009_2021, aes(x=Diff)) + geom_histogram(bins=50) +
-  labs(x="Points Difference", title="Histogram for points points difference")
+  labs(x="Points Difference", title="Histogram for points difference")
 ```
 
 
@@ -163,8 +162,9 @@ $H_1:$ *sample did not come from normal distribution* \
 
 \ecenter
 
-Find the p-value of the test: if is more than $\alpha$ 0.05 then it has a normal
-distribution, failed to reject $H_0$
+Find the p-value of the test: if $\alpha$ is more than 0.05 then it has a normal
+distribution
+failed to reject $H_0$
 
 
 # Predicting with distributions
@@ -384,7 +384,8 @@ ggtitle("Full time home team goals distribution for Serie A- 2022")
 
 # Predicting with distributions
 
-Does the total number of goals scored follows Poisson distribution? \ 
+Does the total number of goals scored follows Poisson distribution?  
+
 First find the $\lambda$ (average number of goals per game)
 
 ```{r}
