@@ -16,6 +16,27 @@ output:
     orientation: rows
 ---
 
+# Statistical Analysis of Networks
+
+Libraries used
+
+```{r, setup, include = F}
+library(UserNetR)
+library(network)
+library(igraph)
+library(intergraph)
+library(ggplot2)
+```
+
+
+```{r, eval=F, echo=T}
+library(UserNetR)
+library(network)
+library(igraph)
+library(intergraph)
+library(ggplot2)
+```
+
 # Types of analysis
 
 * Descriptive Statistics for networks, such as network density
@@ -32,14 +53,6 @@ In graph theory the **distance** between two vertices in a graph is the number o
 # Who is this guy ?
 
 Kevon Bacon, Played in 86 movies
-
-```{r, setup, include = F}
-library(UserNetR)
-library(network)
-library(igraph)ƒ
-library(intergraph)
-library(ggplot2)
-```
 
 
 \bcenter
@@ -294,7 +307,7 @@ i_random <- erdos.renyi.game(n = gorder(Moreno_i),
 
 # Is the graph random ?
 
-```{r. fig.height = 6}
+```{r, fig.height = 6}
 plot(i_random)
 ```
 
