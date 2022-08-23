@@ -7,6 +7,7 @@ packages_list <- c("rlang","devtools", "rmarkdown","dplyr", "ggplot2", "reshape2
                    "network", "circlize", "statnet", "sna", "statnetWeb", 
                    "kable", "knitr")
 
+install.packages("glue")
 
 install_or_call <- function(list = packages_list){
   installed <- installed.packages()[,"Package"]
