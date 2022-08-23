@@ -1,7 +1,7 @@
 # This function checks if the library is already installed and if so
 # it just calls the library.
 
-packages_list <- c("devtools", "dplyr", "ggplot2", "reshape2", "zoo", 
+packages_list <- c("rlang","devtools", "rmarkdown","dplyr", "ggplot2", "reshape2", "zoo",
                    "VGAM", "BradleyTerry2", "caret", "measures", "odds.converter", 
                    "glmnet", "Matrix", "intergraph", "igraph",
                    "network", "circlize", "statnet", "sna", "statnetWeb", "kableExtra",
@@ -12,16 +12,20 @@ install_or_call <- function(list = packages_list){
   installed <- installed.packages()[,"Package"]
   for( package in packages_list ){
     if(!(package %in% installed)){
+      print(glue::glue("Installing {package}"))
       install.packages(package)
     }
-    do.call(library, list(package))
+    else{
+      print(glue::glue("Calling {package}"))
+      do.call(library, list(package)) 
+    }
   }
 }
+
+install_or_call()
 
 library(devtools)
 install_github("HABET/CSE270")
 install_github("DougLuke/UserNetR")
 
-
-install_or_call()
 
