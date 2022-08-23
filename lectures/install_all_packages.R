@@ -2,9 +2,9 @@
 # it just calls the library.
 
 packages_list <- c("rlang","devtools", "rmarkdown","dplyr", "ggplot2", "reshape2", "zoo",
-                   "VGAM", "BradleyTerry2", "caret", "measures", "odds.converter", 
+                   "VGAM", "caret", "measures", "odds.converter", 
                    "glmnet", "Matrix", "intergraph", "igraph",
-                   "network", "circlize", "statnet", "sna", "statnetWeb", "kableExtra",
+                   "network", "circlize", "statnet", "sna", "statnetWeb", 
                    "kable", "knitr")
 
 
@@ -25,7 +25,9 @@ install_or_call <- function(list = packages_list){
 install_or_call()
 
 library(devtools)
-install_github("HABET/CSE270")
+install_github("HABET/CSE270", force = T)
 install_github("DougLuke/UserNetR")
-
+devtools::install_github("hturner/BradleyTerry2")
+devtools::install_github("haozhu233/kableExtra")
+tinytex::install_tinytex()
 
