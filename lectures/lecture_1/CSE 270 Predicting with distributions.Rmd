@@ -75,7 +75,7 @@ install_github("HABET/CSE270")
 library(SportsAnalytics270)
 ```
 
-# Predictin with distributions
+# Predicting with distributions
 
 The list of necessary packages
 
