@@ -57,6 +57,10 @@ is.contained=function(vec1,vec2){
   return(y)
 }
 
+# TODO the func checks if all the team names are in the existing df
+# Later on a function can be applied to change the team name to the one in the df
+# to have dynamical process rather than keeping eye on it
+
 is.contained(unique(new_salaries$Team), unique(mlb_salary$Team))
 
 mlb_salary <- rbind(mlb_salary,new_salaries) %>% arrange(Season)
