@@ -782,7 +782,6 @@ str(mlb_standings)
 
 ```{r}
 mlb_HHI <- mlb_standings %>%
-      filter(Season < "2019") %>%
       group_by(Season) %>%
       summarise(HHI=sum(W^2)*(4/(30^2*162^2)))
 ```
@@ -818,16 +817,23 @@ Leading indicators: SalarY
 ```{r}
 data(mlb_salary)
 str(mlb_salary)
+mlb_salary <- mlb_salary %>%
+  filter(Season <= 2021)
 ```
 
 # MLB: Salaries
 
 Aggregate data by year
 
+\tiny 
 ```{r}
 mlb_s<-mlb_salary %>%
       group_by(Season) %>%
       summarise(Tot.salary=sum(Current))
+```
+
+```{r}
+mlb_HHI
 ```
 
 ```{r}
