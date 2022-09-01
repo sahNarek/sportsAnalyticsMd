@@ -20,13 +20,14 @@ D) library(devtools)
 
 Do these two codes perform the same action ?
 
-```{r}
+```{r, eval=F, echo=T}
 a <- c(1:10)
 a <- c(1,10)
-```
 
 A) TRUE
 B) FALSE
+```
+
 
 **Problem 3**
 
@@ -35,8 +36,8 @@ class_schedules <- c("MWF 12:30-13:20","TT 9:00-10:15", "MWF 08:30-09:20", "MWF 
 names(class_schedules) <- c("CSE270", "CS222", "CS112", "CS246")
 ```
 
-***a)*** Get the schedule for CSE 270,  
-pick all the correct options.
+**a)** Get the schedule for CSE 270,  
+Pick all the correct options.
 
 ```{r, eval=F, echo=T}
 A) class_schedules["CSE270"]
@@ -45,8 +46,8 @@ C) class_schedules[1]
 D) class_schedules$CSE_270
 ```
 
-***b)*** Get the schedule for all classes except CSE 270,  
-pick all the correct options.
+**b)** Get the schedule for all classes except ***CSE 270***,  
+Pick all the correct options.
 
 ```{r, eval=F, echo=T}
 A) class_schedules[-c("CSE270")]
@@ -61,6 +62,11 @@ D) class_schedules[names(class_schedules) != "CSE270"]
 
 Which of these code chunks will create a 3x3 matrix  
 and fill it with numbers from 1 to 9.  
+It should look like this.
+
+```{r, echo=F, eval=T}
+(one_to_nine <- matrix(1:9, byrow=TRUE, nrow=3))
+```
 Pick all that apply
 
 ```{r, eval=F, echo=T}
@@ -74,7 +80,7 @@ D) one_to_nine <- matrix(rbind(c(1:3), c(4:6), c(7:9)))
 **Problem 5**
 
 **a)** Write down the commands to change the column names and row names of   
-the matrix one_to_nine, set the column names to ("Lazio", "Roma" , "Juventus") and  
+the matrix ***one_to_nine***, set the column names to ("Lazio", "Roma" , "Juventus") and  
 the row names to ("2022", "2021", "2020") 
 ```{r, echo=T, eval=F}
 # Write down your code here, should not take more than two lines
@@ -82,14 +88,12 @@ the row names to ("2022", "2021", "2020")
 #
 ```
 
-**b)** The matrix displays the standings for the teams during last three years,
-write a command to get Lazio's final position in 2020, 
-Can you get it in multiple ways ?
+**b)** The matrix displays the standings for the teams during the last three years,
+write a command to get Lazio's final position in 2020,
+can you get it in multiple ways ?
       
 ```{r, echo=T, eval=F}
 # Write down your code here, there are at least 3 ways to do that
-#
-#
 #
 #
 #
@@ -108,17 +112,26 @@ rownames(one_to_nine) <- c("2022", "2021", "2020")
 rowSums(one_to_nine)
 ```
 
+```{r, echo=T, eval=F}
+# The output should not be more than 2 lines
+#
+#
+```
+
+
 **Problem 6**
 
-**a)** Write a code chunk to convert the matrix *one_to_nine* into a dataframe and name that dataframe
-standings_2020_2022.
+**a)** Write a code chunk to convert the matrix ***one_to_nine*** into a dataframe and name that dataframe
+***standings_2020_2022***.
 
 ```{r, echo=T, eval=F}
 # Write down your code here, should take no more than 1 line
 #
 ```
 
-**b)** Write a code chunk to add one more column to the data frame, name it "Napoli" and add values
+\newpage
+
+**b)** Write a code chunk to add one more column to the data frame, name it "Napoli" and add values  
 (4, 2, 3) for the values of that column.
 
 ```{r, eval=T, include=F}
@@ -131,6 +144,7 @@ standings_2020_2022$Napoli <- c(4,2,3)
 #
 #
 ```
+
 
 **c)** Write a code chunk to add one more row to the data frame, name it 2019 and add the values,
 (3,4,2,5)
@@ -156,8 +170,8 @@ Napoli:   1st Qu:_______  2nd Qu:_______ 3rd Qu:_______ Mean:_______
 
 **Problem 7**
 
-**a)** R has a built in dataframe called *iris* that contains some information about Species.
-Write down the commands to get the data frame and show the last 3 observations of the data frame.
+**a)** R has a built in dataframe called ***iris*** that contains some information about Species.  
+Write down the commands to get the data frame and show the last 3 observations of the data frame.  
 The output should be like this
 
 ```{r, eval=T, echo=F}
@@ -171,7 +185,7 @@ tail(iris,3)
 #
 ```
 
-**b)** Write a code chunk to create 2 new variables for the dataframe iris and call them Sepal.Area and Petal.Area and fill in the values with the area(width x length) of both variables correspondingly,
+**b)** Write a code chunk to create 2 new variables for the dataframe iris and call them ***Sepal.Area*** and ***Petal.Area*** and fill in the values with the area(width x length) of both variables correspondingly,
 
 ```{r, eval=T, echo=F, include=F}
 iris$Sepal.Area <- iris$Sepal.Length * iris$Sepal.Width
@@ -184,7 +198,7 @@ iris$Petal.Area <- iris$Petal.Length * iris$Petal.Width
 #
 ```
 
-**c)** Write a code chunk to filter out the data frame *iris* to only include the species for which 
+**c)** Write a code chunk to filter out the data frame ***iris*** to only include the species for which 
 the variable ***Sepal.Area*** is greater than 10 and the variable ***Petal.Area*** is less than 1.
 
 ```{r, eval=T, echo=F, include=F}
