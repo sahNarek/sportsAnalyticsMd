@@ -67,8 +67,21 @@ It should look like this.
 ```{r, echo=F, eval=T}
 (one_to_nine <- matrix(1:9, byrow=TRUE, nrow=3))
 ```
-Pick all that apply
+Function matrix() **Arguments**  
 
+**data**  
+an optional data vector (including a list or expression vector)
+
+**nrow**  
+the desired number of rows.
+
+**ncol**  
+the desired number of columns.
+
+**byrow**  
+logical. If FALSE (the default) the matrix is filled by columns, otherwise the matrix is filled by rows.  
+
+Pick all that apply
 ```{r, eval=F, echo=T}
 A) one_to_nine <- matrix(1:9)
 B) one_to_nine <- matrix(1:9, byrow=TRUE, nrow=3)
@@ -99,6 +112,7 @@ can you get it in multiple ways ?
 #
 ```
 
+\newpage
 
 **c)** Write down the output of this code chunk
 
@@ -129,7 +143,6 @@ rowSums(one_to_nine)
 #
 ```
 
-\newpage
 
 **b)** Write a code chunk to add one more column to the data frame, name it "Napoli" and add values  
 (4, 2, 3) for the values of that column.
@@ -157,24 +170,12 @@ standings_2020_2022['2019',] <- c(3,4,2,5)
 #
 ```
 
-**d)** Calculate the 1st, 2nd, 3d quartiles abd mean values for each team's standing from 2019-2022  
-
-Lazio:    1st Qu:_______  2nd Qu:_______ 3rd Qu:_______ Mean:_______  
-
-Roma:     1st Qu:_______  2nd Qu:_______ 3rd Qu:_______ Mean:_______  
-
-Juventus: 1st Qu:_______  2nd Qu:_______ 3rd Qu:_______ Mean:_______  
-
-Napoli:   1st Qu:_______  2nd Qu:_______ 3rd Qu:_______ Mean:_______  
-
-
 **Problem 7**
 
 **a)** R has a built in dataframe called ***iris*** that contains some information about Species.  
 Write down the commands to get the data frame and show the last 3 observations of the data frame.  
-The output should be like this
 
-```{r, eval=T, echo=F}
+```{r, eval=F, echo=F}
 data(iris)
 tail(iris,3)
 ```
