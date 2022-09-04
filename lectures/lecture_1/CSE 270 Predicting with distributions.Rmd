@@ -18,38 +18,6 @@ header-includes:
 ---
 
 
-# Predicting with distributions
-
-Suppose we have two variables with normal distribution,
-
-* Home team score
-* Away team score
-
-\begin{center}
-$H \sim N( \mu_H, \sigma_H ^ 2)$
-\end{center}
-\bcenter
-$A \sim N( \mu_A, \sigma_A ^ 2)$
-\ecenter
-
-
-Then the difference between the home and away teams scores will also have normal
-distribution with the following parameters (assuming this two are independent)
-
-\bcenter
-
-$\mu_d = \mu_H - m_A$\
-$\sigma_D ^ 2 = \sigma_H ^ 2 + \sigma_A ^ 2$ \
-
-\ecenter
-
-Thus the difference will have a normal distribution with the following parameters
-
-\bcenter
-
-$D \sim N( \mu_H - \mu_A, \sigma_H ^ 2 + \sigma_A ^ 2 )$
-
-\ecenter
 
 # Predicting with distributions
 * In NBA (National Basketball Association) points scored per
@@ -163,8 +131,7 @@ $H_1:$ *sample did not come from normal distribution* \
 \ecenter
 
 Find the p-value of the test: if $\alpha$ is more than 0.05 then it has a normal
-distribution
-failed to reject $H_0$
+distribution (failed to reject $H_0$)
 
 
 # Predicting with distributions
@@ -262,10 +229,10 @@ $s_D = \sqrt{\sigma^2_H + \sigma^2_A}$
 \ecenter
 
 ```{r}
-(mean = home$mean[home$home.TEAM_ABBREVIATION=="WAS"]-
+(mean_bb = home$mean[home$home.TEAM_ABBREVIATION=="WAS"]-
   away$mean[away$away.TEAM_ABBREVIATION=="DAL"])
 
-(sd = sqrt(home$var[home$home.TEAM_ABBREVIATION=="WAS"]+
+(sd_bb = sqrt(home$var[home$home.TEAM_ABBREVIATION=="WAS"]+
   away$var[away$away.TEAM_ABBREVIATION=="DAL"]))
 ```
 
@@ -277,8 +244,8 @@ Simulate 10,000 games and plot the histogram. Can you see the home team advantag
 
 ```{r}
 set.seed(1)
-diff = rnorm(10000, mean, sd)
-ggplot()+geom_histogram(aes(x=diff))+
+diff = rnorm(10000, mean_bb, sd_bb)
+ggplot() + geom_histogram(aes(x=diff)) +
   labs(x="Points Difference", title="Histogram of Points difference")
 ```
 
@@ -293,14 +260,14 @@ Now lets calculate the probabilities of home and away teams to win
 ## Probability of away team to win
 
 ```{r}
-pnorm(0, mean, sd, lower.tail = T)
+pnorm(0, mean_bb, sd_bb, lower.tail = T)
 ```
 
 
 ## Probability of home team to win
 
 ```{r}
-pnorm(0, mean, sd, lower.tail = F)
+pnorm(0, mean_bb, sd_bb, lower.tail = F)
 ```
 
 # Predicting with distributions
@@ -310,7 +277,7 @@ pnorm(0, mean, sd, lower.tail = F)
 Home team will win with spread of 15 points
 
 ```{r}
-pnorm(15, mean, sd, lower.tail = F)
+pnorm(15, mean_bb, sd_bb, lower.tail = F)
 ```
 
 
