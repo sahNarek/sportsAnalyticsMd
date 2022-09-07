@@ -5,7 +5,7 @@ packages_list <- c("rlang","devtools", "rmarkdown","dplyr", "ggplot2", "reshape2
                    "VGAM", "caret", "measures", "odds.converter", 
                    "glmnet", "Matrix", "intergraph", "igraph",
                    "network", "circlize", "statnet", "sna", "statnetWeb", 
-                   "kable", "knitr")
+                   "kable", "knitr", "VGAM")
 
 install.packages("glue")
 
