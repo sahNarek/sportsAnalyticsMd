@@ -27,15 +27,15 @@ install_or_call()
 
 library(devtools)
 install_github("HABET/CSE270", force = T)
-install_github("DougLuke/UserNetR")
+install_github("DougLuke/UserNetR", force = T)
 
 packageurl<-"https://cran.r-project.org/src/contrib/Archive/nloptr/nloptr_1.2.1.tar.gz"
 install.packages(packageurl, repos=NULL, type="source")
 
-devtools::install_github("hturner/BradleyTerry2")
+devtools::install_github("hturner/BradleyTerry2", force = T)
 
 # sudo apt install libfontconfig1-dev
 
-devtools::install_github("haozhu233/kableExtra")
+devtools::install_github("haozhu233/kableExtra", force = T)
 tinytex::install_tinytex()
 

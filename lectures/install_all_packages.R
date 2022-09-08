@@ -27,8 +27,8 @@ install_or_call()
 
 library(devtools)
 install_github("HABET/CSE270", force = T)
-install_github("DougLuke/UserNetR")
-devtools::install_github("hturner/BradleyTerry2")
-devtools::install_github("haozhu233/kableExtra")
+install_github("DougLuke/UserNetR", force = T)
+devtools::install_github("hturner/BradleyTerry2", force = T)
+devtools::install_github("haozhu233/kableExtra", force = T)
 tinytex::install_tinytex()
 
