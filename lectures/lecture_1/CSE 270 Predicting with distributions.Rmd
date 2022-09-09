@@ -432,17 +432,17 @@ First create a vector with observed relative frequencies
 (rel_fr=seriea$count/sum(seriea$count))
 ```
 
-Then create expected relative frequencies (probabilities), under the assumption that the variable follows Poisson distribution with $\lambda$=1.4842
-
 ```{r}
-f_data_sm %>%
-   filter(COUNTRY=="Italy", SEASON=="2022") %>%
-   summarize(mean(FTHG))
+(h_goals_mean_italy <- (f_data_sm %>%
+                        filter(COUNTRY=="Italy", SEASON=="2022") %>%
+                          summarize(mean(FTHG)))$`mean(FTHG)`)
 ```
 
+Then create expected relative frequencies (probabilities), under the assumption that the variable follows Poisson distribution with $\lambda$=`r h_goals_mean_italy`
+
 
 ```{r}
-(probs=dpois(c(0:6), lambda=1.484211))
+(probs=dpois(c(0:6), lambda=h_goals_mean_italy))
 ```
 
 # Predicting with distributions
