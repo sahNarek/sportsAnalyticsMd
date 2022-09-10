@@ -285,7 +285,7 @@ ggplot()+geom_histogram(aes(x=diff))+
 
 # Predicting with distributions
 
-Now lets calculate the probabilities of home and away teams to win
+Now let's calculate the probabilities of home and away teams to win
 
 * Away team to win $P(x<0)$
 * Home team to win $P(x>0)$
@@ -347,7 +347,7 @@ probs(home_away, home="WAS", away="DAL", 0)
 
 
 # Predicting with distributions
-Lets recall what is Poisson distribution about
+Let's recall what is Poisson distribution about
 
 ```{r echo=F}
 knitr::include_graphics("./images/poisson.png")
