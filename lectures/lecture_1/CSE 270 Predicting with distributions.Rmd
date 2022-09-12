@@ -469,8 +469,8 @@ knitr::include_graphics("./images/lazio.png")
 * We assume that probabilities for Lazio and Fiorentina scoring are independent from each other.
 * Thus: $P(L=0 \cap F=0) = P(L=0) * P(F=0) ...$
 * If you want to find the probability of the draw then, \ 
-$P(L=0 \cap F=0 \cap L=1 \cap F=1 \cap L=2 \cap F=2)$
-* As {$L=0 \cap F=0 \cap L=1 \cap F=1 \cap L=2 \cap F=2$} events are mutually exclusive, \ the probability of the draw can be calculated as.
+$P(L=0 \cap F=0 \cup L=1 \cap F=1 \cup L=2 \cap F=2)$
+* As {$L=0 \cap F=0 \cup L=1 \cap F=1 \cup L=2 \cap F=2$} events are mutually exclusive, \ the probability of the draw can be calculated as.
 
 \bcenter
 
