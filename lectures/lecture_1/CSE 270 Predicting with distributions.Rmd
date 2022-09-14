@@ -580,13 +580,13 @@ library(kableExtra)
 
 
 for(i in 1:(ncol(a_df))){
-  a_df[2, i] <- paste0("\\textcolor{red}{\\textbf{", a_df[2,i], "}}")
+  a_df[i, 2] <- paste0("\\textcolor{red}{\\textbf{", a_df[i,2], "}}")
   
 }
 
 for(i in 1:(ncol(a_df))){
   if(i!=2){
-      a_df[i,4] <- paste0("\\textcolor{red}{\\textbf{", a_df[i,4], "}}")
+      a_df[4,i] <- paste0("\\textcolor{red}{\\textbf{", a_df[4,i], "}}")
   }
 }
 
