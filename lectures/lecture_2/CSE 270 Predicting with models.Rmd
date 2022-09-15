@@ -165,8 +165,10 @@ head(portugal2)
 # Preparing data for the Poisson regression model
 
 Now let's have a look at the first game of the season:
-Benfica vs Guimaraes
-* Benfica was the home team, and the game ended with 3-2
+Sporting Lisbon vs Vizela
+
+* Sporting Lisbon was the home team, and the game ended with 3-0
+
 ```{r}
 portugal[1,]
 ```
@@ -203,32 +205,34 @@ coefficients(model)
 
 # Making predictions
 
-* Benfica is playing against Porto at home
+* Sporting Lisbon is playing against Vizela at home
 
 ```{r}
 options(scipen=1, digits=4)
-(benfica_average <- predict(model, data.frame(Home=1, Team="Benfica", Opponent="Porto"), type="response"))
+(lisbon_average <- predict(model, data.frame(Home=1, Team="Sp Lisbon", Opponent="Vizela"), type="response"))
 ```
 
-* The same for Porto
+* The same for Vizela
 ```{r}
 options(scipen=1, digits=4)
-(porto_average <- predict(model, data.frame(Home=0, Team="Porto", Opponent="Benfica"),
+(vizela_average <- predict(model, data.frame(Home=0, Team="Vizela", Opponent="Sp Lisbon"),
         type="response"))
 ```
 
-When Benfica is playing Porto at Home, the expected (average) number of
-goals for Benfica is 1.522 and For Porto 1.342
+When Sporting Lisbon is playing Vizela at Home, the expected (average) number of
+goals for Sporting Lisbon is `r lisbon_average` and For Vizela is `r vizela_average`
 
-# Let's do the calculations by hand for Benfica
+# Let's do the calculations by hand for Sporting Lisbon
 
-Calculations of $\lambda$ for Benfica
+Calculations of $\lambda$ for Sporting Lisbon
 
 \bcenter
 
-$log(\lambda) = \beta_0 + \beta_{TeamBenfica} + \beta_{OpponentPorto} + \beta_{Home}$
+$log(\lambda) = \beta_0 + \beta_{TeamSpLisbon} + \beta_{OpponentVizela} + \beta_{Home}$
 
 \ecenter
+
+\tiny
 
 ```{r }
 options(scipen=1, digits=4)
@@ -236,20 +240,28 @@ options(scipen=1, digits=4)
 ```
 
 ```{r}
-(team_benfica <- coefficients(model)["TeamBenfica"])
+(team_lisbon <- coefficients(model)["TeamSp Lisbon"])
 ```
 
 
 ```{r}
-(opponent_porto <- coefficients(model)["OpponentPorto"])
+(oponnent_vizela <- coefficients(model)["OpponentVizela"])
 ```
 
 ```{r}
 (home_coeff <- coefficients(model)["Home"])
 ```
 
-$log(\lambda) = -0.0495 + 1.06 + (-0.8486) + 0.2581$ \ 
-$\lambda = exp(0.42) = 1.52$
+```{r include = F}
+result <- (intercept + team_lisbon + oponnent_vizela + home_coeff)  
+exp_result <- exp(result)
+```
+
+
+$log(\lambda)$ = `r home_coeff` + `r team_lisbon` + `r oponnent_vizela` + `r intercept` = `r result`\  
+
+$\lambda$ = (`r intercept + team_lisbon + oponnent_vizela + home_coeff`) = 
+`r exp_result`
 
 
 # Making predictions: Home advantage
@@ -259,11 +271,11 @@ The average expected goals of the home team divided by the average expected goal
 
 
 ```{r}
-# lambda for Benfica playing at home
-b_h=exp(intercept + team_benfica + opponent_porto + home_coeff)
-# lambda for Benfica playing against Porto away
-b_a=exp(intercept + team_benfica + opponent_porto)
-b_h/b_a
+# lambda for Sporting Lisbon playing at home
+spl_h=exp(intercept + team_lisbon + oponnent_vizela + home_coeff)
+# lambda for Sporting Lisbon playing against Vizela away
+vzl_a=exp(intercept + team_lisbon + oponnent_vizela)
+spl_h/vzl_a
 ```
 
 ```{r}
@@ -276,14 +288,14 @@ exp(home_coeff)
 As we have $\lambda$ for both teams, we can use skellam distribution to come up with the probabilities.
 
 ```{r, tidy=F}
-# Benfica's lambda
-benfica_average
-# Porto's lambda
-porto_average
+# Lisbon's lambda
+lisbon_average
+# Vizela's lambda
+vizela_average
 
 # Simulate game results
 set.seed(1)
-k = rskellam(10000,mu1 = benfica_average, mu2 = porto_average)
+k = rskellam(10000,mu1 = lisbon_average, mu2 = vizela_average)
 ```
 
 # Making predictions
@@ -292,7 +304,7 @@ A slight home team advantage
 
 ```{r, fig.width=10, fig.height=4}
 ggplot()+geom_bar(aes(x=k))+
-  labs(x="Goal difference", title="Skellam distribution for Benfica vs Porto")
+  labs(x="Goal difference", title="Skellam distribution for Sporting Lisbon vs Vizela")
 ```
 
 # Making predictions 
@@ -301,11 +313,11 @@ Calculate the game output probabilities
 
 ```{r}
 # Away team to win
-sum(dskellam(c(-100:-1),benfica_average, porto_average))
+sum(dskellam(c(-100:-1),lisbon_average, vizela_average))
 # Draw
-sum(dskellam(0 ,benfica_average, porto_average))
+sum(dskellam(0 ,lisbon_average, vizela_average))
 # Home team to win
-sum(dskellam(c(1:100),benfica_average, porto_average))
+sum(dskellam(c(1:100),lisbon_average, vizela_average))
 ```
 
 
@@ -384,7 +396,7 @@ head(nfl, n=5)
 * Description
 * Format
 * A data frame with 4848 rows and 16 variables
-* schedule_season: from 2000-2016
+* schedule_season: from 2000-2021
 * schedule_week: The number of the week when the game was played
 * schedule_date: The actual date of the game
 * team_away: Away team
