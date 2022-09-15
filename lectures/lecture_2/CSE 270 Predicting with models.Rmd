@@ -100,7 +100,7 @@ test
 
 
 ```{r, tidy=F}
-df %>% filter(SEASON==2019) %>% group_by(COUNTRY) %>% 
+df %>% filter(SEASON==2022) %>% group_by(COUNTRY) %>% 
   summarise(pvalue=chisq.test(table(FTAG, FTHG),
                               simulate.p.value=T)$p.value)
 ```
@@ -134,14 +134,14 @@ probabilities for the number of the goals
 
 # Preparing data for the Poisson regression model
 
-The initial data for Portugal, season 2018-2019
+The initial data for Portugal, season 2021-2022
 
 Making Predictions for Portugal Liga 1
 
 ```{r}
 data(f_data_sm)
 portugal = f_data_sm %>%
-            filter(SEASON==2019, COUNTRY=="Portugal") %>%
+            filter(SEASON==2022, COUNTRY=="Portugal") %>%
             select(HOMETEAM, AWAYTEAM, FTHG, FTAG)  
 
 head(portugal, n=5)
@@ -164,14 +164,14 @@ head(portugal2)
 
 # Preparing data for the Poisson regression model
 
-Now lets have a look at the first game of the season:
+Now let's have a look at the first game of the season:
 Benfica vs Guimaraes
 * Benfica was the home team, and the game ended with 3-2
 ```{r}
 portugal[1,]
 ```
 
-* Lets look at our new dataset
+* Let's look at our new dataset
 
 ```{r}
 portugal2[1,]
@@ -220,7 +220,7 @@ options(scipen=1, digits=4)
 When Benfica is playing Porto at Home, the expected (average) number of
 goals for Benfica is 1.522 and For Porto 1.342
 
-# Lets do the calculations by hand for Benfica
+# Let's do the calculations by hand for Benfica
 
 Calculations of $\lambda$ for Benfica
 
@@ -524,7 +524,7 @@ ggplot(data=abilities, aes(x = reorder(team, ability), y = ability)) +
 
 everything relative to the worst team (Cleveland Browns)
 
-* Lets say we want to calculate the abilities relative to the weakest team, so all the abilities would be $\ge$ 0
+* Let's say we want to calculate the abilities relative to the weakest team, so all the abilities would be $\ge$ 0
 * You could do this by re leveling the team variables
 
 ```{r, tidy=F, eval=F}
@@ -571,7 +571,8 @@ ggplot(data=abilities_brown, aes(x=reorder(team,ability), y=ability)) +
 # Bradley-Terry model
 
 
-Lets do predictions for a sample of games for Denver Broncos
+Let's do predictions for a sample of games for Denver Broncos
+\tiny
 
 ```{r tidy=FALSE}
 broncos=data.frame(team_home=rep("Denver Broncos", 4),
