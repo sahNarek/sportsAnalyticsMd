@@ -864,9 +864,12 @@ filter(CUM_SC != "NA") %>% as.data.frame()
 # Predicting with the rating
 
 Important:
-Round 7 game Arsenal vs Ipswich. \ 
-* In last 6 games Arsenal scored 7 goals and conceded 5
+Round 7 game Arsenal vs Ipswich.  
+
+* In last 6 games Arsenal scored 7 goals and conceded 5  
+
 * In last 6 games Ipswich scored 7 and conceded 3
+
 ```{r}
 head(england_long1)
 ```
