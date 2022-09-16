@@ -209,14 +209,15 @@ coefficients(model)
 
 ```{r}
 options(scipen=1, digits=4)
-(lisbon_average <- predict(model, data.frame(Home=1, Team="Sp Lisbon", Opponent="Vizela"), type="response"))
+(lisbon_average <- predict(model, data.frame(Home=1, Team="Sp Lisbon", 
+                                             Opponent="Vizela"), type="response"))
 ```
 
 * The same for Vizela
 ```{r}
 options(scipen=1, digits=4)
-(vizela_average <- predict(model, data.frame(Home=0, Team="Vizela", Opponent="Sp Lisbon"),
-        type="response"))
+(vizela_average <- predict(model, data.frame(Home=0, Team="Vizela", 
+                                             Opponent="Sp Lisbon"), type="response"))
 ```
 
 When Sporting Lisbon is playing Vizela at Home, the expected (average) number of
@@ -260,7 +261,7 @@ exp_result <- exp(result)
 
 $log(\lambda)$ = `r home_coeff` + `r team_lisbon` + `r oponnent_vizela` + `r intercept` = `r result`\  
 
-$\lambda$ = (`r intercept + team_lisbon + oponnent_vizela + home_coeff`) = 
+$\lambda$ = e^(`r intercept + team_lisbon + oponnent_vizela + home_coeff`) = 
 `r exp_result`
 
 
@@ -328,7 +329,7 @@ sum(dskellam(c(1:100),lisbon_average, vizela_average))
 # Bradley-Terry model
 
 The Bradley-Terry model (Bradley and Terry 1952) assumes that in a ‘contest’
-between any two ‘players’, say player $i$ and player $j$ ( $i$, $j$ $\in$ {1, ... . , $K$}) the ,odds
+between any two ‘players’, say player $i$ and player $j$ ( $i$, $j$ $\in$ {1, ... . , $K$}) the odds
 that $i$ beats $j$ are $\alpha_i / \alpha_j$ , where $\alpha_i$ and $\alpha_j$ are positive-valued parameters which represent the “ability” of each player/team. \ 
 
 The general model definition 
