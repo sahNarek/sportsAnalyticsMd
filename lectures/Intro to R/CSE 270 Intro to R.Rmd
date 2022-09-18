@@ -915,7 +915,7 @@ head(england_wide)
 
 # Predicting with the rating
 
-Now lets calculate the game result frequencies by Match rating (POWERDIFF)
+Now let's calculate the game result frequencies by Match rating (POWERDIFF)
 
 ```{r}
 freqs = dcast(england_wide, POWERDIFF~RESULT)

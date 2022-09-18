@@ -49,7 +49,7 @@ $H_1:$ Two variables are NOT independent
 
 \ecenter
  
-Calculate p-value and compare with significance level of $\alpha$, if p-value < $\alpha$ reject
+Calculate the p-value and compare with significance level of $\alpha$, if p-value < $\alpha$ reject
 the NULL hypothesis
 
 
@@ -90,7 +90,8 @@ table(Away=df$FTAG, Home = df$FTHG)
 We do the test for the last season
 
 * We use function chisq.test
-* We specify table with Observed Frequencies
+* We specify the table with Observed Frequencies
+
 * And specify simulate.p.values = TRUE: This will add robustness to our
 test
 * We do the test for each country and extract p-values of the test

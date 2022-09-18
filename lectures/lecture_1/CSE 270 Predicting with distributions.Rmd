@@ -918,7 +918,7 @@ head(england_wide)
 
 # Predicting with the rating
 
-Now lets calculate the game result frequencies by Match rating (POWERDIFF)
+Now let's calculate the game result frequencies by Match rating (POWERDIFF)
 
 ```{r}
 freqs = dcast(england_wide, POWERDIFF~RESULT)
@@ -1002,4 +1002,99 @@ Draw: very hard to predict
 ```{r}
 modelD = lm(D.1~poly(POWERDIFF,2), data=freqs)
 summary(modelD)
+```
+
+# Predicting with the rating
+Using functions to generalize the procedure and change the country by one line.
+\tiny
+```{r}
+pick_country <- function(source = f_data_sm, country) {
+  country <- source %>%
+    filter(COUNTRY == country) %>%
+    arrange(DATE) %>%
+    select("SEASON","DATE","HOMETEAM",  "AWAYTEAM","FTHG", "FTAG")%>%
+    mutate(ID = 1:n())
+  
+  country_long <- reshape2::melt(country, 
+                                 id.vars = c("ID","HOMETEAM",  "AWAYTEAM",  "SEASON", "DATE"), 
+                                 measure.vars = c("FTHG", "FTAG"), variable.name="H_A")
+  country_long <- country_long %>%
+    arrange(ID)
+  return(list(wide = country,
+              long = country_long))
+}
+
+prepare_long <- function(data){
+  modified <- data %>%
+    mutate(TEAM1 = ifelse(H_A == "FTHG", HOMETEAM, AWAYTEAM),
+           TEAM2 = ifelse(TEAM1 == HOMETEAM, AWAYTEAM, HOMETEAM)) %>%
+    select(c("ID","SEASON","DATE", "TEAM1","TEAM2", "H_A","value"))
+  return(modified)
+}
+```
+
+# Predicting with the rating
+\tiny
+```{r}
+goals_scored_conceded <- function(data, n) {
+  data_long <- data %>%
+    group_by(SEASON, TEAM1) %>%
+    mutate(CUM_SC = lag(rollapply(value,n,sum, fill=NA, align='right'),1)) %>%
+    ungroup() %>%
+    group_by(SEASON, TEAM2) %>%
+    mutate(CUM_C = lag(rollapply(value,n,sum, fill=NA, align='right'),1)) %>%
+    filter(CUM_SC != "NA")
+  data_long <- as.data.frame(data_long)
+  
+  data_wide <- reshape(data_long, direction="wide",
+                          timevar = "H_A", idvar = "ID", 
+                          v.names=c("value", "CUM_SC", "CUM_C"))
+  return(list(long = data_long,
+              wide = data_wide))
+}
+
+get_power_diff <- function(data){
+  data$POWERHOME <- data$CUM_SC.FTHG-data$CUM_C.FTAG
+  data$POWERAWAY <- data$CUM_SC.FTAG-data$CUM_C.FTHG
+  data$POWERDIFF <- data$POWERHOME-data$POWERAWAY
+  result <- data %>%
+    mutate(RESULT = ifelse(value.FTHG > value.FTAG, "HW", 
+                           ifelse(value.FTHG < value.FTAG, "AW", "D" ) )) %>%
+    select(c("SEASON","DATE","TEAM1","TEAM2","value.FTHG",
+             "value.FTAG","POWERHOME", "POWERAWAY","POWERDIFF", "RESULT"))
+  result <- result[!is.na(result$POWERDIFF),]
+  return(result)
+}
+```
+
+# Predicting with the rating
+
+```{r}
+build_models <- function(freqs) {
+  modelH <- lm(HW.1 ~ POWERDIFF, data = freqs)  
+  modelA <- lm(AW.1 ~ POWERDIFF, data = freqs)
+  modelD <- lm(D.1 ~ POWERDIFF, data = freqs)
+  modelD_2 <- lm(D.1 ~ poly(POWERDIFF, 2), data = freqs)
+  
+  return(list(H = modelH,
+              A = modelA,
+              D = modelD,
+              D_2 = modelD_2))
+}
+
+get_final_df_by_country <- function(data, country){
+  final_df <- pick_country(source = data, country = country)$wide
+  final_df_long <- pick_country(source = data, country = country)$long
+  final_df_long <- prepare_long(data = final_df_long)
+  final_df_long_1 <- goals_scored_conceded(data = final_df_long, n = 6)$long
+  final_df_wide <- goals_scored_conceded(data = final_df_long, n = 6)$wide
+  final_df_wide <- get_power_diff(data = final_df_wide)
+}
+```
+
+# Predicting with the rating
+```{r}
+italy_power_ratings <- get_final_df_by_country(f_data_sm, "Italy")
+freqs <- dcast(italy_power_ratings, POWERDIFF~RESULT)
+head(freqs)
 ```

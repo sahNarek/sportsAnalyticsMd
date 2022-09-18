@@ -164,10 +164,13 @@ freqs[freqs$POWERDIFF==0,]
 freqs$POWERDIFF_LOG = ifelse(freqs$POWERDIFF > 0, log(freqs$POWERDIFF), 
                              ifelse(freqs$POWERDIFF == 0, 0, -log(-freqs$POWERDIFF)))
 
+freqs$POWERDIFF_LOG_SQUARED = ifelse(freqs$POWERDIFF_LOG > 0, 
+                                     freqs$POWERDIFF_LOG^2, - freqs$POWERDIFF_LOG^2)
+
 ggplot(freqs, aes(x=(POWERDIFF_LOG), y = HW))+geom_point()+
 ggtitle("Home wins by Power Difference")
 
-ggplot(freqs, aes(x=POWERDIFF_LOG^2, y=HW))+geom_point()+
+ggplot(freqs, aes(x=POWERDIFF_LOG_SQUARED, y=HW))+geom_point()+
 geom_smooth(method="lm",formula = y ~ poly(x, 2), se=F)+
 labs(x="Power Difference", y="Home Win %", title = "POWERDIFF vs HW %")
 
@@ -176,68 +179,6 @@ summary(modelH)
 
 ```
 
-
-```{r}
-data("nfl")
-nfl_2021 <- nfl %>%
-  filter(schedule_season == '2021') %>%
-  arrange(schedule_date) %>%
-  select(schedule_season,schedule_date,team_home,team_away,score_home,score_away, result) %>%
-  mutate(ID = 1:n())
-
-nfl_2021_long <-  nfl_2021 %>% reshape2::melt(
-                    id.vars = c("ID","schedule_season","schedule_date",
-                                "team_home","team_away","score_home",
-                                "score_away", "result"),
-                    measure.vars = c("score_home","score_away"), 
-                    variable.name="H_A") %>%
-                    arrange(ID)
-
-nfl_2021_long <- nfl_2021_long %>% 
-  mutate(TEAM1 = ifelse(H_A == 'score_home', team_home, team_away),
-         TEAM2 = ifelse(H_A == 'score_home', team_away, team_home)) %>%
-  select(ID, schedule_season, schedule_date, TEAM1, TEAM2, H_A, value, result)
-  
-
-nfl_2021_long <- nfl_2021_long %>%
-  group_by(schedule_season, TEAM1) %>%
-  mutate(CUM_SC = dplyr::lag(rollapply(value,6,sum, fill=NA, align='right'),1)) %>%
-  ungroup() %>%
-  group_by(schedule_season, TEAM2) %>%
-  mutate(CUM_C = lag(rollapply(value,6,sum, fill=NA, align='right'),1)) %>%
-  filter(CUM_SC != "NA", CUM_C != "NA") %>% 
-  as.data.frame()
-
-nfl_2021_wide = reshape(nfl_2021_long, direction="wide",
-  timevar = "H_A", idvar = "ID",
-  v.names=c("value", "CUM_SC", "CUM_C"))
-
-nfl_2021_wide = nfl_2021_wide %>%
-  mutate(POWERHOME = CUM_SC.score_home - CUM_C.score_home,
-         POWERAWAY = CUM_SC.score_away - CUM_C.score_away,
-         POWERDIFF = POWERHOME - POWERAWAY,) %>%
-  select(schedule_season, schedule_date, TEAM1, TEAM2, value.score_home, value.score_away, 
-         POWERHOME, POWERAWAY, POWERDIFF, result) %>%
-  filter(!is.na(POWERDIFF))
-
-freqs = dcast(nfl_2021_wide, POWERDIFF~result)
-head(freqs)
-freqs[freqs$POWERDIFF==0,]
-
-freqs$POWERDIFF_LOG = ifelse(freqs$POWERDIFF > 0, log(freqs$POWERDIFF), 
-                             ifelse(freqs$POWERDIFF == 0, 0, -log(-freqs$POWERDIFF)))
-
-ggplot(freqs, aes(x=(POWERDIFF), y = H))+geom_point()+
-ggtitle("Home wins by Power Difference")
-
-ggplot(freqs, aes(x=POWERDIFF_LOG^2, y=H))+geom_point()+
-geom_smooth(method="lm",formula = y ~ poly(x, 2), se=F)+
-labs(x="Power Difference", y="Home Win %", title = "POWERDIFF vs HW %")
-
-modelH = lm(H~poly(POWERDIFF_LOG,2), data=freqs)
-summary(modelH)
-
-```
 
 <!-- 2. Now use Poisson regression for the same task as above. Create the model and predict the probabilities. Interpret the home team coefficient. (6p) -->
 

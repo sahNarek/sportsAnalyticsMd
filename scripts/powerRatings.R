@@ -32,7 +32,7 @@ prepare_long <- function(data){
 
 # n = number of games, before the match
 goals_scored_conceded <- function(data, n) {
-  data_long <- Netherlands_long %>%
+  data_long <- data %>%
     group_by(SEASON, TEAM1) %>%
     mutate(CUM_SC = lag(rollapply(value,n,sum, fill=NA, align='right'),1)) %>%
     ungroup() %>%
@@ -77,7 +77,7 @@ build_models <- function(freqs) {
 Netherlands <- pick_country(country = "Netherlands")$wide
 Netherlands_long <- pick_country(country = "Netherlands")$long
 Netherlands_long <- prepare_long(data = Netherlands_long)
-Netherlands_long_1 <- goals_scored_conceded(data = Netherlands_long_2, n = 6)$long
+Netherlands_long_1 <- goals_scored_conceded(data = Netherlands_long, n = 6)$long
 Netherlands_wide <- goals_scored_conceded(data = Netherlands_long, n = 6)$wide
 Netherlands_wide <- get_power_diff(data = Netherlands_wide)
 
