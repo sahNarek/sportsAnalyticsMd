@@ -1,0 +1,303 @@
+---
+title: "HOMEWORK 1"
+output: pdf_document
+---
+
+Overall 50pts. Submit both markdown and pdf files
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=F, warning=F)
+library(SportsAnalytics270)
+library(dplyr)
+library(ggplot2)
+library(BradleyTerry2)
+library(VGAM)
+```
+
+You are assigned to analyse a league from the f_data_sm, the leagues are assigned randomly
+
+Sanasar Ananyan - 	Liga I
+Sona Avagyan -	Le Championnat
+Saten Harutyunyan -	Premier League
+Sergey Hovhannisyan -	Jupiler League
+Karen Manukyan -	La Liga
+Elen Sahakyan -	Bundesliga
+Narek Sahakyan -	Eredivisie
+Silva Arakelyan -	Serie A
+
+
+```{r}
+library(SportsAnalytics270)
+library(dplyr)
+library(ggplot2)
+library(reshape2)
+library(zoo)
+library(VGAM)
+data(f_data_sm)
+```
+
+
+```{r}
+get_top_bottom_teams <- function(data, country, top = TRUE){
+  result <- data.frame()
+  for (season in unique(data$SEASON)){
+    season_standings <- SportsAnalytics270::final_table(data, country, season)
+    number_of_teams <- nrow(season_standings)
+    if (top == TRUE){
+      teams <- season_standings[1:(number_of_teams %/% 2), ]$TEAM
+    }
+    else{
+      teams <- season_standings[(number_of_teams %/% 2):number_of_teams, ]$TEAM
+    }
+    season_teams <- data %>%
+      filter(SEASON == season, HOMETEAM %in% teams, AWAYTEAM %in% teams)
+    result <- rbind(result, season_teams)
+  }
+  return(result)
+}
+
+
+```
+
+
+
+1. Calculate average number of goals for home and away teams per SEASON for that league, use dplyr. (4p)
+
+
+```{r}
+
+```
+
+2. Construct a plot using ggplot to show how this number is changing over time. Comment
+Note: you need to have SEASON on x-axis. Show average Home goals and Away goals on the same plot. Be sure that your plot has appropriate axis names and title.(4p)
+```{r}
+
+```
+
+
+3. Interpret the plot (4p)
+
+4. Think of your own approach on how will you measure home team advantage given the data you have. Calculate Home team advantage for your league and for all other leagues over time (4p).
+
+```{r}
+
+```
+
+
+5. Plot the results of the exercise 4 here using ggplot2 and interpret it (4p).
+
+```{r}
+
+```
+
+
+#### Predictions
+
+1. With your chosen league, predict the probabilities of the first week of the season. Use distribution approach. (4p)
+
+```{r}
+
+```
+
+Probabilities
+
+```{r}
+
+```
+
+Try predicting home results with power ratings in other sports,
+the data for nba, nfl and mba is available in SportsAnalytics270
+
+#### NBA
+```{r}
+library(dplyr)
+library(zoo)
+
+data("nba2009_2021")
+nba_2021 <- nba2009_2021 %>%
+  filter(SEASON_ID == '2021') %>%
+  arrange(GAME_DATE) %>%
+  select("SEASON_ID","GAME_DATE","home.TEAM_NAME","away.TEAM_NAME","home.PTS",
+         "away.PTS", "home.WL") %>%
+  mutate(ID = 1:n())
+
+nba_2021_long <-  nba_2021 %>% reshape2::melt(
+                    id.vars = c("ID", "GAME_DATE", "SEASON_ID",
+                                "home.TEAM_NAME", "away.TEAM_NAME","home.WL"),
+                    measure.vars = c("home.PTS","away.PTS"), 
+                    variable.name="H_A") %>%
+                    arrange(ID)
+
+nba_2021_long <- nba_2021_long %>% 
+  mutate(TEAM1 = ifelse(H_A == 'home.PTS', home.TEAM_NAME, away.TEAM_NAME),
+         TEAM2 = ifelse(H_A == 'home.PTS', away.TEAM_NAME, home.TEAM_NAME)) %>%
+  select(ID, SEASON_ID, GAME_DATE, TEAM1, TEAM2, H_A, value, home.WL)
+  
+
+nba_2021_long <- nba_2021_long %>%
+  group_by(SEASON_ID, TEAM1) %>%
+  mutate(CUM_SC = dplyr::lag(rollapply(value %/% 2.5 ,6,sum, fill=NA, align='right'),1)) %>%
+  ungroup() %>%
+  group_by(SEASON_ID, TEAM2) %>%
+  mutate(CUM_C = lag(rollapply(value %/% 2.5 ,6,sum, fill=NA, align='right'),1)) %>%
+  filter(CUM_SC != "NA", CUM_C != "NA") %>% 
+  as.data.frame()
+
+nba_2021_wide = reshape(nba_2021_long, direction="wide",
+  timevar = "H_A", idvar = "ID",
+  v.names=c("value", "CUM_SC", "CUM_C"))
+
+nba_2021_wide = nba_2021_wide %>%
+  mutate(POWERHOME = CUM_SC.home.PTS - CUM_C.home.PTS,
+         POWERAWAY = CUM_SC.away.PTS - CUM_C.away.PTS,
+         POWERDIFF = POWERHOME - POWERAWAY,
+         RESULT = ifelse(home.WL == 'W', 'HW', 'AW')) %>%
+  select(SEASON_ID, GAME_DATE, TEAM1, TEAM2, value.home.PTS, value.away.PTS, 
+         POWERHOME, POWERAWAY, POWERDIFF, RESULT) %>%
+  filter(!is.na(POWERDIFF))
+
+freqs = dcast(nba_2021_wide, POWERDIFF~RESULT)
+head(freqs)
+freqs[freqs$POWERDIFF==0,]
+
+freqs$POWERDIFF_LOG = ifelse(freqs$POWERDIFF > 0, log(freqs$POWERDIFF), 
+                             ifelse(freqs$POWERDIFF == 0, 0, -log(-freqs$POWERDIFF)))
+
+ggplot(freqs, aes(x=(POWERDIFF_LOG), y = HW))+geom_point()+
+ggtitle("Home wins by Power Difference")
+
+ggplot(freqs, aes(x=POWERDIFF_LOG^2, y=HW))+geom_point()+
+geom_smooth(method="lm",formula = y ~ poly(x, 2), se=F)+
+labs(x="Power Difference", y="Home Win %", title = "POWERDIFF vs HW %")
+
+modelH = lm(HW~poly(POWERDIFF_LOG,2), data=freqs)
+summary(modelH)
+
+```
+
+
+```{r}
+data("nfl")
+nfl_2021 <- nfl %>%
+  filter(schedule_season == '2021') %>%
+  arrange(schedule_date) %>%
+  select(schedule_season,schedule_date,team_home,team_away,score_home,score_away, result) %>%
+  mutate(ID = 1:n())
+
+nfl_2021_long <-  nfl_2021 %>% reshape2::melt(
+                    id.vars = c("ID","schedule_season","schedule_date",
+                                "team_home","team_away","score_home",
+                                "score_away", "result"),
+                    measure.vars = c("score_home","score_away"), 
+                    variable.name="H_A") %>%
+                    arrange(ID)
+
+nfl_2021_long <- nfl_2021_long %>% 
+  mutate(TEAM1 = ifelse(H_A == 'score_home', team_home, team_away),
+         TEAM2 = ifelse(H_A == 'score_home', team_away, team_home)) %>%
+  select(ID, schedule_season, schedule_date, TEAM1, TEAM2, H_A, value, result)
+  
+
+nfl_2021_long <- nfl_2021_long %>%
+  group_by(schedule_season, TEAM1) %>%
+  mutate(CUM_SC = dplyr::lag(rollapply(value,6,sum, fill=NA, align='right'),1)) %>%
+  ungroup() %>%
+  group_by(schedule_season, TEAM2) %>%
+  mutate(CUM_C = lag(rollapply(value,6,sum, fill=NA, align='right'),1)) %>%
+  filter(CUM_SC != "NA", CUM_C != "NA") %>% 
+  as.data.frame()
+
+nfl_2021_wide = reshape(nfl_2021_long, direction="wide",
+  timevar = "H_A", idvar = "ID",
+  v.names=c("value", "CUM_SC", "CUM_C"))
+
+nfl_2021_wide = nfl_2021_wide %>%
+  mutate(POWERHOME = CUM_SC.score_home - CUM_C.score_home,
+         POWERAWAY = CUM_SC.score_away - CUM_C.score_away,
+         POWERDIFF = POWERHOME - POWERAWAY,) %>%
+  select(schedule_season, schedule_date, TEAM1, TEAM2, value.score_home, value.score_away, 
+         POWERHOME, POWERAWAY, POWERDIFF, result) %>%
+  filter(!is.na(POWERDIFF))
+
+freqs = dcast(nfl_2021_wide, POWERDIFF~result)
+head(freqs)
+freqs[freqs$POWERDIFF==0,]
+
+freqs$POWERDIFF_LOG = ifelse(freqs$POWERDIFF > 0, log(freqs$POWERDIFF), 
+                             ifelse(freqs$POWERDIFF == 0, 0, -log(-freqs$POWERDIFF)))
+
+ggplot(freqs, aes(x=(POWERDIFF), y = H))+geom_point()+
+ggtitle("Home wins by Power Difference")
+
+ggplot(freqs, aes(x=POWERDIFF_LOG^2, y=H))+geom_point()+
+geom_smooth(method="lm",formula = y ~ poly(x, 2), se=F)+
+labs(x="Power Difference", y="Home Win %", title = "POWERDIFF vs HW %")
+
+modelH = lm(H~poly(POWERDIFF_LOG,2), data=freqs)
+summary(modelH)
+
+```
+
+<!-- 2. Now use Poisson regression for the same task as above. Create the model and predict the probabilities. Interpret the home team coefficient. (6p) -->
+
+<!-- # Data preperation -->
+
+<!-- ```{r} -->
+
+<!-- ``` -->
+
+<!-- # Model -->
+
+<!-- ```{r} -->
+
+<!-- ``` -->
+
+<!-- # Probalities -->
+
+<!-- ```{r} -->
+
+<!-- ``` -->
+
+
+
+<!-- 3. Compare the probabilities to each other and to the actual results. How good do you think you were? Can you think of a metric that can help us to understand how good are our predictions over the week (2p) -->
+
+
+
+<!-- ### Bradley terry model -->
+
+<!-- You need to construct Bradley-Terry model for NBA regular season games. Dataset is nba2009_2021 from SportsAnalytics270 package  -->
+
+<!-- Remove the game Boston Celtics vs Indiana Pacers from the dataframe. This is a game that was cancelled due to Boston Marathon bombing -->
+
+<!-- ```{r} -->
+
+<!-- ``` -->
+
+<!-- 1. Do the Data Prep here (4p) -->
+
+<!-- ```{r} -->
+
+<!-- ``` -->
+
+<!-- 2. Model here (4p) -->
+
+<!-- ```{r} -->
+
+<!-- ``` -->
+
+<!-- 3. Plot the abilities: Which team is the beast, which the worst ? (4p) -->
+
+<!-- ```{r} -->
+
+<!-- ``` -->
+
+
+<!-- 4. Make prediciton for the first 3 games of the new season (Schedule can be found here: https://tinyurl.com/y4hpbl8f) (6p) -->
+
+<!-- ```{r} -->
+
+<!-- ``` -->
+
+
