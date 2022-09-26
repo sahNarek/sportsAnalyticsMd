@@ -1,0 +1,69 @@
+---
+title: "HOMEWORK 1"
+subtitle: "Deadline: 27/09/2022"
+output: pdf_document
+---
+
+## Home advantage  
+
+
+Overall 100pts(including bonus question).   
+Submit both markdown and pdf files
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=F, warning=F)
+library(SportsAnalytics270)
+library(dplyr)
+library(ggplot2)
+library(BradleyTerry2)
+library(VGAM)
+library(SportsAnalytics270)
+library(dplyr)
+library(ggplot2)
+library(reshape2)
+library(zoo)
+library(VGAM)
+data(f_data_sm)
+```
+
+
+
+1. Calculate average number of goals for home and away teams per SEASON for that league, use dplyr.
+(10p)
+
+
+2. Calculate average number of goals for home and away teams per SEASON for that league for both top and bottom teams, use dplyr. Is there any difference in between the top and bottom teams in terms of average number of goals ? The function get_top_bottom_teams can be used to get the top and bottom teams (10p)
+
+
+3. Now calculate the same statistics for the games where the hometeam was in bottom of the table and the away team was in the top of the table. Is the home advantage still a strong factor ? (10p)
+
+4. Construct a plot using ggplot to show how this number is changing over time. 
+Use the means from the first exercise.
+Note: you need to have SEASON on x-axis. Show average Home goals and Away goals on the same plot. Be sure that your plot has appropriate axis names and title (10p) 
+
+
+5. Now use the same plot on the games where the away team was from top of the table (10p)
+
+6. Interpret the plots (10p)
+
+
+7. Think of your own approach on how will you measure home team advantage given the data you have. Calculate Home team advantage for your league and for all other leagues over time (10p)
+
+8. Calculate the same ratio for the games where the away team was from the top of the table and the home team was from the bottom of the table. (10p)
+
+9. Plot the results for all games and the games where the away team was from the top of the table in one plot using ggplot2. (10p)
+
+## Predictions  
+
+
+1. With your chosen league, pick an upcoming game and calculate the betting odds for that game. Use distribution approach. You can compare the result with the actual betting odds from this website, https://www.bet365.com/#/AS/B1/. (10p)
+
+
+## Power Ratings  
+
+
+1. Try predicting home results with power ratings in other sports,
+Does it work as well as in football ?
+Try to interpret the actual results.
+The data for nba, nfl is available in SportsAnalytics270 (Bonus question, 10 points)
