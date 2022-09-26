@@ -146,9 +146,9 @@ $R^H_t$ updated rating for the home team
 
 $R^H_{t-1}$ rating before the game  
 
-$\alpha^h$ is the actual outcome for the game  
+$\alpha^H$ is the actual outcome for the game  
 
-$y^h$ is the predicted probability of Home team to win  
+$y^H$ is the predicted probability of Home team to win  
 
 $K$ is a positive number  
 
