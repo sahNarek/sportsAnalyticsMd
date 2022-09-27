@@ -28,6 +28,70 @@ data(f_data_sm)
 ```
 
 
+```{r, echo = F}
+get_top_bottom_teams <- function(data, country, top = TRUE){
+  result <- data.frame()
+  country_data <- data %>% 
+    filter(COUNTRY == country)
+  for (season in unique(country_data$SEASON)){
+    print(season)
+    season_standings <- SportsAnalytics270::final_table(data, country, season)
+    number_of_teams <- nrow(season_standings)
+    if (top == TRUE){
+      teams <- season_standings[1:(number_of_teams %/% 2), ]$TEAM
+    }
+    else{
+      teams <- season_standings[(number_of_teams %/% 2):number_of_teams, ]$TEAM
+    }
+    season_teams <- data %>%
+      filter(SEASON == season, HOMETEAM %in% teams, AWAYTEAM %in% teams)
+    result <- rbind(result, season_teams)
+  }
+  return(result)
+}
+
+
+get_top_vs_bottom_teams <- function(data, country){
+  result <- data.frame()
+  country_data <- data %>% 
+    filter(COUNTRY == country)
+  for (season in unique(country_data$SEASON)){
+    season_standings <- SportsAnalytics270::final_table(data, country, season)
+    number_of_teams <- nrow(season_standings)
+    top_teams <- season_standings[1:(number_of_teams %/% 2), ]$TEAM
+    bottom_teams <- season_standings[(number_of_teams %/% 2):number_of_teams, ]$TEAM
+    season_teams <- data %>%
+      filter(SEASON == season, HOMETEAM %in% bottom_teams, AWAYTEAM %in% top_teams)
+    result <- rbind(result, season_teams)
+  }
+  return(result)
+}
+
+final_table <- function (data, country, season) {
+  sa <- data %>% filter(SEASON == season, COUNTRY == country) %>%
+    group_by(HOMETEAM) %>% summarise(W = sum(FTR == "H"),
+                                     D = sum(FTR == "D"), L = sum(FTR == "A"), GF = sum(FTHG),
+                                     GA = sum(FTAG))
+  sa1 <- data %>% filter(SEASON == season, COUNTRY == country) %>%
+    group_by(AWAYTEAM) %>% summarise(W = sum(FTR == "A"),
+                                     D = sum(FTR == "D"), L = sum(FTR == "H"), GF = sum(FTAG),
+                                     GA = sum(FTHG))
+  print(sa1)
+  print(sa)
+  temp <- data.frame(sa[, 1], M = (nrow(sa1)-1)*2, sa[, 2:4] + sa1[, 2:4],
+                     sa[,5] + sa1[, 5], sa[, 6] + sa1[, 6])
+
+  temp$DIFF <- temp$GF - temp$GA
+  temp$POINTS <- temp$W * 3 + temp$D
+  temp <- temp[order(temp$POINTS, decreasing = T), ]
+  rownames(temp) <- NULL
+  temp$POSITION <- 1:nrow(temp)
+  colnames(temp)[1] <- "TEAM"
+  return(temp)
+}
+
+
+```
 
 1. Calculate average number of goals for home and away teams per SEASON for that league, use dplyr.
 (10p)

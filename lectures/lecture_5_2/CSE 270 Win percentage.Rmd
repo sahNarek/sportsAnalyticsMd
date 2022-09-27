@@ -278,7 +278,8 @@ $RMSE = \sqrt{\frac{ \sum_\text{i=1}^n{(\hat{y_i} -y_i)^2 }  } {n} }$
 
 
 ```{r}
-mlb_standings$PW_percentage<-mlb_standings$R^1.9/(mlb_standings$R^1.9+mlb_standings$RA^1.9)
+mlb_standings$PW_percentage<-mlb_standings$R^1.9/
+  (mlb_standings$R^1.9+mlb_standings$RA^1.9)
 
 errors<-mlb_standings$Wpct-mlb_standings$PW_percentage
 
@@ -366,12 +367,12 @@ Recall:
 
 \bcenter
 $Wpct = \frac{R^2}{R^2 + RA^2}$
-\ecenter
 
 
 $\frac{W}{L} = \frac{R^k}{RA^k}$ $log(\frac{W}{L}) = k * log(\frac{R}{RA})$
 
 
+\ecenter
 
 * We want to find the value of k
 * General linear regression equation is: $y = \beta_0 + \beta_1X$, however here we have no 01
@@ -398,7 +399,11 @@ summary(model2)
 
 # Pythagorean wins in NBA
 
+
 The estimated value of K is 14.093  
+```{r}
+k = 14.093
+```
 
 ```{r, echo=F,out.width="90%", out.height="70%"}
 knitr::include_graphics("./images/nba_pyt.png")
@@ -410,7 +415,7 @@ from: [https://www.basketball-reference.com/about/glossary.html#wins_pyth](https
 
 
 ```{r}
-nba_st$PW <- nba_st$PS^14.093/(nba_st$PS^14.093+nba_st$PA^14.093)
+nba_st$PW <- nba_st$PS^k/(nba_st$PS^k+nba_st$PA^k)
 sqrt(mean((nba_st$PW-nba_st$Pct)^2))
 ```
 
