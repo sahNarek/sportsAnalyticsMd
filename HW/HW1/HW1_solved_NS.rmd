@@ -227,10 +227,10 @@ nba_2021_long <- nba_2021_long %>%
 
 nba_2021_long <- nba_2021_long %>%
   group_by(SEASON_ID, TEAM1) %>%
-  mutate(CUM_SC = dplyr::lag(rollapply(value %/% 2.5 ,6,sum, fill=NA, align='right'),1)) %>%
+  mutate(CUM_SC = dplyr::lag(rollapply(value %/% 2 ,6,sum, fill=NA, align='right'),1)) %>%
   ungroup() %>%
   group_by(SEASON_ID, TEAM2) %>%
-  mutate(CUM_C = lag(rollapply(value %/% 2.5 ,6,sum, fill=NA, align='right'),1)) %>%
+  mutate(CUM_C = lag(rollapply(value %/% 2 ,6,sum, fill=NA, align='right'),1)) %>%
   filter(CUM_SC != "NA", CUM_C != "NA") %>% 
   as.data.frame()
 
@@ -239,8 +239,8 @@ nba_2021_wide = reshape(nba_2021_long, direction="wide",
   v.names=c("value", "CUM_SC", "CUM_C"))
 
 nba_2021_wide = nba_2021_wide %>%
-  mutate(POWERHOME = CUM_SC.home.PTS - CUM_C.home.PTS,
-         POWERAWAY = CUM_SC.away.PTS - CUM_C.away.PTS,
+  mutate(POWERHOME = CUM_SC.home.PTS - CUM_C.away.PTS,
+         POWERAWAY = CUM_SC.away.PTS - CUM_C.home.PTS,
          POWERDIFF = POWERHOME - POWERAWAY,
          RESULT = ifelse(home.WL == 'W', 'HW', 'AW')) %>%
   select(SEASON_ID, GAME_DATE, TEAM1, TEAM2, value.home.PTS, value.away.PTS, 

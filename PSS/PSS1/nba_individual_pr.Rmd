@@ -1,0 +1,75 @@
+---
+title: "NBA"
+subtitle: "Author: Narek Sahakyan"
+output: pdf_document
+---
+
+
+```{r}
+players_data <- read.csv("players_stats_by_season_full_details.csv")
+
+players_data_pr <- players_data %>%
+  select(Season, Player, MIN, STL, TOV, ORB, DRB, PF, BLK, PTS) %>%
+  arrange(Player, Season)  %>% 
+  mutate(PR = STL - TOV)
+
+#DFR = defence rating
+
+players_data_diff <- players_data_pr %>%
+  arrange(Player, Season)  %>% 
+  group_by(Player) %>%
+  mutate(CUM_STL = rollsum(STL, k = 2, fill = NA, align="right"),
+         CUM_TOV = rollsum(TOV, k = 2, fill = NA, align="right"),
+         CUM_DRB = rollsum(DRB, k = 2, fill = NA, align="right"),
+         CUM_PF = rollsum(PF, k = 2, fill = NA, align="right"),
+         CUM_DFR = CUM_STL - CUM_PF,
+         CUM_DFR1 = CUM_DFR - CUM_TOV,
+         CUM_POSS_RATING = CUM_STL - CUM_TOV
+         ) %>%
+  drop_na() %>%
+  ungroup()
+
+
+cor(players_data_diff$CUM_DFR1, players_data_diff$MIN)
+
+ggplot(players_data_diff, aes(x = CUM_DFR1, y = (MIN))) + 
+  geom_point()
+
+summary(lm(MIN ~ (CUM_DFR1 + CUM_DFR + CUM_POSS_RATING), data = players_data_diff))
+```
+
+
+```{r}
+library(tidyr)
+players_data <- players_data %>%
+  filter(League == 'NBA', Stage == 'Regular_Season')
+
+players_data_pr_2 <- players_data %>%
+  select(Season, Player, GP, PTS,  MIN, FGM, FGA, X3PM, X3PA, FTM, FTA)
+
+players_data_diff_2 <- players_data_pr_2 %>%
+  arrange(Player, Season)  %>% 
+  group_by(Player) %>%
+  mutate(CUM_FGM = rollsum(FGM, k = 2, fill = NA, align="right"),
+         CUM_FGA = rollsum(FGA, k = 2, fill = NA, align="right"),
+         CUM_X3PM = rollsum(X3PM, k = 2, fill = NA, align="right"),
+         CUM_X3PA = rollsum(X3PA, k = 2, fill = NA, align="right"),
+         CUM_FTM = rollsum(FTM, k = 2, fill = NA, align="right"),
+         CUM_FTA = rollsum(FTA, k = 2, fill = NA, align="right"),
+         CUM_FGDIFF = CUM_FGA - CUM_FGM,
+         CUM_X3PMDIFF = CUM_X3PA - CUM_X3PM,
+         CUM_FTDIFF = CUM_FTA - CUM_FTM) %>%
+  drop_na() %>%
+  ungroup()
+
+
+ggplot(players_data_diff_2, aes(x = CUM_FGDIFF, y = MIN)) + 
+  geom_point() + 
+  geom_smooth(method = "lm")
+
+cor(players_data_diff_2$CUM_FGDIFF, players_data_diff_2$MIN)
+
+summary(lm(MIN ~ CUM_FGDIFF + CUM_X3PMDIFF + CUM_FTDIFF, 
+           data = players_data_diff_2))
+```
+

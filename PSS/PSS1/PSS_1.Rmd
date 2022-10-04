@@ -1,0 +1,393 @@
+---
+title: "CSE 270 Sports Analytics"
+subtitle: "PSS 1: Home advantage and power ratings"
+date: "29-09-2022"
+author: "Narek Sahakyan"
+fontsize: 8pt
+output:
+  beamer_presentation:
+    slide_level: 2
+    theme: "CambridgeUS"
+    colortheme: "dolphin"
+    fonttheme: "structurebold"
+    pandoc_args: '--pdf-engine=xelatex'
+    includes: 
+      in_header: "./customtexfuncs.tex"
+header-includes:
+    - \definecolor{myred}{RGB}{248,101,112}
+    - \definecolor{myyellow}{RGB}{196,149,10}
+    - \definecolor{mygreen}{RGB}{12,194,48}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=F, warning=F)
+library(SportsAnalytics270)
+library(dplyr)
+library(ggplot2)
+library(BradleyTerry2)
+library(VGAM)
+library(SportsAnalytics270)
+library(dplyr)
+library(ggplot2)
+library(reshape2)
+library(zoo)
+library(VGAM)
+```
+
+# Home advantage  
+
+In order to investigate the home advantage in nba, let's calculate
+
+* Number of games the teams won and lost in home and away games separately.
+* Average number of points scored by the teams in home and away games.
+* Total number of points scored by the teams in home and away games.
+
+```{r}
+nba_standings <- nba_east 
+data("nba2009_2021")
+
+nba_won_count_h_t <- nba2009_2021 %>%
+  group_by(home.TEAM_NAME, SEASON_ID) %>%
+  summarize(H_L = sum(home.PTS < away.PTS),H_W = sum(home.PTS > away.PTS), 
+            MEAN_HP = mean(home.PTS), TOTAL_HP = sum(home.PTS)) %>%
+  rename(TEAM_NAME = home.TEAM_NAME)
+
+nba_won_count_a_t <- nba2009_2021 %>%
+  group_by(away.TEAM_NAME, SEASON_ID) %>%
+  summarize(A_L = sum(home.PTS > away.PTS),A_W = sum(home.PTS < away.PTS), 
+            MEAN_AP = mean(away.PTS), TOTAL_AP = sum(away.PTS)) %>%
+  rename(TEAM_NAME = away.TEAM_NAME)
+
+
+
+```
+
+## Home advantage
+
+* Joining the two dataframes together to get the teams' statistics seperated in home and away games
+* Joining the resulted dataframe with standings to get the teams rank that year.
+
+```{r}
+nba_teams_stats <- inner_join(nba_won_count_h_t, nba_won_count_a_t, 
+                              by = c("TEAM_NAME", "SEASON_ID")) %>%
+                              distinct()
+nba_standings$Season <- as.character(nba_standings$Season)
+
+nba_teams_stats <- inner_join(nba_teams_stats, nba_standings,
+  by = c("TEAM_NAME" = "Team", "SEASON_ID" = "Season")) %>%
+  arrange(SEASON_ID, Rank)
+
+head(nba_teams_stats, 3)
+```
+
+## Home advantage
+Let's define a few metrics for analysing the home advantage. 
+
+* On average home many more points are scored by the home teams  
+**(MEAN_HP - MEAN_AP)**
+* How many more games do the teams win in the games where they are the home team  
+**(HW - A_W)**
+* Percentage of games won in home games **(H_W / (H_W + A_W))**
+* Percentage of points scored in home games **(TOTAL_HP / (TOTAL_HP + TOTAL_AP))**
+
+After calculating the metrics will count the averages and visualize over time.
+```{r}
+nba_teams_stats_ha <- nba_teams_stats %>%
+  mutate(
+    HA1 = MEAN_HP - MEAN_AP, 
+    HA2 = H_W - A_W, 
+    HA3 = H_W /  (H_W + A_W) , 
+    HA4 = TOTAL_HP / (TOTAL_HP + TOTAL_AP)) %>%
+  rename_with(toupper)
+
+ha_stats_by_season <- nba_teams_stats_ha %>%
+  group_by(SEASON_ID) %>%
+  summarise(mean_HA1 = mean(HA1), mean_HA2 = mean (HA2),
+  mean_HA3 = mean(HA3), mean_HA4 = mean(HA4))
+```
+
+## Home advantage
+\tiny
+```{r, out.height="65%", fig.align='center'}
+ggplot(ha_stats_by_season,aes(x = SEASON_ID, group = 1)) + 
+  geom_line(aes(y = mean_HA1)) + geom_line(aes(y = mean_HA2), color = "red") + 
+  geom_line(aes(y = mean_HA3), color = "blue") + geom_line(aes(y = mean_HA4), color = "green") +
+  ggtitle("Home Advantage in NBA over years") + xlab('Season') + ylab('Home Advantage')
+```
+
+## Home advantage
+
+Interpretations from the previous plot.  
+
+* The ratios show almost the same result.
+* The differences in between the number of points and number of games won  
+varies over time and are independent of each other.
+
+Scoring more points in home games does not guarantee to win more games at home.
+We can see multiple cases of decrease in the difference of the points that 
+results to an increas in the difference of number of games won at home.  
+
+Let's try to pick the best metric for the home advantage by calculating the metric's  
+correlation to the number of games won at home. 
+
+\tiny
+```{r}
+(cor(nba_teams_stats_ha$HA1, nba_teams_stats_ha$H_W))
+(cor(nba_teams_stats_ha$HA2, nba_teams_stats_ha$H_W))
+(cor(nba_teams_stats_ha$HA3, nba_teams_stats_ha$H_W))
+(cor(nba_teams_stats_ha$HA4, nba_teams_stats_ha$H_W))
+```
+## Home advantage
+
+```{r, out.height="65%", fig.align='center'}
+ggplot(nba_teams_stats_ha, aes(x = as.factor(RANK), y = HA3)) +
+  geom_boxplot() +
+  ggtitle("Home advantage by Rank") +
+  xlab("Rank") +
+  ylab("Home advantage")
+```
+
+## Home advantage
+
+Interpretations from the previous plot.  
+
+* The home advantage gets balanced for the teams in the middle.
+* The home advantage is not a key factor for teams in the top of the table.
+* The teams in the bottom of the table less outliers,
+
+Let's build a model to identify the significance of the rank for home advantage.
+
+## Home advantage
+
+Home advantage is not a significant factor for the teams in the top of the table,
+but is a very important factor for the teams in the bottom.
+
+\tiny
+```{r}
+nba_teams_stats_ha$RANK <- as.factor(nba_teams_stats_ha$RANK)
+
+model <- lm(HA3 ~ RANK, data = nba_teams_stats_ha)
+
+summary(model)
+```
+# Power Ratings
+
+Let's try to identify the relationship betwen power rating of the team 
+and its chances of winning the game in National Hockey League.
+```{r}
+nhl_games <- read.csv('game.csv')
+
+nhl_games <- nhl_games %>%
+  mutate(outcome = ifelse(grepl("home win", outcome), "HW", "AW")) %>%
+  select(game_id,season,date_time_GMT,home_team_id,away_team_id, 
+         home_goals, away_goals, outcome)
+
+head(nhl_games,3)
+```
+
+## Power Ratings
+
+Data preperation. Converging the dataset to long format to calculate cumulative 
+goals scored and conceded.
+
+```{r}
+nhl_games_long <- nhl_games %>%
+  reshape2::melt(id.vars = c("game_id","season","date_time_GMT",
+                             "home_team_id","away_team_id", "outcome"),
+                 measure.vars = c("home_goals", "away_goals"),
+                 variable.name = "h_a") %>%
+  arrange(game_id)
+
+nhl_games_long <- nhl_games_long %>% 
+  mutate(team1_id = ifelse(h_a == 'home_goals', home_team_id, away_team_id),
+         team2_id = ifelse(h_a == 'home_goals', away_team_id, home_team_id)) %>%
+  select(game_id,season,date_time_GMT,team1_id,team2_id,h_a, value,outcome)
+
+head(nhl_games_long)
+```
+
+## Power Ratings
+
+Calculating the sum of the goals scored and conceded by each team in the last 5 games before each game.
+
+```{r}
+nhl_games_long <- nhl_games_long %>%
+  group_by(season, team1_id) %>%
+  mutate(cum_sc = rollsum(value, k = 5, fill = NA, align="right")) %>%
+  ungroup() %>%
+  group_by(season, team2_id) %>%
+  mutate(cum_c = rollsum(value, k = 5, fill = NA, align="right")) %>% 
+  tidyr::drop_na() %>%
+  as.data.frame()
+
+head(nhl_games_long,3)
+```
+
+
+## Power Ratings
+
+Converting back to wide format and calculating the power ratings.  
+
+* Home team's power rating = Number of goals scored in the last 5 games - Number of goals conceded in the last 5 games.
+* The same calculation is done for away team.
+* Calculating the power difference of the game.
+
+\tiny
+```{r}
+nhl_games_wide = reshape(nhl_games_long, direction = "wide", timevar = "h_a", 
+  idvar = "game_id", v.names = c("value","cum_sc", "cum_c")) %>%
+  mutate(powerhome = cum_sc.home_goals - cum_c.home_goals,
+         poweraway = cum_sc.away_goals - cum_c.away_goals,
+         powerdiff = powerhome - poweraway) %>%
+  select(game_id,season,date_time_GMT,team1_id,team2_id, value.home_goals,
+       value.away_goals,cum_sc.home_goals, cum_c.home_goals, 
+       cum_sc.away_goals,cum_c.away_goals, powerhome, poweraway, powerdiff, outcome) %>% 
+  tidyr::drop_na()
+
+head(nhl_games_wide, 3)
+```
+
+## Power Ratings
+
+Calculating the frequencies
+
+```{r}
+freqs = dcast(nhl_games_wide, powerdiff ~ outcome)
+head(freqs, 3)
+```
+
+
+## Power Ratings
+
+Calculating the relative frequencies
+
+```{r}
+freqs_rel = data.frame(freqs, freqs[,2:3]/rowSums(freqs[,2:3]))
+head(freqs_rel)
+
+freqs_rel[freqs_rel$powerdiff == 0,]
+```
+
+## Power Ratings
+\tiny
+```{r, out.height="65%", fig.align='center'}
+ggplot(freqs_rel, aes(x = powerdiff, y = HW)) + 
+  geom_point() + 
+  ggtitle("Number of games won by home teams vs Powerdiff") +
+  xlab("Powerdiff") +
+  ylab("Number of games won")
+```
+
+## Power Ratings
+Interpretations from the previous plot.  
+
+* With the increase of power rating the percentage of the games won by the home team increases.
+* Very few games when the powerdiff was a high number in favor of the home or away team.
+
+## Power Ratings
+\tiny
+```{r, out.height="65%", fig.align='center'}
+ggplot(freqs_rel, aes(x = powerdiff, y = HW.1)) + 
+  geom_smooth(method = "lm", se = F) +
+  geom_point() +
+  ggtitle("Home teams' game winning percentage vs Powerdiff") +
+  xlab("Home games winning percentage") +
+  ylab("Powerdiff")
+```
+
+## Power Ratings
+Interpretations from the previous plot.  
+
+* The variables do not seem to have a relationship.
+
+## Power Ratings
+* Small correlation coefficient.
+* Almost no significance for the powerdiff and weak predictive power.
+
+\tiny
+```{r}
+(cor(freqs_rel$powerdiff, freqs_rel$HW.1))
+summary(lm(HW.1 ~ powerdiff, data = freqs_rel))
+```
+
+## Power Ratings
+
+Adjusting the calculation strategy to have a power rating relative to the opponent.
+
+* Home team's power rating = Number of goals scored in the last 5 games - Number of goals conceded in the last 5 games by the opponent.
+* The same calculation is done for away team.
+* Calculating the power difference of the game.
+
+\tiny
+```{r}
+nhl_games_wide = reshape(nhl_games_long, direction = "wide", timevar = "h_a", 
+  idvar = "game_id", v.names = c("value","cum_sc", "cum_c")) %>%
+  mutate(powerhome = cum_sc.home_goals - cum_c.away_goals,
+         poweraway = cum_sc.away_goals - cum_c.home_goals,
+         powerdiff = powerhome - poweraway) %>%
+  select(game_id,season,date_time_GMT,team1_id,team2_id, value.home_goals,
+       value.away_goals,cum_sc.home_goals, cum_c.home_goals, 
+       cum_sc.away_goals,cum_c.away_goals, powerhome, poweraway, powerdiff, outcome) %>% 
+  tidyr::drop_na()
+
+head(nhl_games_wide, 3)
+```
+
+## Power Ratings
+
+Calculating the relative frequencies
+
+```{r}
+freqs = dcast(nhl_games_wide, powerdiff ~ outcome)
+freqs_rel = data.frame(freqs, freqs[,2:3]/rowSums(freqs[,2:3]))
+head(freqs_rel)
+
+freqs_rel[freqs_rel$powerdiff == 0,]
+```
+
+## Power Ratings
+
+\tiny
+```{r, out.height="65%", fig.align='center'}
+ggplot(freqs_rel, aes(x = powerdiff, y = HW.1)) + 
+  geom_smooth(method = "glm", 
+    method.args = list(family = "binomial"), 
+    se = TRUE) +
+  geom_point() +
+  ggtitle("Home teams' game winning percentage vs Powerdiff") +
+  xlab("Home games winning percentage") +
+  ylab("Powerdiff")
+```
+
+## Power Ratings
+
+Interpretations from the previous plot.  
+
+* The variables are now strongly related.
+* The relationship is not linear.
+* Logistic regression model fits the data very well.
+
+Let's try fitting a linear model.
+
+\tiny
+```{r}
+(cor(freqs_rel$powerdiff, freqs_rel$HW.1))
+summary(lm(HW.1 ~ powerdiff, data = freqs_rel))
+
+```
+
+## Power Ratings
+
+Fitting a logarithmic regession (logit) model.
+
+* Strong predictive power.
+* High significance for powerdiff.
+
+Better to take the linear model, as the difference is not huge and linear also performs pretty good and in addition it is easier to interpret.
+
+\tiny
+```{r}
+model <- glm(HW.1 ~ powerdiff, data = freqs_rel, family = binomial(link = "logit"))
+(r_squared <- with(summary(model), 1 - deviance/null.deviance))
+(summary(model))
+```

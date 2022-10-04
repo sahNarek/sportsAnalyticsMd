@@ -51,9 +51,9 @@ knitr::include_graphics("./images/elo_picture.png")
 # Elo rating system
 
 * The basic idea
-* Assign performance rating to each team/player. This rating is going to show
+* Assign performance ratings to each team/player. This rating is going to show
 the ability of the team to win.
-* After each game update the rating of the player based on the outcome.
+* After each game update the the player's rating based on the outcome.
 * Use the ability scores to predict the match outcome of the game
 
 
@@ -82,8 +82,8 @@ The parameters c and d are used to scale the ratings and are usually taken as c=
 # Elo rating system
 
 *  Why are c=10, d=400.
-*  This is just for convention and scaling. If the Player A is 10 times more likely to beat Player B (Odds) then the difference of the Elo scores needs to be 400.
-*  Assume teams playing in neutral field $\theta=0$ 
+*  This is just for convention and scaling. If Player A is 10 times more likely to beat Player B (Odds), then the difference in the Elo scores needs to be 400.
+*  Assume teams playing in a neutral field $\theta=0$ 
 
 
 \bcenter
@@ -131,7 +131,7 @@ elo.prob(elo.A=1900, elo.B=1500)
 elo.prob(elo.A=1900, elo.B=1500)/(1-elo.prob(elo.A=1900, elo.B=1500))
 ```
 
-With the difference of 400 elo rating points, it is 10 times more likely that the Team A will win.
+With the difference of 400 Elo rating points, it is 10 times more likely that Team A will win
 
 # Elo rating system
 
@@ -170,7 +170,7 @@ In football/soccer the coefficient K can be updated based on the goal differenti
 $K = k_0(1+\delta)^\lambda$
 \ecenter
 
-Where $\lambda$ is absolute goal difference, $k_0, \lambda$ are positive constants
+Where $\lambda$ is the absolute goal difference, $k_0, \lambda$ are positive constants
 There are several suggestions for the value of K, we will take it equal to 20.
 
 # Elo rating system
@@ -202,8 +202,8 @@ elo.prob(elo.A=1600, elo.B=1500)
 
 # Elo rating system
 
-* The player A will get increase in rating by 12.8013
-* The player B will get decrease in rating by 12.8013
+* The player A will get an increase in rating by 12.8013
+* The player B will get a decrease in rating by 12.8013
 * 12.8013 is calculated using function elo.update()
 
 ```{r}
@@ -228,7 +228,7 @@ str(epl_00_22)
 
 # Elo rating system
 
-score function from Elo package do a very simple calculation: Based on the game score returns a vector with the results, 1 if team A won, 0.5 if it was a draw and 0  
+score function from Elo package does a very simple calculation: Based on the game score returns a vector with the results, 1 if team A won, 0.5 if it was a draw and 0  
 if Team A lost  
 
 
@@ -272,7 +272,7 @@ kable(elo_table)
 # Elo rating system
 
 * Look at the dataframe
-* initial values for elo is are set to 1500
+* initial values for Elo are set to 1500
 
 ```{r}
 head(elos_df)
@@ -310,8 +310,7 @@ sort(elo_final, decreasing = T)
 
 * Taking into account Home advantage
 * $\theta$ Home advantage parameter = 200
-* This means that for every game, 200 is added to home teams elo rating
-
+* This means that for every game, 200 is added to the home teams Elo rating
 
 \bcenter
 $Y^H = \frac{1}{1+c^{(R^A - 200 - R^H)/d}}$ \ 
@@ -351,7 +350,7 @@ $R^H_t = R^H_{t-1} + K * G * (\alpha^H - y^H)$
 \ecenter
 
 
-Where G is a goal difference factor. Website [Eloratings.net](http://www.eloratings.net/) uses the following formula for G Factor.
+Where G is a goal difference factor. The website [Eloratings.net](http://www.eloratings.net/) uses the following formula for G Factor.
 
 ```{r equation, echo=F}
 eq <-  noquote(paste(expression("1, N <= 1\\\\1.5, N = 2\\\\ (N + 11)/8 , N >= 3")))
@@ -431,7 +430,7 @@ sum(diag(confusion))/nrow(epl2)
 
 * The teams change every season, players come and go
 * The rating of the previous season cannot be carried fully to the new season 
-* The following formula is suggested by MARS rating system 
+* The following formula is suggested by the MARS rating system 
 
 **New Season Starting Rating = 1500+(Previous Season Final Rating-1500)/2**  
 
@@ -441,10 +440,10 @@ sum(diag(confusion))/nrow(epl2)
 
 # Elo rating system
 
-To get elo rating working better
+To get the Elo rating working better
 
 * Tune home advantage parameter
-* Tune new teams initial elo’s parameters
+* Tune new teams initial Elo’s parameters
 * different K parameters for different games
 * Think of what else can influence the game
 
