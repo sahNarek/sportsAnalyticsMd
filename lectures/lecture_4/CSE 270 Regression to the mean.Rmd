@@ -792,7 +792,7 @@ mlb_HHI <- mlb_standings %>%
 ```{r, fig.height=5}
 ggplot(mlb_HHI, aes(Season, HHI))+geom_bar(stat="identity")+
   geom_hline(yintercept = 1/30, col="red", size=1.5)+
-  coord_cartesian(ylim=c(0.03,0.035))+
+  coord_cartesian(ylim=c(0,0.035))+
   ggtitle("HHI index by season for MLB")
 ```
 
