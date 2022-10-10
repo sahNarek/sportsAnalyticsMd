@@ -1,0 +1,185 @@
+---
+title: "CSE 270 Sports Analytics"
+subtitle: "Homework 2"
+author: "Name: __________________"
+date: ""
+output: pdf_document
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F, message = F)
+library(SportsAnalytics270)
+library(dplyr)
+library(ggplot2)
+library(elo)
+library(BradleyTerry2)
+```
+
+# Poisson Regression
+
+## Problem 1(20 points)
+
+### Predicting football games using Poisson regression.
+
+1. Make predictions for the same game from the same league assigned to you in homework 1, but now use the poisson regression model instead of distributions.**(8 points)**
+
+```{r}
+```
+
+
+2. Interpret the result and compare with the betting odds from homework 1.  
+Is the same team expected to win ? **(2 points)**
+
+```{r}
+```
+
+3. Define a metric to calculate the efficiency of the predictions. **(5 points)**
+
+```{r}
+```
+
+4. Find the under estimated and over estimated teams based on Poission model. **(5 points)**
+
+```{r}
+```
+
+
+# Bradley terry model
+
+## Problem 2(30 points)
+
+### Construct Bradley-Terry model for NBA regular season games.
+
+
+1. Load the dataset **nba_2009_2021** from the package **SportsAnalytics270** and remove the game Boston Celtics vs Indiana Pacers by filtering the **home.PTS** and **away.PTS** variables to be equal to 0.**(3 points)**
+
+```{r}
+```
+
+2. Prepare the dataset for fitting a Bradley-Terry model by adding 2 variables, **ht_w** and **at_w**.  
+Assign the values of the varibles to (**ht_w** = 1, **at_w** = 0) if the home team won the game and   
+(**ht_w** = 0, **at_w** = 1) if the away team won the game. **(5 points)**
+
+```{r}
+```
+
+3. Convert the variables representing the home team and the away team into a factor. **(2 points)**
+
+```{r}
+```
+
+4. Fit a Bradley-Terry model into the dataset to get the abilities of the teams to win. **(5 points)**
+
+```{r}
+```
+
+5. Plot the abilities of the teams. **(5 points)**
+
+```{r}
+```
+
+6. Interpret the results of the plot, which team is the best and which team is the worst ?
+Why is the ability to win for team **Atlanta Howks** equal to 0 ? **(5 points)**
+
+```{r}
+```
+
+7. Make a prediction for the upcoming 3 games.  
+(Schedule can be found here: https://www.nba.com/schedule) **(5 points)**
+
+```{r}
+```
+
+
+# Winning Percentage
+
+## Pythagorean wins for european football
+
+## Problem 3 (30 points)
+
+1. Library **SportsAnalytics270** has a function final_table. It creates final league standing for the season. Use this function to create a dataframe with final standings of all seasons of your league. Combine seasons into 1 datafrmae. You need to get something like nba_east. **(10 points)**
+
+```{r}
+```
+
+2. Create a variable for winning percentage and goal difference. Note, as there are draws in football, we are going to take draw as a half win. **(2 points)**
+```{r}
+
+```
+
+
+3. Plot Goal differential against Winning Percentage with a regression line.  
+Make sure to have a title and apropriate axis labels for your plot. **(5 points)**
+
+```{r}
+
+```
+
+4. Interpret the plot, do you think there is a strong correlation between the variables ? **(3 points)**
+
+```{r}
+```
+
+5. Calculate Pearson correlation coefficient for Goal differential and Winning Percentage. **(2 points)**
+
+```{r}
+
+```
+
+
+6. Build a regression model to estimate the value for k from the Pythagorean formula **(3 points)**
+
+```{r}
+
+```
+
+
+5. Using the estimated value for k, calculate Pythagorean Winning percentage and Pythagorean wins for each team. **(3 points)**
+
+```{r}
+
+```
+
+
+6. Find over performing and under performing teams. **(2 points)**
+
+```{r}
+
+```
+
+
+# Elo Ratings
+## Problem 4 (20 points)
+### Building Elo rating model for NBA games.
+
+1. Calculate the relative Elo ratings for all the games in the nba dataset.  
+Make sure to adjust the ratings of the teams at the beginning of each season.  
+This link https://fivethirtyeight.com/features/how-we-calculate-nba-elo-ratings/ shows the steps for calculating elo ratings in nba. **(10 points)**
+
+```{r}
+
+```
+
+2. Interpret the predictive power of your model using either confusion matrix or brier score. **(5 points)**
+
+```{r}
+```
+
+3. Make predictions for the same games you chose in **Problem 2.7**, but now use Elo rating model.  
+**(3 points)**
+
+```{r}
+```
+
+4. Compare the results **(2 points)**
+
+```{r}
+```
+
+5. Try to play with the home advantage parameter, K value or anything else, either on football data or in nba and check if that will help to improve your models' predictive power.  
+**(Bonus question 10 points)**
+
+```{r}
+```

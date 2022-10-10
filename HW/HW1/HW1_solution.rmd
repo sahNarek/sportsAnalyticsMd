@@ -167,26 +167,26 @@ df
 
 ### Bradley terry model
 
-You need to construct Bradley-Terry model for NBA regular season games. Dataset is nba2009_2018 from SportsAnalytics270 package 
+You need to construct Bradley-Terry model for NBA regular season games. Dataset is nba2009_2021 from SportsAnalytics270 package 
 
 Remove the game Boston Celtics vs Indiana Pacers from the dataframe. This is a game that was cancelled due to Boston Marathon bombing
 
 ```{r}
-data("nba2009_2018")
-nba2009_2018 <- nba2009_2018 %>%  filter(home.PTS !=0)
+data("nba2009_2021")
+nba2009_2021 <- nba2009_2021 %>%  filter(home.PTS !=0)
 ```
 
 1. Do the Data Prep here (4p)
 
 ```{r}
-nba <- nba2009_2018 %>%
+nba <- nba2009_2021 %>%
   select(home.TEAM_NAME, away.TEAM_NAME, home.WL) %>%
   mutate(ht_w = ifelse(home.WL == "W",1,0),
          at_w = ifelse(home.WL== "L",1,0))
 
 nba2 <- nba %>%
-    mutate(team_home=as.factor(home.TEAM_NAME),
-           team_away = as.factor(away.TEAM_NAME)) %>%
+    mutate(home.TEAM_NAME=as.factor(home.TEAM_NAME),
+           away.TEAM_NAME = as.factor(away.TEAM_NAME)) %>%
     group_by(home.TEAM_NAME, away.TEAM_NAME) %>%
     summarise(ht=sum(ht_w), at=sum(at_w))
 
@@ -220,7 +220,6 @@ ggplot(data=abilities, aes(x=reorder(team, ability), y=ability)) +
 4. Make prediciton for the first 3 games of the new season (Schedule can be found here: https://tinyurl.com/y4hpbl8f) (6p)
 
 ```{r}
-
 ```
 
 
