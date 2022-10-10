@@ -64,6 +64,8 @@ model <- glm(Goal~Team+Opponent+Home, data=train, family=poisson(link=log))
 
 ### Prediction (5p)
 
+
+
 Make predictions using Skellam distribution for the last season in the dataset.
 
 ```{r}

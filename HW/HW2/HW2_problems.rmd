@@ -26,6 +26,7 @@ library(BradleyTerry2)
 1. Make predictions for the same game from the same league assigned to you in homework 1, but now use the poisson regression model instead of distributions.**(8 points)**
 
 ```{r}
+
 ```
 
 
@@ -81,7 +82,7 @@ Assign the values of the varibles to (**ht_w** = 1, **at_w** = 0) if the home te
 ```
 
 6. Interpret the results of the plot, which team is the best and which team is the worst ?
-Why is the ability to win for team **Atlanta Howks** equal to 0 ? **(5 points)**
+Why is the ability to win for team **Atlanta Hawks** equal to 0 ? **(5 points)**
 
 ```{r}
 ```
