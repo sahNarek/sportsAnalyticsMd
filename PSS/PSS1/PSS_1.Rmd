@@ -12,7 +12,7 @@ output:
     fonttheme: "structurebold"
     pandoc_args: '--pdf-engine=xelatex'
     includes: 
-      in_header: "./customtexfuncs.tex"
+      in_header: "../customtexfuncs.tex"
 header-includes:
     - \definecolor{myred}{RGB}{248,101,112}
     - \definecolor{myyellow}{RGB}{196,149,10}
@@ -175,7 +175,7 @@ summary(model)
 Let's try to identify the relationship betwen power rating of the team 
 and its chances of winning the game in National Hockey League.
 ```{r}
-nhl_games <- read.csv('game.csv')
+nhl_games <- read.csv('../data/game.csv')
 
 nhl_games <- nhl_games %>%
   mutate(outcome = ifelse(grepl("home win", outcome), "HW", "AW")) %>%

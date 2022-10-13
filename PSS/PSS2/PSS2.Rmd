@@ -1,0 +1,290 @@
+---
+title: "CSE 270 Sports Analytics"
+subtitle: "Problem Solving Session 2"
+author: "Narek Sahakyan"
+output: "pdf_document"
+---
+
+# Poisson Regression
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=F, warning=F)
+library(SportsAnalytics270)
+library(dplyr)
+library(ggplot2)
+library(BradleyTerry2)
+library(VGAM)
+library(SportsAnalytics270)
+library(dplyr)
+library(ggplot2)
+library(reshape2)
+library(zoo)
+library(VGAM)
+library(tidyr)
+```
+
+
+```{r}
+nhl_games <- read.csv("../data/game.csv")
+nhl_teams <- read.csv("../data/team_info.csv") %>%
+  select(team_id, abbreviation)
+
+nhl_games <- nhl_games %>%
+  drop_na()
+
+nhl_games <- nhl_games %>% 
+  inner_join(nhl_teams, by = c("home_team_id" = "team_id")) %>%
+  rename("home_team_abr" = abbreviation)
+
+nhl_games <- nhl_games %>% 
+  inner_join(nhl_teams, by = c("away_team_id" = "team_id")) %>%
+  rename("away_team_abr" = abbreviation)
+
+``` 
+
+```{r}
+ggplot(nhl_games, aes(x = home_goals)) +
+  geom_histogram(binwidth = 1) +
+  ggtitle("Home goals distribution in nhl") +
+  xlab("Number of goals") +
+  ylab("Frequency")
+```
+
+```{r}
+ggplot(nhl_games, aes(x = away_goals)) +
+  geom_histogram(binwidth = 1) +
+  ggtitle("Away goals distribution in nhl") +
+  xlab("Number of goals") +
+  ylab("Frequency")
+```
+
+```{r}
+nhl_games %>%
+  summarise(pvalue=chisq.test(table(home_goals, away_goals),
+  simulate.p.value=T)$p.value)
+```
+
+```{r}
+nhl_games_train <- nhl_games %>% 
+  filter(season != "20192020")
+
+nhl_games_test <- nhl_games %>% 
+  filter(season == "20192020")
+
+get_poisson_form <- function(train_nhl_bta, country){
+  
+  nhl_home <- train_nhl_bta %>% 
+    group_by(home_team_abr) %>%
+    mutate(TEAM = as.factor(home_team_abr), 
+           OPPONENT = as.factor(away_team_abr), 
+           GOAL = home_goals, 
+           HOME = 1) %>%
+    ungroup() %>%
+    select(TEAM, OPPONENT, GOAL, HOME)
+  
+  nhl_away <- train_nhl_bta %>% 
+    group_by(away_team_abr) %>%
+    mutate(TEAM = as.factor(away_team_abr), 
+           OPPONENT = as.factor(home_team_abr), 
+           GOAL = away_goals, 
+           HOME = 0) %>%
+    ungroup() %>%
+    select(TEAM, OPPONENT, GOAL, HOME)
+  
+  return(rbind(nhl_home, nhl_away))
+}
+
+nhl_games_train_poisson <- get_poisson_form(nhl_games_train)
+nhl_games_test_poisson <- get_poisson_form(nhl_games_test)
+
+nhl_model <- glm(GOAL~TEAM+OPPONENT+HOME, data=nhl_games_train_poisson, family=poisson(link=log))
+
+nhl_games_test_poisson$P.G <- predict(nhl_model,nhl_games_test_poisson, type = "response")
+
+sqrt(mean((nhl_games_test_poisson$GOAL - nhl_games_test_poisson$P.G)^2))
+```
+
+```{r}
+underestimated_nhl_poisson <- nhl_games_test_poisson %>%
+  filter(GOAL < P.G)
+
+overestimated_nhl_poisson <-nhl_games_test_poisson %>%
+  filter(GOAL > P.G)
+```
+
+# Bradley-Terry Model
+
+```{r}
+nhl_games <- nhl_games %>%
+  filter(home_goals != away_goals) %>%
+  mutate(home_wl = ifelse(home_goals > away_goals, 'W', 'L'))
+
+nhl_games <- nhl_games %>% select(season, home_team_abr, away_team_abr, home_wl) %>% 
+          mutate(ht_w = ifelse(home_wl=="W",1,0),
+                 at_w = ifelse(home_wl=="L",1,0),
+                 home_team_abr = as.factor(home_team_abr),
+                 away_team_abr = as.factor(away_team_abr))
+
+train_nhl_bt <- nhl_games %>% filter(season!="20192020")  %>% 
+        group_by(home_team_abr, away_team_abr) %>% 
+        summarise(ht=sum(ht_w), at=sum(at_w))
+
+# train_nhl_bt <- train_nhl_bt %>%
+#   filter(away_team_abr %in% unique(train_nhl_bt$home_team_abr)) %>%
+#   mutate(away_team_abr = factor(away_team_abr))
+
+train_nhl_bt$home_team_abr <- factor(train_nhl_bt$home_team_abr, levels=unique(c(train_nhl_bt$home_team_abr, train_nhl_bt$away_team_abr)))  
+train_nhl_bt$away_team_abr <- factor(train_nhl_bt$away_team_abr, levels=unique(c(train_nhl_bt$home_team_abr, train_nhl_bt$away_team_abr)))  
+
+test_nhl_bt <- nhl_games %>% filter(season=="20192020")  %>% 
+        group_by(home_team_abr, away_team_abr) %>% 
+        summarise(ht=sum(ht_w), at=sum(at_w))
+
+test_nhl_bt <- test_nhl_bt %>%
+  filter(home_team_abr %in% (train_nhl_bt$home_team_abr),
+         away_team_abr %in% (train_nhl_bt$away_team_abr))
+
+test_nhl_bt$home_team_abr <- factor(test_nhl_bt$home_team_abr, levels=unique(c(test_nhl_bt$home_team_abr, test_nhl_bt$away_team_abr)))  
+test_nhl_bt$away_team_abr <- factor(test_nhl_bt$away_team_abr, levels=unique(c(test_nhl_bt$home_team_abr, test_nhl_bt$away_team_abr)))  
+
+```
+
+
+```{r}
+BT_Model <- BTm(cbind(ht,at), home_team_abr, away_team_abr, 
+                data=train_nhl_bt, id="team_")
+```
+
+```{r}
+summary(BT_Model)
+
+BT_Model$coefficients
+```
+
+```{r}
+test_nhl_bt$home_win <- predict(BT_Model, test_nhl_bt)
+test_nhl_bt$away_win <- 1 - test_nhl_bt$home_win 
+```
+
+```{r}
+abilities <- as.data.frame(BTabilities(BT_Model))
+abilities$team <- rownames(abilities)
+abilities <- abilities[order(abilities$ability, decreasing = T),]
+
+ggplot(data=abilities, aes(x=reorder(team,ability), y = ability, fill =team))+ geom_bar(stat="identity") + coord_flip() + theme(legend.position = "none") + 
+  labs(x="Teams", y="Ability to Win", title="Team vs Ability")
+```
+
+# Pythagorean Wins
+
+```{r}
+data("nfl_st")
+nfl_st <- nfl_st %>%
+  group_by(Season) %>%
+  mutate(Rank = 1:n())
+```
+
+```{r}
+nfl_st %>%
+  ggplot(aes(x = PD, y = Wpct)) +
+  geom_point() + 
+  geom_smooth(method = "lm", se = F) +
+  labs(x = "POINTS DIFFERENCE", y = "WINNING PERCENTAGE") + 
+  ggtitle("WINNING PERCENTAGE OVER PD FOR NFL")
+```
+
+
+```{r}
+cor.test(nfl_st$PD, nfl_st$Wpct)
+```
+
+```{r}
+nfl_st_reg <- nfl_st %>%
+  filter(W!= 0, L != 0, PA != 0) %>%
+  mutate(W = W + 0.5 * T, L = L + 0.5 * T, RATIO = PF / PA)
+
+model <- lm(log(W/L)~0+log(RATIO), data=nfl_st_reg)
+summary(model)
+```
+
+```{r}
+k <- model$coefficients[1]
+head(nfl_st <- nfl_st %>%
+  mutate(PWPCT = ( PF ^ k / (PF ^ k + PA ^ k)), PW = (W + L + T) * PWPCT),5)
+```
+
+```{r}
+nfl_st %>%
+  ggplot(aes(x = PWPCT, Wpct)) + 
+  geom_point() +
+  geom_smooth() +
+  ggtitle("Predicted winning percentage vs actual winning percentage") +
+  xlab("Predicted winning percentage") +
+  ylab("Actual winning percentage")
+```
+
+# Elo Ratings
+
+```{r}
+nhl_games <- read.csv("../data/game.csv")
+nhl_teams <- read.csv("../data/team_info.csv") %>%
+  select(team_id, abbreviation)
+
+nhl_games <- nhl_games %>%
+  drop_na()
+
+nhl_games <- nhl_games %>% 
+  inner_join(nhl_teams, by = c("home_team_id" = "team_id")) %>%
+  rename("home_team_abr" = abbreviation)
+
+nhl_games <- nhl_games %>% 
+  inner_join(nhl_teams, by = c("away_team_id" = "team_id")) %>%
+  rename("away_team_abr" = abbreviation)
+
+home_factor_nhl <- 50
+k_nhl <- 6
+starting_elo <- 1500
+
+relative_elos_df <- data.frame() 
+final_elos_df <- data.frame()
+
+final_elos <- c(1500)
+
+for (season in unique(nhl_games$season)){
+  seasonal_data <- nhl_games %>% 
+    filter(season == season)
+  
+  season_elos <- elo.run(score(home_goals, away_goals) ~
+          adjust(home_team_abr, home_factor_nhl) + away_team_abr,
+          data = seasonal_data, k = k_nhl,
+          initial.elos = final_elos
+        )
+
+  final_elos <- final.elos(season_elos)
+  relative_elos_df <- rbind(relative_elos_df,
+                            data.frame(season_elos, season = season))
+
+  final_elos_df_1 <- as.data.frame(final_elos, season = season)
+  final_elos_df_1$team_abbr <- rownames(final_elos_df_1)
+  rownames(final_elos_df_1) <- c()
+
+  final_elos_df <- rbind(final_elos_df, final_elos_df_1)
+}
+
+relative_elos_df <- relative_elos_df %>%
+  mutate(Predicted = ifelse(p.A > 0.5,1,0))
+
+
+```
+
+```{r}
+calculate_brier <- function(data){
+  diff <- data$p.A - data$wins.A
+  accuracy <- sum(diff^2) / nrow(data)
+  return(accuracy)
+}
+
+(caret::confusionMatrix(data = factor(relative_elos_df$Predicted), 
+                       reference = factor(relative_elos_df$wins.A)))
+(calculate_brier(relative_elos_df))
+```

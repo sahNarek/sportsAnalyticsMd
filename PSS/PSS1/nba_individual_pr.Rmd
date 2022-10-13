@@ -4,9 +4,24 @@ subtitle: "Author: Narek Sahakyan"
 output: pdf_document
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=F, warning=F)
+library(SportsAnalytics270)
+library(dplyr)
+library(ggplot2)
+library(BradleyTerry2)
+library(VGAM)
+library(SportsAnalytics270)
+library(dplyr)
+library(ggplot2)
+library(reshape2)
+library(zoo)
+library(VGAM)
+library(tidyr)
+```
 
 ```{r}
-players_data <- read.csv("players_stats_by_season_full_details.csv")
+players_data <- read.csv("../data/players_stats_by_season_full_details.csv")
 
 players_data_pr <- players_data %>%
   select(Season, Player, MIN, STL, TOV, ORB, DRB, PF, BLK, PTS) %>%

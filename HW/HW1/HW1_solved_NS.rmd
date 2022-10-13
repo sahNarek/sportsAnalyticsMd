@@ -179,7 +179,7 @@ arsenal_fthg_mean <- england_home_2022 %>%
   pull(MEAN_FTHG)
 
 arsenal_ftag_mean <- england_away_2022 %>% 
-  filter(AWAYTEAM == "Arsenal") %>%
+  filter(AWAYTEAM == "Totenham") %>%
   pull(MEAN_FTAG)
 
 rs <- rskellam(10000,mu1 = arsenal_fthg_mean, mu2 = arsenal_ftag_mean)
@@ -200,6 +200,10 @@ Does it work as well as in football ?
 Try to interpret the actual results.
 The data for nba, nfl is available in SportsAnalytics270 (Bonus question, 10 points)
 
+## NHL example is covered in PSS1.rmd
+
+
+## NBA, not working good
 ```{r}
 library(dplyr)
 library(zoo)
