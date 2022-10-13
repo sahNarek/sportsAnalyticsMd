@@ -71,6 +71,9 @@ nhl_games_train <- nhl_games %>%
 nhl_games_test <- nhl_games %>% 
   filter(season == "20192020")
 
+```
+
+```{r}
 get_poisson_form <- function(train_nhl_bta, country){
   
   nhl_home <- train_nhl_bta %>% 
@@ -97,9 +100,9 @@ get_poisson_form <- function(train_nhl_bta, country){
 nhl_games_train_poisson <- get_poisson_form(nhl_games_train)
 nhl_games_test_poisson <- get_poisson_form(nhl_games_test)
 
-nhl_model <- glm(GOAL~TEAM+OPPONENT+HOME, data=nhl_games_train_poisson, family=poisson(link=log))
+nhl_model_poisson <- glm(GOAL~TEAM+OPPONENT+HOME, data=nhl_games_train_poisson, family=poisson(link=log))
 
-nhl_games_test_poisson$P.G <- predict(nhl_model,nhl_games_test_poisson, type = "response")
+nhl_games_test_poisson$P.G <- predict(nhl_model_poisson,nhl_games_test_poisson, type = "response")
 
 sqrt(mean((nhl_games_test_poisson$GOAL - nhl_games_test_poisson$P.G)^2))
 ```
@@ -115,37 +118,35 @@ overestimated_nhl_poisson <-nhl_games_test_poisson %>%
 # Bradley-Terry Model
 
 ```{r}
-nhl_games <- nhl_games %>%
+nhl_games_bt <- nhl_games %>%
   filter(home_goals != away_goals) %>%
   mutate(home_wl = ifelse(home_goals > away_goals, 'W', 'L'))
 
-nhl_games <- nhl_games %>% select(season, home_team_abr, away_team_abr, home_wl) %>% 
+team_levels <- unique(c(nhl_games_bt$home_team_abr, nhl_games_bt$away_team_abr))
+
+nhl_games_bt <- nhl_games_bt %>% 
+          select(season, home_team_abr, away_team_abr, home_wl) %>% 
           mutate(ht_w = ifelse(home_wl=="W",1,0),
                  at_w = ifelse(home_wl=="L",1,0),
-                 home_team_abr = as.factor(home_team_abr),
-                 away_team_abr = as.factor(away_team_abr))
+                 home_team_abr = factor(home_team_abr, levels = team_levels),
+                 away_team_abr = factor(away_team_abr, levels = team_levels))
 
-train_nhl_bt <- nhl_games %>% filter(season!="20192020")  %>% 
+train_nhl_bt <- nhl_games_bt  %>% 
+        filter(season != "20192020") %>%
         group_by(home_team_abr, away_team_abr) %>% 
         summarise(ht=sum(ht_w), at=sum(at_w))
+ 
 
-# train_nhl_bt <- train_nhl_bt %>%
-#   filter(away_team_abr %in% unique(train_nhl_bt$home_team_abr)) %>%
-#   mutate(away_team_abr = factor(away_team_abr))
+# train_nhl_bt$home_team_abr <- factor(train_nhl_bt$home_team_abr, levels=unique(c(train_nhl_bt$home_team_abr, train_nhl_bt$away_team_abr)))  
+# train_nhl_bt$away_team_abr <- factor(train_nhl_bt$away_team_abr, levels=unique(c(train_nhl_bt$home_team_abr, train_nhl_bt$away_team_abr)))  
 
-train_nhl_bt$home_team_abr <- factor(train_nhl_bt$home_team_abr, levels=unique(c(train_nhl_bt$home_team_abr, train_nhl_bt$away_team_abr)))  
-train_nhl_bt$away_team_abr <- factor(train_nhl_bt$away_team_abr, levels=unique(c(train_nhl_bt$home_team_abr, train_nhl_bt$away_team_abr)))  
-
-test_nhl_bt <- nhl_games %>% filter(season=="20192020")  %>% 
+test_nhl_bt <- nhl_games_bt  %>% 
+        filter(season == "20192020") %>%
         group_by(home_team_abr, away_team_abr) %>% 
-        summarise(ht=sum(ht_w), at=sum(at_w))
+        summarise(ht=sum(ht_w), at=sum(at_w)) %>%
+        filter(home_team_abr %in% (train_nhl_bt$home_team_abr),
+        away_team_abr %in% (train_nhl_bt$away_team_abr))
 
-test_nhl_bt <- test_nhl_bt %>%
-  filter(home_team_abr %in% (train_nhl_bt$home_team_abr),
-         away_team_abr %in% (train_nhl_bt$away_team_abr))
-
-test_nhl_bt$home_team_abr <- factor(test_nhl_bt$home_team_abr, levels=unique(c(test_nhl_bt$home_team_abr, test_nhl_bt$away_team_abr)))  
-test_nhl_bt$away_team_abr <- factor(test_nhl_bt$away_team_abr, levels=unique(c(test_nhl_bt$home_team_abr, test_nhl_bt$away_team_abr)))  
 
 ```
 
@@ -226,54 +227,47 @@ nfl_st %>%
 # Elo Ratings
 
 ```{r}
-nhl_games <- read.csv("../data/game.csv")
-nhl_teams <- read.csv("../data/team_info.csv") %>%
-  select(team_id, abbreviation)
-
-nhl_games <- nhl_games %>%
-  drop_na()
-
-nhl_games <- nhl_games %>% 
-  inner_join(nhl_teams, by = c("home_team_id" = "team_id")) %>%
-  rename("home_team_abr" = abbreviation)
-
-nhl_games <- nhl_games %>% 
-  inner_join(nhl_teams, by = c("away_team_id" = "team_id")) %>%
-  rename("away_team_abr" = abbreviation)
-
 home_factor_nhl <- 50
 k_nhl <- 6
-starting_elo <- 1500
+starting_elos <- 1500
 
-relative_elos_df <- data.frame() 
-final_elos_df <- data.frame()
 
-final_elos <- c(1500)
-
-for (season in unique(nhl_games$season)){
-  seasonal_data <- nhl_games %>% 
+calculate_elos <- function(data, home_factor, k, starting_elos){
+  
+  relative_elos <- data.frame()
+  final_elos <- data.frame()
+  
+  
+  for (season in unique(nhl_games$season)){
+  seasonal_data <- data %>% 
     filter(season == season)
   
   season_elos <- elo.run(score(home_goals, away_goals) ~
           adjust(home_team_abr, home_factor_nhl) + away_team_abr,
           data = seasonal_data, k = k_nhl,
-          initial.elos = final_elos
+          initial.elos = starting_elos
         )
 
-  final_elos <- final.elos(season_elos)
-  relative_elos_df <- rbind(relative_elos_df,
+  starting_elos <- final.elos(season_elos)
+  relative_elos <- rbind(relative_elos,
                             data.frame(season_elos, season = season))
+  
+  final_elos_df <- data.frame(season = season, 
+                              team_abr = names(starting_elos), 
+                              elo = starting_elos)
 
-  final_elos_df_1 <- as.data.frame(final_elos, season = season)
-  final_elos_df_1$team_abbr <- rownames(final_elos_df_1)
-  rownames(final_elos_df_1) <- c()
 
-  final_elos_df <- rbind(final_elos_df, final_elos_df_1)
+  final_elos <- rbind(final_elos, final_elos_df)
+  
+  }
+  
+  return (list(final_los=final_elos, relative_elos=relative_elos))
+  
 }
 
-relative_elos_df <- relative_elos_df %>%
-  mutate(Predicted = ifelse(p.A > 0.5,1,0))
+nhl_relative_elos <- calculate_elos(nhl_games, home_factor_nhl, k_nhl, starting_elos)$relative_elos
 
+nhl_relative_elos$Predicted <- ifelse(nhl_relative_elos$p.A > 0.5, 1,1)
 
 ```
 
@@ -284,7 +278,7 @@ calculate_brier <- function(data){
   return(accuracy)
 }
 
-(caret::confusionMatrix(data = factor(relative_elos_df$Predicted), 
-                       reference = factor(relative_elos_df$wins.A)))
-(calculate_brier(relative_elos_df))
+(caret::confusionMatrix(data = factor(nhl_relative_elos$Predicted), 
+                       reference = factor(nhl_relative_elos$wins.A)))
+(calculate_brier(nhl_relative_elos))
 ```
