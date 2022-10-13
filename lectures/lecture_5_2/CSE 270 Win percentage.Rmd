@@ -321,9 +321,9 @@ mlb_standings %>%
 ```
 
 
-# Pythagorean wins for other
+# Pythagorean wins for other sports
 
-## Pythagorean wins for other
+## Pythagorean wins for other sports
 
 
 # Pythagorean wins in NBA
@@ -375,7 +375,7 @@ $\frac{W}{L} = \frac{R^k}{RA^k}$ $log(\frac{W}{L}) = k * log(\frac{R}{RA})$
 \ecenter
 
 * We want to find the value of k
-* General linear regression equation is: $y = \beta_0 + \beta_1X$, however here we have no 01
+* General linear regression equation is: $y = \beta_0 + \beta_1X$, however here we have no
 intercept model, thus $y = \beta_1X$
 
 # Pythagorean wins in NBA
