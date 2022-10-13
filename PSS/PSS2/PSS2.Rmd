@@ -244,7 +244,7 @@ calculate_elos <- function(data, home_factor, k, starting_elos){
   
   season_elos <- elo.run(score(home_goals, away_goals) ~
           adjust(home_team_abr, home_factor_nhl) + away_team_abr,
-          data = seasonal_data, k = k_nhl,
+          data = seasonal_data, k = k,
           initial.elos = starting_elos
         )
 
@@ -281,4 +281,51 @@ calculate_brier <- function(data){
 (caret::confusionMatrix(data = factor(nhl_relative_elos$Predicted), 
                        reference = factor(nhl_relative_elos$wins.A)))
 (calculate_brier(nhl_relative_elos))
+```
+
+```{r}
+nhl_k_picker <- function(data = nhl_games){
+  result <- c()
+  for( k in seq(4,12,1)){
+    elos_for_k <- calculate_elos(data = data, 
+                                 home_factor_nhl,
+                                 k,
+                                 1500)
+    
+    br_scores <- elos_for_k$relative_elos %>%
+      group_by(season) %>%
+      summarise(br.score = sum((p.A - wins.A)^2) / n(),
+                k = k)
+    result <- rbind(result, br_scores)
+  }
+  model <- lm( br.score ~ 0 + k, data = result )
+  return( list(model = model,
+               df = as.data.frame(result)) )
+}
+
+k_list <- nhl_k_picker()
+
+k_model <- k_list$model
+k_df <- k_list$df
+summary(k_model)
+
+k_df %>% 
+  group_by(season) %>%
+  filter(br.score == min(br.score)) %>%
+  ungroup() %>%
+  pull(k)
+
+```
+
+```{r}
+k_df <- k_df %>%
+  group_by(k) %>%
+  summarize(br.score = mean(br.score))
+
+ggplot(k_df, aes(x = k, y = br.score) ) + 
+  geom_line() +
+  ggtitle("Predictions accuracy using brier score vs k value") +
+  xlab("K value") + 
+  ylab("Brier score")
+
 ```
