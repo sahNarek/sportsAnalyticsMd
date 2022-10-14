@@ -199,7 +199,7 @@ What will be your prediction for a team with a Run differential of 850?
 It is derived empirically by Bill James, the founder of Sabermetrics  
 
 \bcenter
-$Wpct = \frac{R^2}{R^2 + RA^2}$
+$Wpct = \frac{R^k}{R^k + RA^k}$
 \ecenter
 
 R - runs made  
@@ -211,7 +211,7 @@ The number of the wins calculated by Pythagorean formula is called
 # Generic Pythagorean formula
 
 \bcenter
-$Wpct = \frac{R^2}{R^2 + RA^2}$
+$Wpct = \frac{R^k}{R^k + RA^k}$
 \ecenter
 
 The equation can be rewritten in the following way  
@@ -242,16 +242,16 @@ $\frac{60/40}{\frac{60}{40} + \frac{40}{60}} = \frac{60^2}{60^2 + 40^2}$
 
 # Wayne Winston modification
 
-$Wpct = \frac{R^2}{R^2 + RA^2}$  
+$Wpct = \frac{R^k}{R^k + RA^k}$  
 
-$Wpct = \frac{Rt^2}{Rt^2 + 1}$ where, Rt is the runs ration  
+$Wpct = \frac{Rt^k}{Rt^k + 1}$ where, Rt is the runs ratio
 
 $Rt = \frac{\text{Runs}}{\text{Runs allowed}}$
 
 # Usage
 
 \bcenter
-$Wpct = \frac{Rt^2}{Rt^2 + 1}$
+$Wpct = \frac{Rt^k}{Rt^k + 1}$
 \ecenter
 
 Suppose a team has scored 850 runs and allowed 800 runs last season.  
@@ -366,7 +366,7 @@ summary(model2)
 Recall: 
 
 \bcenter
-$Wpct = \frac{R^2}{R^2 + RA^2}$
+$Wpct = \frac{R^k}{R^k + RA^k}$
 
 
 $\frac{W}{L} = \frac{R^k}{RA^k}$ $log(\frac{W}{L}) = k * log(\frac{R}{RA})$
