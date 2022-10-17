@@ -208,9 +208,9 @@ Assuming that the variance in luck stays constant
 
 *Var(Skills) = Var(Outcome) - Var(Luck)*  
 
-*Var(Skills) = 0.01861577 - 0.00304878*  
+*Var(Skills) = 0.02151839 - 0.00304878*  
 
-*Var(Skills) = 0.01556699*  
+*Var(Skills) = 0.01846961*  
 
 This analysis allows us to look at the ratio of variance (luck) to variance (observed) in order to determine the contribution of luck.  
 
@@ -437,7 +437,7 @@ ggplot(nfl_s, aes(Season, SD))+geom_bar(stat="identity")+
 
 There are several drawbacks of using standard deviation as a measure of competitive balance.  
 
-n and the number of the games played are not always constant over time or same for different sports and leagues.  
+The number of the games played are not always constant over time or same for different sports and leagues.  
 
 To deal with this problem, $\sigma$ is benchmarked against standard deviation that describes dispersion for the league with ideal competitive balance.  
 
@@ -470,7 +470,7 @@ $\sqrt{\frac{0.5*(1-0.5)}{m}} = \frac{0.5}{\sqrt{m}}$
 
 Where $m$ is the number of games played by each team.  
 
-This is also called Noll-Scully number
+
 
 # Measuring Seasonal Dimensions
 
@@ -486,7 +486,6 @@ This is also called Noll-Scully number
 
 
 * Ideally, Noll-Scully number will be equal to 1
-* Higher is the number, lower is Competitive Balance
 * Higher is the number, lower is Competitive Balance
 * Closer is the number to 1, higher is Competitive Balance
 
