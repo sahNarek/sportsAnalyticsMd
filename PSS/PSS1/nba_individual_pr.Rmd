@@ -1,7 +1,6 @@
 ---
 title: "CSE 270 Sports Analytics"
 subtitle: "Basketball Individual performance"
-date: "29-09-2022"
 author: "Narek Sahakyan"
 fontsize: 8pt
 output:
@@ -35,91 +34,351 @@ library(tidyr)
 
 ## NBA Individual performance
 
-3 main stages of the game.
+2 main stages of the game.
 
 * Attacking
 * Defending
-* Possessing the ball
+
+https://www.youtube.com/watch?v=wYjp2zoqQrs
+
+## NBA Individual performance
+
+5 main positions on the field.
+
+* Center - On offense, the center tries to score on close shots and rebound. But on defense, the center tries to block opponents’ shots and rebound their misses.  
+
+* Power Forward - The power forward does many of the things a center does, playing near the basket while rebounding and defending taller players. But power forwards also take longer shots than centers.  
+
+* Small Forward - The small forward plays against small and large players. They roam all over on the court. Small forwards can score from long shots and close ones.  
+
+* Point Guard - The point guard runs the offense.The point guard defends the opponent’s point guard and tries to steal the ball.  
+
+* Shooting Guard - The shooting guard can make shots from long distance and also is a good dribbler.
+
+Let's watch a short video,  
+
+https://www.youtube.com/watch?v=4_4CymXARWQ
+
+## NBA Individual performance
+
+```{r echo=F, fig.align='center', out.height="80%", out.width="60%"}
+knitr::include_graphics("./Basketball_Positions.png")
+```
+
+## NBA Individual performance
+
+Defining attributes for each position.
+
+* Center - The center is the tallest player on each team, playing near the basket.
+* Power Forward - The power forward is very close to center player, but in this position they should also have good shooting attributes.
+* Small Forward - The small forward should have good shooting efficiency in close and far distances.
+* Point Guard - The point guard should have good defending characteristics.
+* Shooting Guard - The shooting guard should have good dribbling attributes and shooting accuracy in long ranges.
+
+What measures other than the height and shooting can be used to position the players on the field ?
+
+## NBA Individual performance
+
+In game statistics
+
+* STEALS 
+ 
+* TURNOVERS - Turnover occurs when a team loses possession of the ball to the opposing team before a player takes a shot at their team's basket.  
+https://www.youtube.com/shorts/I4MDXOWrUmk
+* REBOUNDS
+  1. OFFENSIVE REBOUNDS - An offensive rebound occurs when offensive players regain possession of the ball after a missed shot.
+  2. DEFENSIVE REBOUNDS -  Defensive rebounds occur when defensive players gain possession of the ball after an offensive player misses the shot.
+* BLOCKS - Block occurs when a defensive player legally deflects a field goal attempt from an offensive player to prevent a score.
+* FOULS
+  1. PERSONAL FOULS
+  2. FLAGRANT FOULS
+  3. TECHINCAL FOULS
+
 
 ## NBA Individual performance
 
 ### Dataset
 
 ```{r, include = F}
-players_data <- read.csv("../data/players_stats_by_season_full_details.csv")
+nba_players <- read.csv("../data/players_stats_by_season_full_details.csv") %>%
+  filter(League == 'NBA', Stage == 'Regular_Season')
 ```
 
+\tiny
 ```{r}
-str(players_data)
+str(nba_players)
 ```
 
 
 ## NBA Individual performance
 
+Let's select the performance metrics.
 
 ```{r}
-
-players_data_pr <- players_data %>%
-  select(Season, Player, MIN, STL, TOV, ORB, DRB, PF, BLK, PTS) %>%
+nba_players <- nba_players %>%
+  select(Season, Player, height_cm, weight_kg,
+         GP, MIN, STL, TOV, ORB, DRB, REB, PF, BLK, PTS, AST,
+         FTM, FTA, FGM, FGA, X3PM, X3PA, ) %>%
   arrange(Player, Season)  %>% 
   mutate(PR = STL - TOV)
+head(nba_players, 3)
+```
 
-#DFR = defence rating
+## NBA Individual performance
 
-players_data_diff <- players_data_pr %>%
+Let's try to evaluate the player's performance based on the amount of time they spent on the field.  
+We will use the players' historical data to measure their performance for each season, by taking 5 preceding seasons only in order to avoid one season stars.
+We will use success/failure approach by dividing the metrics of the players into successful and non-succesfull actions and then compare their success rate with their playing minutes.
+
+## NBA Individual performance
+
+Let's start with defending attributes.
+
+Successful actions, when defending  
+
+* STEALS
+* BLOCKS
+* DEFENSIVE REBOUNDS
+
+Non Successful actions, when defending  
+
+
+* PERSONAL FOULS
+* TURNOVER
+
+## NBA Individual performance
+
+Let's calculate the difference between the cumulative success actions and cumulative failure actions.  
+\tiny
+```{r}
+nba_players_defense <- nba_players %>%
   arrange(Player, Season)  %>% 
   group_by(Player) %>%
-  mutate(CUM_STL = rollsum(STL, k = 2, fill = NA, align="right"),
-         CUM_TOV = rollsum(TOV, k = 2, fill = NA, align="right"),
-         CUM_DRB = rollsum(DRB, k = 2, fill = NA, align="right"),
-         CUM_PF = rollsum(PF, k = 2, fill = NA, align="right"),
-         CUM_DFR = CUM_STL - CUM_PF,
-         CUM_DFR1 = CUM_DFR - CUM_TOV,
-         CUM_POSS_RATING = CUM_STL - CUM_TOV
+  mutate(CUM_STL = rollmean(STL, k = 5, fill = NA, align="right"),
+         CUM_TOV = rollmean(TOV, k = 5, fill = NA, align="right"),
+         CUM_DRB = rollmean(DRB, k = 5, fill = NA, align="right"),
+         CUM_PF = rollmean(PF, k = 5, fill = NA, align="right"),
+         CUM_BLK = rollmean(BLK, k = 5, fill = NA, align="right"),
+         CUM_MIN = rollmean(MIN, k = 5, fill = NA, align = "right"),
+         CUM_SUCCESS_1 = CUM_STL - CUM_TOV,
+         CUM_SUCCESS_2 = CUM_STL - CUM_PF,
+         CUM_SUCCESS_3 = CUM_DRB - CUM_TOV,
+         CUM_SUCCESS_4 = CUM_DRB - CUM_PF,
+         CUM_SUCCESS_5 = CUM_BLK - CUM_TOV,
+         CUM_SUCCESS_6 = CUM_BLK - CUM_PF,
+         SUCCESS_1 = STL - TOV,
+         SUCCESS_2 = STL - PF,
+         SUCCESS_3 = DRB - TOV,
+         SUCCESS_4 = DRB - PF,
+         SUCCESS_5 = BLK - TOV,
+         SUCCESS_6 = BLK - PF,
          ) %>%
   drop_na() %>%
   ungroup()
-
-
-cor(players_data_diff$CUM_DFR1, players_data_diff$MIN)
-
-ggplot(players_data_diff, aes(x = CUM_DFR1, y = (MIN))) + 
-  geom_point()
-
-summary(lm(MIN ~ (CUM_DFR1 + CUM_DFR + CUM_POSS_RATING), data = players_data_diff))
 ```
+
+## NBA Individual performance
+
+Let's check if the cumulative metrics are correlated to the amount of time the players spent on the field.
+
+```{r}
+cor_with_min <- function(x){
+  return(cor(x, nba_players_defense$MIN))
+}
+
+nba_players_defense %>%
+  select(CUM_SUCCESS_1, CUM_SUCCESS_2, CUM_SUCCESS_3,
+         CUM_SUCCESS_4, CUM_SUCCESS_5, CUM_SUCCESS_6, CUM_MIN) %>%
+  apply(2,cor_with_min)
+```
+
+## NBA Individual performance
+
+Now let's do the same for seasonal metrics.
 
 
 ```{r}
-players_data <- players_data %>%
-  filter(League == 'NBA', Stage == 'Regular_Season')
-
-players_data_pr_2 <- players_data %>%
-  select(Season, Player, GP, PTS,  MIN, FGM, FGA, X3PM, X3PA, FTM, FTA)
-
-players_data_diff_2 <- players_data_pr_2 %>%
-  arrange(Player, Season)  %>% 
-  group_by(Player) %>%
-  mutate(CUM_FGM = rollsum(FGM, k = 2, fill = NA, align="right"),
-         CUM_FGA = rollsum(FGA, k = 2, fill = NA, align="right"),
-         CUM_X3PM = rollsum(X3PM, k = 2, fill = NA, align="right"),
-         CUM_X3PA = rollsum(X3PA, k = 2, fill = NA, align="right"),
-         CUM_FTM = rollsum(FTM, k = 2, fill = NA, align="right"),
-         CUM_FTA = rollsum(FTA, k = 2, fill = NA, align="right"),
-         CUM_FGDIFF = CUM_FGA - CUM_FGM,
-         CUM_X3PMDIFF = CUM_X3PA - CUM_X3PM,
-         CUM_FTDIFF = CUM_FTA - CUM_FTM) %>%
-  drop_na() %>%
-  ungroup()
-
-
-ggplot(players_data_diff_2, aes(x = CUM_FGDIFF, y = MIN)) + 
-  geom_point() + 
-  geom_smooth(method = "lm")
-
-cor(players_data_diff_2$CUM_FGDIFF, players_data_diff_2$MIN)
-
-summary(lm(MIN ~ CUM_FGDIFF + CUM_X3PMDIFF + CUM_FTDIFF, 
-           data = players_data_diff_2))
+nba_players_defense %>%
+  select(SUCCESS_1, SUCCESS_2, SUCCESS_3,
+         SUCCESS_4, SUCCESS_5, SUCCESS_6) %>%
+  apply(2,cor_with_min)
 ```
 
+## NBA Individual performance
+
+The metric with the highest positive correlation rate is the seasonal difference between
+the cumulative number of defensive rebounds made and cumulative number of turnovers made.  
+
+\tiny
+```{r, out.height="60%", fig.align="center"}
+ggplot(nba_players_defense, aes(x = SUCCESS_4, y = (MIN))) + 
+  geom_point() + 
+  ggtitle("Number of minutes played vs seasonal defensive rating(DRB - PF)") + 
+  xlab("Seasonal Defensive Rating(DRB - PF)") + 
+  ylab("Minutes played")
+```
+
+## NBA Individual performance
+
+The metric with the lowest positive correlation rate is the difference between
+the cumulative number of blocks made and cumulative number of turnovers made.  
+
+\tiny
+```{r, out.height="60%",fig.align="center"}
+ggplot(nba_players_defense, aes(x = SUCCESS_5, y = (MIN))) + 
+  geom_point() + 
+  ggtitle("Number of minutes played vs seasonal defensive rating(BLK - TOV)") + 
+  xlab("Seasonal Defensive Rating(BLK - TOV)") + 
+  ylab("Minutes played")
+```
+
+## NBA Individual performance
+
+Let's drop the difference between  number of steals made and fouls made, as it has almost 0 correlation with the number of minutes played and then fit a model with the defensive power ratings.  
+
+\tiny
+```{r}
+nba_players_defense <- nba_players_defense %>%
+  select(-CUM_SUCCESS_2, SUCCESS_2)
+
+summary(lm(MIN ~ (SUCCESS_4 + CUM_SUCCESS_4 + CUM_SUCCESS_5 
+                  + SUCCESS_5 + CUM_MIN ), data = nba_players_defense))
+```
+
+## NBA Indvidual performance.
+
+Dropping the cumulative average of minutes played to understand the model's power on estimating the players' number of minutes on the field without preceding 5 season.
+
+\tiny
+```{r}
+summary(lm(MIN ~ (SUCCESS_4 + CUM_SUCCESS_4 + CUM_SUCCESS_5 
+                  + SUCCESS_5 ), data = nba_players_defense))
+```
+
+## NBA Individual performance
+
+We can see that all the cumulative metrics of the player's except the average number of minutes played in preceeding 5 seaons, do not have as much significance as seasonal values, so we can conclude that the number of minutes the players will have on the field is connected to their previous season statistics, but can change based on their seasonal performance.
+
+
+## NBA Individual performance
+
+For the attacking attributes we will calculate the difference between the attempts made for successful actions and actual successful actions.
+
+Successful actions, when attacking  
+
+* FIELD GOALS
+* 3 POINT GOALS
+* FREE THROWS
+* OFFENSIVE REBOUNDS
+* POINTS SCORED
+* ASSISTS MADE
+
+Non Successful actions, when attacking  
+
+* FIELD GOALS ATTEMPTS
+* 3 POINT ATTEMPTS
+* FREE THROW ATTEMPTS
+
+## NBA Individual performance
+
+
+```{r}
+nba_players_offense <- nba_players %>%
+  arrange(Player, Season)  %>% 
+  group_by(Player) %>%
+  mutate(CUM_FGM = rollmean(FGM, k = 5, fill = NA, align="right"),
+         CUM_FGA = rollmean(FGA, k = 5, fill = NA, align="right"),
+         CUM_X3PM = rollmean(X3PM, k = 5, fill = NA, align="right"),
+         CUM_X3PA = rollmean(X3PA, k = 5, fill = NA, align="right"),
+         CUM_FTM = rollmean(FTM, k = 5, fill = NA, align="right"),
+         CUM_FTA = rollmean(FTA, k = 5, fill = NA, align="right"),
+         CUM_AST = rollmean(AST, k = 5, fill = NA, align="right"),
+         CUM_PTS = rollmean(PTS, k = 5, fill = NA, align="right"),
+         CUM_ORB = rollmean(PTS, k = 5, fill = NA, align="right"),
+         CUM_MIN = rollmean(MIN, k = 5, fill = NA, align="right"),
+         SUCCESS_1 = FGA - FGM,
+         SUCCESS_2 = X3PA - X3PM,
+         SUCCESS_3 = FTA - FTM,
+         CUM_SUCCESS_1 = CUM_FGA - CUM_FGM,
+         CUM_SUCCESS_2 = CUM_X3PA - CUM_X3PM,
+         CUM_SUCCESS_3 = CUM_FTA - CUM_FTM,
+         ) %>%
+  drop_na() %>%
+  ungroup()
+```
+## NBA Individual performance
+
+Let's check if the cumulative metrics are correlated to the amount of time the players spent on the field.
+
+```{r}
+cor_with_min <- function(x){
+  return(cor(x, nba_players_offense$MIN))
+}
+
+nba_players_offense %>%
+  select(CUM_SUCCESS_1, CUM_SUCCESS_2, CUM_SUCCESS_3, CUM_AST, CUM_MIN, CUM_PTS) %>%
+  apply(2,cor_with_min)
+```
+
+## NBA Individual performance
+
+Let's check if the seasonal metrics are correlated to the amount of time the players spent on the field.
+
+```{r}
+cor_with_min <- function(x){
+  return(cor(x, nba_players_offense$MIN))
+}
+
+nba_players_offense %>%
+  select(SUCCESS_1, SUCCESS_2, SUCCESS_3, AST, PTS) %>%
+  apply(2,cor_with_min)
+```
+
+## NBA Individual performance
+
+The seasonal metric with the highest correlation is the difference between the number of points scored by the player.
+
+\tiny
+```{r, out.height="60%",fig.align="center"}
+ggplot(nba_players_offense,aes(x = PTS, y = MIN)) + 
+  geom_point() +
+  ggtitle("Number of minutes played vs seasonal offensive rating(PTS)") + 
+  xlab("Points scored") + 
+  ylab("Minutes played")
+```
+## NBA Individual performance
+
+The cumulative metric with the highest correlation is again the number of points scored.
+
+
+\tiny
+```{r, out.height="60%",fig.align="center"}
+ggplot(nba_players_offense,aes(x = CUM_PTS, y = MIN)) + 
+  geom_point() +
+  ggtitle("Number of minutes played vs seasonal offensive rating(PTS)") + 
+  xlab("Cumulative mean of Points scored") + 
+  ylab("Minutes played")
+```
+
+
+## NBA Individual performance
+\tiny
+```{r}
+summary(lm(MIN ~ (PTS + AST + SUCCESS_1 +
+                  + CUM_SUCCESS_1 + CUM_PTS + CUM_AST + CUM_MIN ), data = nba_players_offense))
+```
+
+## NBA Indvidual performance.
+
+Dropping the cumulative average of minutes played to understand the model's power on estimating the players' number of minutes on the field without preceding 5 seasons.
+
+\tiny
+```{r}
+summary(lm(MIN ~ (PTS + AST + SUCCESS_1 +
+                  + CUM_SUCCESS_1 + CUM_PTS + CUM_AST), data = nba_players_offense))
+```
+
+
+## NBA Individual performance
+
+We can again see that the seasonal metrics have higher contribution to the number of minutes played, and we can conclude that the players who are making more attempts to score field goal are generally playing more.
