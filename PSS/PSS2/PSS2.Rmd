@@ -102,7 +102,11 @@ nhl_games_test_poisson <- get_poisson_form(nhl_games_test)
 
 nhl_model_poisson <- glm(GOAL~TEAM+OPPONENT+HOME, data=nhl_games_train_poisson, family=poisson(link=log))
 
+summary(nhl_model_poisson)
+
 nhl_games_test_poisson$P.G <- predict(nhl_model_poisson,nhl_games_test_poisson, type = "response")
+
+predict(nhl_model_poisson,data.frame(TEAM = "BOS", OPPONENT = "ATL", HOME = 1, type = "response"))
 
 sqrt(mean((nhl_games_test_poisson$GOAL - nhl_games_test_poisson$P.G)^2))
 ```
@@ -248,7 +252,7 @@ calculate_elos <- function(data, home_factor, k, starting_elos){
           initial.elos = starting_elos
         )
 
-  starting_elos <- final.elos(season_elos)
+  starting_elos <- final.elos(season_elos) * 0.8
   relative_elos <- rbind(relative_elos,
                             data.frame(season_elos, season = season))
   
@@ -261,13 +265,14 @@ calculate_elos <- function(data, home_factor, k, starting_elos){
   
   }
   
-  return (list(final_los=final_elos, relative_elos=relative_elos))
+  return (list(final_elos=final_elos, relative_elos=relative_elos))
   
 }
 
 nhl_relative_elos <- calculate_elos(nhl_games, home_factor_nhl, k_nhl, starting_elos)$relative_elos
 
-nhl_relative_elos$Predicted <- ifelse(nhl_relative_elos$p.A > 0.5, 1,1)
+nhl_final <- calculate_elos(nhl_games, home_factor_nhl, k_nhl, starting_elos)$final_elos
+nhl_relative_elos$Predicted <- ifelse(nhl_relative_elos$p.A > 0.5, 1,0)
 
 ```
 

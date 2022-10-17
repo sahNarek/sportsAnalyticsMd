@@ -5,6 +5,7 @@ author: "Habet Madoyan"
 fontsize: 8pt
 output:
   beamer_presentation:
+    slide_level: 2
     theme: "CambridgeUS"
     colortheme: "dolphin"
     fonttheme: "structurebold"
@@ -19,6 +20,8 @@ header-includes:
 
 
 # Predicting with distributions
+
+## Predicting with distributions
 
 Suppose we have two variables with normal distribution,
 
@@ -51,7 +54,7 @@ $D \sim N( \mu_H - \mu_A, \sigma_H ^ 2 + \sigma_A ^ 2 )$
 
 \ecenter
 
-# Predicting with distributions
+## Predicting with distributions
 * In NBA (National Basketball Association) points scored per
 game by home and away teams follow normal distribution.
 
@@ -75,7 +78,7 @@ install_github("HABET/CSE270")
 library(SportsAnalytics270)
 ```
 
-# Predicting with distributions
+## Predicting with distributions
 
 The list of necessary packages
 
@@ -88,7 +91,7 @@ library(zoo)
 library(VGAM)
 ```
 
-# Predicting with distributions
+## Predicting with distributions
 
 Dataframe nba2009_2021 contains NBA regular season games from 2009 to 2021-2022 season 
 
@@ -98,7 +101,7 @@ data("nba2009_2021")
 head(nba2009_2021, 2)
 ```
 
-# Predicting with distributions
+## Predicting with distributions
 
 Plot the histogram for home points
 
@@ -106,7 +109,7 @@ Plot the histogram for home points
 ggplot(nba2009_2021, aes(x=home.PTS))+geom_histogram()
 ```
 
-# Predicting with distributions
+## Predicting with distributions
 
 Exclude Boston-Celtics game
 
@@ -115,14 +118,14 @@ ggplot(nba2009_2021, aes(x=home.PTS)) + geom_histogram() + xlim(c(50,155))+
   labs(x="Home Points", title="Histogram for points per game by home team")
 ```
 
-# Predicting with distributions
+## Predicting with distributions
 
 ```{r}
 ggplot(nba2009_2021, aes(x=away.PTS)) + geom_histogram() + xlim(c(50,150)) +
   labs(x="Away Points", title="Histogram for points per game by away team")
 ```
 
-# Predicting with distributions
+## Predicting with distributions
 
 Histogram of home and away points together
 
@@ -132,7 +135,7 @@ ggplot(nba2009_2021) + geom_histogram(aes(x=away.PTS), fill='red') +
   xlim(c(50,155)) + labs(x="Points", title="Home/away points")
 ```
 
-# Predicting with distributions
+## Predicting with distributions
 Home points for last season only
 
 ```{r}
@@ -141,7 +144,7 @@ ggplot(aes(x = home.PTS)) + geom_histogram() + xlim(c(50,155))+
   labs(x="Home Points", title="Histogram for points for last season")
 ```
 
-# Predicting with distributions
+## Predicting with distributions
 What about Points difference ?
 
 ```{r}
@@ -151,7 +154,7 @@ ggplot(nba2009_2021, aes(x=Diff)) + geom_histogram(bins=50) +
 ```
 
 
-# Predicting with distributions
+## Predicting with distributions
 
 Test hypothesis of Normality:
 
@@ -167,7 +170,7 @@ distribution
 failed to reject $H_0$
 
 
-# Predicting with distributions
+## Predicting with distributions
 
 ```{r}
 nba2009_2021 %>%
@@ -177,7 +180,7 @@ nba2009_2021 %>%
     arrange(p_value)
 ```
 
-# Predicting with distributions
+## Predicting with distributions
 
 Away points: Normal distribution with $\alpha$ = 0.05
 
@@ -191,7 +194,7 @@ nba2009_2021 %>%
 ```
 
 
-# Predicting with distributions
+## Predicting with distributions
 
 Suppose we have two variables with normal distribution,
 
@@ -223,7 +226,7 @@ $D \sim N( \mu_H - \mu_A, \sigma_H ^ 2 + \sigma_A ^ 2 )$
 
 \ecenter
 
-# Predicting with distributions
+## Predicting with distributions
 
 Create dataframes with means and standard deviations for each team, for the last season
 
@@ -242,7 +245,7 @@ away = nba2009_2021 %>%
                   var  = var(away.PTS))
 ```
 
-# Predicting with distributions
+## Predicting with distributions
 
 Dallas Mavericks playing @ Washington Wizards
 Wizards are the home team, Mavericks are the away team
@@ -251,7 +254,7 @@ Wizards are the home team, Mavericks are the away team
 knitr::include_graphics("./images/wizards.png")
 ```
 
-# Predicting with distributions
+## Predicting with distributions
 
 Calculate the mean and standard deviation for the points difference between these two teams
 
@@ -270,7 +273,7 @@ $s_D = \sqrt{\sigma^2_H + \sigma^2_A}$
 ```
 
 
-# Predicting with distributions
+## Predicting with distributions
 
 Simulate 10,000 games and plot the histogram. Can you see the home team advantage ?
 
@@ -283,27 +286,29 @@ ggplot()+geom_histogram(aes(x=diff))+
 ```
 
 
-# Predicting with distributions
+## Predicting with distributions
 
 Now let's calculate the probabilities of home and away teams to win
 
 * Away team to win $P(x<0)$
 * Home team to win $P(x>0)$
 
-## Probability of away team to win
+## Predicting with distributions
+
+### Probability of away team to win
 
 ```{r}
 pnorm(0, mean, sd, lower.tail = T)
 ```
 
-
-## Probability of home team to win
+## Predicting with distributions
+### Probability of home team to win
 
 ```{r}
 pnorm(0, mean, sd, lower.tail = F)
 ```
 
-# Predicting with distributions
+## Predicting with distributions
 
 **Probability of home team to win with more than 15 points difference**
 
@@ -314,7 +319,7 @@ pnorm(15, mean, sd, lower.tail = F)
 ```
 
 
-# Predicting with distributions
+## Predicting with distributions
 
 ```{r}
 home_away = list(home,away)
@@ -334,35 +339,37 @@ probs = function(data, home, away, spread=0){
 }
 ```
 
-# Predicting with distributions
+## Predicting with distributions
 
 ```{r}
 probs(home_away, home="WAS", away="DAL", 0)
 ```
 
 
-# Predicting with distributions
+
+# Predicting football games results
+
 
 ## Predicting football games results
 
-
-# Predicting with distributions
 Let's recall what is Poisson distribution about
 
 ```{r echo=F}
 knitr::include_graphics("./images/poisson.png")
 ```
 
-# Dataset
+## Predicting football games results
+
+### Dataset
 
 ```{r}
 data(f_data_sm)
 head(f_data_sm)
 ```
 
-# Predicting with distributions
+## Predicting football games results
 
-## Full time total goals distribution for Serie A, Season 2021-2022
+### Full time total goals distribution for Serie A, Season 2021-2022
 
 ```{r}
 f_data_sm %>%
@@ -372,9 +379,9 @@ ggtitle("Full time goals distribution for Serie A-2022")
 ```
 
 
-# Predicting with distributions
+## Predicting football games results
 
-## Distribution of home team full time goals
+### Distribution of home team full time goals
 ```{r}
 f_data_sm %>%
   filter(COUNTRY=="Italy", SEASON=="2022") %>%
@@ -382,7 +389,7 @@ ggplot(aes(x=FTHG))+geom_bar()+
 ggtitle("Full time home team goals distribution for Serie A- 2022")
 ```
 
-# Predicting with distributions
+## Predicting football games results
 
 Does the total number of goals scored follows Poisson distribution?  
 
@@ -394,7 +401,7 @@ f_data_sm %>%
   summarise(mean(FTTG))
 ```
 
-# Predicting with distributions
+## Predicting football games results
 
 We can test the hypothesis, whether the goal’s distribution is Poisson: Our hypothesis is the following:
 
@@ -412,7 +419,9 @@ $H_1:$ *The variables do not have Poisson distribution*
 
 We will test the hypothesis with Chi-square test: thus comparing empirical probability distribution (from the data) and hypothethical Poisson distribution
 
-# Goal frequencies
+## Predicting football games results
+
+### Goal frequencies
 
 ```{r}
 (seriea = f_data_sm %>%
@@ -422,7 +431,7 @@ We will test the hypothesis with Chi-square test: thus comparing empirical proba
           as.data.frame())
 ```
 
-# Predicting with distributions
+## Predicting football games results
 
 We will use chi-square test
 
@@ -445,7 +454,7 @@ Then create expected relative frequencies (probabilities), under the assumption 
 (probs=dpois(c(0:6), lambda=h_goals_mean_italy))
 ```
 
-# Predicting with distributions
+## Predicting football games results
 
 Is there a significant difference between these two ?
 
@@ -455,7 +464,7 @@ chisq.test(rel_fr, p=probs, rescale.p = T, simulate.p.value = TRUE)
 
 Large p-value talks in favor for NULL hypothesis, thus we have a Poisson distribution
 
-# Predicting with distributions
+## Predicting football games results
 
 Lazio (Home team) vs. Fiorentina (Away team)
 
@@ -464,7 +473,7 @@ knitr::include_graphics("./images/lazio.png")
 ```
 
 
-# Predicting with distributions
+## Predicting football games results
 
 * We assume that probabilities for Lazio and Fiorentina scoring are independent from each other.
 * Thus: $P(L=0 \cap F=0) = P(L=0) * P(F=0) ...$
@@ -479,7 +488,7 @@ $P(L=0) * P(F=0) + P(L=1) * P(F=1) ...$
 
 \ecenter
 
-# Predicting with distributions
+## Predicting football games results
 
 Means ( $\lambda$ parameters) for home and away teams
 
@@ -497,7 +506,7 @@ away_means = f_data_sm %>%
 
 
 
-# Predicting with distributions
+## Predicting football games results
 
 For Lazio as a home team
 and for Fiorentina as an away team
@@ -510,7 +519,7 @@ and for Fiorentina as an away team
 
 ```
 
-# Predicting with distributions
+## Predicting football games results
 
 Generate vector of probabilities for number of goals scored for both teams.  
 
@@ -530,7 +539,7 @@ goal_probs_lazio
 goal_probs_fior
 ```
 
-# Predicting with distributions
+## Predicting football games results
 
 Multiplying two vectors of probabilities we will get the matrix of probabilities for a given result
 
@@ -541,7 +550,7 @@ a=round(a, digits=4)
 print(a)
 ```
 
-# Predicting with distributions
+## Predicting football games results
 
 The probability that the game will end 0-0
 
@@ -564,7 +573,7 @@ colnames(a_df) <- c("",0:9)
 kable(a_df, "latex", escape=F)
 ```
 
-# Predicting with distributions
+## Predicting football games results
 
 3 1 Lazio winning 
 
@@ -597,7 +606,7 @@ kable(a_df, "latex", escape=F)
 ```
 
 
-# Predicting with distributions
+## Predicting football games results
 
 Probability of draw: sum all elements on the diagonal
 
@@ -621,7 +630,7 @@ colnames(a_df) <- c("",0:9)
 kable(a_df, "latex", escape=F)
 ```
 
-# Predicting with distributions
+## Predicting football games results
 
 Probability of Lazio winning: Sum of all the probabilities in the lower triangle, without diagonal
 
@@ -649,7 +658,7 @@ colnames(a_df) <- c("",0:9)
 kable(a_df, "latex", escape=F)
 ```
 
-# Predicting with distributions
+## Predicting football games results
 
 Probability of Fiorentina winning: Sum of all the probabilities in the upper triangle, without diagonal
 
@@ -676,7 +685,8 @@ colnames(a_df) <- c("",0:9)
 
 kable(a_df, "latex", escape=F)
 ```
-# Predicting with distributions
+
+## Predicting football games results
 
 Probability of game ending in draw
 ```{r}
@@ -695,7 +705,7 @@ Probability of Fiorentina winning
 sum(a[upper.tri(a, diag=F)])
 ```
 
-# Predicting with distributions
+## Predicting football games results
 
 * Suppose $X$ is a Poisson random variable with mean $\lambda_x$ that describes the number of the goals the home team scores on average.
 
@@ -711,7 +721,7 @@ library(VGAM)
 ```
 
 
-# Predicting with distributions
+## Predicting football games results
 
 Histogram for goal difference
 \tiny
@@ -723,7 +733,7 @@ ggplot()+geom_bar(aes(x=k))+
   labs(x="Goal difference", title="Skellam distribution for goal difference")
 ```
 
-# Predicting with distributions
+## Predicting football games results
 
 Calculating probabilities
 
@@ -746,9 +756,9 @@ sum(k<0)/10000
 
 
 # Predicting with Ratings
+
 ## Predicting with Ratings
 
-# Predicting with the rating
 
 * Every team can have some kind of rating, describing its ability to win.
 * In football (soccer) the rating can be expressed as the number of points earned, number of goals scored, number of goals conceded, etc.
@@ -758,7 +768,7 @@ sum(k<0)/10000
 **Goal supremacy = Number of scored goals- Number of conceded goals**
 \ecenter
 
-# Predicting with the rating
+## Predicting with Ratings
 
 * Tottenham playing Leeds United (2002).
 * Looking at the goal supremacy (goal difference) for each team for their last 6 games
@@ -770,7 +780,8 @@ knitr::include_graphics("./images/leeds_table.png")
 ```
 Adapted from: [“Fixed Odds Sports Betting” – Joseph Buchdahl](https://www.goodreads.com/book/show/871922.Fixed_Odds_Sports_Betting)
 
-# Predicting with the rating
+
+## Predicting with Ratings
 
 Steps for Power Rating calculation
 
@@ -780,7 +791,7 @@ Steps for Power Rating calculation
 given power difference.
 * Those will be the probabilities
 
-# Predicting with the rating
+## Predicting with Ratings
 
 Kind of table we need
 
@@ -788,7 +799,7 @@ Kind of table we need
 knitr::include_graphics("./images/table_1.png")
 ```
 
-# Predicting with the rating
+## Predicting with Ratings
 
 * Subset the f_data_sm to get only the games for England
 * Select columns with team names, date, season indicator and final score
@@ -815,7 +826,7 @@ england_long = england_long[order(england_long$ID),]
 rownames(england_long) = NULL
 ```
 
-# Predicting with the rating
+## Predicting with Ratings
 
 New dataset
 
@@ -823,7 +834,7 @@ New dataset
 head(england_long)
 ```
 
-# Predicting with the rating
+## Predicting with Ratings
 
 Make changes in H_A variable
 
@@ -838,13 +849,14 @@ england_long$TEAM2 = ifelse(england_long$H_A =='FTAG',
 england_long = england_long %>% 
   select(ID, SEASON, DATE, TEAM1, TEAM2, H_A, value)
 ```
-# Predicting with the rating
+
+## Predicting with Ratings
 ```{r}
 head(england_long)
 ```
 
 
-# Predicting with the rating
+## Predicting with Ratings
 
 * Calculate the scored and conceded goals for the last 6 games per season for each team
 * rollapply from zoo and lag from dplyr are used here
@@ -861,7 +873,7 @@ mutate(CUM_C = dplyr::lag(rollapply(value,6,sum, fill=NA, align='right'),1)) %>%
 filter(CUM_SC != "NA") %>% as.data.frame()
 ```
 
-# Predicting with the rating
+## Predicting with Ratings
 
 Important:
 Round 7 game Arsenal vs Ipswich.  
@@ -874,7 +886,7 @@ Round 7 game Arsenal vs Ipswich.
 head(england_long1)
 ```
 
-# Predicting with the rating
+## Predicting with Ratings
 
 Get back to wide format
 
@@ -889,7 +901,7 @@ options(width=80)
 head(england_wide)
 ```
 
-# Predicting with the rating
+## Predicting with Ratings
 
 Calculate POWERHOME, POWERAWAY and POWERDIFF and RESULT
 
@@ -906,7 +918,7 @@ england_wide = england_wide %>%
                   value.FTAG, POWERHOME, POWERAWAY, POWERDIFF, RESULT)
 ```
 
-# Predicting with the rating
+## Predicting with Ratings
 
 Take out remaining NA’s
 
@@ -916,7 +928,7 @@ england_wide = england_wide[! is.na(england_wide$POWERDIFF),]
 head(england_wide)
 ```
 
-# Predicting with the rating
+## Predicting with Ratings
 
 Now let's calculate the game result frequencies by Match rating (POWERDIFF)
 
@@ -925,7 +937,7 @@ freqs = dcast(england_wide, POWERDIFF~RESULT)
 head(freqs)
 ```
 
-# Predicting with the rating
+## Predicting with Ratings
 
 Add relative frequencies
 
@@ -934,7 +946,7 @@ freqs = data.frame(freqs, freqs[,2:4]/rowSums(freqs[,2:4]))
 head(freqs)
 ```
 
-# Predicting with the rating
+## Predicting with Ratings
 
 Tottenham vs. Leeds United, two teams with equal Goal Supremacy, the POWERDIFF=0
 
@@ -942,7 +954,7 @@ Tottenham vs. Leeds United, two teams with equal Goal Supremacy, the POWERDIFF=0
 freqs[freqs$POWERDIFF==0,]
 ```
 
-# Predicting with the rating
+## Predicting with Ratings
 
 Distribution of Home Wins by Power difference
 
@@ -950,7 +962,7 @@ Distribution of Home Wins by Power difference
 ggplot(freqs, aes(x=POWERDIFF, y = HW))+geom_point()+
   ggtitle("Home wins by Power Difference")
 ```
-# Predicting with the rating
+## Predicting with Ratings
 
 Look at the relationship between probability of home team to win and power difference, linear with exception of some outliers
 
@@ -959,7 +971,7 @@ ggplot(freqs, aes(x=POWERDIFF, y=HW.1))+geom_point()+
   geom_smooth(method="lm", se=F)+
   labs(x="Power Difference", y="Home Win %", title = "POWERDIFF vs HW %")
 ```
-# Predicting with the rating
+## Predicting with Ratings
 
 Look at the model
 
@@ -967,7 +979,7 @@ Look at the model
 modelH = lm(HW.1~POWERDIFF, data=freqs)
 summary(modelH)
 ```
-# Predicting with the rating
+## Predicting with Ratings
 
 Away team probability
 
@@ -976,7 +988,7 @@ modelA = lm(AW.1~POWERDIFF, data=freqs)
 summary(modelA)
 ```
 
-# Predicting with the rating
+## Predicting with Ratings
 
 Draw: bad model
 
@@ -984,7 +996,7 @@ Draw: bad model
 modelD = lm(D.1~POWERDIFF, data=freqs)
 summary(modelD)
 ```
-# Predicting with the rating
+## Predicting with Ratings
 
 Relationship with probability of draw is more like polynomial
 
@@ -995,7 +1007,7 @@ ggplot(freqs, aes(x=POWERDIFF, y=D.1))+geom_point()+
   
 ```
 
-# Predicting with the rating
+## Predicting with Ratings
 
 Draw: very hard to predict
 
@@ -1004,7 +1016,7 @@ modelD = lm(D.1~poly(POWERDIFF,2), data=freqs)
 summary(modelD)
 ```
 
-# Predicting with the rating
+## Predicting with Ratings
 Using functions to generalize the procedure and change the country by one line.
 \tiny
 ```{r}
@@ -1033,7 +1045,7 @@ prepare_long <- function(data){
 }
 ```
 
-# Predicting with the rating
+## Predicting with Ratings
 \tiny
 ```{r}
 goals_scored_conceded <- function(data, n) {
@@ -1067,7 +1079,7 @@ get_power_diff <- function(data){
 }
 ```
 
-# Predicting with the rating
+## Predicting with Ratings
 
 ```{r}
 build_models <- function(freqs) {
@@ -1092,7 +1104,7 @@ get_final_df_by_country <- function(data, country){
 }
 ```
 
-# Predicting with the rating
+## Predicting with Ratings
 ```{r}
 italy_power_ratings <- get_final_df_by_country(f_data_sm, "Italy")
 freqs <- dcast(italy_power_ratings, POWERDIFF~RESULT)

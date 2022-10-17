@@ -409,6 +409,10 @@ name1<-names(coeff2)
 name1<-gsub("X", "", name1)
 name1<-as.data.frame(name1)
 name2<-left_join(name1, nba12p[,1:2], by=c("name1"="PlayerID"))
+name2$rank <- rownames(name2)
+rownames(name2) <- c()
+name2 <- name2 %>%
+  tidyr::drop_na()
 names(coeff2)<-name2$PlayerTrueName
 ```
 
@@ -497,6 +501,10 @@ name1<-names(coeff3)
 name1<-gsub("X", "", name1)
 name1<-as.data.frame(name1)
 name2<-left_join(name1, nba12p[,1:2], by=c("name1"="PlayerID"))
+name2$rank <- rownames(name2)
+rownames(name2) <- c()
+name2 <- name2 %>%
+  tidyr::drop_na()
 names(coeff3)<-name2$PlayerTrueName
 ```
 
@@ -523,13 +531,15 @@ coeff3[1:10]
 Where is Durant ?
 
 ```{r}
-name2[name2$PlayerTrueName=="Durant, Kevin",]
+name2 %>%
+  filter(PlayerTrueName == "Durant, Kevin")
 ```
 
 Where is LeBron ?
 
 ```{r}
-name2[name2$PlayerTrueName=="James, LeBron",]
+name2 %>%
+  filter(PlayerTrueName == "James, LeBron")
 ```
 
 # Adjusted Plus/Minus

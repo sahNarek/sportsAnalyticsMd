@@ -1,27 +1,63 @@
 ---
-title: "NBA"
-subtitle: "Author: Narek Sahakyan"
-output: pdf_document
+title: "CSE 270 Sports Analytics"
+subtitle: "Basketball Individual performance"
+date: "29-09-2022"
+author: "Narek Sahakyan"
+fontsize: 8pt
+output:
+  beamer_presentation:
+    slide_level: 2
+    theme: "CambridgeUS"
+    colortheme: "dolphin"
+    fonttheme: "structurebold"
+    pandoc_args: '--pdf-engine=xelatex'
+    includes: 
+      in_header: "../customtexfuncs.tex"
+header-includes:
+    - \definecolor{myred}{RGB}{248,101,112}
+    - \definecolor{myyellow}{RGB}{196,149,10}
+    - \definecolor{mygreen}{RGB}{12,194,48}
 ---
+
+# NBA Individual performance
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message=F, warning=F)
 library(SportsAnalytics270)
 library(dplyr)
 library(ggplot2)
-library(BradleyTerry2)
 library(VGAM)
-library(SportsAnalytics270)
-library(dplyr)
-library(ggplot2)
-library(reshape2)
 library(zoo)
-library(VGAM)
 library(tidyr)
 ```
 
-```{r}
+
+## NBA Individual performance
+
+3 main stages of the game.
+
+* Attacking
+* Defending
+* Possessing the ball
+
+## NBA Individual performance
+
+### Dataset
+
+```{r, include = F}
 players_data <- read.csv("../data/players_stats_by_season_full_details.csv")
+```
+
+```{r}
+str(players_data)
+```
+
+
+## NBA Individual performance
+
+
+```{r}
 
 players_data_pr <- players_data %>%
   select(Season, Player, MIN, STL, TOV, ORB, DRB, PF, BLK, PTS) %>%
@@ -55,7 +91,6 @@ summary(lm(MIN ~ (CUM_DFR1 + CUM_DFR + CUM_POSS_RATING), data = players_data_dif
 
 
 ```{r}
-library(tidyr)
 players_data <- players_data %>%
   filter(League == 'NBA', Stage == 'Regular_Season')
 
