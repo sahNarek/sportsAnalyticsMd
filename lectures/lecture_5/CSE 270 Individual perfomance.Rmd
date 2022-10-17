@@ -81,14 +81,16 @@ Create the line-ups variable
 
 ```{r tidy=F}
 okc$line_h <- 
-  paste(okc$HomePlayer1Name, okc$HomePlayer2Name,     okc$HomePlayer3Name, okc$HomePlayer4Name, 
+  paste(okc$HomePlayer1Name, okc$HomePlayer2Name,     
+        okc$HomePlayer3Name, okc$HomePlayer4Name, 
         okc$HomePlayer5Name, sep = ",")
 
 okc$line_a <- 
-  paste(okc$AwayPlayer1Name, okc$AwayPlayer2Name, okc$AwayPlayer3Name,okc$AwayPlayer4Name, 
+  paste(okc$AwayPlayer1Name, okc$AwayPlayer2Name, 
+        okc$AwayPlayer3Name,okc$AwayPlayer4Name, 
         okc$AwayPlayer5Name,   sep = ",")
 
-okc$line_h[1:10]
+okc$line_h[1:5]
 ```
 
 # Plus/minus for NBA
@@ -166,7 +168,8 @@ Create a variable that shows OKC plus/minus, depending on whether it is playing 
 ```{r tidy=F}
 okc <- okc %>%
 # makes PM for OKC
-mutate(OKC_PM = ifelse(AwayT == "OKC", Away_PM, ifelse(HomeT == "OKC", Home_PM, 0)),
+mutate(OKC_PM = ifelse(AwayT == "OKC", Away_PM, 
+                       ifelse(HomeT == "OKC", Home_PM, 0)),
         D_PM = ifelse(D_H == T | D_A == T, T, F)
         )
 ```
@@ -271,10 +274,13 @@ nba5 <- as.data.frame(do.call(cbind,nba5))
 
 # Adjusted plus/minus
 
-```{r}
+```{r, echo  = F}
 load("./data/nba5.rda")
 ```
 
+```{r, eval  = F}
+load("nba5.rda")
+```
 
 ```{r}
 dim(nba5)
@@ -310,10 +316,19 @@ name1<-as.data.frame(name1)
 # Adjusted plus/minus
 Corresponding dataframe with player level information
 
-```{r}
+```{r, echo = F}
 load("./data/nba12p.rda")
+```
+
+```{r, eval = F}
+load('nba12p.rda')
+```
+
+
+```{r}
 head(nba12p[,1:3],5)
 ```
+
 
 # Adjusted plus/minus
 
@@ -375,8 +390,15 @@ nba6<-data.frame(PM=nba5$PM, nba6)
 model2<-lm(PM~., data=nba6)
 # get the coefficients
 coeff2<-sort(coefficients(model2), decreasing=T)
+
+```
+
+# Adjusted plus/minus
+
+```{r}
 coeff2[1:10]
 ```
+
 
 # Adjusted plus/minus
 
@@ -437,15 +459,20 @@ PM for possessions
 
 
 ```{r}
-nba12$PM_Home<-nba12$PointsScoredHome/nba12$PossessionsHome
-nba12$PM_Away<-nba12$PointsScoredAway/nba12$PossessionsAway
+nba12$PM_Home <- nba12$PointsScoredHome/nba12$PossessionsHome
+nba12$PM_Away <- nba12$PointsScoredAway/nba12$PossessionsAway
 nba12$Margin<-nba12$PM_Home-nba12$PM_Away
+
 summary(nba12$PM_Home)
 summary(nba12$PM_Away)
 summary(nba12$Margin)
 ```
 
-We have choice, remove cases with not number values, or impute with the mean
+
+# Adjusted Plus/Minus
+
+We have a choice, remove cases with not number values, or impute with the mean
+
 
 We will remove
 \tiny
