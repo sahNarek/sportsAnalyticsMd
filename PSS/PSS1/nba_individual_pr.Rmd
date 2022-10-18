@@ -45,7 +45,7 @@ https://www.youtube.com/watch?v=wYjp2zoqQrs
 
 5 main positions on the field.
 
-* Center - On offense, the center tries to score on close shots and rebound. But on defense, the center tries to block opponents’ shots and rebound their misses.  
+* Center - On offense, the center tries to score on close shots and rebound. But on defence, the center tries to block opponents’ shots and rebound their misses.  
 
 * Power Forward - The power forward does many of the things a center does, playing near the basket while rebounding and defending taller players. But power forwards also take longer shots than centers.  
 
@@ -151,8 +151,9 @@ Non Successful actions, when defending
 Let's calculate the difference between the cumulative success actions and cumulative failure actions.  
 \tiny
 ```{r}
-nba_players_defense <- nba_players %>%
-  arrange(Player, Year)  %>% 
+nba_players_defence <- nba_players %>%
+  arrange(Player, Year) %>% 
+  filter(Pos %in% c('SF','PG')) %>%
   group_by(Player) %>%
   mutate(STL_TOV = STL - TOV,
          STL_PF = STL - PF,
@@ -169,10 +170,10 @@ Let's check if the metrics are correlated to the amount of time the players spen
 
 ```{r}
 cor_with_MP <- function(x){
-  return(cor(x, nba_players_defense$MP))
+  return(cor(x, nba_players_defence$MP))
 }
 
-nba_players_defense %>%
+nba_players_defence %>%
   select(STL_TOV, STL_PF, DRB_TOV, BLK_TOV, BLK_PF) %>%
   apply(2,cor_with_MP)
 ```
@@ -186,7 +187,7 @@ the seasonal number of defensive rebounds made and number of turnovers made.
 
 \tiny
 ```{r, out.height="60%", fig.align="center"}
-ggplot(nba_players_defense, aes(x = DRB_TOV, y = (MP))) + 
+ggplot(nba_players_defence, aes(x = DRB_TOV, y = (MP))) + 
   geom_point() + 
   ggtitle("Number of Minutes played vs Seasonal defensive rating(DRB - TOV)") + 
   xlab("Seasonal Defensive Rating(DRB - TOV)") + 
@@ -200,7 +201,7 @@ the cumulative number of blocks made and cumulative number of turnovers made.
 
 \tiny
 ```{r, out.height="60%",fig.align="center"}
-ggplot(nba_players_defense, aes(x = BLK_PF, y = (MP))) + 
+ggplot(nba_players_defence, aes(x = BLK_PF, y = (MP))) + 
   geom_point() + 
   ggtitle("Number of Minutes played vs Seasonal defensive rating(BLK - PF)") + 
   xlab("Seasonal Defensive Rating(BLK - PF)") + 
@@ -213,7 +214,7 @@ Let's fit a model with the defensive power ratings.
 
 \tiny
 ```{r}
-summary(lm(MP ~ (STL_TOV + STL_PF + DRB_TOV + BLK_PF ), data = nba_players_defense))
+summary(lm(MP ~ (STL_TOV + STL_PF + DRB_TOV + BLK_PF ), data = nba_players_defence))
 ```
 
 
