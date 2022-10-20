@@ -110,6 +110,8 @@ https://www.youtube.com/shorts/I4MDXOWrUmk
 
 ```{r, include = F}
 data("nba_players")
+nba_players <- nba_players %>%
+  filter(Year > 1997)
 ```
 
 \tiny
@@ -125,10 +127,10 @@ Let's select the performance metrics.
 ```{r}
 nba_players <- nba_players %>%
   select(Year, Player, Pos,
-         G, MP, STL, TOV, ORB, DRB, PF, BLK, PTS, AST,
+         G, GS, MP, STL, TOV, ORB, DRB, PF, BLK, PTS, AST,
          FT, FTA, FG, FGA, X3P, X3PA, X2P, X2PA, ORB., DRB.,
          TRB., AST., STL., BLK., TOV., FG., X3P., FT.,) %>%
-  arrange(Player, Year)
+  arrange(Player, Year) 
 head(nba_players, 3)
 ```
 
