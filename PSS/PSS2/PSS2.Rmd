@@ -1,8 +1,22 @@
 ---
 title: "CSE 270 Sports Analytics"
-subtitle: "Problem Solving Session 2"
+subtitle: "PSS 2: Predictions with Ratings"
+date: "29-09-2022"
 author: "Narek Sahakyan"
-output: "pdf_document"
+fontsize: 8pt
+output:
+  beamer_presentation:
+    slide_level: 2
+    theme: "CambridgeUS"
+    colortheme: "dolphin"
+    fonttheme: "structurebold"
+    pandoc_args: '--pdf-engine=xelatex'
+    includes: 
+      in_header: "../customtexfuncs.tex"
+header-includes:
+    - \definecolor{myred}{RGB}{248,101,112}
+    - \definecolor{myyellow}{RGB}{196,149,10}
+    - \definecolor{mygreen}{RGB}{12,194,48}
 ---
 
 # Poisson Regression
@@ -21,8 +35,10 @@ library(reshape2)
 library(zoo)
 library(VGAM)
 library(tidyr)
+library(elo)
 ```
 
+## Poisson Regression
 
 ```{r}
 nhl_games <- read.csv("../data/game.csv")
@@ -42,7 +58,14 @@ nhl_games <- nhl_games %>%
 
 ``` 
 
-```{r}
+## Poisson Regression
+
+Checking that the home and away goals follow a poisson distribution in nhl.
+Home goals histogram
+
+\tiny
+
+```{r, fig.align="center", out.height="60%"}
 ggplot(nhl_games, aes(x = home_goals)) +
   geom_histogram(binwidth = 1) +
   ggtitle("Home goals distribution in nhl") +
@@ -50,7 +73,12 @@ ggplot(nhl_games, aes(x = home_goals)) +
   ylab("Frequency")
 ```
 
-```{r}
+## Poisson Regression
+
+Away goals histogram
+\tiny
+
+```{r, fig.align="center", out.height="60%"}
 ggplot(nhl_games, aes(x = away_goals)) +
   geom_histogram(binwidth = 1) +
   ggtitle("Away goals distribution in nhl") +
@@ -58,11 +86,9 @@ ggplot(nhl_games, aes(x = away_goals)) +
   ylab("Frequency")
 ```
 
-```{r}
-nhl_games %>%
-  summarise(pvalue=chisq.test(table(home_goals, away_goals),
-  simulate.p.value=T)$p.value)
-```
+## Poisson Regression
+
+Dividing into test and train data sets.
 
 ```{r}
 nhl_games_train <- nhl_games %>% 
@@ -73,6 +99,11 @@ nhl_games_test <- nhl_games %>%
 
 ```
 
+## Poisson Regression
+
+Data modification.
+
+\tiny
 ```{r}
 get_poisson_form <- function(train_nhl_bta, country){
   
@@ -99,17 +130,34 @@ get_poisson_form <- function(train_nhl_bta, country){
 
 nhl_games_train_poisson <- get_poisson_form(nhl_games_train)
 nhl_games_test_poisson <- get_poisson_form(nhl_games_test)
+```
 
+## Poisson Regression
+
+Fitting a model.
+
+```{r}
 nhl_model_poisson <- glm(GOAL~TEAM+OPPONENT+HOME, data=nhl_games_train_poisson, family=poisson(link=log))
-
 summary(nhl_model_poisson)
+```
 
-nhl_games_test_poisson$P.G <- predict(nhl_model_poisson,nhl_games_test_poisson, type = "response")
+## Poisson Regression
 
-predict(nhl_model_poisson,data.frame(TEAM = "BOS", OPPONENT = "ATL", HOME = 1, type = "response"))
+Calculating RMSE as a prediction accuracy metric.
+
+```{r}
+nhl_games_test_poisson$P.G <- predict(nhl_model_poisson,
+                                      nhl_games_test_poisson, type = "response")
+
+predict(nhl_model_poisson,data.frame(TEAM = "BOS", OPPONENT = "ATL",
+                                     HOME = 1, type = "response"))
 
 sqrt(mean((nhl_games_test_poisson$GOAL - nhl_games_test_poisson$P.G)^2))
 ```
+
+## Poisson Regression
+
+Underestimated and overestimated teams.
 
 ```{r}
 underestimated_nhl_poisson <- nhl_games_test_poisson %>%
@@ -120,6 +168,10 @@ overestimated_nhl_poisson <-nhl_games_test_poisson %>%
 ```
 
 # Bradley-Terry Model
+
+## Bradley-Terry Model
+
+Data modification.
 
 ```{r}
 nhl_games_bt <- nhl_games %>%
@@ -135,15 +187,18 @@ nhl_games_bt <- nhl_games_bt %>%
                  home_team_abr = factor(home_team_abr, levels = team_levels),
                  away_team_abr = factor(away_team_abr, levels = team_levels))
 
+```
+
+## Bradley-Terry Model
+
+Test and train datasets.
+
+```{r}
 train_nhl_bt <- nhl_games_bt  %>% 
         filter(season != "20192020") %>%
         group_by(home_team_abr, away_team_abr) %>% 
         summarise(ht=sum(ht_w), at=sum(at_w))
  
-
-# train_nhl_bt$home_team_abr <- factor(train_nhl_bt$home_team_abr, levels=unique(c(train_nhl_bt$home_team_abr, train_nhl_bt$away_team_abr)))  
-# train_nhl_bt$away_team_abr <- factor(train_nhl_bt$away_team_abr, levels=unique(c(train_nhl_bt$home_team_abr, train_nhl_bt$away_team_abr)))  
-
 test_nhl_bt <- nhl_games_bt  %>% 
         filter(season == "20192020") %>%
         group_by(home_team_abr, away_team_abr) %>% 
@@ -154,24 +209,33 @@ test_nhl_bt <- nhl_games_bt  %>%
 
 ```
 
+## Bradley-Terry Model
+
+Fitting a model
 
 ```{r}
 BT_Model <- BTm(cbind(ht,at), home_team_abr, away_team_abr, 
                 data=train_nhl_bt, id="team_")
-```
-
-```{r}
 summary(BT_Model)
-
 BT_Model$coefficients
 ```
+
+## Bradley-Terry Model
+
+Predicting on test dataset.
 
 ```{r}
 test_nhl_bt$home_win <- predict(BT_Model, test_nhl_bt)
 test_nhl_bt$away_win <- 1 - test_nhl_bt$home_win 
 ```
 
-```{r}
+## Bradley-Terry Model
+
+Plotting the abilities.
+
+\tiny
+
+```{r, fig.align="center", out.height="60%"}
 abilities <- as.data.frame(BTabilities(BT_Model))
 abilities$team <- rownames(abilities)
 abilities <- abilities[order(abilities$ability, decreasing = T),]
@@ -182,6 +246,8 @@ ggplot(data=abilities, aes(x=reorder(team,ability), y = ability, fill =team))+ g
 
 # Pythagorean Wins
 
+## Pythagorean Wins
+
 ```{r}
 data("nfl_st")
 nfl_st <- nfl_st %>%
@@ -189,7 +255,11 @@ nfl_st <- nfl_st %>%
   mutate(Rank = 1:n())
 ```
 
-```{r}
+## Pythagorean Wins
+
+\tiny
+
+```{r, fig.align="center", out.height="70%"}
 nfl_st %>%
   ggplot(aes(x = PD, y = Wpct)) +
   geom_point() + 
@@ -198,10 +268,17 @@ nfl_st %>%
   ggtitle("WINNING PERCENTAGE OVER PD FOR NFL")
 ```
 
+## Pythagorean Wins
+
+Correlation between the variables.
 
 ```{r}
 cor.test(nfl_st$PD, nfl_st$Wpct)
 ```
+
+## Pythagorean Wins
+
+Fitting a model.
 
 ```{r}
 nfl_st_reg <- nfl_st %>%
@@ -212,13 +289,20 @@ model <- lm(log(W/L)~0+log(RATIO), data=nfl_st_reg)
 summary(model)
 ```
 
+## Pythagorean Wins
+
+Getting a value for k.
+
 ```{r}
 k <- model$coefficients[1]
 head(nfl_st <- nfl_st %>%
   mutate(PWPCT = ( PF ^ k / (PF ^ k + PA ^ k)), PW = (W + L + T) * PWPCT),5)
 ```
 
-```{r}
+## Pythagorean Wins
+\tiny
+
+```{r, fig.align="center", out.height="70%"}
 nfl_st %>%
   ggplot(aes(x = PWPCT, Wpct)) + 
   geom_point() +
@@ -230,51 +314,51 @@ nfl_st %>%
 
 # Elo Ratings
 
+## Elo Ratings
+
+Calculating elos for every season, with seasonal metrics
+
+\tiny
+
 ```{r}
 home_factor_nhl <- 50
 k_nhl <- 6
 starting_elos <- 1500
 
-
 calculate_elos <- function(data, home_factor, k, starting_elos){
-  
   relative_elos <- data.frame()
   final_elos <- data.frame()
-  
-  
   for (season in unique(nhl_games$season)){
   seasonal_data <- data %>% 
     filter(season == season)
-  
   season_elos <- elo.run(score(home_goals, away_goals) ~
           adjust(home_team_abr, home_factor_nhl) + away_team_abr,
           data = seasonal_data, k = k,
           initial.elos = starting_elos
         )
-
   starting_elos <- final.elos(season_elos) * 0.8
   relative_elos <- rbind(relative_elos,
                             data.frame(season_elos, season = season))
-  
   final_elos_df <- data.frame(season = season, 
                               team_abr = names(starting_elos), 
                               elo = starting_elos)
-
-
   final_elos <- rbind(final_elos, final_elos_df)
-  
   }
-  
   return (list(final_elos=final_elos, relative_elos=relative_elos))
-  
 }
 
-nhl_relative_elos <- calculate_elos(nhl_games, home_factor_nhl, k_nhl, starting_elos)$relative_elos
+nhl_relative_elos <- calculate_elos(nhl_games, home_factor_nhl, k_nhl, 
+                                    starting_elos)$relative_elos
 
 nhl_final <- calculate_elos(nhl_games, home_factor_nhl, k_nhl, starting_elos)$final_elos
 nhl_relative_elos$Predicted <- ifelse(nhl_relative_elos$p.A > 0.5, 1,0)
-
 ```
+
+## Elo Ratings
+
+Checking predictive power.
+
+\tiny
 
 ```{r}
 calculate_brier <- function(data){
@@ -285,8 +369,13 @@ calculate_brier <- function(data){
 
 (caret::confusionMatrix(data = factor(nhl_relative_elos$Predicted), 
                        reference = factor(nhl_relative_elos$wins.A)))
+
 (calculate_brier(nhl_relative_elos))
 ```
+
+## Elo Ratings
+
+Trying to play with k parameter to improve the accuracy.
 
 ```{r}
 nhl_k_picker <- function(data = nhl_games){
@@ -307,13 +396,23 @@ nhl_k_picker <- function(data = nhl_games){
   return( list(model = model,
                df = as.data.frame(result)) )
 }
+```
 
+
+## Elo Ratings
+
+```{r}
 k_list <- nhl_k_picker()
 
 k_model <- k_list$model
 k_df <- k_list$df
 summary(k_model)
+```
 
+## Elo Ratings
+
+
+```{r}
 k_df %>% 
   group_by(season) %>%
   filter(br.score == min(br.score)) %>%
@@ -322,7 +421,10 @@ k_df %>%
 
 ```
 
-```{r}
+## Elo Ratings
+\tiny
+
+```{r, fig.align="center", out.height="60%"}
 k_df <- k_df %>%
   group_by(k) %>%
   summarize(br.score = mean(br.score))

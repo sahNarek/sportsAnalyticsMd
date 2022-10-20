@@ -100,6 +100,9 @@ https://www.youtube.com/shorts/I4MDXOWrUmk
 ### Dataset
 
 ```{r, include = F}
+nba_players <- read.csv("../data/players_stats_by_season_full_details.csv")
+
+
 nba_players <- read.csv("../data/Seasons_Stats.csv") %>%
   filter(Year > 2000)
 ```
