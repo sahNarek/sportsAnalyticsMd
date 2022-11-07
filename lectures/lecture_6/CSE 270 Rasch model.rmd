@@ -20,7 +20,10 @@ output:
 
 Libraries used
 
-```{r, setup, include=F}
+```{r setup, include=F}
+
+knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
+
 library(glmnet)
 library(ggplot2)
 library(Matrix)
@@ -95,10 +98,16 @@ knitr::include_graphics("./images/rasch_2.png")
 
 The game Boston Celtics vs. New York Knicks - [https://goo.gl/KSQBXe](https://goo.gl/KSQBXe)
 
+```{r, echo=F}
+load("./data/nba11_12.rda")
+```
+
+```{r, eval = F}
+load("nba11_12.rda")
+```
+
 
 ```{r}
-
-load("./data/nba11_12.rda")
 head(nba11_12)
 ```
 
@@ -351,17 +360,27 @@ head(sort(off.pp100, decreasing=T), n=10)
 
 Is there a correlation between offensive and defensive ratings ?
 
+```{r}
+cor(off.rating, def.rating)
+```
+
+
 ```{r, eval=F}
 ggplot()+geom_point(aes(x=off.rating, y=def.rating))+
   ggtitle("Offensive Rating vs Defensive Rating")
+```
+
+
+```{r}
 cor(off.rating, def.rating)
 ```
+
 
 \tiny
 ```{r, fig.height=4, fig.width = 9,  echo=F}
 ggplot()+geom_point(aes(x=off.rating, y=def.rating))+
   ggtitle("Offensive Rating vs Defensive Rating")
-cor(off.rating, def.rating)
+
 ```
 
 # Offensive rating vs actual performance
@@ -374,11 +393,16 @@ ggplot()+geom_point(aes(x=off.rating, y=off.pp100))+
 cor(off.rating, off.pp100)
 ```
 
+```{r}
+cor(off.rating, off.pp100)
+```
+
+
 \tiny
 ```{r, echo = F, fig.width = 9, fig.height=4}
 ggplot()+geom_point(aes(x=off.rating, y=off.pp100))+
   ggtitle("Offensive Rating vs Points scored")
-cor(off.rating, off.pp100)
+
 ```
 
 # Defensive rating vs actual performance

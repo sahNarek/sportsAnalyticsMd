@@ -18,9 +18,12 @@ output:
 
 # NBA Individual Power Ratings
 
-Libraries used
 
-```{r, eval=F, echo=T}
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=F, warning=F)
 library(SportsAnalytics270)
 library(dplyr)
 library(ggplot2)
@@ -30,8 +33,9 @@ library(tidyr)
 ```
 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message=F, warning=F)
+Libraries used
+
+```{r, eval=F, echo=T}
 library(SportsAnalytics270)
 library(dplyr)
 library(ggplot2)
@@ -493,7 +497,7 @@ ggplot(durant_pm, aes(x=GameID, y=NET))+
 The plus/minus rating is adjusted by the players who are on the court
 
 \bcenter
-$MARGIN = \beta_0 + \beta_1X_1 + \beta_2X_@ + ... \beta_kX_k + \epsilon$
+$MARGIN = \beta_0 + \beta_1X_1 + \beta_2X_2 + ... \beta_kX_k + \epsilon$
 
 where  
 
