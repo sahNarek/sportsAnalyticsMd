@@ -1,0 +1,103 @@
+---
+title: "CSE 270 Sports Analytics"
+subtitle: "Homework 3"
+author: "Name: __________________"
+date: ""
+output: pdf_document
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F, message = F)
+library(SportsAnalytics270)
+library(dplyr)
+library(ggplot2)
+library(stringr)
+library(nnet)
+```
+
+# Competitive Balance
+
+## Problem 1 (50 points)
+
+### Noll-Scully number
+
+1. Get the final tables for all countries in the dataset *f_data_sm* for all seasons(for each country). (10 points)
+
+```{r}
+```
+
+2. Calculate the wining percentage(ratio) for all the teams in all seasons. (Consider draws as half wins).  (2 points)
+
+```{r}
+```
+
+3. Calculate the Noll-Scully number for each season and country using the winning ratio. (3 points)
+
+```{r}
+```
+
+4. Visualize the results grouped by seasons and countries. Make sure to include meaningful title and axis names.  
+(You can use facets)  (10 points)
+
+```{r}
+```
+
+5.Interpret the visualization (5 points)
+
+### C5 competitive balance 
+
+6.Calculate the C5 index for the number of goals scored by the top 5 teams in each country for each season. You should use the dataset from Problem 1.1.  (5 points)
+
+```{r}
+```
+
+7. Visualize the results for all countries and seasons. (Can be the same structure as in 1.4) (10 points)
+
+```{r}
+```
+
+8. Interpret the results (5 points)
+
+# Individual Performance (50 points)
+
+## Problem 2
+
+1. Load the dataset *nba_players* from the library *SportsAnalytics270* and filter it to only include seasons starting from 1992.  
+Remove the columns blanl and blank2 and drop missing values or nas. (2 points)
+
+```{r}
+```
+
+2. Clean the variable Pos from players with double positions, for example C-PF should be turned into C.  (5 points)
+
+```{r}
+```
+
+
+3. Convert the vaiable Pos into a factor and remove the columns X, Year, Player and Tm. (3 points)
+
+```{r}
+```
+
+
+4. Divide the dataset into train and test datasets. (You can use dplyr or any other sampling method)  (10 points)
+```{r}
+```
+
+5. Build a classifier model to predict the position of the player based on the playing attributes.  
+Use the training set for fitting the model. (20 points) 
+You can use multinomial regression for that 
+```{r}
+```
+
+6. Predict the position of the players for the test dataset. (5 points)
+
+```{r}
+```
+
+7. Interpret the predictive power of the model. (5 points)
+
+```{r}
+```
