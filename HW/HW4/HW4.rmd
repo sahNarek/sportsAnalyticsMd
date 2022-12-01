@@ -1,7 +1,7 @@
 ---
-title: "HW4 - Individual performance metric"
-author: ""
-date: ""
+title: "HW4 - Network Analysis"
+author: "Name:____________"
+date: "Deadline 30 November 2022"
 output: pdf_document
 ---
 
