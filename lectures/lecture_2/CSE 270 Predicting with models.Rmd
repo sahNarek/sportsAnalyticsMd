@@ -122,7 +122,7 @@ variable has Poisson distribution
 # Poisson regression: the general definition
 
 ```{r, out.width="80%", out.height="60%", fig.align='center', echo=F}
-knitr::include_graphics("link_fns.png")
+knitr::include_graphics("./images/link_fns.png")
 ```
 
 
