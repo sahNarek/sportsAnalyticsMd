@@ -1,6 +1,6 @@
 ---
 title: "CSE 270 Sports Analytics"
-subtitle: "Predicting with distributions"
+subtitle: "Introduction to R"
 author: "Habet Madoyan"
 fontsize: 8pt
 output:
@@ -60,8 +60,6 @@ include_graphics('images/RStudio_Pane-Layout2.png')
 ## Intro to R
 
 RStudio projects make it straightforward to divide your work into multiple contexts, each with their own working directory, workspace, history, and source documents.
-
-
 
 **Creating Projects**
 
@@ -267,8 +265,9 @@ include_graphics('images/Re-execute-previous-commands.png')
 
 \hfill\break
 
+```{r,eval=F}
 install.packages("devtools")
-
+```
 
 ## Intro to R
 
@@ -394,7 +393,9 @@ var2
 ## Intro to R programming language
 
 
-R works with numerous data types. Some of the most basic types to get started are:
+R works with numerous data types.  
+Some of the most basic types to get started are:  
+
 - Decimals values like 4.5 are called numerics.
 - Natural numbers like 4 are called integers. Integers are also numerics.
 - Boolean values (TRUE or FALSE) are called logical.
@@ -548,7 +549,7 @@ revenue > expenses
 
 The (logical) comparison operators known to R are:
 
- - **<** for less than
+- **<** for less than
 - **>**  for greater than
 - **<=** for less than or equal to
 - **>=** for greater than or equal to
@@ -575,12 +576,13 @@ sum(inc_d)
 ```
 
 
-finding the average
+Finding the average
+
 ```{r}
 mean(inc_d)
 ```
 
-you can do other operations with vectors too
+You can do other operations with vectors too
 
 
 ```{r}
@@ -610,11 +612,10 @@ is.na(d)
 ## Operations with matrices
 
 
-In R, a matrix is a collection of elements of the same data type (numeric, character, or logical) arranged into a fixed number of rows and columns. Since you are only working with rows and columns, a matrix is called two-dimensional.
-You can construct a matrix in R with the matrix() function. Consider the following example:
-
-
-## Operations with matrices
+In R, a matrix is a collection of elements of the same data type (numeric, character, or logical) arranged into a fixed number of rows and columns.  
+Since you are only working with rows and columns, a matrix is called two-dimensional.  
+You can construct a matrix in R with the matrix() function.  
+Consider the following example:
 
 ```{r}
 matrix(1:9, byrow = TRUE, nrow = 3)
@@ -657,7 +658,7 @@ star_wars_m1
 
 ## Operations with matrices
 
-naming rows and columns
+Naming rows and columns
 
 ```{r}
 region <- c("US", "non-US")
@@ -698,17 +699,18 @@ combined_vector
 Similar to vectors, you can use the square brackets [ ] to select one or multiple elements from a matrix. 
 Whereas vectors have one dimension, matrices have two dimensions. You should therefore use a comma to separate that what to select from the rows from that what you want to select from the columns. 
 
-For example:
+For example:  
+
 - my_matrix[1,2] selects the element at the first row and second column.
 - my_matrix[1:3,2:4] results in a matrix with the data on the rows 1, 2, 3 and columns 2, 3, 4.
 
-If you want to select all elements of a row or a column, no number is needed before or after the comma, respectively:
+If you want to select all elements of a row or a column, no number is needed before or after the comma, respectively:  
+
 - my_matrix[,1] selects all elements of the first column.
 - my_matrix[1,] selects all elements of the first row.
 
 
 ## Operations with matrices
-
 
 Take the first row -  A new hope
 
@@ -720,7 +722,6 @@ new_hope
 
 Take the first column
 ```{r}
-
 US <- star_wars_matrix[,1]
 US
 ```
@@ -731,7 +732,6 @@ US
 US box office for "A new hope"
 
 ```{r}
-
 star_wars_matrix[1,1]
 ```
 
@@ -744,13 +744,11 @@ star_wars_matrix["A New Hope","non-US"]
 
 # Dataframes
 
-## Dataframe
+## Dataframes
 
- - Data frame is a data set that contain different data types instead of only one. You can combine numeric and character variables into the same dataset
+- Data frame is a data set that contain different data types instead of only one. You can combine numeric and character variables into the same dataset
 - A data frame has the variables of a data set as columns and the observations as rows. 
-- Has the most use in Data analytics
-
-
+- Has the most use in Data Analytics
 
 ## Working with dataframes
 
@@ -758,7 +756,7 @@ star_wars_matrix["A New Hope","non-US"]
 data(mtcars)
 ```
 
-look at the description
+Look at the description
 
 ```{r}
 ?mtcars
@@ -792,7 +790,7 @@ str(mtcars)
 
 ## Working with dataframes
 
-look at the summary of the dataframe
+Look at the summary of the dataframe
 
 ```{r}
 summary(mtcars)
@@ -812,7 +810,7 @@ dim(mtcars)
 ```
 
 
-Create new dataframe with the first two columns and all the rows
+Create a new dataframe with the first two columns and all the rows
 
 ```{r}
 df1 <- mtcars[,1:2]
@@ -822,14 +820,14 @@ dim(df1)
 
 ## Working with dataframes
 
-Create new dataframe with column 1,2,3 and 6, and first 10 rows
+Create a new dataframe with column 1,2,3 and 6, and first 10 rows
 
 ```{r}
 df2 <- mtcars[1:10,c(1:3,6)]
 dim(df2)
 ```
 
-Create new dataframe with all the variables, except 1 and 4
+Create a new dataframe with all the variables, except 1 and 4
 
 ```{r}
 df3 <- mtcars[,-c(1,4)]
@@ -838,7 +836,7 @@ dim(df3)
 
 ## Working with dataframes
 
-if the columns or rows have names, you can subset by names as well
+If the columns or rows have names, you can subset them by names as well
 
 ```{r}
 df4 <- mtcars[,c("mpg", "gear", "disp")]
@@ -847,7 +845,7 @@ names(df4)
 
 ## Working with dataframes
 
-you can access a column in dataframe using $ sign if columns have names
+You can access a column in dataframe using $ sign if columns have names
 
 ```{r}
 mpg <- mtcars$mpg
@@ -856,8 +854,7 @@ mpg
 
 ## Working with dataframes
 
-You can subset dataframe by rows by condition on any column
-
+You can subset a dataframe by rows by condition on any column
 
 Keep only rows where mpg is more than or equal to 15
 
@@ -870,7 +867,7 @@ summary(df5)
 
 ## Working with dataframes
 
-Can subset by rows using more than 1 condition
+Can subset by rows using more than 1 condition.
 
 AND logical operator
 
@@ -884,6 +881,7 @@ summary(df6)
 ```{r, echo = F, out.width = "80%"}
 include_graphics('images/Logical-Operators.png')
 ```
+
 ## Working with dataframes
 
 The OR logical operator
@@ -910,7 +908,7 @@ Points<-c(73,65,59,59,58,58)
 
 ## Working with dataframes
 
-we can combine these variables into a dataframe
+We can combine these variables into a dataframe
 
 ```{r}
 seriea <- data.frame(Team,Points, Wins, Draws)
@@ -919,7 +917,7 @@ str(seriea)
 
 ## Working with dataframes
 
-working with variables
+Working with variables
 
 ```{r}
 mean(seriea$Points)
@@ -950,15 +948,15 @@ rownames(seriea)
 ```
 
 
-# List
+# Lists
 
-## List
+## Lists
 
  - Vectors (one dimensional array): can hold numeric, character or logical values. The elements in a vector all have the same data type.
 - Matrices (two dimensional array): can hold numeric, character or logical values. The elements in a matrix all have the same data type.
 - Data frames (two-dimensional objects): can hold numeric, character or logical values. Within a column all elements have the same data type, but different columns can be of different data type.
 
-## List
+## Lists
 
 ```{r}
 # Vector with numerics from 1 up to 10
@@ -980,24 +978,27 @@ my_list
 
 
 
-## List
+## Lists
 
 
 New list for movie shining
-
+\tiny
 ```{r}
 moviename<-"The Shining"
-actors<-c("Jack Nicholson","Shelley Duvall","Danny Lloyd",      "Scatman Crothers","Barry Nelson" )
+actors<-c("Jack Nicholson","Shelley Duvall",
+          "Danny Lloyd","Scatman Crothers",
+          "Barry Nelson" )
 reviews<-data.frame(scores=c(4.5,4,5),
         sources=c("IMDb1", "IMDb2", "IMDb3"),
-        comments =c("Best Horror Film I Have Ever Seen",
-    "A truly brilliant and scary film from Stanley Kubrick", "A masterpiece of psychological horror"))
-
+        comments =c(
+          "Best Horror Film I Have Ever Seen",
+          "A truly brilliant and scary film from Stanley Kubrick", 
+          "A masterpiece of psychological horror"))
 ```
 
-## List
+## Lists
 
-named list
+Named list
 
 ```{r}
 shining_list<-list(moviename=moviename, actors=actors, reviews=reviews)
@@ -1005,7 +1006,7 @@ shining_list
 ```
 
 
-Sub setting the list
+Subsetting the list.
 
 One way to select a component is using the numbered position of that component. 
 For example, to "grab" the first component of shining_list you type
@@ -1015,7 +1016,7 @@ shining_list[[1]]
 ```
 
 
-## List
+## Lists
 
 A quick way to check this out is typing it in the console. Important to remember: to select elements from vectors, you use single square brackets: [ ]. Don't mix them up!
 
@@ -1026,7 +1027,7 @@ shining_list[["reviews"]]
 shining_list$reviews
 ```
 
-## List
+## Lists
 
 
 Besides selecting components, you often need to select specific elements out of these components. For example, with shining_list[[2]][1] you select from the second component, actors (shining_list[[2]]), the first element ([1])
@@ -1036,14 +1037,232 @@ shining_list[[2]][1]
 ```
 
 
-## List
+## Lists
 
-Adding new value to the list
-
+Adding new value to the list,
 simply use c
 
 ```{r}
 shining_list<-c(shining_list, year=1980)
 shining_list
 ```
+
+# Functions
+
+## Functions
+
+- In programming, you use functions to incorporate sets of instructions that you want to use repeatedly or that, because of their complexity, are better self-contained in a sub program and called when needed. 
+- A function is a piece of code written to carry out a specified task; it can or can not accept arguments or parameters and it can or can not return one or more values.
+- In fact, there are several possible formal definitions of ‘function’ spanning from mathematics to computer science.
+- **Generically, its arguments constitute the input and return values as output.**
+
+
+## Functions
+
+- Functions have named arguments which potentially have default values. 
+- The formal arguments are the arguments included in the function definition.
+- The formals function returns a list of all the formal arguments of a function.
+- Not every function call in R makes use of all the formal arguments.
+- Function arguments can be missing or might have default values.
+
+
+## Functions
+
+The function runif() generates random numbers from continuous uniform distribution
+\hfill\break
+
+Arguments are:
+
+- n, number of observations, with no default - so needs to be specified
+- min, the minimum
+- max, the maximum
+
+```{r}
+formals(runif)
+```
+
+```{r}
+args(runif)
+```
+
+
+## Functions
+
+R functions' arguments can be matched **positionally** or **by name**. So the following calls to runif() are all equivalent (you can mix them as well).
+
+- Matching by name
+
+```{r}
+runif(min=1, n=10, max=2)
+```
+\hfill\break
+
+- Matching by position
+
+```{r}
+runif(10,1,2)
+```
+
+\hfill\break
+
+Note, as the process is random you might get different results.
+
+
+## Functions
+
+Matched by position, this will give an error
+
+```{r, warning=T}
+runif(1,10,2)
+```
+
+
+## Functions
+
+- If the argument has a default value and is not defined then the default value is used.
+- Generated 10 numbers with min=0, max=1
+
+```{r}
+runif(10)
+```
+
+
+## Functions
+
+You can look at the arguments of the function and their description by hitting **Tab** inside the brackets
+
+\hfill\break
+
+```{r, echo = F, out.width = "80%"}
+include_graphics('Img/Functions-arguments-lookup.png')
+```
+
+
+<!-- ## Functions -->
+
+<!-- **General rule: if you have to copy a code more than twice, write a function.** -->
+<!-- \hfill\break -->
+
+<!-- f <- function(a, b = 1, c = 2, d = NULL) {  -->
+<!-- \hfill\break -->
+<!-- 	what needs to be done -->
+<!-- \hfill\break -->
+<!-- }  -->
+
+<!-- \hfill\break -->
+
+<!-- In addition to not specifying a default value, you can also set an argument value to NULL.  -->
+
+
+<!-- ## Functions -->
+
+<!-- - User-defined functions are stored in the global environment and can be accessed easily. -->
+<!-- - The following function will calculate the x power of y (default value of y is 2). -->
+
+<!-- ```{r} -->
+<!-- foo <- function (x, y=2){ -->
+<!--   x^y -->
+<!-- } -->
+
+<!-- foo(4) -->
+<!-- ``` -->
+
+
+<!-- ## Functions -->
+
+<!-- Arguments to functions are evaluated lazily, so they are evaluated only as needed.  -->
+
+<!-- ```{r} -->
+<!-- foo <- function (x,y){ -->
+<!--   x^2 -->
+<!-- } -->
+
+<!-- foo(3) -->
+<!-- ``` -->
+
+<!-- \hfill\break -->
+<!-- \hfill\break -->
+
+<!-- This function never actually uses the argument \textcolor{red}{y}, so calling f(2) will not produce an error because the 2 gets positionally matched to \textcolor{red}{x}.  -->
+
+
+<!-- ## Functions -->
+
+<!-- - The return value of a function is the last expression in the function body to be evaluated. -->
+<!-- - It can be also specified with the function return() -->
+
+
+<!-- ## Functions -->
+
+<!-- The following function will calculate the z-score of a vector -->
+
+<!-- ```{r} -->
+<!-- norm <- function(x) { -->
+<!--   return((x-mean(x))/sd(x)) -->
+<!-- } -->
+
+<!-- norm(mtcars$mpg) -->
+<!-- ``` -->
+
+
+<!-- ## Functions -->
+
+<!-- - Create a function that will do Max-Min normalization -->
+<!-- - Use functions max() and min() to get the minimum and maximum values in the vector -->
+
+<!-- $$Z_i = \frac{x_i - min(x)}{max(x)-min(x)}$$ -->
+
+<!-- \hfill\break -->
+
+<!-- Test it on one of the columns of mtcars. -->
+
+<!-- ```{r, include = F} -->
+<!-- normalize <- function(x) { -->
+<!--     return ((x - min(x)) / (max(x) - min(x))) -->
+<!--   } -->
+<!-- ``` -->
+
+
+<!-- ## Functions -->
+
+<!-- - Create a function that will do the following -->
+<!--    - apply max-min normalization on each variable in the data frame; -->
+<!--    - return new data frame with normalized variables. -->
+<!--      - You need to define your max-min function for a vector inside the function. -->
+<!--      - You can use for loop inside the function. -->
+<!--      - To create a data frame use the function cbind(). -->
+
+<!-- - What do you think is the most likely situation when the function will give an error ? -->
+<!-- - Apply function on mtcars. -->
+<!-- - How can you make the function any better?  -->
+
+
+<!-- ## Functions -->
+
+<!-- Define function normalize -->
+
+<!-- ```{r} -->
+<!-- normalize_df <- function(df){ -->
+<!--   normalize <- function(x) { -->
+<!--     return ((x - min(x)) / (max(x) - min(x))) -->
+<!--   } -->
+
+<!--   df1 <-c() -->
+<!--   for (i in 1:ncol(df)){ -->
+<!--     x <- normalize(df[,i]) -->
+<!--     df1 <- cbind(df1,x) -->
+<!--   } -->
+<!--   df1 <- as.data.frame(df1) -->
+<!--   colnames(df1) <- colnames(df) -->
+<!--   # returns df -->
+<!--   return(df1) -->
+<!-- } -->
+
+<!-- ``` -->
+
+<!-- ```{r, include=F} -->
+<!-- mtcars_norm <- normalize_df(mtcars) -->
+<!-- head(mtcars_norm) -->
+<!-- ``` -->
+
 
