@@ -1134,7 +1134,7 @@ You can look at the arguments of the function and their description by hitting *
 \hfill\break
 
 ```{r, echo = F, out.width = "80%"}
-include_graphics('Img/Functions-arguments-lookup.png')
+include_graphics('images/Functions-arguments-lookup.png')
 ```
 
 
