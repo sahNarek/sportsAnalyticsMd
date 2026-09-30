@@ -42,6 +42,7 @@ library(ggplot2)
 library(VGAM)
 library(zoo)
 library(tidyr)
+# remotes::install_github("Habet/CSE270")
 ```
 
 
