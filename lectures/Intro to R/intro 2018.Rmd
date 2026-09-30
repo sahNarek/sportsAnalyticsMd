@@ -28,7 +28,7 @@ caret::createDataPartition()
 
 
 ```{r}
-census <- read.csv("census.csv")
+data(census, package = "SportsAnalytics270")
 ```
 
 \pagebreak
@@ -85,7 +85,7 @@ rm(list=ls())
 ```
 
 ```{r}
-load('census.rda')
+data(census, package = "SportsAnalytics270")
 ```
 
 

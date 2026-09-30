@@ -552,7 +552,7 @@ row 1: Ant Man and Avengers Age of Ultron have 2 common characters
 
 
 ```{r}
-marvel <- read.csv("./data/marvel.csv")
+data(marvel, package = "SportsAnalytics270")
 head(marvel)
 ```
 
@@ -605,7 +605,8 @@ plot(m_net, mode="circle", displaylabels=T, label.pos=6)
 Lets add some attributes to vertices
 
 ```{r}
-movies <- read.csv("./data/marvel_movies.csv", stringsAsFactors = F)
+data(marvel_movies, package = "SportsAnalytics270")
+movies <- marvel_movies
 head(movies)
 ```
 
@@ -782,7 +783,7 @@ Now we will look at the case where
 * edge attribute weight shows in how many movies do they appear together
 
 ```{r}
-load("./data/marvel_roles.rda")
+data(marvel_roles, package = "SportsAnalytics270")
 list.edge.attributes(marvel_roles)
 ```
 
@@ -853,7 +854,7 @@ plot(marvel_roles2, main="Marvel characters network",
 
 
 ```{r}
-load("./data/roster.rda")
+data(roster, package = "SportsAnalytics270")
 head(roster)
 ```
 
@@ -864,7 +865,7 @@ head(roster)
 Load the roster for Golden State Warriors
 
 ```{r}
-load("./data/gsw.rda")
+data(gsw, package = "SportsAnalytics270")
 ```
 
 <!-- page 80 -->
@@ -896,7 +897,7 @@ save(passing, file = "passing.rda")
 ## NBA: passing network
 
 ```{r}
-load("./data/passing.rda")
+data(passing, package = "SportsAnalytics270")
 head(passing)
 ```
 

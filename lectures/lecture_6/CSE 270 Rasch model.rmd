@@ -99,11 +99,11 @@ knitr::include_graphics("./images/rasch_2.png")
 The game Boston Celtics vs. New York Knicks - [https://goo.gl/KSQBXe](https://goo.gl/KSQBXe)
 
 ```{r, echo=F}
-load("./data/nba11_12.rda")
+data(nba11_12, package = "SportsAnalytics270")
 ```
 
 ```{r, eval = F}
-load("nba11_12.rda")
+data(nba11_12, package = "SportsAnalytics270")
 ```
 
 

@@ -926,8 +926,8 @@ knitr::include_graphics("./images/k_cores_2.png")
 * edge attribute weight is showing the number of flights
 
 ```{r}
-load("./data/usa.rda")
-load("./data/usa_i.rda")
+data(usa, package = "SportsAnalytics270")
+data(usa_i, package = "SportsAnalytics270")
 network::list.vertex.attributes(usa)
 network::list.edge.attributes(usa)
 ```
@@ -1135,7 +1135,7 @@ Load n_pass, Golden State Warriors passing network
 
 
 ```{r}
-load("./data/n_pass.rda")
+data(n_pass, package = "SportsAnalytics270")
 i_pass <- asIgraph(n_pass)
 igraph::list.edge.attributes(i_pass)
 igraph::list.vertex.attributes(i_pass)

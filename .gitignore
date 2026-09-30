@@ -4,6 +4,20 @@
 .Ruserdata
 .DS_Store
 **/.DS_Store
-*/.DS_Store
-*/.DS_Store
-.DS_Store
+
+# Assignments and scrapers live in other repos
+HW/
+PSS/
+assignmets/
+quizes/
+data_collection/
+scripts/
+
+# Course tables belong in SportsAnalytics270, not here
+*.rda
+*.RData
+*.zip
+
+# Instructor notes stay out of the student lecture repo
+speaker_notes.md
+*solution*

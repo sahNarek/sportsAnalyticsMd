@@ -1,7 +1,7 @@
 ---
 title: "CSE 270 Sports Analytics"
 subtitle: "Predicting with models"
-author: "Habet Madoyan"
+author: "Narek Sahakyan, Habet Madoyan"
 fontsize: 8pt
 output:
   beamer_presentation:
@@ -101,12 +101,12 @@ test
 
 
 ```{r, tidy=F}
-df %>% filter(SEASON==2022) %>% group_by(COUNTRY) %>% 
+df %>% filter(SEASON==2026) %>% group_by(COUNTRY) %>% 
   summarise(pvalue=chisq.test(table(FTAG, FTHG),
                               simulate.p.value=T)$p.value)
 ```
 
-The hypothesis of independence is not
+In general, the hypothesis of independence is not
 rejected, at $\alpha$ = 0.05 , Thus they are
 independent
 
@@ -118,6 +118,13 @@ variable has Poisson distribution
 * Independent variables can be both numeric and categorical
 * Poisson regression is a part of Generalized Linear Regression
 (GLM) models family
+
+# Poisson regression: the general definition
+
+```{r, out.width="80%", out.height="60%", fig.align='center', echo=F}
+knitr::include_graphics("link_fns.png")
+```
+
 
 # Poisson regression: the general definition
 
@@ -135,18 +142,17 @@ probabilities for the number of the goals
 
 # Preparing data for the Poisson regression model
 
-The initial data for Portugal, season 2021-2022
-
-Making Predictions for Portugal Liga 1
+The initial data for England, season 2025-2026
+Making Predictions for English Premier League
 
 ```{r}
 data(f_data_sm)
-portugal = f_data_sm %>%
-            filter(SEASON==2022, COUNTRY=="Portugal") %>%
+England = f_data_sm %>%
+            filter(SEASON==2026, COUNTRY=="England") %>%
             select(HOMETEAM, AWAYTEAM, FTHG, FTAG)  
 
-head(portugal, n=5)
-dim(portugal)
+head(England, n=5)
+dim(England)
 ```
 
 # Preparing data for the Poisson regression model
@@ -155,82 +161,140 @@ The data need to be in the following format: 2 rows for each game and the indica
 
 
 ```{r}
-port1=data.frame(portugal[,c("HOMETEAM", "AWAYTEAM", "FTHG")], Home=1)
-port2=data.frame(portugal[,c("AWAYTEAM", "HOMETEAM", "FTAG")], Home=0)
-colnames(port1)=c("Team", "Opponent", "Goal", "Home")
-colnames(port2)=c("Team", "Opponent","Goal", "Home")
-portugal2=rbind(port1, port2)
-head(portugal2)
+eng1=data.frame(England[,c("HOMETEAM", "AWAYTEAM", "FTHG")], Home=1)
+eng2=data.frame(England[,c("AWAYTEAM", "HOMETEAM", "FTAG")], Home=0)
+colnames(eng1)=c("Team", "Opponent", "Goal", "Home")
+colnames(eng2)=c("Team", "Opponent","Goal", "Home")
+England2=rbind(eng1, eng2)
+head(England2)
 ```
 
 # Preparing data for the Poisson regression model
 
-Now let's have a look at the first game of the season:
-Sporting Lisbon vs Vizela
+Now let's have a look the game: Tottenham vs Man United
 
-* Sporting Lisbon was the home team, and the game ended with 3-0
+* Tottenham was the home team, and the game ended with 2-0
 
 ```{r}
-portugal[1,]
+(tottenham_vs_mu <- England %>% 
+  filter(HOMETEAM == "Tottenham", AWAYTEAM == "Man United"))
+home_team_index <- which(England$HOMETEAM == "Tottenham" & 
+                           England$AWAYTEAM == "Man United")
 ```
+# Preparing data for the Poisson regression model
 
 * Let's look at our new dataset
 
 ```{r}
-portugal2[1,]
-portugal2[307,]
+England2[home_team_index,]
+England2[home_team_index + nrow(England),]
 ```
 
 
-The number of the rows in the portugal2 dataset is twice of the original one
+The number of the rows in the England2 dataset is twice of the original one
 
 ```{r}
-dim(portugal)
-dim(portugal2)
+dim(England)
+dim(England2)
 ```
 
 # The model 
 
 
 ```{r, eval=F}
-model=glm(Goal~Team+Opponent+Home, data=portugal2, family=poisson(link=log))
+model=glm(Goal~Team+Opponent+Home, data=England2, family=poisson(link=log))
 coefficients(model)
 ```
 
 
 \tiny
 ```{r, echo=F}
-model=glm(Goal~Team+Opponent+Home, data=portugal2, family=poisson(link=log))
+model=glm(Goal~Team+Opponent+Home, data=England2, family=poisson(link=log))
 coefficients(model)
 ```
 
+# The model
+
+\bcenter
+**Question.** Do you see any team missing?
+\ecenter
+
+```{r}
+length(unique(England2$Team))
+sum(startsWith(names(coefficients(model)), "Team"))
+```
+
+There are 20 teams, but only 19 `Team` coefficients and 19 `Opponent` coefficients.
+
+# The model
+
+**Arsenal** is the missing team.
+
+`glm` turns `Team` and `Opponent` into factors and drops the first level in alphabetical order. That reference level is Arsenal, so
+
+* `TeamArsenal` $= 0$
+* `OpponentArsenal` $= 0$
+
+Both sit inside the intercept. Every other coefficient is a comparison with Arsenal.
+
+In 2026 Arsenal finished **1st**, so almost every attack coefficient is negative: the other teams score less than Arsenal.
+
+# The model: season 2020
+
+In **2020** Arsenal finished **8th**. The same model still drops Arsenal, but now the teams that finished above Arsenal have a **positive** attack coefficient.
+
+```{r}
+England_2020 <- f_data_sm %>%
+  filter(SEASON == 2020, COUNTRY == "England") %>%
+  select(HOMETEAM, AWAYTEAM, FTHG, FTAG)
+eng1_2020 <- data.frame(England_2020[, c("HOMETEAM", "AWAYTEAM", "FTHG")], Home = 1)
+eng2_2020 <- data.frame(England_2020[, c("AWAYTEAM", "HOMETEAM", "FTAG")], Home = 0)
+colnames(eng1_2020) <- c("Team", "Opponent", "Goal", "Home")
+colnames(eng2_2020) <- c("Team", "Opponent", "Goal", "Home")
+model_2020 <- glm(Goal ~ Team + Opponent + Home,
+                  data = rbind(eng1_2020, eng2_2020), family = poisson(link = log))
+```
+
+# The model: season 2020
+
+Attack coefficients relative to Arsenal. A positive value means the team scores more than Arsenal.
+
+\tiny
+```{r}
+attack_2020 <- coefficients(model_2020)
+attack_2020 <- attack_2020[startsWith(names(attack_2020), "Team")]
+sort(attack_2020, decreasing = TRUE)
+```
+
+Man City, Liverpool, Chelsea, Leicester, Man United and Tottenham are above zero. Arsenal is still the zero.
+
 # Making predictions
 
-* Sporting Lisbon is playing against Vizela at home
+* Tottenham is playing against Man United at home
 
 ```{r}
 options(scipen=1, digits=4)
-(lisbon_average <- predict(model, data.frame(Home=1, Team="Sp Lisbon", 
-                                             Opponent="Vizela"), type="response"))
+(tottenham_average <- predict(model, data.frame(Home=1, Team="Tottenham", 
+                                               Opponent="Man United"), type="response"))
 ```
 
-* The same for Vizela
+* The same for Man United
 ```{r}
 options(scipen=1, digits=4)
-(vizela_average <- predict(model, data.frame(Home=0, Team="Vizela", 
-                                             Opponent="Sp Lisbon"), type="response"))
+(mu_average <- predict(model, data.frame(Home=0, Team="Man United", 
+                                             Opponent="Tottenham"), type="response"))
 ```
 
-When Sporting Lisbon is playing Vizela at Home, the expected (average) number of
-goals for Sporting Lisbon is `r lisbon_average` and For Vizela is `r vizela_average`
+When Tottenham is playing Man United at Home, the expected (average) number of
+goals for Tottenham is `r tottenham_average` and For Man United is `r mu_average`
 
-# Let's do the calculations by hand for Sporting Lisbon
+# Let's do the calculations by hand for Tottenham
 
-Calculations of $\lambda$ for Sporting Lisbon
+Calculations of $\lambda$ for Tottenham
 
 \bcenter
 
-$log(\lambda) = \beta_0 + \beta_{TeamSpLisbon} + \beta_{OpponentVizela} + \beta_{Home}$
+$log(\lambda) = \beta_0 + \beta_{TeamTottenham} + \beta_{OpponentMan United} + \beta_{Home}$
 
 \ecenter
 
@@ -242,12 +306,12 @@ options(scipen=1, digits=4)
 ```
 
 ```{r}
-(team_lisbon <- coefficients(model)["TeamSp Lisbon"])
+(team_tottenham <- coefficients(model)["TeamTottenham"])
 ```
 
 
 ```{r}
-(oponnent_vizela <- coefficients(model)["OpponentVizela"])
+(opponent_mu <- coefficients(model)["OpponentMan United"])
 ```
 
 ```{r}
@@ -255,14 +319,14 @@ options(scipen=1, digits=4)
 ```
 
 ```{r include = F}
-result <- (intercept + team_lisbon + oponnent_vizela + home_coeff)  
+result <- (intercept + team_tottenham + opponent_mu + home_coeff)  
 exp_result <- exp(result)
 ```
 
 
-$log(\lambda)$ = `r home_coeff` + `r team_lisbon` + `r oponnent_vizela` + `r intercept` = `r result`\  
+$log(\lambda)$ = `r home_coeff` + `r team_tottenham` + `r opponent_mu` + `r intercept` = `r result`\  
 
-$\lambda$ = e^(`r intercept + team_lisbon + oponnent_vizela + home_coeff`) = 
+$\lambda$ = e^(`r intercept + team_tottenham + opponent_mu + home_coeff`) = 
 `r exp_result`
 
 
@@ -273,11 +337,11 @@ The average expected goals of the home team divided by the average expected goal
 
 
 ```{r}
-# lambda for Sporting Lisbon playing at home
-spl_h=exp(intercept + team_lisbon + oponnent_vizela + home_coeff)
-# lambda for Sporting Lisbon playing against Vizela away
-vzl_a=exp(intercept + team_lisbon + oponnent_vizela)
-spl_h/vzl_a
+# lambda for Tottenham playing at home
+tottenham_h=exp(intercept + team_tottenham + opponent_mu + home_coeff)
+# lambda for Tottenham playing against Man United away
+mu_a=exp(intercept + team_tottenham + opponent_mu)
+tottenham_h/mu_a
 ```
 
 ```{r}
@@ -291,22 +355,21 @@ As we have $\lambda$ for both teams, we can use skellam distribution to come up 
 
 ```{r, tidy=F}
 # Lisbon's lambda
-lisbon_average
-# Vizela's lambda
-vizela_average
+tottenham_average
+# Man United's lambda
+mu_average
 
 # Simulate game results
 set.seed(1)
-k = rskellam(10000,mu1 = lisbon_average, mu2 = vizela_average)
+k = rskellam(10000,mu1 = tottenham_average, mu2 = mu_average)
 ```
 
 # Making predictions
 
-A slight home team advantage
 
 ```{r, fig.width=10, fig.height=4}
 ggplot()+geom_bar(aes(x=k))+
-  labs(x="Goal difference", title="Skellam distribution for Sporting Lisbon vs Vizela")
+  labs(x="Goal difference", title="Skellam distribution for Tottenham vs Man United")
 ```
 
 # Making predictions 
@@ -315,12 +378,135 @@ Calculate the game output probabilities
 
 ```{r}
 # Away team to win
-sum(dskellam(c(-100:-1),lisbon_average, vizela_average))
+sum(dskellam(c(-100:-1),tottenham_average, mu_average))
 # Draw
-sum(dskellam(0 ,lisbon_average, vizela_average))
+sum(dskellam(0 ,tottenham_average, mu_average))
 # Home team to win
-sum(dskellam(c(1:100),lisbon_average, vizela_average))
+sum(dskellam(c(1:100),tottenham_average, mu_average))
 ```
+
+# Making predictions: Arsenal vs Man City
+
+Arsenal is the reference team, so it has no coefficient of its own. Predict Arsenal at home against Man City. The actual score was 1-1.
+
+```{r}
+(arsenal_average <- predict(model, data.frame(Home=1, Team="Arsenal",
+                                              Opponent="Man City"), type="response"))
+(city_average <- predict(model, data.frame(Home=0, Team="Man City",
+                                           Opponent="Arsenal"), type="response"))
+```
+
+# Making predictions: Arsenal vs Man City
+
+The Arsenal terms are zero, so they drop out of the linear predictor.
+
+\bcenter
+
+$log(\lambda_{Arsenal}) = \beta_0 + \beta_{OpponentMan City} + \beta_{Home}$
+
+$log(\lambda_{Man City}) = \beta_0 + \beta_{TeamMan City}$
+
+\ecenter
+
+```{r, include=FALSE}
+opponent_city <- coefficients(model)["OpponentMan City"]
+team_city <- coefficients(model)["TeamMan City"]
+```
+
+```{r}
+exp(intercept + opponent_city + home_coeff)
+exp(intercept + team_city)
+```
+
+# Relevel to the weakest team
+
+The zero point is a choice. Wolves have the weakest attack in this fit.
+
+Move the reference from Arsenal to Wolves. Predictions do not change, and neither does the home coefficient.
+
+```{r}
+England3 <- England2 %>%
+  mutate(Team = relevel(factor(Team), ref = "Wolves"),
+         Opponent = relevel(factor(Opponent), ref = "Wolves"))
+model_wolves <- glm(Goal ~ Team + Opponent + Home, data = England3,
+                    family = poisson(link = log))
+predict(model_wolves, data.frame(Home=1, Team="Arsenal", Opponent="Man City"),
+        type="response")
+```
+
+# Compare the coefficients
+
+Attack coefficients under the two reference teams. The missing team is filled in as 0.
+
+```{r}
+teams <- c("Arsenal", "Man City", "Tottenham", "Wolves")
+coef_or_zero <- function(mod, team) {
+  val <- unname(coefficients(mod)[paste0("Team", team)])
+  if (is.na(val)) 0 else val
+}
+vs_arsenal <- sapply(teams, coef_or_zero, mod = model)
+vs_wolves <- sapply(teams, coef_or_zero, mod = model_wolves)
+cbind(vs_Arsenal = vs_arsenal, vs_Wolves = vs_wolves,
+      shift = vs_wolves - vs_arsenal)
+```
+
+The shift is the same for every team. Only the reference moved. The gap between two teams is unchanged.
+
+# Team skills
+
+Attack is the `Team` coefficient. Defense is minus the `Opponent` coefficient, so a larger number is a stronger defense. Both are measured against Wolves.
+
+```{r}
+teams <- levels(England3$Team)
+attack <- sapply(teams, function(tm) {
+  val <- coefficients(model_wolves)[paste0("Team", tm)]
+  if (is.na(val)) 0 else unname(val)
+})
+defense <- sapply(teams, function(tm) {
+  val <- coefficients(model_wolves)[paste0("Opponent", tm)]
+  if (is.na(val)) 0 else -unname(val)
+})
+skills <- data.frame(team = teams,
+                      attack = attack, defense = defense)
+```
+
+# Team skills
+
+Attack relative to Wolves
+
+```{r, fig.width=10, fig.height=5.5}
+ggplot(skills, aes(x = reorder(team, attack), y = attack)) +
+  geom_col() + coord_flip() +
+  labs(x = NULL, y = "Attack coefficient", title = "Attack relative to Wolves")
+```
+
+# Team skills
+
+Defense relative to Wolves. Wolves are the weakest attack, not the leakiest defense, so Burnley stays below zero.
+
+```{r, fig.width=10, fig.height=5.5}
+ggplot(skills, aes(x = reorder(team, defense), y = defense)) +
+  geom_col() + coord_flip() +
+  labs(x = NULL, y = "Defense coefficient", title = "Defense relative to Wolves")
+```
+
+# Making predictions 
+
+\bcenter
+**TIME FOR IN CLASS ACTIVITY !**
+\ecenter
+
+* Pick any game of your favorite team(or an arbitrary team) from last season. 
+  * It is best to pick a game that happened mid season to have some data from previous games as well.
+  * Calculate the average number of goals scored by the home and away teams.
+  * Calculate the average using only the games before the one you selected and in the same season.
+  * Calculate the average using only the games before the one you selected and in the same season.
+* Calculate the probabilities and odds of the home team winning, away team winning and draw using the distributions approach.
+  * Use the matrix method.  
+* Calculate the expected score for the game using the Poisson Regression approach.  
+* Check the probability of that score according to the distributions approach.  
+* Compare the results with the actual game result.
+
 
 
 # Predicting with models
@@ -352,13 +538,29 @@ $P(\text{i beats j}) = \frac{e^{\alpha_i}}{e^{\alpha_i} + e^{\alpha_j}}$
 
 # Bradley-Terry model
 
+
+\bcenter
+
 $P(\text{i beats j}) = \frac{\alpha_i}{\alpha_i + \alpha_j}$
 
 
-$logit(P(\text{i beats j})) = \log(\frac{P(\text{i beats j})}{P(\text{j beats i})}) = \log(\frac{P(\text{i beats j})}{1 - P(\text{i beats j})}) = log( \frac{\alpha_i}{\alpha_i + \alpha_j} * \frac{\alpha_i + \alpha_j}{\alpha_j}) = log(\alpha_i) - log(\alpha_j) = \lambda_i - \lambda_j$
+$logit(x) = \log(\frac{x}{1-x})$
 
+$$logit^{-1}(x) = \frac{1}{1+e^{(-x)}}$$
+
+Log rules recap:
+
+$log(a*b) = log(a) + log(b)$
+
+$log(a/b) = log(a) - log(b)$
+
+
+$logit(P(\text{i beats j})) =  \log(\frac{P(\text{i beats j})}{1 - P(\text{i beats j})}) =\log(\frac{P(\text{i beats j})}{P(\text{j beats i})})  = log( \frac{\alpha_i}{\alpha_i + \alpha_j} * \frac{1}{\frac{\alpha_j}{\alpha_i + \alpha_j}}) = log( \frac{\alpha_i}{\alpha_i + \alpha_j} * \frac{\alpha_i + \alpha_j}{\alpha_j}) = log( \frac{\alpha_i}{\alpha_i + \alpha_j}) + log( \frac{\alpha_i + \alpha_j}{ \alpha_j}) = log(\alpha_i) - log({\alpha_i + \alpha_j}) + log(\alpha_i + \alpha_j) - log(\alpha_j)  =  log(\alpha_i) - log(\alpha_j) = \lambda_i - \lambda_j$
 
 The goal of the modeling is to find the best estimate for $\lambda_i, \lambda_j$ 
+
+\ecenter
+
 
 # Bradley-Terry model
 
@@ -368,14 +570,16 @@ The modification with exponential score function
 $P(\text{i beats j}) = \frac{e^{\alpha_i}}{e^{\alpha_i} + e^{\alpha_j}}$
 \ecenter
 
-$logit(P(\text{i beats j})) = \log(\frac{P(\text{i beats j})}{P(\text{j beats i})}) = \log(\frac{P(\text{i beats j})}{1 - P(\text{i beats j})}) = log(\frac{ e^{\alpha_i} } {e^{\alpha_i} + e ^ {\alpha_j} } * \frac{ e^{\alpha_i} + e^{ \alpha_j } } { e ^ {\alpha_j}} ) = \alpha_i - \alpha_j$ 
+$logit(P(\text{i beats j})) = \log(\frac{P(\text{i beats j})}{1 - P(\text{i beats j})}) = \log(\frac{P(\text{i beats j})}{P(\text{j beats i})}) = log(\frac{ e^{\alpha_i} } {e^{\alpha_i} + e ^ {\alpha_j} } * \frac{ e^{\alpha_i} + e^{ \alpha_j } } { e ^ {\alpha_j}} ) = \alpha_i - \alpha_j$ 
 
 logit - log of odds
 
 # Bradley-Terry model
 
-The basic Bradley-Terry model does not predict draw/tie games. \ 
-You can use Davidson’s extension on Bradley-Terry model if want to predict draw: \ 
+The basic Bradley-Terry model does not predict draw/tie games.  
+
+You can use Davidson’s extension on Bradley-Terry model if want to predict draw:  
+
 [https://www.jstor.org/stable/2283595?seq=1#page_scan_tab_contents](https://www.jstor.org/stable/2283595?seq=1#page_scan_tab_contents)
 
 # Bradley-Terry model
@@ -398,7 +602,7 @@ head(nfl, n=5)
 * Description
 * Format
 * A data frame with 4848 rows and 16 variables
-* schedule_season: from 2000-2021
+* schedule_season: from 2000-2025
 * schedule_week: The number of the week when the game was played
 * schedule_date: The actual date of the game
 * team_away: Away team
@@ -442,6 +646,9 @@ nfl3 = nfl2 %>%
 head(nfl3, n=5)
 ```
 
+
+
+
 # Bradley-Terry model
 
 Fitting the bradley-terry model
@@ -449,9 +656,12 @@ Fitting the bradley-terry model
 install.packages("BradleyTerry2")
 ```
 
-```{r}
 
-model = BTm(cbind(ht, at), team_home, team_away, data=nfl3, id="team_")
+```{r}
+outcome_matrix <- cbind(nfl3$ht, nfl3$at)
+model = BTm(outcome=outcome_matrix, player1=team_home, 
+            player2=team_away, data=nfl3, id="team_")
+
 ```
 
 # Bradley-Terry model
@@ -536,7 +746,7 @@ ggplot(data=abilities, aes(x = reorder(team, ability), y = ability)) +
 
 # Bradley-Terry model
 
-everything relative to the worst team (Cleveland Browns)
+Everything relative to the worst team (Cleveland Browns)
 
 * Let's say we want to calculate the abilities relative to the weakest team, so all the abilities would be $\ge$ 0
 * You could do this by re leveling the team variables
@@ -552,7 +762,6 @@ model_browns = BTm(cbind(ht, at), team_home, team_away, data=nfl4, id="team_")
 
 
 
-OR \ 
 Standardize the variable ability around its minimum (these two approaches will give exactly the same result)
 
 ```{r, eval=F}
@@ -567,6 +776,8 @@ abilities_brown = abilities
 abilities_brown$ability = abilities_brown$ability - min(abilities$ability)
 head(abilities_brown)
 ```
+
+
 
 
 
@@ -656,9 +867,22 @@ $P(\text{i beats j}) = \frac{e^{\alpha_i}}{e^{\alpha_i} + e^{\alpha_j}}$
 * In sports this can be related to home advantage: the ability of the team is different when it plays at home compared to when it plays away.
 * In this case the model has the following structure
 
-z = 1 if i has the supposed advantage and \ 
-z = -1 if j has it
-z = 0 if there is no advantage
+\bcenter
+$logit(P(\text{i beats j})) = \lambda_i - \lambda_j + \beta * z$
+
+where
+
+z = 1 if i has the supposed advantage and.  
+
+z = -1 if j has it.   
+
+z = 0 if there is no advantage.   
+
+
+$\beta$ is the coefficient of the advantage.
+
+\ecenter
+
  
 # Bradley-Terry model with order effect
 
@@ -668,6 +892,7 @@ We need to do several data transformations to get the model to account home adva
 nfl3$team_home = data.frame(team = nfl3$team_home, at.home = 1)
 nfl3$team_away = data.frame(team = nfl3$team_away, at.home = 0)
 
+nfl3
 ```
 
 The result is a grouped_df
@@ -735,7 +960,7 @@ Probability of Broncos to win at home
 Odds of Broncos to win at home
 
 ```{r}
-( od_h = w_h/(1-w_h) )
+( odd_h = w_h/(1-w_h) )
 ```
 
 # Bradley-Terry model with order effect
@@ -743,7 +968,7 @@ Odds of Broncos to win at home
 Playing at "neutral" field, no advantage for any team
 
 
-$P(\text{i beats j}) = \frac{e^{\alpha_i}}{e^{\alpha_i} + e^{\alpha_j}}$
+$P(\text{j beats j}) = \frac{e^{\alpha_j}}{e^{\alpha_i} + e^{\alpha_j}}$
 
 ```{r}
 ( w_n = exp(db)/(exp(db)+exp(cb)) )
@@ -753,7 +978,7 @@ $P(\text{i beats j}) = \frac{e^{\alpha_i}}{e^{\alpha_i} + e^{\alpha_j}}$
 Odds of wining at "neutral" field
 
 ```{r}
-( od_n = w_n/(1-w_n) )
+( odd_n = w_n/(1-w_n) )
 ```
 
 # Bradley-Terry model with order effect
@@ -762,8 +987,8 @@ Odds of wining at "neutral" field
 Odds ratio and home team advantage
 
 ```{r}
-od_h/od_n
-exp(coefficients(model2)['at.home'])
+(odd_h/odd_n)
+(exp(coefficients(model2)['at.home']))
 ```
 
 $e^{\text{at.home}}$ is the odd multiplier for a home team to win compared to the neutral field
