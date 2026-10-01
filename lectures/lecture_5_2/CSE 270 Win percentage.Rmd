@@ -320,6 +320,80 @@ mlb_standings %>%
   head()
 ```
 
+# The formula only sees season totals
+
+* Pythagorean winning percentage uses season runs and season runs allowed
+* It does not know the order of those runs
+* The standings do not either: a win is a win
+* Write the final score with the winner first
+  + Win 10-0 and lose 2-1: scored 11, allowed 2, record 1-1, run differential +9
+  + Win 2-1 and lose 10-0: scored 2, allowed 11, record 1-1, run differential -9
+* Same standings. Opposite seasons for the formula
+
+# Same record, opposite run differential
+
+```{r}
+paths <- data.frame(
+  path = c("Win 10-0, lose 2-1", "Win 2-1, lose 10-0"),
+  W = 1,
+  L = 1,
+  R = c(10 + 1, 2 + 0),
+  RA = c(0 + 2, 1 + 10)
+)
+paths$RD <- paths$R - paths$RA
+paths$Pyth <- paths$R^1.9 / (paths$R^1.9 + paths$RA^1.9)
+paths
+```
+
+# One-run games
+
+* One-run games are the hole in the model
+* A one-run win adds a win, and almost nothing to the run differential
+* A blowout loss does the opposite
+* The formula only has the season totals
+* Close wins and blowout losses finish ahead of Pythagorean wins
+* No game logs needed: the gap is already in `mlb_standings`
+
+# Mariners and Orioles
+
+```{r}
+gaps <- mlb_standings %>%
+  filter(!is.na(Team), R > 0, RA > 0) %>%
+  mutate(
+    RD = R - RA,
+    Pyth = R^1.9 / (R^1.9 + RA^1.9),
+    PW = Pyth * (W + L),
+    luck = W - PW
+  ) %>%
+  filter(grepl("Mariners|Orioles", Team))
+
+gaps %>%
+  group_by(Team) %>%
+  slice_max(luck, n = 1) %>%
+  ungroup() %>%
+  mutate(PW = round(PW, 1), luck = round(luck, 1)) %>%
+  select(Season, Team, W, L, R, RA, RD, PW, luck)
+```
+
+# Mariners and Orioles
+
+```{r, echo=FALSE, fig.width=7, fig.height=3.2, out.height="0.68\\textheight", fig.align="center"}
+ggplot(gaps, aes(Season, luck, color = Team)) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_line() +
+  geom_point() +
+  labs(x = "Season", y = "Wins minus Pythagorean wins") +
+  scale_x_continuous(breaks = seq(2000, 2025, by = 5),
+                     limits = c(1998, 2027)) +
+  theme(legend.position = "bottom")
+```
+
+# Mariners and Orioles
+
+* 2021 Mariners: 90 wins, negative run differential, about 76 Pythagorean wins
+* 2012 Orioles: 93 wins, run differential of +7, about 82 Pythagorean wins
+* Those extra wins are one-run games
+* R and RA do not record that the win was 2-1 rather than 10-0
 
 # Pythagorean wins for other sports
 
@@ -400,9 +474,11 @@ summary(model2)
 # Pythagorean wins in NBA
 
 
-The estimated value of K is 14.093  
+The estimated value of K is the slope just fitted. On standings through 2026 it is about 13.99.
+
 ```{r}
-k = 14.093
+k <- unname(coef(model2))
+k
 ```
 
 ```{r, echo=F,out.width="90%", out.height="70%"}
@@ -427,14 +503,14 @@ On average we are going to be “wrong” by 3 games per team
 
 # Pythagorean wins in NBA
 
-Lets have a look at the last season only  
+Lets have a look at the 2025 season only  
 
 Create variable PW_G, Pythagorean expected wins
 
 ```{r}
 nba_st$G <- nba_st$W+nba_st$L
 nba_st$PW_G <- round(nba_st$PW*nba_st$G)
-nba_st %>% filter(Season==2021) %>% head()
+nba_st %>% filter(Season==2025) %>% head()
 ```
 
 # Pythagorean wins in NBA
@@ -442,7 +518,7 @@ nba_st %>% filter(Season==2021) %>% head()
 teams above the line are “lucky”, below the line are “unlucky”  
 
 ```{r, fig.height=5}
-nba_st %>% filter(Season==2021)%>%
+nba_st %>% filter(Season==2025)%>%
   ggplot(aes(x=PW_G, y=W))+geom_point()+
   geom_abline(intercept =0 , slope = 1, col='red')
 ```
@@ -450,7 +526,7 @@ nba_st %>% filter(Season==2021)%>%
 # Pythagorean wins in NBA
 
 ```{r, fig.height=5}
-nba_st %>% filter(Season==2021)%>%
+nba_st %>% filter(Season==2025)%>%
   ggplot(aes(x=PW_G, y=W, label=Team))+geom_point()+
   geom_abline(intercept =0 , slope = 1, col='red')+
   geom_text()

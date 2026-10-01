@@ -112,10 +112,14 @@ https://www.youtube.com/shorts/I4MDXOWrUmk
 
 ### Dataset
 
+`nba_players` runs through the 2024-25 season. `Year` is the season ending year, so 2025 is that season.
+
 ```{r, include = F}
 data("nba_players")
+# Year is the season ending year. 2025 is the 2024-25 season.
+stopifnot(max(nba_players$Year, na.rm = TRUE) >= 2025)
 nba_players <- nba_players %>%
-  filter(Year > 1997)
+  filter(Year > 1997, Year <= 2025)
 ```
 
 \tiny
@@ -174,7 +178,7 @@ nba_players_defence <- nba_players %>%
          DRB_TOV = DRB - TOV,
          BLK_TOV = BLK - TOV,
          BLK_PF = BLK - PF) %>%
-  drop_na() %>%
+  drop_na(STL_TOV, STL_PF, DRB_TOV, BLK_TOV, BLK_PF, MP) %>%
   ungroup()
 ```
 
@@ -210,8 +214,7 @@ ggplot(nba_players_defence, aes(x = DRB_TOV, y = (MP))) +
 
 ## NBA Individual Power Ratings
 
-The metric with the highest negative correlation rate is the difference between
-the cumulative number of blocks made and cumulative number of turnovers made.  
+The metric with the highest negative correlation is blocks minus personal fouls.  
 
 \tiny
 ```{r, out.height="60%",fig.align="center"}
@@ -269,7 +272,7 @@ nba_players_offense <- nba_players %>%
   mutate(FGA_FG = FGA - FG,
          X3PA_X3P = X3PA - X3P,
          FTA_FT = FTA - FT) %>%
-  drop_na() %>%
+  drop_na(FGA_FG, X3PA_X3P, FTA_FT, AST, PTS, MP) %>%
   ungroup()
 ```
 
@@ -289,7 +292,7 @@ nba_players_offense %>%
 
 ## NBA Individual Power Ratings
 
-The Seasonal metric with the highest correlation is the difference between the number of points scored by the player.
+Missed field goals (FGA - FG) and points scored have the strongest correlations with minutes, both about 0.92. The plot shows points.
 
 \tiny
 ```{r, out.height="60%",fig.align="center"}
