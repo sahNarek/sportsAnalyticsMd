@@ -1,7 +1,7 @@
 ---
 title: "CSE 270 Sports Analytics"
 subtitle: "Predicting with distributions"
-author: "Habet Madoyan"
+author: "Narek Sahakyan, Habet Madoyan"
 fontsize: 8pt
 output:
   beamer_presentation:
@@ -73,9 +73,9 @@ library(VGAM)
 ```
 
 ```{r cse_270_setup_1, eval=FALSE, warning=FALSE, message=FALSE}
-library(devtools)
-install_github("HABET/CSE270")
-library(SportsAnalytics270)
+install.packages("remotes")
+remotes::install_github("HABET/CSE270", dependencies = TRUE)
+SportsAnalytics270::install_github_course_packages(force=T)
 ```
 
 ## Predicting with distributions
@@ -93,12 +93,12 @@ library(VGAM)
 
 ## Predicting with distributions
 
-Dataframe nba2009_2021 contains NBA regular season games from 2009 to 2021-2022 season 
+Dataframe nba_games contains NBA regular season games from 2009 to 2025-2026 season 
 
 ```{r}
 options(width = 65)
-data("nba2009_2021")
-head(nba2009_2021, 2)
+data("nba_games")
+head(nba_games, 2)
 ```
 
 ## Predicting with distributions
@@ -106,7 +106,7 @@ head(nba2009_2021, 2)
 Plot the histogram for home points
 
 ```{r}
-ggplot(nba2009_2021, aes(x=home.PTS))+geom_histogram()
+ggplot(nba_games, aes(x=home.PTS))+geom_histogram()
 ```
 
 ## Predicting with distributions
@@ -114,14 +114,14 @@ ggplot(nba2009_2021, aes(x=home.PTS))+geom_histogram()
 Exclude Boston-Celtics game
 
 ```{r, fig.height=5}
-ggplot(nba2009_2021, aes(x=home.PTS)) + geom_histogram() + xlim(c(50,155))+
+ggplot(nba_games, aes(x=home.PTS)) + geom_histogram() + xlim(c(50,155))+
   labs(x="Home Points", title="Histogram for points per game by home team")
 ```
 
 ## Predicting with distributions
 
 ```{r}
-ggplot(nba2009_2021, aes(x=away.PTS)) + geom_histogram() + xlim(c(50,150)) +
+ggplot(nba_games, aes(x=away.PTS)) + geom_histogram() + xlim(c(50,150)) +
   labs(x="Away Points", title="Histogram for points per game by away team")
 ```
 
@@ -130,7 +130,7 @@ ggplot(nba2009_2021, aes(x=away.PTS)) + geom_histogram() + xlim(c(50,150)) +
 Histogram of home and away points together
 
 ```{r}
-ggplot(nba2009_2021) + geom_histogram(aes(x=away.PTS), fill='red') +
+ggplot(nba_games) + geom_histogram(aes(x=away.PTS), fill='red') +
   geom_histogram(aes(x=home.PTS),fill='blue') +
   xlim(c(50,155)) + labs(x="Points", title="Home/away points")
 ```
@@ -139,7 +139,7 @@ ggplot(nba2009_2021) + geom_histogram(aes(x=away.PTS), fill='red') +
 Home points for last season only
 
 ```{r}
-nba2009_2021 %>% filter(SEASON_ID=='2021') %>%
+nba_games %>% filter(SEASON_ID=='2026') %>%
 ggplot(aes(x = home.PTS)) + geom_histogram() + xlim(c(50,155))+
   labs(x="Home Points", title="Histogram for points for last season")
 ```
@@ -148,8 +148,8 @@ ggplot(aes(x = home.PTS)) + geom_histogram() + xlim(c(50,155))+
 What about Points difference ?
 
 ```{r}
-nba2009_2021$Diff = nba2009_2021$home.PTS-nba2009_2021$away.PTS
-ggplot(nba2009_2021, aes(x=Diff)) + geom_histogram(bins=50) +
+nba_games$Diff = nba_games$home.PTS-nba_games$away.PTS
+ggplot(nba_games, aes(x=Diff)) + geom_histogram(bins=50) +
   labs(x="Points Difference", title="Histogram for points difference")
 ```
 
@@ -173,9 +173,10 @@ failed to reject $H_0$
 ## Predicting with distributions
 
 ```{r}
-nba2009_2021 %>%
-  filter(SEASON_ID=='2021') %>%
+nba_games %>%
+  filter(SEASON_ID=='2026') %>%
   group_by(home.TEAM_ABBREVIATION) %>%
+  filter(n() >= 3) %>%  # shapiro.test needs sample size between 3 and 5000
   summarise(p_value = shapiro.test(home.PTS)$p.value)%>%
     arrange(p_value)
 ```
@@ -186,9 +187,10 @@ Away points: Normal distribution with $\alpha$ = 0.05
 
 ```{r}
 
-nba2009_2021 %>%
-  filter(SEASON_ID=='2021') %>%
+nba_games %>%
+  filter(SEASON_ID=='2026') %>%
   group_by(away.TEAM_ABBREVIATION) %>%
+  filter(n() >= 3) %>%  # shapiro.test needs sample size between 3 and 5000
   summarise(p_value = shapiro.test(away.PTS)$p.value)%>%
   arrange(p_value)
 ```
@@ -232,14 +234,18 @@ Create dataframes with means and standard deviations for each team, for the last
 
 
 ```{r}
-home = nba2009_2021 %>%
-        filter(SEASON_ID=='2021') %>%
+# Exclude All-Star / exhibition sides (too few games for stable variance)
+nba_reg = nba_games %>%
+  filter(SEASON_ID=='2026',
+         !home.TEAM_ABBREVIATION %in% c("STARS","STRIPES","WORLD"),
+         !away.TEAM_ABBREVIATION %in% c("STARS","STRIPES","WORLD"))
+
+home = nba_reg %>%
         group_by(home.TEAM_ABBREVIATION) %>%
         summarise(mean = mean(home.PTS),
                   var  = var(home.PTS))
 
-away = nba2009_2021 %>%
-        filter(SEASON_ID=='2021') %>%
+away = nba_reg %>%
         group_by(away.TEAM_ABBREVIATION) %>%
         summarise(mean = mean(away.PTS),
                   var  = var(away.PTS))
@@ -265,10 +271,10 @@ $s_D = \sqrt{\sigma^2_H + \sigma^2_A}$
 \ecenter
 
 ```{r}
-(mean = home$mean[home$home.TEAM_ABBREVIATION=="WAS"]-
+(mean = home$mean[home$home.TEAM_ABBREVIATION=="WSH"]-
   away$mean[away$away.TEAM_ABBREVIATION=="DAL"])
 
-(sd = sqrt(home$var[home$home.TEAM_ABBREVIATION=="WAS"]+
+(sd = sqrt(home$var[home$home.TEAM_ABBREVIATION=="WSH"]+
   away$var[away$away.TEAM_ABBREVIATION=="DAL"]))
 ```
 
@@ -330,7 +336,7 @@ probs = function(data, home, away, spread=0){
   mean_away = away_df$mean[away_df$away.TEAM_ABBREVIATION==away]
   mean_diff = mean_home-mean_away
   var_home = home_df$var[home_df$home.TEAM_ABBREVIATION==home]
-  var_away = away_df$var[home_df$home.TEAM_ABBREVIATION==away]
+  var_away = away_df$var[away_df$away.TEAM_ABBREVIATION==away]
   sd_diff = sqrt(var_home+var_away)
   df = data.frame(pnorm(spread, mean_diff, sd_diff, lower.tail = F),
                    pnorm(spread, mean_diff, sd_diff))
@@ -342,7 +348,7 @@ probs = function(data, home, away, spread=0){
 ## Predicting with distributions
 
 ```{r}
-probs(home_away, home="WAS", away="DAL", 0)
+probs(home_away, home="WSH", away="DAL", 0)
 ```
 
 
@@ -369,13 +375,13 @@ head(f_data_sm)
 
 ## Predicting football games results
 
-### Full time total goals distribution for Serie A, Season 2021-2022
+### Full time total goals distribution for Serie A, Season 2025-2026
 
 ```{r}
 f_data_sm %>%
-  filter(COUNTRY=="Italy", SEASON=="2022") %>%
+  filter(COUNTRY=="Italy", SEASON=="2026") %>%
 ggplot(aes(x=FTTG))+geom_bar()+
-ggtitle("Full time goals distribution for Serie A-2022")
+ggtitle("Full time goals distribution for Serie A-2026")
 ```
 
 
@@ -384,9 +390,9 @@ ggtitle("Full time goals distribution for Serie A-2022")
 ### Distribution of home team full time goals
 ```{r}
 f_data_sm %>%
-  filter(COUNTRY=="Italy", SEASON=="2022") %>%
+  filter(COUNTRY=="Italy", SEASON=="2026") %>%
 ggplot(aes(x=FTHG))+geom_bar()+
-ggtitle("Full time home team goals distribution for Serie A- 2022")
+ggtitle("Full time home team goals distribution for Serie A- 2026")
 ```
 
 ## Predicting football games results
@@ -397,7 +403,7 @@ First find the $\lambda$ (average number of goals per game)
 
 ```{r}
 f_data_sm %>%
-  filter(COUNTRY=="Italy", SEASON=='2022') %>%
+  filter(COUNTRY=="Italy", SEASON=='2026') %>%
   summarise(mean(FTTG))
 ```
 
@@ -425,7 +431,7 @@ We will test the hypothesis with Chi-square test: thus comparing empirical proba
 
 ```{r}
 (seriea = f_data_sm %>%
-          filter(COUNTRY=="Italy", SEASON=="2022") %>%
+          filter(COUNTRY=="Italy", SEASON=="2026") %>%
           group_by(FTHG) %>%
           summarise(count = n()) %>%
           as.data.frame())
@@ -443,7 +449,7 @@ First create a vector with observed relative frequencies
 
 ```{r}
 (h_goals_mean_italy <- (f_data_sm %>%
-                        filter(COUNTRY=="Italy", SEASON=="2022") %>%
+                        filter(COUNTRY=="Italy", SEASON=="2026") %>%
                           summarize(mean(FTHG)))$`mean(FTHG)`)
 ```
 
@@ -459,14 +465,14 @@ Then create expected relative frequencies (probabilities), under the assumption 
 Is there a significant difference between these two ?
 
 ```{r}
-chisq.test(rel_fr, p=probs, rescale.p = T, simulate.p.value = TRUE) 
-```
+chisq.test(rel_fr, p=probs, rescale.p = T, simulate.p.value = TRUE)
 
-Large p-value talks in favor for NULL hypothesis, thus we have a Poisson distribution
+```
+High p-value talks in favor for NULL hypothesis, meaning that the observed result is unlikely to happen by chance. We failed to reject the null hypothesis, thus we have a Poisson distribution
 
 ## Predicting football games results
 
-Lazio (Home team) vs. Fiorentina (Away team)
+Lazio (Home team) vs. Fiorentina(Away team)
 
 ```{r echo=F}
 knitr::include_graphics("./images/lazio.png")
@@ -493,13 +499,15 @@ $P(L=0) * P(F=0) + P(L=1) * P(F=1) ...$
 Means ( $\lambda$ parameters) for home and away teams
 
 ```{r}
+data("f_data_sm")
+
 home_means = f_data_sm %>%
-                filter(COUNTRY=="Italy", SEASON=="2022") %>%
+                filter(COUNTRY=="Italy", SEASON=="2026") %>%
                 group_by(HOMETEAM) %>%
                 summarise(mean = mean(FTHG))
 
 away_means = f_data_sm %>%
-                filter(COUNTRY=="Italy", SEASON=="2022") %>%
+                filter(COUNTRY=="Italy", SEASON=="2026") %>%
                 group_by(AWAYTEAM) %>%
                 summarise(mean = mean(FTAG))
 ```
@@ -513,9 +521,9 @@ and for Fiorentina as an away team
 
 ```{r tidy=F}
 
-(lazio = home_means$mean[home_means$HOMETEAM=="Lazio"])
+(Lazio = home_means$mean[home_means$HOMETEAM=="Lazio"])
 
-(fiorentina = away_means$mean[away_means$AWAYTEAM=="Fiorentina"])
+(Fiorentina= away_means$mean[away_means$AWAYTEAM=="Fiorentina"])
 
 ```
 
@@ -527,8 +535,8 @@ Range from 0 to 9
 
 ```{r}
 options(scipen=999)
-goal_probs_lazio=dpois(c(0:9), lambda=lazio)
-goal_probs_fior=dpois(c(0:9), lambda=fiorentina)
+goal_probs_lazio=dpois(c(0:9), lambda=Lazio)
+goal_probs_fiorentina=dpois(c(0:9), lambda=Fiorentina)
 ```
 
 ```{r}
@@ -536,7 +544,7 @@ goal_probs_lazio
 ```
 
 ```{r}
-goal_probs_fior
+goal_probs_fiorentina
 ```
 
 ## Predicting football games results
@@ -545,7 +553,7 @@ Multiplying two vectors of probabilities we will get the matrix of probabilities
 
 ```{r }
 options(width = 300)
-a=goal_probs_lazio %*% t(goal_probs_fior)
+a=goal_probs_fiorentina %*% t(goal_probs_lazio)
 a=round(a, digits=4)
 print(a)
 ```
@@ -587,17 +595,19 @@ colnames(a_df) <- 1:10
 library(knitr)
 library(kableExtra)
 
+# 
+# for(i in 1:(ncol(a_df))){
+#   a_df[i, 2] <- paste0("\\textcolor{red}{\\textbf{", a_df[i,2], "}}")
+#   
+# }
+# 
+# for(i in 1:(ncol(a_df))){
+#   if(i!=2){
+#       a_df[4,i] <- paste0("\\textcolor{red}{\\textbf{", a_df[4,i], "}}")
+#   }
+# }
 
-for(i in 1:(ncol(a_df))){
-  a_df[i, 2] <- paste0("\\textcolor{red}{\\textbf{", a_df[i,2], "}}")
-  
-}
-
-for(i in 1:(ncol(a_df))){
-  if(i!=2){
-      a_df[4,i] <- paste0("\\textcolor{red}{\\textbf{", a_df[4,i], "}}")
-  }
-}
+a_df[4,2] <- paste0("\\textcolor{red}{\\textbf{", a_df[4,2], "}}")
 
 a_df <- cbind((0:9), a_df)
 colnames(a_df) <- c("",0:9)
@@ -632,7 +642,7 @@ kable(a_df, "latex", escape=F)
 
 ## Predicting football games results
 
-Probability of Lazio winning: Sum of all the probabilities in the lower triangle, without diagonal
+Probability of Fiorentina winning: Sum of all the probabilities in the lower triangle, without diagonal
 
 ```{r, echo=F}
 options(kableExtra.latex.load_packages = FALSE) 
@@ -660,7 +670,7 @@ kable(a_df, "latex", escape=F)
 
 ## Predicting football games results
 
-Probability of Fiorentina winning: Sum of all the probabilities in the upper triangle, without diagonal
+Probability of Lazio winning: Sum of all the probabilities in the upper triangle, without diagonal
 
 ```{r, echo=F}
 options(kableExtra.latex.load_packages = FALSE) 
@@ -693,13 +703,13 @@ Probability of game ending in draw
 sum(diag(a))
 ```
 
-Probability of Lazio winning
+Probability of Fiorentina winning
 
 ```{r}
 sum(a[lower.tri(a, diag=F)])
 ```
 
-Probability of Fiorentina winning
+Probability of Lazio winning
 
 ```{r}
 sum(a[upper.tri(a, diag=F)])
@@ -715,8 +725,8 @@ sum(a[upper.tri(a, diag=F)])
 
 Library for skellam distribution
 
-```{r, eval=F}
-install.packages("VGAM")
+```{r}
+if (!requireNamespace("VGAM", quietly = TRUE)) install.packages("VGAM")
 library(VGAM)
 ```
 
@@ -727,8 +737,7 @@ Histogram for goal difference
 \tiny
 ```{r}
 set.seed(1)
-# lazio = 2.21 fiorentina = 1.10
-k = rskellam(10000,mu1=lazio, mu2=fiorentina) 
+k = rskellam(10000,mu1=Lazio, mu2=Fiorentina) 
 ggplot()+geom_bar(aes(x=k))+
   labs(x="Goal difference", title="Skellam distribution for goal difference")
 ```
@@ -772,7 +781,7 @@ sum(k<0)/10000
 
 * Tottenham playing Leeds United (2002).
 * Looking at the goal supremacy (goal difference) for each team for their last 6 games
-* Bothe teams will have Goal supremacy rating (we will call it Power Rating) of -3 
+* Both teams will have Goal supremacy rating (we will call it Power Rating) of -3 
 * What will be your best guess for probability of Tottenham to win? Draw ?
 
 ```{r echo=F}
@@ -809,114 +818,187 @@ data(f_data_sm)
 england = f_data_sm %>%
   filter(COUNTRY == "England") %>%
   arrange(DATE) %>%
-  select("SEASON","DATE","HOMETEAM",  "AWAYTEAM","FTHG", "FTAG")%>%
+  select("SEASON","DATE","HOMETEAM","AWAYTEAM","FTHG", "FTAG")%>%
   mutate(ID = 1:n())
 ```
 
-reshape the data into long format
-
-```{r, tidy=F}
-england_long = england %>% reshape2::melt(
-          id.vars = c("ID","HOMETEAM",  "AWAYTEAM",  "SEASON", "DATE"), 
-          measure.vars = c("FTHG", "FTAG"), variable.name="H_A") %>% 
-          arrange(ID)
-  
-
-england_long = england_long[order(england_long$ID),]
-rownames(england_long) = NULL
-```
 
 ## Predicting with Ratings
 
-New dataset
+Reshape to long format: one row per team in each game
 
 ```{r}
-head(england_long)
-```
-
-## Predicting with Ratings
-
-Make changes in H_A variable
-
-
-```{r, tidy=F}
-england_long$TEAM1 = ifelse(england_long$H_A =='FTAG', 
-                             england_long$AWAYTEAM, england_long$HOMETEAM)
-
-england_long$TEAM2 = ifelse(england_long$H_A =='FTAG', 
-                             england_long$HOMETEAM, england_long$AWAYTEAM)
-
-england_long = england_long %>% 
+# Vectorized last-6 power ratings (same idea as a game-by-game loop, much faster)
+england_long <- reshape2::melt(
+  england,
+  id.vars = c("ID", "HOMETEAM", "AWAYTEAM", "SEASON", "DATE"),
+  measure.vars = c("FTHG", "FTAG"),
+  variable.name = "H_A"
+) %>%
+  arrange(ID) %>%
+  mutate(
+    TEAM1 = ifelse(H_A == "FTAG", AWAYTEAM, HOMETEAM),
+    TEAM2 = ifelse(H_A == "FTAG", HOMETEAM, AWAYTEAM)
+  ) %>%
   select(ID, SEASON, DATE, TEAM1, TEAM2, H_A, value)
 ```
 
 ## Predicting with Ratings
-```{r}
-head(england_long)
-```
 
-
-## Predicting with Ratings
-
-* Calculate the scored and conceded goals for the last 6 games per season for each team
-* rollapply from zoo and lag from dplyr are used here
-* At the end change the class of the object back to dataframe (from tibble that is
-default for dplyr)
+For each team, goals scored and conceded in the last 6 games of the same season
 
 ```{r}
-england_long1 = england_long %>%
-group_by(SEASON, TEAM1) %>%
-mutate(CUM_SC = dplyr::lag(rollapply(value,6,sum, fill=NA, align='right'),1)) %>%
-ungroup() %>%
-group_by(SEASON, TEAM2) %>%
-mutate(CUM_C = dplyr::lag(rollapply(value,6,sum, fill=NA, align='right'),1)) %>%
-filter(CUM_SC != "NA") %>% as.data.frame()
+england_long1 <- england_long %>%
+  group_by(SEASON, TEAM1) %>%
+  mutate(CUM_SC = dplyr::lag(
+    zoo::rollapply(value, 6, sum, fill = NA, align = "right"), 1)) %>%
+  ungroup() %>%
+  group_by(SEASON, TEAM2) %>%
+  mutate(CUM_C = dplyr::lag(
+    zoo::rollapply(value, 6, sum, fill = NA, align = "right"), 1)) %>%
+  ungroup() %>%
+  filter(!is.na(CUM_SC), !is.na(CUM_C)) %>%
+  select(ID, H_A, value, CUM_SC, CUM_C) %>%
+  as.data.frame()
 ```
 
 ## Predicting with Ratings
 
-Important:
-Round 7 game Arsenal vs Ipswich.  
-
-* In last 6 games Arsenal scored 7 goals and conceded 5  
-
-* In last 6 games Ipswich scored 7 and conceded 3
+Reshape back to wide format: one row per game again
 
 ```{r}
-head(england_long1)
+england_wide <- reshape(
+  england_long1,
+  direction = "wide",
+  timevar = "H_A",
+  idvar = "ID",
+  v.names = c("value", "CUM_SC", "CUM_C")
+)
 ```
 
 ## Predicting with Ratings
 
-Get back to wide format
+Calculate `POWERHOME`, `POWERAWAY`, `POWERDIFF` and `RESULT`
 
 ```{r}
-england_wide = reshape(england_long1, direction="wide",
-                          timevar = "H_A", idvar = "ID", 
-                          v.names=c("value", "CUM_SC", "CUM_C"))
+england <- england %>%
+  inner_join(england_wide, by = "ID") %>%
+  mutate(
+    POWERHOME = CUM_SC.FTHG - CUM_C.FTAG,
+    POWERAWAY = CUM_SC.FTAG - CUM_C.FTHG,
+    POWERDIFF = POWERHOME - POWERAWAY,
+    RESULT = ifelse(FTHG > FTAG, "HW",
+                    ifelse(FTHG < FTAG, "AW", "D"))
+  ) %>%
+  select(SEASON, DATE, HOMETEAM, AWAYTEAM, FTHG, FTAG,
+         POWERHOME, POWERAWAY, POWERDIFF, RESULT) %>%
+  filter(!is.na(POWERDIFF))
 ```
 
-```{r}
-options(width=80)
-head(england_wide)
-```
+<!-- reshape the data into long format -->
 
-## Predicting with Ratings
+<!-- ```{r, tidy=F} -->
+<!-- england_long = england %>% reshape2::melt( -->
+<!--           id.vars = c("ID","HOMETEAM","AWAYTEAM","SEASON", "DATE"),  -->
+<!--           measure.vars = c("FTHG", "FTAG"), variable.name="H_A") %>%  -->
+<!--           arrange(ID) -->
 
-Calculate POWERHOME, POWERAWAY and POWERDIFF and RESULT
+<!-- england_long = england_long[order(england_long$ID),] -->
+<!-- rownames(england_long) = NULL -->
+<!-- ``` -->
 
-```{r, tidy=F}
-england_wide$POWERHOME = england_wide$CUM_SC.FTHG-england_wide$CUM_C.FTAG
-england_wide$POWERAWAY = england_wide$CUM_SC.FTAG-england_wide$CUM_C.FTHG
-england_wide$POWERDIFF = england_wide$POWERHOME-england_wide$POWERAWAY
+<!-- ## Predicting with Ratings -->
 
-england_wide$RESULT = ifelse(england_wide$value.FTHG>england_wide$value.FTAG,"HW",
-ifelse(england_wide$value.FTHG<england_wide$value.FTAG, "AW", "D"))
+<!-- New dataset -->
 
-england_wide = england_wide %>% 
-  select(SEASON, DATE, TEAM1, TEAM2, value.FTHG,
-                  value.FTAG, POWERHOME, POWERAWAY, POWERDIFF, RESULT)
-```
+<!-- ```{r} -->
+<!-- head(england_long) -->
+<!-- ``` -->
+
+<!-- ## Predicting with Ratings -->
+
+<!-- Make changes in H_A variable -->
+
+
+<!-- ```{r, tidy=F} -->
+<!-- england_long$TEAM1 = ifelse(england_long$H_A =='FTAG',  -->
+<!--                              england_long$AWAYTEAM, england_long$HOMETEAM) -->
+
+<!-- england_long$TEAM2 = ifelse(england_long$H_A =='FTAG',  -->
+<!--                              england_long$HOMETEAM, england_long$AWAYTEAM) -->
+
+<!-- england_long = england_long %>%  -->
+<!--   select(ID, SEASON, DATE, TEAM1, TEAM2, H_A, value) -->
+<!-- ``` -->
+
+<!-- ## Predicting with Ratings -->
+<!-- ```{r} -->
+<!-- head(england_long) -->
+<!-- ``` -->
+
+
+<!-- ## Predicting with Ratings -->
+
+<!-- * Calculate the scored and conceded goals for the last 6 games per season for each team -->
+<!-- * rollapply from zoo and lag from dplyr are used here -->
+<!-- * At the end change the class of the object back to dataframe (from tibble that is -->
+<!-- default for dplyr) -->
+
+<!-- ```{r} -->
+<!-- england_long1 = england_long %>% -->
+<!-- group_by(SEASON, TEAM1) %>% -->
+<!-- mutate(CUM_SC = dplyr::lag(rollapply(value,6,sum, fill=NA, align='right'),1)) %>% -->
+<!-- ungroup() %>% -->
+<!-- group_by(SEASON, TEAM2) %>% -->
+<!-- mutate(CUM_C = dplyr::lag(rollapply(value,6,sum, fill=NA, align='right'),1)) %>% -->
+<!-- filter(CUM_SC != "NA") %>% as.data.frame() -->
+<!-- ``` -->
+
+
+<!-- ## Predicting with Ratings -->
+
+<!-- Important: -->
+<!-- Round 7 game Arsenal vs Ipswich.   -->
+
+<!-- * In last 6 games Arsenal scored 7 goals and conceded 5   -->
+
+<!-- * In last 6 games Ipswich scored 7 and conceded 3 -->
+
+<!-- ```{r} -->
+<!-- head(england_long1) -->
+<!-- ``` -->
+
+<!-- ## Predicting with Ratings -->
+
+<!-- Get back to wide format -->
+
+<!-- ```{r} -->
+<!-- england = reshape(england_long1, direction="wide", -->
+<!--                           timevar = "H_A", idvar = "ID",  -->
+<!--                           v.names=c("value", "CUM_SC", "CUM_C")) -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- options(width=80) -->
+<!-- head(england) -->
+<!-- ``` -->
+
+<!-- ## Predicting with Ratings -->
+
+<!-- Calculate POWERHOME, POWERAWAY and POWERDIFF and RESULT -->
+
+<!-- ```{r, tidy=F} -->
+<!-- england$POWERHOME = england$CUM_SC.FTHG-england$CUM_C.FTAG -->
+<!-- england$POWERAWAY = england$CUM_SC.FTAG-england$CUM_C.FTHG -->
+<!-- england$POWERDIFF = england$POWERHOME-england$POWERAWAY -->
+
+<!-- england$RESULT = ifelse(england$value.FTHG>england$value.FTAG,"HW", -->
+<!-- ifelse(england$value.FTHG<england$value.FTAG, "AW", "D")) -->
+
+<!-- england = england %>%  -->
+<!--   select(SEASON, DATE, TEAM1, TEAM2, value.FTHG, -->
+<!--                   value.FTAG, POWERHOME, POWERAWAY, POWERDIFF, RESULT) -->
+<!-- ``` -->
 
 ## Predicting with Ratings
 
@@ -924,8 +1006,8 @@ Take out remaining NA’s
 
 ```{r}
 options(width=80)
-england_wide = england_wide[! is.na(england_wide$POWERDIFF),]
-head(england_wide)
+england = england[! is.na(england$POWERDIFF),]
+head(england)
 ```
 
 ## Predicting with Ratings
@@ -933,7 +1015,8 @@ head(england_wide)
 Now let's calculate the game result frequencies by Match rating (POWERDIFF)
 
 ```{r}
-freqs = dcast(england_wide, POWERDIFF~RESULT)
+freqs = dcast(england, POWERDIFF~RESULT)
+freqs[is.na(freqs)] <- 0
 head(freqs)
 ```
 
@@ -1016,97 +1099,117 @@ modelD = lm(D.1~poly(POWERDIFF,2), data=freqs)
 summary(modelD)
 ```
 
-## Predicting with Ratings
-Using functions to generalize the procedure and change the country by one line.
-\tiny
-```{r}
-pick_country <- function(source = f_data_sm, country) {
-  country <- source %>%
-    filter(COUNTRY == country) %>%
-    arrange(DATE) %>%
-    select("SEASON","DATE","HOMETEAM",  "AWAYTEAM","FTHG", "FTAG")%>%
-    mutate(ID = 1:n())
-  
-  country_long <- reshape2::melt(country, 
-                                 id.vars = c("ID","HOMETEAM",  "AWAYTEAM",  "SEASON", "DATE"), 
-                                 measure.vars = c("FTHG", "FTAG"), variable.name="H_A")
-  country_long <- country_long %>%
-    arrange(ID)
-  return(list(wide = country,
-              long = country_long))
-}
+# In-class assignment
 
-prepare_long <- function(data){
-  modified <- data %>%
-    mutate(TEAM1 = ifelse(H_A == "FTHG", HOMETEAM, AWAYTEAM),
-           TEAM2 = ifelse(TEAM1 == HOMETEAM, AWAYTEAM, HOMETEAM)) %>%
-    select(c("ID","SEASON","DATE", "TEAM1","TEAM2", "H_A","value"))
-  return(modified)
-}
-```
+## In-class assignment
 
-## Predicting with Ratings
-\tiny
-```{r}
-goals_scored_conceded <- function(data, n) {
-  data_long <- data %>%
-    group_by(SEASON, TEAM1) %>%
-    mutate(CUM_SC = lag(rollapply(value,n,sum, fill=NA, align='right'),1)) %>%
-    ungroup() %>%
-    group_by(SEASON, TEAM2) %>%
-    mutate(CUM_C = lag(rollapply(value,n,sum, fill=NA, align='right'),1)) %>%
-    filter(CUM_SC != "NA")
-  data_long <- as.data.frame(data_long)
-  
-  data_wide <- reshape(data_long, direction="wide",
-                          timevar = "H_A", idvar = "ID", 
-                          v.names=c("value", "CUM_SC", "CUM_C"))
-  return(list(long = data_long,
-              wide = data_wide))
-}
+\bcenter
+**TIME FOR IN CLASS ACTIVITY !**
+\ecenter
 
-get_power_diff <- function(data){
-  data$POWERHOME <- data$CUM_SC.FTHG-data$CUM_C.FTAG
-  data$POWERAWAY <- data$CUM_SC.FTAG-data$CUM_C.FTHG
-  data$POWERDIFF <- data$POWERHOME-data$POWERAWAY
-  result <- data %>%
-    mutate(RESULT = ifelse(value.FTHG > value.FTAG, "HW", 
-                           ifelse(value.FTHG < value.FTAG, "AW", "D" ) )) %>%
-    select(c("SEASON","DATE","TEAM1","TEAM2","value.FTHG",
-             "value.FTAG","POWERHOME", "POWERAWAY","POWERDIFF", "RESULT"))
-  result <- result[!is.na(result$POWERDIFF),]
-  return(result)
-}
-```
+* Pick an arbitrary football game from last season (`SEASON == 2026` in `f_data_sm`).
+  * A mid-season game is better: both teams then have previous matches in the same season.
+* **Distribution approach:** using only same-season games **before** the match you picked, estimate $\lambda$ for the home and away teams. Build the Poisson score matrix (or use Skellam) and get P(home win), P(draw), P(away win).
+* **Power difference approach:** compute last-6 goal supremacy for each team, then `POWERDIFF`. Read P(home win), P(draw), P(away win) from the frequency table or the fitted models.
 
-## Predicting with Ratings
+## In-class assignment
 
-```{r}
-build_models <- function(freqs) {
-  modelH <- lm(HW.1 ~ POWERDIFF, data = freqs)  
-  modelA <- lm(AW.1 ~ POWERDIFF, data = freqs)
-  modelD <- lm(D.1 ~ POWERDIFF, data = freqs)
-  modelD_2 <- lm(D.1 ~ poly(POWERDIFF, 2), data = freqs)
-  
-  return(list(H = modelH,
-              A = modelA,
-              D = modelD,
-              D_2 = modelD_2))
-}
+* Compare both sets of probabilities with
+  * the **actual result** of the game
+  * the **pre-game odds** (`H`, `D`, `A` in `f_data_sm` are Bet365 decimal odds; convert to probabilities if you like, $p = 1/\text{odds}$, optionally normalize so they sum to 1)
+* Which approach was closer to the bookmaker? Which one matched the actual result?
 
-get_final_df_by_country <- function(data, country){
-  final_df <- pick_country(source = data, country = country)$wide
-  final_df_long <- pick_country(source = data, country = country)$long
-  final_df_long <- prepare_long(data = final_df_long)
-  final_df_long_1 <- goals_scored_conceded(data = final_df_long, n = 6)$long
-  final_df_wide <- goals_scored_conceded(data = final_df_long, n = 6)$wide
-  final_df_wide <- get_power_diff(data = final_df_wide)
-}
-```
+<!-- ## Predicting with Ratings -->
+<!-- Using functions to generalize the procedure and change the country by one line. -->
+<!-- \tiny -->
+<!-- ```{r} -->
+<!-- pick_country <- function(source = f_data_sm, country) { -->
+<!--   country <- source %>% -->
+<!--     filter(COUNTRY == country) %>% -->
+<!--     arrange(DATE) %>% -->
+<!--     select("SEASON","DATE","HOMETEAM",  "AWAYTEAM","FTHG", "FTAG")%>% -->
+<!--     mutate(ID = 1:n()) -->
 
-## Predicting with Ratings
-```{r}
-italy_power_ratings <- get_final_df_by_country(f_data_sm, "Italy")
-freqs <- dcast(italy_power_ratings, POWERDIFF~RESULT)
-head(freqs)
-```
+<!--   country_long <- reshape2::melt(country,  -->
+<!--                                  id.vars = c("ID","HOMETEAM",  "AWAYTEAM",  "SEASON", "DATE"),  -->
+<!--                                  measure.vars = c("FTHG", "FTAG"), variable.name="H_A") -->
+<!--   country_long <- country_long %>% -->
+<!--     arrange(ID) -->
+<!--   return(list(wide = country, -->
+<!--               long = country_long)) -->
+<!-- } -->
+
+<!-- prepare_long <- function(data){ -->
+<!--   modified <- data %>% -->
+<!--     mutate(TEAM1 = ifelse(H_A == "FTHG", HOMETEAM, AWAYTEAM), -->
+<!--            TEAM2 = ifelse(TEAM1 == HOMETEAM, AWAYTEAM, HOMETEAM)) %>% -->
+<!--     select(c("ID","SEASON","DATE", "TEAM1","TEAM2", "H_A","value")) -->
+<!--   return(modified) -->
+<!-- } -->
+<!-- ``` -->
+
+<!-- ## Predicting with Ratings -->
+<!-- \tiny -->
+<!-- ```{r} -->
+<!-- goals_scored_conceded <- function(data, n) { -->
+<!--   data_long <- data %>% -->
+<!--     group_by(SEASON, TEAM1) %>% -->
+<!--     mutate(CUM_SC = lag(rollapply(value,n,sum, fill=NA, align='right'),1)) %>% -->
+<!--     ungroup() %>% -->
+<!--     group_by(SEASON, TEAM2) %>% -->
+<!--     mutate(CUM_C = lag(rollapply(value,n,sum, fill=NA, align='right'),1)) %>% -->
+<!--     filter(CUM_SC != "NA") -->
+<!--   data_long <- as.data.frame(data_long) -->
+
+<!--   data_wide <- reshape(data_long, direction="wide", -->
+<!--                           timevar = "H_A", idvar = "ID",  -->
+<!--                           v.names=c("value", "CUM_SC", "CUM_C")) -->
+<!--   return(list(long = data_long, -->
+<!--               wide = data_wide)) -->
+<!-- } -->
+
+<!-- get_power_diff <- function(data){ -->
+<!--   data$POWERHOME <- data$CUM_SC.FTHG-data$CUM_C.FTAG -->
+<!--   data$POWERAWAY <- data$CUM_SC.FTAG-data$CUM_C.FTHG -->
+<!--   data$POWERDIFF <- data$POWERHOME-data$POWERAWAY -->
+<!--   result <- data %>% -->
+<!--     mutate(RESULT = ifelse(value.FTHG > value.FTAG, "HW",  -->
+<!--                            ifelse(value.FTHG < value.FTAG, "AW", "D" ) )) %>% -->
+<!--     select(c("SEASON","DATE","TEAM1","TEAM2","value.FTHG", -->
+<!--              "value.FTAG","POWERHOME", "POWERAWAY","POWERDIFF", "RESULT")) -->
+<!--   result <- result[!is.na(result$POWERDIFF),] -->
+<!--   return(result) -->
+<!-- } -->
+<!-- ``` -->
+
+<!-- ## Predicting with Ratings -->
+
+<!-- ```{r} -->
+<!-- build_models <- function(freqs) { -->
+<!--   modelH <- lm(HW.1 ~ POWERDIFF, data = freqs)   -->
+<!--   modelA <- lm(AW.1 ~ POWERDIFF, data = freqs) -->
+<!--   modelD <- lm(D.1 ~ POWERDIFF, data = freqs) -->
+<!--   modelD_2 <- lm(D.1 ~ poly(POWERDIFF, 2), data = freqs) -->
+
+<!--   return(list(H = modelH, -->
+<!--               A = modelA, -->
+<!--               D = modelD, -->
+<!--               D_2 = modelD_2)) -->
+<!-- } -->
+
+<!-- get_final_df_by_country <- function(data, country){ -->
+<!--   final_df <- pick_country(source = data, country = country)$wide -->
+<!--   final_df_long <- pick_country(source = data, country = country)$long -->
+<!--   final_df_long <- prepare_long(data = final_df_long) -->
+<!--   final_df_long_1 <- goals_scored_conceded(data = final_df_long, n = 6)$long -->
+<!--   final_df_wide <- goals_scored_conceded(data = final_df_long, n = 6)$wide -->
+<!--   final_df_wide <- get_power_diff(data = final_df_wide) -->
+<!-- } -->
+<!-- ``` -->
+
+<!-- ## Predicting with Ratings -->
+<!-- ```{r} -->
+<!-- italy_power_ratings <- get_final_df_by_country(f_data_sm, "Italy") -->
+<!-- freqs <- dcast(italy_power_ratings, POWERDIFF~RESULT) -->
+<!-- head(freqs) -->
+<!-- ``` -->

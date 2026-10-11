@@ -42,6 +42,7 @@ library(ggplot2)
 library(VGAM)
 library(zoo)
 library(tidyr)
+# remotes::install_github("Habet/CSE270")
 ```
 
 
@@ -333,8 +334,8 @@ The NHL's Montreal Canadiens were the first team to track the plus \- minus of i
 ## Plus/minus for NBA
 
 ```{r, echo=F}
-load("./data/nba12.rda")
-load("./data/nba12p.rda")
+data(nba12, package = "SportsAnalytics270")
+data(nba12p, package = "SportsAnalytics270")
 library(SportsAnalytics270)
 library(dplyr)
 library(ggplot2)
@@ -562,11 +563,11 @@ nba5 <- as.data.frame(do.call(cbind,nba5))
 ## Adjusted plus/minus
 
 ```{r, echo  = F}
-load("./data/nba5.rda")
+data(nba5, package = "SportsAnalytics270")
 ```
 
 ```{r, eval  = F}
-load("nba5.rda")
+data(nba5, package = "SportsAnalytics270")
 ```
 
 ```{r}
@@ -604,11 +605,11 @@ name1<-as.data.frame(name1)
 Corresponding dataframe with player level information
 
 ```{r, echo = F}
-load("./data/nba12p.rda")
+data(nba12p, package = "SportsAnalytics270")
 ```
 
 ```{r, eval = F}
-load('nba12p.rda')
+data(nba12p, package = "SportsAnalytics270")
 ```
 
 
@@ -861,7 +862,7 @@ The value of X varies for different analyses, most often 5 and 10.
 ## Weighted regression
 
 ```{r, echo = F}
-load("./data/nba12.rda")
+data(nba12, package = "SportsAnalytics270")
 ```
 
 
