@@ -1,7 +1,7 @@
 ---
 title: "CSE 270 Sports Analytics"
 subtitle: "Regresion to the mean"
-author: "Habet Madoyan"
+author: "Narek Sahakyan, Habet Madoyan"
 
 fontsize: 8pt
 output:
@@ -546,6 +546,9 @@ ggplot(nfl_s, aes(Season, NS))+geom_bar(stat="identity")+
   
 ```
 
+* 1998-2025: the number runs from about 1.3 to 1.75
+* The red line is the mean, about 1.56
+* The NFL is about one and a half times as spread out as a coin-flip season
 
 # Previous studies
 
@@ -625,7 +628,9 @@ CI4 for championship
 100*sum(champ_c[1:4,2])/sum(champ_c$champ)
 ```
 
-If you take CI5 the concentration index is going to be 100%
+* Juventus won 16 of these titles
+* The top four clubs won about 93 percent
+* A high championship CI means long-run balance is low
 
 # Herfindahl-Hirschman Index - HHI
 
@@ -679,6 +684,12 @@ $HHI = \sum_{\text{i=1}}^{n} (\frac{p_i}{ \sum_{\text{i=1}}^{n}p_i})^2$
 
 $p_i$ is the number of the points the team has earned.
 
+* $p_i / \sum p_i$ is team $i$'s share of all points that season
+* Square the shares, then add them
+* Every team level on points: each share is $1/n$, so $HHI = 1/n$
+* One team takes every point: $HHI = 1$
+* A lower HHI means the points are more spread out
+
 # Doing it in R: Serie A
 
 ```{r}
@@ -707,6 +718,12 @@ seriea_st %>%
       group_by(Season) %>%
       summarise(count=n())
 ```
+
+* 1996-2004: 18 teams, so equal points means $HHI = 1/18 \approx 0.056$
+* From 2005: 20 teams, so equal points means $HHI = 1/20 = 0.05$
+* A smaller raw HHI can be the extra clubs, not a closer season
+* 2018 has 40 rows in this file. Do not read that bar as a real change in balance
+
 # Adjusted HHI
 
 Increasing number of the teams affects lower bound (in some cases upper bound as well)  
@@ -714,6 +731,11 @@ Increasing number of the teams affects lower bound (in some cases upper bound as
 \bcenter
 $dHHI = \sum_{\text{i=1}}^n w_i^2 - 1/n$
 \ecenter
+
+* $1/n$ is the HHI of a perfectly even season
+* Subtract it, and a perfectly even season scores 0
+* A lower dHHI means a more balanced season
+* Use it when $n$ changes. Raw HHI does not survive the move from 18 teams to 20
 
 # Adjusted HHI
 
@@ -729,10 +751,18 @@ dHHI<-seriea_st %>%
 dHHI 
 
 \tiny
-```{r,fig.height=5}
-ggplot(dHHI, aes(Season, HHI))+geom_bar(stat="identity")+
-  ggtitle("dHHI index by season")
+```{r, fig.height=4.2}
+ggplot(dHHI %>% filter(Season != 2018), aes(Season, HHI)) +
+  geom_col() +
+  geom_hline(yintercept = 0, col = "red", size = 1.5) +
+  coord_cartesian(ylim = c(-0.001, 0.009)) +
+  labs(y = "dHHI",
+       title = "dHHI by season. The red line is 0, an even season")
 ```
+
+* Nothing is wrong with the zero. An even season scores 0, and Serie A is only about 0.003 to 0.007 above it
+* The bars look tall because the axis is that small gap. Raw HHI is near 0.05, and $1/n$ has already been subtracted
+* 2018 is left off the chart. That season has 40 rows in the file
 
 # HHI defined by Depken
 
@@ -764,7 +794,11 @@ $HHI = \frac{4}{N^2G^2} \sum_{\text{i=1}}^n (wins_i)^2$
 
 Source: Free-Agency and the Competitiveness of Major League Baseball, CRAIG A. DEPKEN, II, Review of Industrial Organization, Vol. 14, No. 3 (May 1999), pp. 205-217
 
-
+* Each game produces one win, so the league's wins total $NG/2$
+* $2 \times wins_i / (NG)$ is team $i$'s share of those wins
+* Every team wins half its games: $HHI = 1/N$
+* For 30 MLB clubs that floor is $1/30 \approx 0.033$. That is the red line
+* The formula needs the same $G$ for every club. The 2020 season was 60 games, so leaving 162 in the formula makes 2020 look far too balanced
 
 # Major League of Baseball: dataset
 
@@ -832,11 +866,8 @@ mlb_s<-mlb_salary %>%
 ```
 
 ```{r}
-mlb_HHI
-```
-
-```{r}
-cor(mlb_s$Tot.salary, mlb_HHI$HHI)
+both <- inner_join(mlb_s, mlb_HHI, by = "Season")
+cor(both$Tot.salary, both$HHI)
 ```
 
 # MLB: Salaries
@@ -850,7 +881,8 @@ mlb_s<-mlb_salary %>%
 ```
 
 ```{r}
-cor(mlb_s$SD, mlb_HHI$HHI)
+both <- inner_join(mlb_s, mlb_HHI, by = "Season")
+cor(both$SD, both$HHI)
 ```
 
 # MLB: Salaries
@@ -867,7 +899,21 @@ mlb_HHI_s<-mlb_salary %>%
 Correlations for HHI_S and HHI
 
 ```{r}
-cor(mlb_HHI_s$HHI_S, mlb_HHI$HHI)
+both <- inner_join(mlb_HHI_s, mlb_HHI, by = "Season")
+cor(both$HHI_S, both$HHI)
+```
+
+* Total payroll rises over time, so its correlation with win HHI is mostly that trend
+* Salary HHI asks whether the money and the wins concentrated in the same seasons
+
+# MLB: Salaries
+
+```{r, echo=FALSE, fig.width=7, fig.height=3.4, out.height="0.72\\textheight", fig.align="center"}
+ggplot(both, aes(HHI_S, HHI)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(x = "Salary HHI", y = "Win HHI",
+       title = "Payroll concentration and win concentration")
 ```
 
 # Short run competitiveness
@@ -896,9 +942,9 @@ head(f_2009)
 
 # Match Outcome uncertainty
 
-* We need to convert odds to prboabilities
-* We also need to have vig (“vigorish”) free probabilities, thus probabilities that sums
-to 1.
+* We need to convert odds to probabilities
+* We also need vig-free probabilities, so the three chances sum to 1
+* The vig is the bookmaker's margin built into the odds
 * Try library odds.converter
 
 ```{r}
@@ -906,6 +952,21 @@ to 1.
 sum(x)
 
 ```
+
+# Match Outcome uncertainty
+
+**Brier score.** Average squared distance between the probabilities and what happened.
+
+\bcenter
+$BS = \frac{1}{M}\sum_{m=1}^{M}\sum_{k=1}^{3}(p_{mk} - o_{mk})^2$
+\ecenter
+
+* $p_{mk}$: vig-free probability of home, draw, or away
+* $o_{mk}$: 1 if that result happened, 0 if it did not
+* A result that was certain, and then happens, scores 0
+* A match called 1/3, 1/3, 1/3 scores $2/3 \approx 0.67$
+* A heavy favorite, 0.8 / 0.1 / 0.1, scores 0.06 if that favorite wins
+* A higher Brier score means the matches were harder to call
 
 # Match Outcome uncertainty
 
@@ -962,5 +1023,37 @@ ggplot(brier_score, aes(x=SEASON, y=SCORE))+
   geom_bar(stat='identity',position=position_dodge(width=1))+
   facet_grid(~COUNTRY)+ coord_flip()+ggtitle("Brier Score by Country")
 ```
+
+# How to read the numbers
+
+Read the pair. $\downarrow\ \downarrow$ means a lower number is less competitive. $\downarrow\ \uparrow$ means a lower number is more competitive.
+
+\tiny
+
+| Metric | Number | Competitiveness |
+|---|---|---|
+| SD of points or win percent | $\downarrow$ | $\uparrow$ |
+| Noll-Scully | $\downarrow$ | $\uparrow$ |
+| C5, top-5 share of points | $\downarrow$ | $\uparrow$ |
+| Championship CI | $\downarrow$ | $\uparrow$ |
+| 1 minus C5 | $\downarrow$ | $\downarrow$ |
+
+Ideal SD, $0.5/\sqrt{m}$, is not a competitiveness score. A shorter season makes it larger.
+
+# How to read the numbers
+
+Read the pair. $\downarrow\ \downarrow$ means a lower number is less competitive. $\downarrow\ \uparrow$ means a lower number is more competitive.
+
+\tiny
+
+| Metric | Number | Competitiveness |
+|---|---|---|
+| HHI | $\downarrow$ | $\uparrow$ |
+| dHHI | $\downarrow$ | $\uparrow$ |
+| Depken HHI | $\downarrow$ | $\uparrow$ |
+| Brier score | $\downarrow$ | $\downarrow$ |
+| Salary HHI | $\downarrow$ | $\uparrow$ |
+
+Salary HHI is payroll equality, not the league table. A lower salary HHI means the money is more spread out.
 
 
