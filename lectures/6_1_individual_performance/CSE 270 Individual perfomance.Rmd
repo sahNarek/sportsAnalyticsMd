@@ -57,21 +57,15 @@ https://www.youtube.com/watch?v=wYjp2zoqQrs
 
 ## NBA Individual Power Ratings
 
-5 main positions on the field.
+Five positions. Vote on which box-score column belongs to each one before the next slide.
 
-* Center - On offense, the center tries to score on close shots and rebound. But on defence, the center tries to block opponents’ shots and rebound their misses.  
+* Center: close shots, rebounds, blocks
+* Power forward: the same area, with longer shots
+* Small forward: both ends of the floor
+* Point guard: runs the offense, defends the ball, steals
+* Shooting guard: long shots and the dribble
 
-* Power Forward - The power forward does many of the things a center does, playing near the basket while rebounding and defending taller players. But power forwards also take longer shots than centers.  
-
-* Small Forward - The small forward plays against small and large players. They roam all over on the court. Small forwards can score from long shots and close ones.  
-
-* Point Guard - The point guard runs the offense.The point guard defends the opponent’s point guard and tries to steal the ball.  
-
-* Shooting Guard - The shooting guard can make shots from long distance and also is a good dribbler.
-
-Let's watch a short video,  
-
-https://www.youtube.com/watch?v=4_4CymXARWQ
+Short video: https://www.youtube.com/watch?v=4_4CymXARWQ
 
 ## NBA Individual Power Ratings
 
@@ -81,15 +75,16 @@ knitr::include_graphics("./images/Basketball_Positions.png")
 
 ## NBA Individual Power Ratings
 
-Defining attributes for each position.
+What, other than height, would you use to place a player?
 
-* Center - The center is the tallest player on each team, playing near the basket.
-* Power Forward - The power forward is very close to center player, but in this position they should also have good shooting attributes.
-* Small Forward - The small forward should have good shooting efficiency in close and far distances.
-* Point Guard - The point guard should have good defending characteristics.
-* Shooting Guard - The shooting guard should have good dribbling attributes and shooting accuracy in long ranges.
 
-What measures other than the height and shooting can be used to position the players on the field ?
+## NBA Individual Power Ratings
+
+* Center and power forward: blocks and defensive rebounds
+* Point guard: assists and steals
+* Wings: three-point attempts and makes
+
+Guess first. The box score is the check.
 
 ## NBA Individual Power Ratings
 
@@ -111,43 +106,41 @@ https://www.youtube.com/shorts/I4MDXOWrUmk
 
 ## NBA Individual Power Ratings
 
-### Dataset
+### Dataset: `nba_players`
 
-`nba_players` runs through the 2024-25 season. `Year` is the season ending year, so 2025 is that season.
+Season box scores from Basketball-Reference, through 2024-25. One row is one player-season. `Year` is the season ending year, so 2025 is 2024-25.
 
 ```{r, include = F}
 data("nba_players")
-# Year is the season ending year. 2025 is the 2024-25 season.
 stopifnot(max(nba_players$Year, na.rm = TRUE) >= 2025)
 nba_players <- nba_players %>%
   filter(Year > 1997, Year <= 2025)
 ```
 
-\tiny
-```{r}
-str(nba_players)
-```
+* Identity: `Year`, `Player`, `Pos`, `Tm`
+* Time: `G` games, `GS` starts, `MP` minutes
+* Defense: `STL`, `TOV`, `DRB`, `BLK`, `PF`
+* Offense: `PTS`, `AST`, `ORB`, `FG`/`FGA`, `X3P`/`X3PA`, `FT`/`FTA`
+* Rates end with a dot: `FG.` is field-goal percentage
 
-
-## NBA Individual Power Ratings
-
-Let's select the performance metrics.
-
-```{r}
+```{r, include=FALSE}
 nba_players <- nba_players %>%
-  select(Year, Player, Pos,
+  select(Year, Player, Pos, Tm,
          G, GS, MP, STL, TOV, ORB, DRB, PF, BLK, PTS, AST,
          FT, FTA, FG, FGA, X3P, X3PA, X2P, X2PA, ORB., DRB.,
          TRB., AST., STL., BLK., TOV., FG., X3P., FT.,) %>%
-  arrange(Player, Year) 
-head(nba_players, 3)
+  arrange(Player, Year)
 ```
 
 ## NBA Individual Power Ratings
 
-Let's try to evaluate the player's performance based on the amount of time they spent on the field.  
-We will use the players' historical data to measure their performance for each Year, by taking 5 preceding Years only in order to avoid one Year stars.
-We will use success/failure approach by dividing the metrics of the players into successful and non-succesfull actions and then compare their success rate with their playing Minutes.
+Counting totals is not a rating.
+
+* A total grows when a player stays on the floor
+* Points and minutes move together for that reason
+* Dividing by minutes asks what he did per minute
+
+The next slides use one season of totals on purpose, so the trap is visible. They are not a five-year average, and they are not a success rate.
 
 ## NBA Individual Power Ratings
 
@@ -238,10 +231,11 @@ summary(lm(MP ~ (STL_TOV + STL_PF + DRB_TOV + BLK_PF ), data = nba_players_defen
 
 ## NBA Individual Power Ratings
 
+Read the defense regression as playing time, not as a cause.
 
-* Majority of the players make many fouls, but still play relatively often if they make more steals.
-* Having more turnovers mostly causes less playing practice.
-* Having more defensive rebounds and steals can improve player's playing practice.
+* Season totals grow with minutes, so the correlations are expected
+* More rebounds do not, by themselves, "earn" more minutes
+* A rating has to divide by minutes before it ranks players
 
 
 ## NBA Individual Power Ratings
@@ -305,17 +299,62 @@ ggplot(nba_players_offense,aes(x = PTS, y = MP)) +
 ```
 
 ## NBA Individual Power Ratings
+
+2024-25 scoring list. Second in points: is he second per minute?
+
+Vote before the tables. Anthony Edwards plays the most minutes of this group.
+
+```{r, echo=FALSE}
+rate_2025 <- nba_players %>%
+  filter(Year == 2025, MP > 0) %>%
+  mutate(PTS36 = PTS / MP * 36)
+
+by_points <- rate_2025 %>%
+  filter(MP > 500) %>%
+  arrange(desc(PTS)) %>%
+  transmute(Player, Pos, Tm, MP = round(MP), PTS, PTS36 = round(PTS36, 1)) %>%
+  slice_head(n = 5)
+
+by_rate <- rate_2025 %>%
+  filter(MP > 1500) %>%
+  arrange(desc(PTS36)) %>%
+  transmute(Player, Pos, Tm, MP = round(MP), PTS, PTS36 = round(PTS36, 1)) %>%
+  slice_head(n = 5)
+```
+
+\tiny
+Points, players with more than 500 minutes
+
+```{r, echo=FALSE}
+knitr::kable(by_points, format = "simple")
+```
+
+## NBA Individual Power Ratings
+
+Points per 36 minutes, players with more than 1500 minutes.
+
+\tiny
+```{r, echo=FALSE}
+knitr::kable(by_rate, format = "simple")
+```
+
+* Shai Gilgeous-Alexander leads both lists
+* Edwards is second in points and off this list
+* Same season, same players: the denominator changes the ranking
+
+## NBA Individual Power Ratings
 \tiny
 ```{r}
 summary(lm(MP ~ (PTS + AST + FGA_FG + X3PA_X3P + FTA_FT), data = nba_players_offense))
 ```
 
-
-
 ## NBA Individual Power Ratings
 
-* Scoring more points/assisting = playing more
-* Attempting more to score a field goal or a field throw.
+The offense regression has the same trap.
+
+* Scoring more is not what puts a player on the floor
+* Minutes produce points, assists, and missed shots
+* Use the per-36 table, not this coefficient, when you rank scorers
 
 
 # Plus/Minus
@@ -329,105 +368,281 @@ Plus-minus measures the point differential for the team when the player is on th
 
 Point differential is the difference in the points scored for and the points scored against the team.  
 
-The NHL's Montreal Canadiens were the first team to track the plus \- minus of its players, starting sometime in the 1950s. Other teams followed in the early 1960s, and the NHL started officially compiling the statistic for the 1967 \- 68 season.
+The Montreal Canadiens tracked plus/minus in the 1950s. The NHL made it official for 1967-68. A goal total ignores the goals against while that player was on the ice.
+
+## One stint, by hand
+
+Home scores 2. Away scores 0. Durant is at home.
+
+* Each home player, including Durant: +2
+* Each away player: -2
+* A player who is sitting: 0 for this stint
+
+Season plus/minus is the sum of the stints he actually played.
 
 ## Plus/minus for NBA
+
+This file is the 2011-12 lockout season, from 25 December 2011 to 26 April 2012.
+
+* One row is a stint: the same ten players stay on the floor
+* Coverage is uneven. New Jersey has 28 games in the file, Memphis has 66
+* The Finals are not in the file. That June, Miami beat Oklahoma City
+* The number you compute is for these stints, not the official season total
 
 ```{r, echo=F}
 data(nba12, package = "SportsAnalytics270")
 data(nba12p, package = "SportsAnalytics270")
+data(nba5, package = "SportsAnalytics270")
 library(SportsAnalytics270)
 library(dplyr)
 library(ggplot2)
 library(VGAM)
 library(zoo)
 library(tidyr)
+
+name_coeffs <- function(coeff, info) {
+  ids <- sub("^X", "", names(coeff))
+  key <- info %>%
+    mutate(PlayerID = as.character(PlayerID)) %>%
+    select(PlayerID, PlayerTrueName)
+  joined <- left_join(
+    data.frame(id = ids, stringsAsFactors = FALSE),
+    key,
+    by = c("id" = "PlayerID")
+  )
+  labels <- ifelse(
+    is.na(joined$PlayerTrueName),
+    joined$id,
+    as.character(joined$PlayerTrueName)
+  )
+  stats::setNames(as.numeric(coeff), labels)
+}
+
+player_pm <- function(stints, player_id) {
+  player_id <- as.character(player_id)
+  home_cols <- paste0("HomePlayer", 1:5, "ID")
+  away_cols <- paste0("AwayPlayer", 1:5, "ID")
+  on_home <- Reduce(`|`, lapply(home_cols, function(col) as.character(stints[[col]]) == player_id))
+  on_away <- Reduce(`|`, lapply(away_cols, function(col) as.character(stints[[col]]) == player_id))
+  margin <- stints$PointsScoredHome - stints$PointsScoredAway
+  sum(margin[on_home]) - sum(margin[on_away])
+}
+
+md_date <- function(d) {
+  paste(month.abb[as.integer(format(d, "%m"))], as.integer(format(d, "%d")))
+}
+
+pm_slide_plot <- function(data, y, title, ylab) {
+  ticks <- c(1, 21, 41, nrow(data))
+  ggplot(data, aes(x = Game, y = .data[[y]])) +
+    geom_col() +
+    scale_x_continuous(
+      breaks = ticks,
+      labels = md_date(data$Date[ticks]),
+      expand = expansion(mult = c(0.04, 0.10))
+    ) +
+    coord_cartesian(clip = "off") +
+    labs(x = "Game date", y = ylab, title = title) +
+    theme(
+      plot.margin = margin(6, 18, 4, 6),
+      axis.text.x = element_text(hjust = c(0, 0.5, 0.5, 1))
+    )
+}
+
+apm_rank <- function(coeff, who) {
+  x <- coeff[names(coeff) != "(Intercept)"]
+  i <- match(who, names(x))
+  data.frame(Player = who, APM = unname(x[i]), rank = i)
+}
 ```
 
+## The stint file: `nba12`
+
+25,300 rows. One row is one stretch of 2011-12 with the same ten players on the floor.
+
+```{r, eval=FALSE}
+data(nba12, package = "SportsAnalytics270")
+```
+
+* Game: `GameID`, `Date`, `AwayT`, `HomeT`
+* Who is on the floor: `HomePlayer1Name` to `HomePlayer5Name`, same for away, and matching `...ID` columns
+* Scoring: `PointsScoredHome`, `PointsScoredAway`
+* Length: `ElapsedSecs`, `PossessionsHome`, `PossessionsAway`
+
+## Three stints, Christmas, Knicks at home
+
+Boston is away. `PossessionsHome` counts New York trips; `PossessionsAway` counts Boston trips.
+
+\tiny
+```{r, echo=FALSE}
+stint_ex <- nba12 %>%
+  filter(GameID == "20111225BOSNYK") %>%
+  select(HomeT, AwayT, PointsScoredHome, PointsScoredAway,
+         PossessionsHome, PossessionsAway)
+stint_rows <- dplyr::bind_rows(
+  dplyr::filter(stint_ex, PossessionsHome == 0, PossessionsAway == 1) %>% slice(1),
+  dplyr::filter(stint_ex, PossessionsHome == 1, PossessionsAway == 0) %>% slice(1),
+  dplyr::filter(stint_ex, PossessionsHome == 1, PossessionsAway == 1,
+                PointsScoredHome == 2, PointsScoredAway == 0) %>% slice(1)
+)
+knitr::kable(stint_rows, format = "simple")
+```
+
+* Row 1. `PossessionsHome = 0`: New York did not have the ball. Boston did, and scored 2.
+* Row 2. `PossessionsHome = 1`: New York had the ball once. Boston had 0 possessions.
+* Row 3. Both equal 1: each team had one trip. New York scored 2, Boston scored 0.
+
+## The player file: `nba12p`
+
+One row is one player in that stint file. Use it to attach names and minutes to player IDs.
+
+```{r, eval=FALSE}
+data(nba12p, package = "SportsAnalytics270")
+```
+
+* `PlayerID` matches the ID columns in `nba12`
+* `PlayerTrueName`, `PlayerTeams`
+* `SimpleMin`: minutes in these stints, not necessarily the official season total
+
+## Four players from `nba12p`
+
+`PlayerID` 714 is Durant. That is the number in the `nba12` lineup columns.
+
+\tiny
 ```{r}
-colnames(nba12)
+nba12p %>%
+  filter(PlayerTrueName %in% c("Durant, Kevin", "James, LeBron",
+                               "Westbrook, Russell", "Benson, Keith")) %>%
+  select(PlayerID, PlayerTrueName, PlayerTeams, SimpleMin)
 ```
 
+## Oklahoma City from `nba12`
+
+`GameID` is the date plus the two team codes, for example `20111225ORLOKC`. Keep the rows that contain `OKC`.
+
+\tiny
+```{r}
+okc <- nba12 %>%
+  filter(grepl("OKC", GameID, fixed = TRUE))
+nrow(okc)
+okc %>%
+  select(GameID, Date, HomeT, AwayT) %>%
+  slice(1:3)
+```
+
+1,716 stints, from Thunder games only.
+
+## Stint plus/minus
+
+Same scoring columns as in `nba12`. Home margin is points scored minus points allowed. Away margin is the opposite.
+
+\tiny
+```{r}
+okc <- okc %>%
+  mutate(
+    Home_PM = PointsScoredHome - PointsScoredAway,
+    Away_PM = -Home_PM
+  )
+okc %>%
+  filter(PointsScoredHome + PointsScoredAway > 0) %>%
+  select(HomeT, AwayT, PointsScoredHome, PointsScoredAway, Home_PM, Away_PM) %>%
+  slice(1:3)
+```
+
+First scoring stint: OKC at home, 18-18, so both margins are 0. A later 2-0 stint would be `Home_PM = 2`.
+
+## Is Durant on the floor?
+
+Paste all five names, then search the string. Still the OKC rows, not the full `nba12` file.
+
+\tiny
+```{r}
+okc <- okc %>%
+  mutate(
+    line_h = paste(HomePlayer1Name, HomePlayer2Name, HomePlayer3Name,
+                   HomePlayer4Name, HomePlayer5Name, sep = ","),
+    line_a = paste(AwayPlayer1Name, AwayPlayer2Name, AwayPlayer3Name,
+                   AwayPlayer4Name, AwayPlayer5Name, sep = ","),
+    D_H = grepl("Durant", line_h, fixed = TRUE),
+    D_A = grepl("Durant", line_a, fixed = TRUE)
+  )
+```
+
+## Is Durant on the floor?
+
+Christmas, one stint. These are the five names that went into `line_h` and `line_a`.
+
+\tiny
+```{r, echo=FALSE}
+one <- okc %>%
+  filter(GameID == "20111225ORLOKC") %>%
+  slice(1)
+knitr::kable(
+  one %>% transmute(
+    Home = HomeT, H1 = HomePlayer1Name, H2 = HomePlayer2Name,
+    H3 = HomePlayer3Name, H4 = HomePlayer4Name, H5 = HomePlayer5Name,
+    D_H
+  ),
+  format = "simple"
+)
+knitr::kable(
+  one %>% transmute(
+    Away = AwayT, A1 = AwayPlayer1Name, A2 = AwayPlayer2Name,
+    A3 = AwayPlayer3Name, A4 = AwayPlayer4Name, A5 = AwayPlayer5Name,
+    D_A
+  ),
+  format = "simple"
+)
+```
+
+* `D_H = TRUE`: H3 is Durant, so `"Durant"` is in `line_h`
+* `D_A = FALSE`: Durant is not in Orlando's five, so this stint uses `Home_PM`
 
 ## Plus/minus for NBA
 
-Subseting the data frame for Oklahoma City Thunders
-```{r}
-oks_g <- grepl("OKC", nba12$GameID, fixed = TRUE)
-okc<-nba12[oks_g == T,]
-```
-
-```{r}
-head(okc[,19:23], n=5)
-```
-
-
-## Plus/minus for NBA
-
-Create the line-ups variable
-
+Durant's season plus/minus in this file: add the stint margin when he is on the floor.
 
 ```{r tidy=F}
-okc$line_h <- 
-  paste(okc$HomePlayer1Name, okc$HomePlayer2Name,     
-        okc$HomePlayer3Name, okc$HomePlayer4Name, 
-        okc$HomePlayer5Name, sep = ",")
+# D_H / D_A: Durant is in the home or away five for that stint
+durant_season <- sum(okc$Home_PM[okc$D_H]) + sum(okc$Away_PM[okc$D_A])
+durant_season
+```
 
-okc$line_a <- 
-  paste(okc$AwayPlayer1Name, okc$AwayPlayer2Name, 
-        okc$AwayPlayer3Name,okc$AwayPlayer4Name, 
-        okc$AwayPlayer5Name,   sep = ",")
+This is his plus/minus over the stints in this file, not the official 2011-12 total.
 
-okc$line_h[1:5]
+## Plus/minus for NBA
+
+LeBron needs a player id. Three players in this file have the last name James.
+
+```{r}
+# nba12p has three players named James; match the full name
+lebron_id <- nba12p$PlayerID[nba12p$PlayerTrueName == "James, LeBron"]
+lebron_season <- player_pm(nba12, lebron_id)
+c(Durant = durant_season, LeBron = lebron_season)
 ```
 
 ## Plus/minus for NBA
 
-Calculating plus/minus variable for time stunts  
+One number per Oklahoma City game, in date order.
 
-
-Away team  
-
-```{r}
-# Home team plus minus
-okc$Home_PM <- okc$PointsScoredHome - okc$PointsScoredAway
-# Away team plus minus
-okc$Away_PM <- -okc$Home_PM
-```
-
-Check if Durant is playing
-
-```{r}
-# is Durant playing at home?
-okc$D_H <- grepl("Durant", okc$line_h, fixed = TRUE)
-# is Durant playing away?
-okc$D_A <- grepl("Durant", okc$line_a, fixed = TRUE)
-```
-
-## Plus/minus for NBA 
-
-Get the plus minus for Durant for the whole season
-
-```{r tidy=F}
-sum(okc$Home_PM[okc$D_H == T]) + sum(okc$Away_PM[okc$D_A == T])
-```
-
-This will be the plus/minus for the whole season
-
-## Plus/minus for NBA
-
-For each game
-
+\tiny
 ```{r tidy=F}
 durant_pm <- okc %>%
-  mutate(PM=ifelse(D_H==T, 
-                   Home_PM, 
-                   ifelse(D_A==T, Away_PM,0))) %>%
+  # this stint: home margin if Durant is home, away margin if he is away
+  mutate(PM = ifelse(D_H, Home_PM, ifelse(D_A, Away_PM, 0))) %>%
   group_by(GameID) %>%
-  summarise(PM=sum(PM))
-
+  summarise(
+    PM = sum(PM),  # add the stints in that game
+    Date = as.Date(as.character(min(Date)), format = "%Y%m%d"),
+    .groups = "drop"
+  ) %>%
+  arrange(Date) %>%
+  mutate(Game = row_number())  # 1, 2, 3... for the bar chart
 ```
 
+## Plus/minus for NBA
+
+\tiny
 ```{r}
 head(durant_pm, n=5)
 ```
@@ -436,11 +651,10 @@ head(durant_pm, n=5)
 
 ## Plus/minus for NBA
 
-```{r, fig.height=5}
-ggplot(durant_pm, aes(x=GameID, y=PM))+
-  geom_bar(stat="identity")+
-  ggtitle("Plus/Minus for Kevin Durant")
+Each bar is one Oklahoma City game in this file, in date order.
 
+```{r, echo=FALSE, fig.width=7.4, fig.height=3.05, out.width="\\linewidth", fig.align="center"}
+pm_slide_plot(durant_pm, "PM", "Kevin Durant, plus/minus by game", "Plus/minus")
 ```
 
 ## On court and off court +/\- and Roland’s rating
@@ -449,50 +663,165 @@ The on court +/\- number represents the team's net points with the player on the
 
 The Roland Rating is the difference between the two, with a positive number indicating the team has played better with the player than without.  
 
-## Net Plus/minus for NBA
+## OKC's margin, and whether Durant played
 
-Create a variable that shows OKC plus/minus, depending on whether it is playing at home or away
+OKC is home in some rows and away in others. `OKC_PM` is always Thunder points minus opponent points. `D_PM` is TRUE if Durant was in either five.
 
-```{r tidy=F}
+\tiny
+```{r}
 okc <- okc %>%
-# makes PM for OKC
-mutate(OKC_PM = ifelse(AwayT == "OKC", Away_PM, 
-                       ifelse(HomeT == "OKC", Home_PM, 0)),
-        D_PM = ifelse(D_H == T | D_A == T, T, F)
-        )
+  mutate(
+    OKC_PM = ifelse(AwayT == "OKC", Away_PM,
+                    ifelse(HomeT == "OKC", Home_PM, 0)),
+    D_PM = D_H | D_A
+  )
+okc %>%
+  filter(OKC_PM != 0) %>%
+  group_by(HomeT) %>%
+  slice(1) %>%
+  ungroup() %>%
+  select(HomeT, AwayT, D_H, D_PM, Home_PM, Away_PM, OKC_PM)
+```
+
+When OKC is home, `OKC_PM` equals `Home_PM`. When OKC is away, it equals `Away_PM`.
+
+## Net Plus/minus for NBA
+
+First half: one row for Durant on the floor, one row for Durant on the bench.
+
+\tiny
+```{r}
+durant_long <- okc %>%
+  group_by(GameID, D_PM) %>%
+  summarise(
+    PM = sum(OKC_PM),  # OKC margin while he is on, then while he is off
+    Date = as.Date(as.character(min(Date)), format = "%Y%m%d"),
+    .groups = "drop"
+  ) %>%
+  mutate(court = ifelse(D_PM, "on", "off")) %>%
+  select(GameID, Date, court, PM)
+head(durant_long, 4)
+```
+
+Christmas is two rows: off $+7$, on $+1$. Not yet subtracted.
+
+## What `pivot_wider` does
+
+A toy game with the same two rows.
+
+\tiny
+```{r}
+toy <- data.frame(
+  Game = c("Christmas", "Christmas"),
+  court = c("on", "off"),
+  PM = c(1, 7)
+)
+toy
+tidyr::pivot_wider(toy, names_from = court, values_from = PM)
+```
+
+`names_from = court` turns the words `"on"` and `"off"` into column names. `values_from = PM` fills those columns. Two rows become one.
+
+## Net Plus/minus for NBA
+
+Second half: widen, then subtract. A game with no bench stint has `off = NA` and drops out.
+
+\tiny
+```{r}
+durant_net <- durant_long %>%
+  tidyr::pivot_wider(names_from = court, values_from = PM) %>%
+  mutate(NET = on - off) %>%  # Roland's rating for that game
+  filter(is.finite(NET)) %>%
+  arrange(Date) %>%
+  mutate(Game = row_number())
 ```
 
 ## Net Plus/minus for NBA
 
-For each game, D_PM has a value of FALSE if Durant has not played, and TRUE if He has. PM is showing the plus/minus for that game
+Christmas: OKC was +1 with Durant on the floor and +7 with him off, so NET is $-6$.
 
+\tiny
 ```{r}
-durant_pm <- okc %>%
-group_by(GameID, D_PM) %>%
-summarise(PM = sum(OKC_PM))
-head(durant_pm)
-```
-
-## Net Plus/minus for NBA
-
-```{r}
-durant_pm <- okc %>%
-group_by(GameID, D_PM) %>%
-summarise(PM = sum(OKC_PM)) %>%
-group_by(GameID) %>%
-mutate(NET = PM - lag(PM, 1)) %>%
-filter(NET != "NA") %>%
-select(GameID, NET)
-head(durant_pm)
+head(durant_net)
 ```
 
 ## Plus/minus for NBA
 
-```{r, fig.height=5}
-ggplot(durant_pm, aes(x=GameID, y=NET))+
-  geom_bar(stat="identity")+
-  ggtitle("Net Plus/Minus for Kevin Durant")
+```{r, echo=FALSE, fig.width=7.4, fig.height=3.05, out.width="\\linewidth", fig.align="center"}
+pm_slide_plot(durant_net, "NET", "Kevin Durant, on-court minus off-court", "Net plus/minus")
 ```
+
+## A parallel-axis plot, by hand
+
+The x-axis is not time. It is three scales side by side. One player is three numbers, then one line.
+
+\tiny
+```{r}
+toy_pc <- data.frame(
+  player = rep(c("Alice", "Bob"), each = 3),
+  axis = factor(
+    rep(c("Speed", "Strength", "Skill"), 2),
+    levels = c("Speed", "Strength", "Skill")
+  ),
+  rating = c(8, 4, 9,  3, 9, 5)
+)
+toy_pc
+```
+
+## A parallel-axis plot, by hand
+
+`group = player` connects the three points. Alice is high on speed and skill. Bob is high on strength.
+
+\tiny
+```{r, fig.width=7, fig.height=2.5, out.width="\\linewidth", fig.align="center"}
+ggplot(toy_pc, aes(axis, rating, group = player, color = player)) +
+  geom_line() +
+  geom_point() +
+  ylab("Rating")
+```
+
+## Roland rating, the long table
+
+Six Thunder games, drawn at random. Same shape as the toy: one row is one game on one axis.
+
+\tiny
+```{r}
+set.seed(270)
+opp_from_id <- function(id) {
+  gsub("OKC", "", sub("^[0-9]+", "", as.character(id)))
+}
+roland_ex <- durant_net %>%
+  slice_sample(n = 6) %>%
+  mutate(game = paste(md_date(Date), opp_from_id(GameID)))
+pc <- roland_ex %>%
+  transmute(
+    game,
+    `Off court` = off,
+    `On court` = on,
+    Roland = NET
+  ) %>%
+  tidyr::pivot_longer(-game, names_to = "axis", values_to = "rating") %>%
+  mutate(axis = factor(axis, levels = c("Off court", "On court", "Roland")))
+head(pc, 6)
+```
+
+## Roland rating, parallel axes
+
+In which game did Durant have the best performance?
+
+\tiny
+```{r, fig.width=7.4, fig.height=2.9, out.width="\\linewidth", fig.align="center"}
+ggplot(pc, aes(axis, rating, group = game, color = game)) +
+  geom_line() +
+  geom_point() +
+  ylab("Rating")
+```
+
+## Plus/minus, on film
+
+Raw plus/minus in a real NBA stretch. Then we adjust it for who else is on the floor.
+
+https://www.youtube.com/watch?v=5WRe6SoBh3g
 
 # Adjusted plus/minus
 
@@ -505,11 +834,23 @@ $MARGIN = \beta_0 + \beta_1X_1 + \beta_2X_2 + ... \beta_kX_k + \epsilon$
 
 where  
 
+$MARGIN = \text{PointsScoredHome} - \text{PointsScoredAway}$ (home point differential for that stint),  
+
 $X_k = 1$, if player k is playing at home,  
 $X_k = -1$, if player k is playing away,  
 $X_k = 0$, if player k is not playing  
 
 \ecenter
+
+## The same stint, as a row
+
+Home scores 2, away scores 0, so the margin is +2.
+
+* Five home players, including Durant: 1
+* Five away players: -1
+* Everyone else that night: 0
+
+One season of these rows is the regression. Durant's coefficient is his adjusted plus/minus.
 
 ## Adjusted plus/minus
 
@@ -518,212 +859,202 @@ According to Dan Rosenbaum’s [approach](http://www.82games.com/comm30.htm), $\
 $\beta_k$ measures the difference between player k and the reference players, holding the other k
 players constant
 
-## Adjusted plus/minus
+## The APM table: `nba5`
 
-### Data preparation/ this will take at least 30-40 minutes on the average machine
+This matrix is already in `SportsAnalytics270`. One row is one stint, in the same order as `nba12`. One column is one player ID.
 
-Data prep for adjusted plus/minus
-\tiny
-```{r tidy=F, eval=F}
-# Get home and away teams
-nba3 <- nba12[, c("HomePlayer1ID", "HomePlayer2ID",
-                  "HomePlayer3ID", "HomePlayer4ID", "HomePlayer5ID")]
-
-nba4 <- nba12[, c("AwayPlayer1ID", "AwayPlayer2ID", 
-                  "AwayPlayer3ID", "AwayPlayer4ID","AwayPlayer5ID")]
-
-# MAke ID as character
-nba3 <- as.data.frame(sapply(nba3, as.character))
-nba4 <- as.data.frame(sapply(nba4, as.character))
-
-#create dummy variables
-nba3 <- as.data.frame(model.matrix(~. - 1, nba3))
-nba4 <- as.data.frame(model.matrix(~. - 1, nba4))
-# for away team
-nba4[nba4==1]<- -1
-# change colnames to be more readable
-colnames(nba3) <- gsub("HomePlayer[123456789]ID", "", colnames(nba3))
-colnames(nba4) <- gsub("AwayPlayer[123456789]ID", "", colnames(nba4))
-
-# nba3 remove double entries
-nba3 <- t(nba3)     # transpose the data.frame
-nba3 <- by(nba3, INDICES=row.names(nba3), FUN=colSums) # collapse the rows with the same name
-nba3 <- as.data.frame(do.call(cbind,aggr))
-nba4 <- t(nba4)     # transpose the data.frame
-nba4 <- by(nba4, INDICES=row.names(nba4), FUN=colSums) # collapse the rows with the same name
-nba4 <- as.data.frame(do.call(cbind,nba4))
-
-#combine home and away players and double columns 
-nba5<-data.frame(nba3,nba4)
-nba5 <- t(nba5)     # transpose the data.frame
-nba5 <- by(nba5, INDICES=row.names(nba5), FUN=colSums) # collapse the rows with the same name
-nba5 <- as.data.frame(do.call(cbind,nba5))
-```
-
-## Adjusted plus/minus
-
-```{r, echo  = F}
+```{r, eval=FALSE}
 data(nba5, package = "SportsAnalytics270")
 ```
 
-```{r, eval  = F}
-data(nba5, package = "SportsAnalytics270")
-```
+* 25,300 rows, 474 player columns
+* Cell is `1` if that player is at home, `-1` if away, `0` if he is not on the floor
+* Column names are player IDs, sometimes with a leading `X`
 
 ```{r}
 dim(nba5)
 ```
 
+## One stint in `nba5`
+
+Christmas, OKC at home. Durant's ID is 714. Westbrook is with him. Nelson is away. Benson is not in the game.
+
+\tiny
+```{r, echo=FALSE}
+i <- which(nba12$GameID == "20111225ORLOKC")[1]
+nba5_ex <- data.frame(
+  HomeT = nba12$HomeT[i],
+  AwayT = nba12$AwayT[i],
+  Westbrook = nba5[i, "X786"],
+  Durant = nba5[i, "X714"],
+  Nelson = nba5[i, "X158"],
+  Benson = nba5[i, "X1027"],
+  check.names = FALSE
+)
+knitr::kable(nba5_ex, format = "simple")
+```
+
+* `1`: that player is on the home five
+* `-1`: that player is on the away five
+* `0`: Keith Benson is not on the floor, so this stint does not change his plus/minus
+
+## Attach the margin from `nba12`
+
+Same row order as `nba12`. `PM` is home points minus away points in that stint.
+
+\tiny
+```{r}
+nba5 <- data.frame(
+  PM = nba12$PointsScoredHome - nba12$PointsScoredAway,
+  nba5
+)
+i <- which(nba12$GameID == "20111225ORLOKC")[1]
+nba5[i, c("PM", "X714", "X786", "X158", "X1027")]
+```
+
+Christmas, 18-18: `PM = 0`. Durant and Westbrook are home (`1`). Nelson is away (`-1`). Benson is not in the game (`0`).
+
+## Fit the regression
+
+Each player column is one \(X_k\) from the formula. In a given stint:
+
+* `1`: he is on the **home** five, so this stint's `PM` is counted as his
+* `-1`: he is on the **away** five, so this stint's `PM` is counted against him
+* `0`: he is **not on the floor**, so this stint does not move his coefficient
+
+`lm(PM ~ .)` estimates each player's contribution to home margin, holding the other players fixed. That coefficient is adjusted plus/minus.
+
+\tiny
+```{r}
+model <- lm(PM ~ ., data = nba5)
+coeff <- sort(coefficients(model), decreasing = TRUE)
+coeff_all <- name_coeffs(coeff, nba12p)
+```
+
+`name_coeffs` strips the `X` from names like `X714` and matches `PlayerID` in `nba12p`.
+
+## A slice of `summary(model)`
+
+`summary(model)` has 475 rows. Print the Christmas-stint players, then the 95% range from `confint()`.
+
+\tiny
+```{r}
+ids <- c("(Intercept)", "X714", "X786", "X158", "X1027")
+s <- summary(model)$coefficients[ids, ]
+ci <- confint(model)[ids, ]
+```
+
+```{r, echo=FALSE}
+knitr::kable(
+  data.frame(
+    Player = c("home court", "Durant", "Westbrook", "Nelson", "Benson"),
+    Estimate = round(s[, "Estimate"], 3),
+    SE = round(s[, "Std. Error"], 3),
+    Low = round(ci[, 1], 3),
+    High = round(ci[, 2], 3),
+    check.names = FALSE
+  ),
+  format = "simple",
+  row.names = FALSE
+)
+```
+
+Low and High are the 95% interval: roughly Estimate \(\pm 2 \times\) SE.
+
+## How to read the coefficients
+
+* **Estimate**: expected change in home `PM` if that player is on the home five (`X = 1`) instead of sitting (`X = 0`)
+* **Positive** Estimate: he helps the home margin. **Negative**: he hurts it
+* If he is away (`X = -1`), predicted `PM` moves by **minus** the Estimate
+* **(Intercept)**: home-court baseline, about \(0.09\) points per stint
+* **Low to High**: plausible values of that effect. If **0 is inside** the range, we cannot tell this player from sitting
+* Durant \(0.08\), range \(-0.49\) to \(0.65\): includes 0, so the point guess is not usable yet
+* Benson \(2.12\), range \(-0.20\) to \(4.44\): first on the leaderboard, but the interval is huge (about 9 minutes)
+* Home court \(0.05\) to \(0.13\): does not include 0, so that effect is the one we can actually see
+
 ## Adjusted plus/minus
 
-Coefficients are named by player ID, we need to match with player names  
-
-
-Add plus/minus as dependent variable
+Do you know these players?
 
 ```{r}
-nba5<-data.frame(PM=nba12$PointsScoredHome-nba12$PointsScoredAway, nba5)
+coeff_all[names(coeff_all) != "(Intercept)"][1:10]
 ```
 
-Run the regression
+## What is wrong with this list?
 
 ```{r}
-model<-lm(PM~., data=nba5)
-coeff<-sort(coefficients(model), decreasing=T)
-coeff[1:10]
+nba12p %>%
+  filter(PlayerTrueName == "Benson, Keith") %>%
+  select(PlayerTrueName, PlayerTeams, SimpleMin)
 ```
 
-Remove X from the begining of the coeff name and match with player info
+* Keith Benson played about 9 minutes for Golden State
+* One lucky stint can put a player first
+* With no minutes floor, the model believes a tiny sample
 
-```{r}
-name1<-names(coeff)
-name1<-gsub("X", "", name1)
-name1<-as.data.frame(name1)
-```
-
-## Adjusted plus/minus
-Corresponding dataframe with player level information
-
-```{r, echo = F}
-data(nba12p, package = "SportsAnalytics270")
-```
-
-```{r, eval = F}
-data(nba12p, package = "SportsAnalytics270")
-```
-
-
-```{r}
-head(nba12p[,1:3],5)
-```
-
+Rosenbaum keeps players above 250 minutes. A lower cutoff lets the lucky stint back in. A higher cutoff drops real rotation players.
 
 ## Adjusted plus/minus
 
-```{r}
-nba12p$PlayerID<-as.character(nba12p$PlayerID)
-name2<-left_join(name1, nba12p[,1:2], by=c("name1"="PlayerID"))
-name2[1:5,]
-```
-
-rename coefficients by names
-
-```{r}
-names(coeff)<-name2$PlayerTrueName
-```
-
-## Adjusted plus/minus
-
-Do you know this players?  
-
-Lets look at top ten players
-
-```{r}
-coeff[1:10]
-```
-
-Benson, Keith - [https://goo.gl/YxMsJ9](https://goo.gl/YxMsJ9)
-
-## Adjusted plus/minus
-
-Leave only players that has played more than 250 minutes (By Rosenbaum)  
+`SimpleMin` in `nba12p` is minutes in this file. Rosenbaum keeps players above 250.
 
 ```{r}
 summary(nba12p$SimpleMin)
 ```
 
+## Adjusted plus/minus
+
+```{r, echo=FALSE, fig.width=7, fig.height=3.1, out.width="\\linewidth", fig.align="center"}
+ggplot(nba12p, aes(SimpleMin)) +
+  geom_histogram() +
+  labs(title = "Minutes in this file", x = "SimpleMin", y = "Players")
+```
+
+## Players above 250 minutes
+
+`SimpleMin` is in `nba12p`. Keep those player IDs, then keep only those columns of `nba5`.
+
 \tiny
-```{r, fig.height=4}
-ggplot(data=nba12p, aes(SimpleMin))+geom_histogram()+
-  ggtitle("Histogram for Played Minutes")
-```
-
-## Adjusted plus/minus
-
-Getting players with more than 250m of play
-
 ```{r}
-more250<-nba12p$PlayerID[nba12p$SimpleMin>250]
+more250 <- nba12p$PlayerID[nba12p$SimpleMin > 250]
 length(more250)
-more250[1:10]
+nba12p %>%
+  filter(PlayerID %in% more250) %>%
+  select(PlayerID, PlayerTrueName, SimpleMin) %>%
+  slice(1:4)
 ```
 
+Benson (about 9 minutes) is not on this list.
 
+## Keep those columns, then refit
+
+`nba5` columns are `X714`. Strip the `X` so they match `PlayerID`.
+
+\tiny
 ```{r}
-# Subset the dataframe by more250
-colnames(nba5) <- gsub("X", "", colnames(nba5))
-nba6<-nba5[,colnames(nba5) %in% more250]
-nba6<-data.frame(PM=nba5$PM, nba6)
-# Make the model
-model2<-lm(PM~., data=nba6)
-# get the coefficients
-coeff2<-sort(coefficients(model2), decreasing=T)
-
+colnames(nba5) <- sub("^X", "", colnames(nba5))
+nba6 <- data.frame(
+  PM = nba5$PM,
+  nba5[, colnames(nba5) %in% more250, drop = FALSE]
+)
+dim(nba6)
+model2 <- lm(PM ~ ., data = nba6)
+coeff2 <- sort(coefficients(model2), decreasing = TRUE)
+coeff_250 <- name_coeffs(coeff2, nba12p)
+coeff_250[names(coeff_250) != "(Intercept)"][1:10]
 ```
+
+Nelson, Jameer: [https://goo.gl/eNj7sq](https://goo.gl/eNj7sq)
 
 ## Adjusted plus/minus
 
-```{r}
-coeff2[1:10]
-```
-
-
-## Adjusted plus/minus
-
-Get the adjust plus/minus from coefficients
+Where is Durant? Where is LeBron?
 
 ```{r}
-name1<-names(coeff2)
-name1<-gsub("X", "", name1)
-name1<-as.data.frame(name1)
-name2<-left_join(name1, nba12p[,1:2], by=c("name1"="PlayerID"))
-name2$rank <- rownames(name2)
-rownames(name2) <- c()
-name2 <- name2 %>%
-  tidyr::drop_na()
-names(coeff2)<-name2$PlayerTrueName
-```
-
-## Adjusted plus/minus
-
-```{r}
-coeff2[1:10]
-```
-
-Nelson Jameer [https://goo.gl/eNj7sq](https://goo.gl/eNj7sq)
-
-
-## Adjusted plus/minus
-
-Where is Durant ?
-
-```{r}
-name2[name2$PlayerTrueName=="Durant, Kevin",]
-```
-
-Where is Lebron ?
-```{r}
-name2[name2$PlayerTrueName=="James, LeBron",]
+rbind(
+  apm_rank(coeff_250, "Durant, Kevin"),
+  apm_rank(coeff_250, "James, LeBron")
+)
 ```
 
 ## Adjusted plus/minus
@@ -738,96 +1069,89 @@ $\text{Margin} = \frac{\text{Home Points}}{\text{Home Possession}} - \frac{\text
 \ecenter
 
 
-## Adjusted plus/minus
+## Points per possession
 
-```{r}
-str(nba12)
-```
+`nba12` already has possessions. Divide so a 10-second stint and a long stint are on the same scale.
 
-
-## Adjusted plus/minus
-
-PM for possessions
-
-
-```{r}
-nba12$PM_Home <- nba12$PointsScoredHome/nba12$PossessionsHome
-nba12$PM_Away <- nba12$PointsScoredAway/nba12$PossessionsAway
-nba12$Margin<-nba12$PM_Home-nba12$PM_Away
-
-summary(nba12$PM_Home)
-summary(nba12$PM_Away)
-summary(nba12$Margin)
-```
-
-
-## Adjusted plus/minus
-
-We have a choice, remove cases with not number values, or impute with the mean
-
-
-We will remove
 \tiny
 ```{r}
-nba6$PM<-nba12$Margin
-nba6$Secs<-nba12$ElapsedSecs/60
-nba7<-nba6[is.finite(nba6$PM),]
-dim(nba7)
+nba12$Margin <- nba12$PointsScoredHome / nba12$PossessionsHome -
+  nba12$PointsScoredAway / nba12$PossessionsAway
+nba12 %>%
+  filter(GameID == "20111225ORLOKC") %>%
+  select(PointsScoredHome, PointsScoredAway,
+         PossessionsHome, PossessionsAway, Margin) %>%
+  slice(1:3)
 ```
 
+First stint 18-18 on 12 and 13 possessions: raw plus/minus is 0, the rate is about 0.12.
 
-## Adjusted plus/minus
+## Zero possessions
 
-The model
+A 0 in the denominator is not a number. Drop those rows. `Secs` is stint length in minutes, for the weighted model later.
 
+\tiny
 ```{r}
-model3<-lm(PM~.,data=nba7)
-
-coeff3<-sort(coefficients(model3), decreasing=T)
-# basic cleaning
-name1<-names(coeff3)
-name1<-gsub("X", "", name1)
-name1<-as.data.frame(name1)
-name2<-left_join(name1, nba12p[,1:2], by=c("name1"="PlayerID"))
-name2$rank <- rownames(name2)
-rownames(name2) <- c()
-name2 <- name2 %>%
-  tidyr::drop_na()
-names(coeff3)<-name2$PlayerTrueName
+nba6$PM <- nba12$Margin
+nba6$Secs <- nba12$ElapsedSecs / 60
+nba7 <- nba6[is.finite(nba6$PM), ]
+c(before = nrow(nba6), after = nrow(nba7))
 ```
 
-## Adjusted plus/minus
+## Per-possession regression
 
+Same 250-minute players as `nba6`, new `PM`.
+
+\tiny
 ```{r}
-# top 10
-coeff3[1:10]
-```
-
-Steve Nash, Phoenix, [https://goo.gl/BczeBv](https://goo.gl/BczeBv)
-
-## Adjusted plus/minus
-
-Interpretations: If you take 4 average players and Steve Nash than the team will make by 0.35 points/per possession more then another team with 5 average players
-
-```{r}
-# top 10
-coeff3[1:10]
+model3 <- lm(PM ~ ., data = nba7)
+coeff3 <- sort(coefficients(model3), decreasing = TRUE)
+coeff_poss <- name_coeffs(coeff3, nba12p)
+coeff3 <- coeff_poss
 ```
 
 ## Adjusted plus/minus
 
-Where is Durant ?
+Four average teammates plus Nash: about 0.35 points per possession more than five average players.
 
 ```{r}
-name2 %>%
-  filter(PlayerTrueName == "Durant, Kevin")
+coeff3[names(coeff3) != "(Intercept)"][1:10]
 ```
 
-Where is LeBron ?
+Steve Nash, Phoenix: [https://goo.gl/BczeBv](https://goo.gl/BczeBv)
+
+## Adjusted plus/minus
+
+Where is Durant? Where is LeBron?
 
 ```{r}
-name2 %>%
-  filter(PlayerTrueName == "James, LeBron")
+rbind(
+  apm_rank(coeff3, "Durant, Kevin"),
+  apm_rank(coeff3, "James, LeBron")
+)
+```
+
+## Durant and LeBron, four numbers
+
+Same two players. The columns are not in the same units, so do not subtract them.
+
+* Season plus/minus: a point total over the stints in this file
+* Unfiltered and 250-minute: points per stint
+* Per possession: points per possession
+
+```{r, echo=FALSE}
+pull_pm <- function(x, who) {
+  hit <- unname(x[names(x) == who])
+  if (length(hit) == 0) NA_real_ else hit[[1]]
+}
+compare <- data.frame(
+  Player = c("Durant", "LeBron"),
+  SeasonPM = c(durant_season, lebron_season),
+  Unfiltered = c(pull_pm(coeff_all, "Durant, Kevin"), pull_pm(coeff_all, "James, LeBron")),
+  Min250 = c(pull_pm(coeff_250, "Durant, Kevin"), pull_pm(coeff_250, "James, LeBron")),
+  PerPoss = round(c(pull_pm(coeff_poss, "Durant, Kevin"), pull_pm(coeff_poss, "James, LeBron")), 3)
+)
+compare
 ```
 
 ## Adjusted plus/minus
@@ -835,13 +1159,13 @@ name2 %>%
 We can scale the Plus/Minus values around the mean, such as the positive coefficient will show that the player is doing better than the average and negative will mean that the player is doing worst than the average.
 
 ```{r}
-coeff3<-coeff3-mean(coeff3)
+coeff3 <- coeff3 - mean(coeff3)  # 0 is now the average player in this model
 ```
 
-
-```{r, fig.height=4}
-ggplot()+aes(coeff3)+geom_histogram()+
-  ggtitle("Histogram for scaled coefficients")
+```{r, echo=FALSE, fig.width=7, fig.height=3.1, out.width="\\linewidth", fig.align="center"}
+ggplot() + aes(coeff3) +
+  geom_histogram() +
+  labs(title = "Scaled per-possession coefficients", x = "APM", y = "Players")
 ```
 
 ## Other considerations for regression
@@ -861,22 +1185,13 @@ The value of X varies for different analyses, most often 5 and 10.
 
 ## Weighted regression
 
-```{r, echo = F}
-data(nba12, package = "SportsAnalytics270")
-```
+`Secs` was `ElapsedSecs / 60`. A two-minute stint counts twice as much as a one-minute stint.
 
-
+\tiny
 ```{r}
-nba7$Secs<-nba7$Secs/60
-model4<-lm(PM~.,data=nba7, weights = Secs)
-coeff4<-sort(coefficients(model4), decreasing=T)
-# basic cleaning
-name1<-names(coeff4)
-name1<-gsub("X", "", name1)
-name1<-as.data.frame(name1)
-name2<-left_join(name1, nba12p[,1:2], by=c("name1"="PlayerID"))
-names(coeff4)<-name2$PlayerTrueName
-coeff[1:10]
+model4 <- lm(PM ~ ., data = nba7, weights = Secs)
+coeff4 <- name_coeffs(sort(coefficients(model4), decreasing = TRUE), nba12p)
+coeff4[names(coeff4) != "(Intercept)"][1:10]
 ```
 
 ## Adjusted plus/minus
@@ -889,24 +1204,20 @@ coeff[1:10]
 Dan Rosenbaum suggests to run the following regression to understand the impact of the box score statistics on APM  
 
 \bcenter
-$Y = \beta_0 + \beta_1X_1 + \beta_2X_@ + ... \beta_kX_k + \epsilon$
+$Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + ... + \beta_kX_k + \epsilon$
 \ecenter
 
 Where Y is the coefficients of the players from Plus/Minus model,  
 
 $X_1,..X_k$ are box score statistics
 
+Each coefficient is the effect of that box-score statistic on APM.
+
 ## APM regressed against other statistics
 
-The results of the regression are the following:  
-
-Each coefficient shows the effect of the players box-score statistics on the APM  
-
-\bcenter
-```{r, echo=F,out.width="80%", out.height="80%"}
+```{r, echo=F, out.height="0.78\\textheight", fig.align="center"}
 knitr::include_graphics("./images/statistics.png")
 ```
-\ecenter
 
 
 ## Other metrics
@@ -939,4 +1250,14 @@ Plus/Minus
 \bcenter
 *Margin of victory = sum(Rating of all 5 home team players) - sum(Rating of all 5 away team players)*
 \ecenter
+
+# Check
+
+## Five questions
+
+* A stint ends 2-0 for the home team. What is the plus/minus of a home player? Of an away player?
+* In the adjusted model, what does an away player get in that row: 1, -1, or 0?
+* Why can a player with about 9 minutes finish first?
+* Points and minutes move together. Is that skill, or time on the floor?
+* Nash is about 0.35 points per possession above four average teammates. What does that claim, and what does it not claim?
 
