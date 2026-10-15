@@ -2,7 +2,6 @@
 title: "CSE 270 Sports Analytics"
 subtitle: "Project requirements"
 author: "Narek Sahakyan"
-date: "October 2026"
 fontsize: 11pt
 geometry: margin=1in
 ---
@@ -56,5 +55,3 @@ Write the steps in the order you will run them.
 2. The comparison. Across seasons, between leagues, or against the benchmark. If the number of teams changes, use a measure that allows for that, such as dHHI rather than raw HHI.
 3. The result that would support the hypothesis, and the result that would not. A correlation, a regression slope, or a before-and-after gap is enough. State the sign you expect.
 4. One check that the number is not an artifact. A change in the number of teams, a short season, or duplicate rows can move HHI without any change in balance.
-
-Keep the method short enough that another student could repeat it from the paper.
