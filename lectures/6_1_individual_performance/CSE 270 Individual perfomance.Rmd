@@ -401,7 +401,8 @@ library(zoo)
 library(tidyr)
 
 name_coeffs <- function(coeff, info) {
-  ids <- sub("^X", "", names(coeff))
+  # lm writes 714 as `714` or X714; undo both before joining nba12p
+  ids <- sub("^X", "", gsub("`", "", names(coeff)))
   key <- info %>%
     mutate(PlayerID = as.character(PlayerID)) %>%
     select(PlayerID, PlayerTrueName)
@@ -825,82 +826,138 @@ https://www.youtube.com/watch?v=5WRe6SoBh3g
 
 # Adjusted plus/minus
 
-## Adjusted plus/minus
+## Why raw plus/minus is not enough
 
-The plus/minus rating is adjusted by the players who are on the court
+Durant's season plus/minus credits him for every point while he is on the floor, including Westbrook's.
+
+Adjusted plus/minus asks a different question: holding the other nine players fixed, how much does **this** player move the home margin?
+
+Dan Rosenbaum, [82games](http://www.82games.com/comm30.htm): \(\beta_k\) is player \(k\) versus the reference, with the other players held constant.
+
+## The regression
+
+One row is still one stint. The outcome is that stint's home margin. Each player is a dummy.
 
 \bcenter
-$MARGIN = \beta_0 + \beta_1X_1 + \beta_2X_2 + ... \beta_kX_k + \epsilon$
-
-where  
-
-$MARGIN = \text{PointsScoredHome} - \text{PointsScoredAway}$ (home point differential for that stint),  
-
-$X_k = 1$, if player k is playing at home,  
-$X_k = -1$, if player k is playing away,  
-$X_k = 0$, if player k is not playing  
-
+$MARGIN = \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots + \beta_kX_k + \epsilon$
 \ecenter
+
+* \(MARGIN = \text{PointsScoredHome} - \text{PointsScoredAway}\)
+* \(X_k = 1\) if player \(k\) is on the **home** five
+* \(X_k = -1\) if player \(k\) is on the **away** five
+* \(X_k = 0\) if player \(k\) is **not on the floor**
+* \(\beta_0\) is home court. \(\beta_k\) is that player's adjusted plus/minus
 
 ## The same stint, as a row
 
-Home scores 2, away scores 0, so the margin is +2.
+Home scores 2, away scores 0, so \(MARGIN = +2\).
 
-* Five home players, including Durant: 1
-* Five away players: -1
-* Everyone else that night: 0
+* Five home players, including Durant: \(X = 1\)
+* Five away players: \(X = -1\)
+* Everyone else that night, including Benson if he is sitting: \(X = 0\)
 
-One season of these rows is the regression. Durant's coefficient is his adjusted plus/minus.
+A season of these rows is the regression. Durant's \(\beta\) is his APM.
 
-## Adjusted plus/minus
+## Code one stint from `nba12`
 
-According to Dan Rosenbaum’s [approach](http://www.82games.com/comm30.htm), $\beta$ coefficients will show the adjusted plus/minus of the players, or   
+Christmas, OKC at home. Same five-name idea as `D_H`, but now with player IDs.
 
-$\beta_k$ measures the difference between player k and the reference players, holding the other k
-players constant
+\tiny
+```{r}
+one <- nba12 %>%
+  filter(GameID == "20111225ORLOKC") %>%
+  slice(1)
+home_ids <- as.character(c(
+  one$HomePlayer1ID, one$HomePlayer2ID, one$HomePlayer3ID,
+  one$HomePlayer4ID, one$HomePlayer5ID
+))
+away_ids <- as.character(c(
+  one$AwayPlayer1ID, one$AwayPlayer2ID, one$AwayPlayer3ID,
+  one$AwayPlayer4ID, one$AwayPlayer5ID
+))
+```
+
+## The ten IDs on the floor
+
+Same Christmas five as before. These names built `home_ids` and `away_ids`.
+
+\tiny
+```{r, echo=FALSE}
+knitr::kable(
+  one %>% transmute(
+    Home = HomeT, H1 = HomePlayer1Name, H2 = HomePlayer2Name,
+    H3 = HomePlayer3Name, H4 = HomePlayer4Name, H5 = HomePlayer5Name
+  ),
+  format = "simple"
+)
+knitr::kable(
+  one %>% transmute(
+    Away = AwayT, A1 = AwayPlayer1Name, A2 = AwayPlayer2Name,
+    A3 = AwayPlayer3Name, A4 = AwayPlayer4Name, A5 = AwayPlayer5Name
+  ),
+  format = "simple"
+)
+```
+
+```{r}
+home_ids
+away_ids
+```
+
+Durant is H3, ID 714. Nelson is A1, ID 158.
+
+## Turn an ID into 1 / -1 / 0
+
+If the ID is in `home_ids`, code `1`. If it is in `away_ids`, code `-1`. Otherwise `0`.
+
+\tiny
+```{r}
+x_code <- function(id) {
+  id <- as.character(id)
+  ifelse(id %in% home_ids, 1, ifelse(id %in% away_ids, -1, 0))
+}
+c(
+  Durant = x_code(714),
+  Westbrook = x_code(786),
+  Nelson = x_code(158),
+  Benson = x_code(1027)
+)
+```
+
+Benson's ID is 1027. He is in neither five, so this stint does not move his coefficient.
 
 ## The APM table: `nba5`
 
-This matrix is already in `SportsAnalytics270`. One row is one stint, in the same order as `nba12`. One column is one player ID.
+That coding, for every player and every stint, is already in `SportsAnalytics270`. Rows are in the same order as `nba12`.
 
 ```{r, eval=FALSE}
 data(nba5, package = "SportsAnalytics270")
 ```
 
 * 25,300 rows, 474 player columns
-* Cell is `1` if that player is at home, `-1` if away, `0` if he is not on the floor
-* Column names are player IDs, sometimes with a leading `X`
+* Cell is `1` home, `-1` away, `0` not on the floor
+* Column names are player IDs. R puts an `X` in front of a name that starts with a digit, so 714 is `X714`
 
 ```{r}
 dim(nba5)
+head(colnames(nba5), 4)
 ```
 
 ## One stint in `nba5`
 
-Christmas, OKC at home. Durant's ID is 714. Westbrook is with him. Nelson is away. Benson is not in the game.
+Same Christmas row. `nba5` should match the codes we just built from `nba12`.
 
 \tiny
-```{r, echo=FALSE}
+```{r}
 i <- which(nba12$GameID == "20111225ORLOKC")[1]
-nba5_ex <- data.frame(
-  HomeT = nba12$HomeT[i],
-  AwayT = nba12$AwayT[i],
-  Westbrook = nba5[i, "X786"],
-  Durant = nba5[i, "X714"],
-  Nelson = nba5[i, "X158"],
-  Benson = nba5[i, "X1027"],
-  check.names = FALSE
-)
-knitr::kable(nba5_ex, format = "simple")
+nba5[i, c("X714", "X786", "X158", "X1027")]
 ```
 
-* `1`: that player is on the home five
-* `-1`: that player is on the away five
-* `0`: Keith Benson is not on the floor, so this stint does not change his plus/minus
+Durant and Westbrook `1`, Nelson `-1`, Benson `0`. Same as `x_code`.
 
 ## Attach the margin from `nba12`
 
-Same row order as `nba12`. `PM` is home points minus away points in that stint.
+`nba5` has the \(X\) columns only. The outcome is still home points minus away points, from `nba12`.
 
 \tiny
 ```{r}
@@ -908,30 +965,43 @@ nba5 <- data.frame(
   PM = nba12$PointsScoredHome - nba12$PointsScoredAway,
   nba5
 )
-i <- which(nba12$GameID == "20111225ORLOKC")[1]
 nba5[i, c("PM", "X714", "X786", "X158", "X1027")]
 ```
 
-Christmas, 18-18: `PM = 0`. Durant and Westbrook are home (`1`). Nelson is away (`-1`). Benson is not in the game (`0`).
+Christmas, 18-18: `PM = 0`. The dummies did not change. This is one row of \(MARGIN = \beta_0 + \sum \beta_k X_k\).
 
 ## Fit the regression
 
-Each player column is one \(X_k\) from the formula. In a given stint:
+`PM ~ .` means: home margin, explained by every player column.
 
-* `1`: he is on the **home** five, so this stint's `PM` is counted as his
-* `-1`: he is on the **away** five, so this stint's `PM` is counted against him
-* `0`: he is **not on the floor**, so this stint does not move his coefficient
+* `X = 1`: on the home five, this `PM` is counted as his
+* `X = -1`: on the away five, this `PM` is counted against him
+* `X = 0`: not on the floor, this stint does not move his \(\beta\)
 
-`lm(PM ~ .)` estimates each player's contribution to home margin, holding the other players fixed. That coefficient is adjusted plus/minus.
+The coefficient is his APM, holding the other players fixed.
 
 \tiny
 ```{r}
 model <- lm(PM ~ ., data = nba5)
 coeff <- sort(coefficients(model), decreasing = TRUE)
-coeff_all <- name_coeffs(coeff, nba12p)
+head(names(coeff), 4)
 ```
 
-`name_coeffs` strips the `X` from names like `X714` and matches `PlayerID` in `nba12p`.
+The names are still IDs, `X714` not `"Durant, Kevin"`.
+
+## Put names on the coefficients
+
+`name_coeffs` strips the `X`, then joins `PlayerID` in `nba12p`.
+
+\tiny
+```{r}
+tiny <- c("(Intercept)" = unname(coeff["(Intercept)"]),
+          X714 = unname(coeff["X714"]),
+          X786 = unname(coeff["X786"]))
+tiny
+name_coeffs(tiny, nba12p)
+coeff_all <- name_coeffs(coeff, nba12p)
+```
 
 ## A slice of `summary(model)`
 
@@ -972,9 +1042,9 @@ Low and High are the 95% interval: roughly Estimate \(\pm 2 \times\) SE.
 * Benson \(2.12\), range \(-0.20\) to \(4.44\): first on the leaderboard, but the interval is huge (about 9 minutes)
 * Home court \(0.05\) to \(0.13\): does not include 0, so that effect is the one we can actually see
 
-## Adjusted plus/minus
+## The first leaderboard
 
-Do you know these players?
+Do you know these players? These are \(\beta\) from the unfiltered model, largest first.
 
 ```{r}
 coeff_all[names(coeff_all) != "(Intercept)"][1:10]
@@ -994,25 +1064,28 @@ nba12p %>%
 
 Rosenbaum keeps players above 250 minutes. A lower cutoff lets the lucky stint back in. A higher cutoff drops real rotation players.
 
-## Adjusted plus/minus
+## Minutes in this file
 
-`SimpleMin` in `nba12p` is minutes in this file. Rosenbaum keeps players above 250.
+`SimpleMin` in `nba12p` is minutes in these stints. Rosenbaum keeps players above 250.
 
 ```{r}
 summary(nba12p$SimpleMin)
 ```
 
-## Adjusted plus/minus
+## Minutes in this file
+
+Most of the mass is rotation players. The left tail is the Bensons.
 
 ```{r, echo=FALSE, fig.width=7, fig.height=3.1, out.width="\\linewidth", fig.align="center"}
 ggplot(nba12p, aes(SimpleMin)) +
   geom_histogram() +
+  geom_vline(xintercept = 250) +
   labs(title = "Minutes in this file", x = "SimpleMin", y = "Players")
 ```
 
 ## Players above 250 minutes
 
-`SimpleMin` is in `nba12p`. Keep those player IDs, then keep only those columns of `nba5`.
+Keep those IDs from `nba12p`. Benson (about 9 minutes) will not be here.
 
 \tiny
 ```{r}
@@ -1022,22 +1095,43 @@ nba12p %>%
   filter(PlayerID %in% more250) %>%
   select(PlayerID, PlayerTrueName, SimpleMin) %>%
   slice(1:4)
+"Benson, Keith" %in% nba12p$PlayerTrueName[nba12p$SimpleMin > 250]
 ```
 
-Benson (about 9 minutes) is not on this list.
+## Strip the `X` from column names
 
-## Keep those columns, then refit
-
-`nba5` columns are `X714`. Strip the `X` so they match `PlayerID`.
+`nba5` columns are `X714`. `more250` is `714`. Strip the `X` so they match.
 
 \tiny
 ```{r}
+head(colnames(nba5), 4)
 colnames(nba5) <- sub("^X", "", colnames(nba5))
+head(colnames(nba5), 4)
+```
+
+`PM` is unchanged. Player columns are now the same strings as `PlayerID`.
+
+## Keep those columns
+
+Outcome plus the 250-minute players only. `check.names = FALSE` stops `data.frame()` from putting the `X` back on `714`.
+
+\tiny
+```{r}
 nba6 <- data.frame(
   PM = nba5$PM,
-  nba5[, colnames(nba5) %in% more250, drop = FALSE]
+  nba5[, colnames(nba5) %in% as.character(more250), drop = FALSE],
+  check.names = FALSE
 )
-dim(nba6)
+c(stints = nrow(nba6), players = ncol(nba6) - 1)
+head(colnames(nba6), 5)
+```
+
+## Refit, 250-minute players
+
+Same `lm(PM ~ .)`, fewer columns. Nelson is no longer sitting next to Benson.
+
+\tiny
+```{r}
 model2 <- lm(PM ~ ., data = nba6)
 coeff2 <- sort(coefficients(model2), decreasing = TRUE)
 coeff_250 <- name_coeffs(coeff2, nba12p)
@@ -1046,9 +1140,9 @@ coeff_250[names(coeff_250) != "(Intercept)"][1:10]
 
 Nelson, Jameer: [https://goo.gl/eNj7sq](https://goo.gl/eNj7sq)
 
-## Adjusted plus/minus
+## Where is Durant? Where is LeBron?
 
-Where is Durant? Where is LeBron?
+Rank among the 250-minute players. Still points per stint, not per possession.
 
 ```{r}
 rbind(
@@ -1057,21 +1151,17 @@ rbind(
 )
 ```
 
-## Adjusted plus/minus
+## Two stints are not the same length
 
-* Modifications
-  + Take only players that played more then 250 minutes during one season
-  + As a depended variable, take margin of Plus/minus per 100 possessions
-  
+Christmas, OKC: 18-18 in 12 and 13 possessions. A later 2-0 in one trip is a different rate. Next we divide.
 
 \bcenter
-$\text{Margin} = \frac{\text{Home Points}}{\text{Home Possession}} - \frac{\text{Away Points}}{\text{Away Possesssion}}$
+\(\displaystyle \text{Margin} = \frac{\text{Home Points}}{\text{Home Possessions}} - \frac{\text{Away Points}}{\text{Away Possessions}}\)
 \ecenter
-
 
 ## Points per possession
 
-`nba12` already has possessions. Divide so a 10-second stint and a long stint are on the same scale.
+Same scoring and possession columns as in `nba12`.
 
 \tiny
 ```{r}
@@ -1084,23 +1174,39 @@ nba12 %>%
   slice(1:3)
 ```
 
-First stint 18-18 on 12 and 13 possessions: raw plus/minus is 0, the rate is about 0.12.
+First stint 18-18 on 12 and 13 trips: raw `PM` is 0, the rate is about 0.12.
 
 ## Zero possessions
 
-A 0 in the denominator is not a number. Drop those rows. `Secs` is stint length in minutes, for the weighted model later.
+`Margin` is home points per possession minus away points per possession. New York has 0 home possessions, so the first fraction is \(0/0\).
+
+\tiny
+```{r}
+nba12 %>%
+  filter(GameID == "20111225BOSNYK", PossessionsHome == 0) %>%
+  select(PointsScoredHome, PointsScoredAway,
+         PossessionsHome, PossessionsAway, Margin) %>%
+  slice(1:3)
+```
+
+In R, \(0/0 =\) `NaN`. Then `NaN - 2` is still `NaN`. `lm` cannot use that row. Next slide drops it with `is.finite()`.
+
+## Drop non-finite rows
+
+`nba6` rows still line up with `nba12`. Replace raw `PM` with the rate, then keep finite rows only.
 
 \tiny
 ```{r}
 nba6$PM <- nba12$Margin
-nba6$Secs <- nba12$ElapsedSecs / 60
 nba7 <- nba6[is.finite(nba6$PM), ]
 c(before = nrow(nba6), after = nrow(nba7))
 ```
 
+`Secs` is not a player. Add it only as a weight, later.
+
 ## Per-possession regression
 
-Same 250-minute players as `nba6`, new `PM`.
+Same 250-minute players. `PM` is now points per possession.
 
 \tiny
 ```{r}
@@ -1110,9 +1216,9 @@ coeff_poss <- name_coeffs(coeff3, nba12p)
 coeff3 <- coeff_poss
 ```
 
-## Adjusted plus/minus
+## Per-possession leaderboard
 
-Four average teammates plus Nash: about 0.35 points per possession more than five average players.
+Units changed. Nash at about 0.35 means four average teammates plus Nash score about 0.35 points per possession more than five average players.
 
 ```{r}
 coeff3[names(coeff3) != "(Intercept)"][1:10]
@@ -1120,9 +1226,9 @@ coeff3[names(coeff3) != "(Intercept)"][1:10]
 
 Steve Nash, Phoenix: [https://goo.gl/BczeBv](https://goo.gl/BczeBv)
 
-## Adjusted plus/minus
+## Where is Durant? Where is LeBron?
 
-Where is Durant? Where is LeBron?
+Same rank helper, new units.
 
 ```{r}
 rbind(
@@ -1154,12 +1260,12 @@ compare <- data.frame(
 compare
 ```
 
-## Adjusted plus/minus
+## Center the coefficients
 
-We can scale the Plus/Minus values around the mean, such as the positive coefficient will show that the player is doing better than the average and negative will mean that the player is doing worst than the average.
+Subtract the mean. Then \(0\) is the average player in this model: positive is better than average, negative is worse.
 
 ```{r}
-coeff3 <- coeff3 - mean(coeff3)  # 0 is now the average player in this model
+coeff3 <- coeff3 - mean(coeff3)
 ```
 
 ```{r, echo=FALSE, fig.width=7, fig.height=3.1, out.width="\\linewidth", fig.align="center"}
@@ -1168,36 +1274,45 @@ ggplot() + aes(coeff3) +
   labs(title = "Scaled per-possession coefficients", x = "APM", y = "Players")
 ```
 
-## Other considerations for regression
+## Other weights you could use
 
-* Weighted by the duration of the stint, so longer time periods have bigger weights
-* Weighting cases by clutch time vs garbage time  
+* Duration: a two-minute stint should count more than six seconds
+* Clutch: 4th quarter or OT, under five minutes, lead inside \(X\) points
+* Garbage time: 4th quarter or OT, lead larger than \(X\)
 
-**Clutch Time:** During the 4th quarter or overtime, with less than five minutes remaining, and neither team ahead by more than X points.  
-
-**Garbage Time:** 4th quarter and overtime where either team has a lead of X points   
-
-The value of X varies for different analyses, most often 5 and 10.  
-
-
+\(X\) is often 5 or 10. Next we weight by duration only.
 
 # Weighted regression
 
-## Weighted regression
+## Stint length is not equal
 
-`Secs` was `ElapsedSecs / 60`. A two-minute stint counts twice as much as a one-minute stint.
+`ElapsedSecs` is already in `nba12`. Christmas first stint is 364 seconds. A 6-second stint is in the same file.
 
 \tiny
 ```{r}
-model4 <- lm(PM ~ ., data = nba7, weights = Secs)
+nba12 %>%
+  filter(GameID == "20111225ORLOKC") %>%
+  select(ElapsedSecs, PointsScoredHome, PointsScoredAway, Margin) %>%
+  slice(1:3)
+```
+
+## Weight by minutes
+
+`nba7` rows are the finite-`Margin` rows of `nba12`, in the same order. `Secs` is a **weight**, not a player column, so it stays out of `lm`.
+
+\tiny
+```{r}
+w <- nba12$ElapsedSecs[is.finite(nba12$Margin)] / 60
+c(weights = length(w), rows = nrow(nba7))
+model4 <- lm(PM ~ ., data = nba7, weights = w)
 coeff4 <- name_coeffs(sort(coefficients(model4), decreasing = TRUE), nba12p)
 coeff4[names(coeff4) != "(Intercept)"][1:10]
 ```
 
-## Adjusted plus/minus
+## APM is help, not a talent ranking
 
-* The APM is not an indicator on how good or bad the player is.
-* The APM shows how helpful where the players for their team success.
+* APM is not a claim about how good or bad the player is as a person or as a scorer
+* It is how much he moved the team's margin, given who else was on the floor
 
 ## APM regressed against other statistics
 
